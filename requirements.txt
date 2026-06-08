@@ -1,0 +1,16 @@
+# Core data/math
+numpy>=1.26,<3
+pandas>=2.2,<3
+PyYAML>=6.0
+
+# Broker + market data
+alpaca-py>=0.20
+
+# Notifications (Telegram via simple HTTP calls)
+requests>=2.31
+
+# Stats dashboard
+Flask>=3.0
+
+# Dev / tests
+pytest>=8.0

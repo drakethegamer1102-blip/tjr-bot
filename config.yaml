@@ -1,0 +1,54 @@
+# ============================================================================
+# Trading bot configuration — plain settings you can tweak by hand.
+# ============================================================================
+
+# Which market profile is active: "stocks" or "crypto" (see profiles: below)
+active_profile: stocks
+
+# ----- Risk management -----
+# Fraction of the account to risk on a single trade. 0.01 = 1% (TJR's default).
+# This is the REAL driver of position size: the bot buys exactly enough so that
+# if the stop is hit, you lose this fraction of the account.
+# (TJR's own default is ~1%; you chose 3%.)
+risk_per_trade: 0.03
+
+# Hard safety cap: force-exit a position if it loses this fraction of its value.
+# This is your "keep 90%" rule (0.10 = never let one position lose >10% of what you put in).
+# Set to null to disable and rely only on the structural stop.
+max_position_loss_pct: 0.10
+
+# How the stop is placed:
+#   "fixed_pct"  -> stop sits max_position_loss_pct (10%) from entry  [your choice]
+#   "structural" -> stop sits just beyond the swept high/low (tighter, TJR-style)
+stop_mode: structural
+
+# Daily kill-switch: stop trading for the day if either is hit.
+daily_max_losses: 3          # number of losing trades
+daily_max_loss_pct: 0.05     # 5% of account lost in one day
+
+# ----- Strategy (TJR / Smart-Money-Concepts) -----
+strategy:
+  pivot_strength: 2          # swing detection: 1 = aggressive, 3+ = conservative
+  fvg_atr_mult: 0.25         # ignore fair-value-gaps smaller than 0.25 * ATR
+  atr_period: 14
+  confirm_window: 10         # bars allowed between sweep -> MSS -> entry FVG
+  min_rr: 2.0                # minimum reward:risk to take a trade
+  max_trades_per_day: 3
+
+# ----- Market profiles -----
+profiles:
+  stocks:
+    symbols: [AAPL, MSFT, NVDA, TSLA, AMD, SPY, QQQ]
+    timeframe: 5Min
+    session: rth             # regular trading hours 09:30-16:00 ET
+    # Liquidity levels swept during the stock session:
+    levels: [prev_day_high, prev_day_low, opening_range_high, opening_range_low]
+    opening_range_minutes: 30
+
+  crypto:
+    symbols: ["BTC/USD", "ETH/USD"]
+    timeframe: 15Min
+    session: "24/7"
+    # TJR-native: sweep the overnight / Asia-session range.
+    levels: [asia_high, asia_low, prev_day_high, prev_day_low]
+    asia_session: { start: "20:00", end: "00:00", tz: "America/New_York" }
