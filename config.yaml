@@ -38,7 +38,12 @@ strategy:
 # ----- Market profiles -----
 profiles:
   stocks:
-    symbols: [AAPL, MSFT, NVDA, TSLA, AMD, SPY, QQQ]
+    symbols: [AAPL, MSFT, NVDA, TSLA, AMD, SPY, QQQ]   # always-watch list (kept even when screener is on)
+    universe:               # "go find" stocks: auto-screen liquid movers each scan
+      enabled: true
+      max_symbols: 20       # how many screened names to scan (plus the watchlist)
+      min_price: 5          # skip penny stocks
+      max_price: 1000       # skip ultra-high-priced names
     timeframe: 5Min
     session: rth             # regular trading hours 09:30-16:00 ET
     # Liquidity levels swept during the stock session:

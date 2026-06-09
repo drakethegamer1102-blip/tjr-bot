@@ -37,6 +37,28 @@ def _sessions_for(s: Settings) -> tuple[str, ...]:
     return ("ny", "london") if s.profile_name == "crypto" else ("ny_open",)
 
 
+def _resolve_symbols(s: Settings, profile: dict, journal: Journal) -> list[str]:
+    """The symbols to scan: the watchlist, plus a screened universe if enabled."""
+    watchlist = list(profile.get("symbols", []))
+    uni = profile.get("universe") or {}
+    if not uni.get("enabled") or s.profile_name != "stocks":
+        return watchlist
+    try:
+        from .data.screener import get_candidates
+
+        return get_candidates(
+            s.alpaca_key,
+            s.alpaca_secret,
+            max_symbols=int(uni.get("max_symbols", 20)),
+            min_price=float(uni.get("min_price", 5)),
+            max_price=float(uni.get("max_price", 1000)),
+            extra=watchlist,
+        )
+    except Exception as e:  # noqa: BLE001
+        journal.log("error", f"screener: {e}")
+        return watchlist
+
+
 def _format_alert(plan, status: str) -> str:
     arrow = "🟢 LONG" if plan.side == "long" else "🔴 SHORT"
     return (
@@ -86,8 +108,9 @@ def scan_once(
 
     equity = broker.equity() if broker else 100_000.0
     strat = s.strategy
+    symbols = _resolve_symbols(s, profile, journal)
 
-    for symbol in profile["symbols"]:
+    for symbol in symbols:
         try:
             if broker and broker.has_position(symbol):
                 continue
