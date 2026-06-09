@@ -13,6 +13,7 @@ KILLZONES: dict[str, tuple[dt.time, dt.time]] = {
     "london": (dt.time(2, 0), dt.time(5, 0)),
     "ny": (dt.time(7, 0), dt.time(10, 0)),  # ICT New York killzone
     "ny_open": (dt.time(9, 30), dt.time(11, 30)),  # stock NY-open window (TJR's bread & butter)
+    "ny_pm": (dt.time(13, 30), dt.time(15, 30)),  # afternoon NY session (stops before the close)
     "rth": (dt.time(9, 30), dt.time(16, 0)),  # regular US stock hours
 }
 

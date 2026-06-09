@@ -20,7 +20,7 @@ from .config import Settings
 from .data.alpaca_data import get_crypto_bars, get_stock_bars
 from .journal import Journal
 from .risk.engine import RiskConfig, plan_trade
-from .reconcile import reconcile
+from .reconcile import compute_pnl, reconcile
 from .smc.session import ET, in_session
 from .strategy import find_trades
 
@@ -34,7 +34,7 @@ def _recent_bars(s: Settings, symbol: str, tf: str, days: int = 3) -> pd.DataFra
 
 
 def _sessions_for(s: Settings) -> tuple[str, ...]:
-    return ("ny", "london") if s.profile_name == "crypto" else ("ny_open",)
+    return ("ny", "london") if s.profile_name == "crypto" else ("ny_open", "ny_pm")
 
 
 def _resolve_symbols(s: Settings, profile: dict, journal: Journal) -> list[str]:
@@ -181,6 +181,77 @@ def scan_once(
             continue
 
     return actions
+
+
+def daily_summary(s: Settings, broker, notifier, journal: Journal) -> str:
+    """Build and send an end-of-day Telegram report (even on no-trade days).
+
+    Alpaca is the source of truth, so this works fine in stateless cloud runs.
+    """
+    reconcile(broker, journal)
+    acct = broker.account()
+    eq = float(acct.equity)
+    last = float(acct.last_equity or eq)
+    today_pl = eq - last
+    today_pct = (today_pl / last * 100) if last else 0.0
+    today = dt.datetime.now(ET).date()
+
+    try:
+        closed = broker.closed_orders(limit=200)
+    except Exception as e:  # noqa: BLE001
+        journal.log("error", f"summary fetch: {e}")
+        closed = []
+
+    pnls: list[float] = []
+    today_n = 0
+    for o in closed:
+        coid = getattr(o, "client_order_id", "") or ""
+        entry_px = getattr(o, "filled_avg_price", None)
+        if not coid.startswith("tjr-") or not entry_px:
+            continue
+        legs = getattr(o, "legs", None) or []
+        exit_leg = next(
+            (leg for leg in legs if "filled" in str(getattr(leg, "status", "")).lower()
+             and getattr(leg, "filled_avg_price", None)),
+            None,
+        )
+        if exit_leg is None:
+            continue
+        side = "long" if str(getattr(o, "side", "")).lower().endswith("buy") else "short"
+        pnls.append(compute_pnl(side, float(entry_px), float(exit_leg.filled_avg_price),
+                                float(getattr(o, "filled_qty", 0) or 0)))
+        fa = getattr(exit_leg, "filled_at", None)
+        try:
+            if fa and fa.astimezone(ET).date() == today:
+                today_n += 1
+        except Exception:  # noqa: BLE001
+            pass
+
+    n = len(pnls)
+    wins = sum(1 for p in pnls if p > 0)
+    losses = sum(1 for p in pnls if p < 0)
+    win_rate = (wins / n * 100) if n else 0.0
+    net = sum(pnls)
+    try:
+        open_pos = len(broker.positions())
+    except Exception:  # noqa: BLE001
+        open_pos = 0
+
+    emoji = "📈" if today_pl >= 0 else "📉"
+    headline = "No setups today — stayed flat." if today_n == 0 else f"Took {today_n} trade(s) today."
+    msg = (
+        f"{emoji} <b>Daily summary — {today:%a %b %d}</b>\n"
+        f"{headline}\n\n"
+        f"Equity: ${eq:,.2f}\n"
+        f"Today's P&L: ${today_pl:+,.2f} ({today_pct:+.2f}%)\n"
+        f"Open positions: {open_pos}\n\n"
+        f"<b>All-time (paper):</b>\n"
+        f"Trades: {n}  |  Win rate: {win_rate:.0f}% ({wins}W/{losses}L)\n"
+        f"Net P&L: ${net:+,.2f}"
+    )
+    if notifier:
+        notifier.send(msg)
+    return msg
 
 
 def cycle(s: Settings, broker, notifier, journal: Journal, *, force: bool = False) -> list[dict]:
