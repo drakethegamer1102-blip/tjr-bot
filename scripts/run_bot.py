@@ -19,6 +19,7 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true", help="decide but do not place orders")
     ap.add_argument("--once", action="store_true", help="scan a single time, then exit")
     ap.add_argument("--summary", action="store_true", help="send the end-of-day Telegram summary and exit")
+    ap.add_argument("--weekly", action="store_true", help="send the weekly recap and exit")
     ap.add_argument("--force", action="store_true", help="ignore the session window (testing)")
     ap.add_argument("--interval", type=int, default=60, help="seconds between scans")
     args = ap.parse_args()
@@ -34,6 +35,16 @@ def main() -> int:
         broker = Broker(s.alpaca_key, s.alpaca_secret, paper=s.alpaca_paper)
         notifier = TelegramNotifier(s.telegram_token, s.telegram_chat_id)
         print(daily_summary(s, broker, notifier, Journal()))
+        return 0
+
+    if args.weekly:
+        from tjrbot.engine import weekly_summary
+        from tjrbot.execution.alpaca_exec import Broker
+        from tjrbot.notify.telegram import TelegramNotifier
+
+        broker = Broker(s.alpaca_key, s.alpaca_secret, paper=s.alpaca_paper)
+        notifier = TelegramNotifier(s.telegram_token, s.telegram_chat_id)
+        print(weekly_summary(s, broker, notifier, Journal()))
         return 0
 
     if args.once or args.dry_run:

@@ -254,6 +254,84 @@ def daily_summary(s: Settings, broker, notifier, journal: Journal) -> str:
     return msg
 
 
+def _closed_bot_trades(broker, journal: Journal) -> list[dict]:
+    """Every closed bracket the bot has placed, as {'symbol','pnl','dt'(ET)} rows."""
+    try:
+        closed = broker.closed_orders(limit=200)
+    except Exception as e:  # noqa: BLE001
+        journal.log("error", f"summary fetch: {e}")
+        return []
+    rows: list[dict] = []
+    for o in closed:
+        coid = getattr(o, "client_order_id", "") or ""
+        entry_px = getattr(o, "filled_avg_price", None)
+        if not coid.startswith("tjr-") or not entry_px:
+            continue
+        legs = getattr(o, "legs", None) or []
+        exit_leg = next(
+            (leg for leg in legs if "filled" in str(getattr(leg, "status", "")).lower()
+             and getattr(leg, "filled_avg_price", None)),
+            None,
+        )
+        if exit_leg is None:
+            continue
+        side = "long" if str(getattr(o, "side", "")).lower().endswith("buy") else "short"
+        pnl = compute_pnl(side, float(entry_px), float(exit_leg.filled_avg_price),
+                          float(getattr(o, "filled_qty", 0) or 0))
+        fa = getattr(exit_leg, "filled_at", None)
+        try:
+            when = fa.astimezone(ET) if fa else None
+        except Exception:  # noqa: BLE001
+            when = None
+        rows.append({"symbol": getattr(o, "symbol", ""), "pnl": pnl, "dt": when})
+    return rows
+
+
+def summarize_trades(trades: list[dict]) -> dict:
+    """Pure aggregation over [{'symbol','pnl','dt'}] rows (count, win rate, best/worst)."""
+    pnls = [t["pnl"] for t in trades]
+    n = len(pnls)
+    wins = sum(1 for p in pnls if p > 0)
+    losses = sum(1 for p in pnls if p < 0)
+    return {
+        "n": n,
+        "wins": wins,
+        "losses": losses,
+        "win_rate": (wins / n * 100) if n else 0.0,
+        "net": sum(pnls),
+        "best": max(trades, key=lambda t: t["pnl"]) if trades else None,
+        "worst": min(trades, key=lambda t: t["pnl"]) if trades else None,
+    }
+
+
+def weekly_summary(s: Settings, broker, notifier, journal: Journal) -> str:
+    """Send a Friday recap of the week's trading to Telegram."""
+    reconcile(broker, journal)
+    now = dt.datetime.now(ET)
+    monday = (now - dt.timedelta(days=now.weekday())).date()
+    week = [t for t in _closed_bot_trades(broker, journal) if t["dt"] and t["dt"].date() >= monday]
+    w = summarize_trades(week)
+    try:
+        eq = float(broker.account().equity)
+    except Exception:  # noqa: BLE001
+        eq = 0.0
+
+    def fmt(label: str, t: dict | None) -> str:
+        return f"{label}: {t['symbol']} ${t['pnl']:+,.0f}" if t else f"{label}: —"
+
+    headline = "No trades this week." if not week else f"{w['n']} trade(s) this week."
+    msg = (
+        f"🗓️ <b>Weekly recap — week of {monday:%b %d}</b>\n{headline}\n\n"
+        f"Week P&L: ${w['net']:+,.2f}\n"
+        f"Win rate: {w['win_rate']:.0f}% ({w['wins']}W/{w['losses']}L)\n"
+        f"{fmt('Best', w['best'])}\n{fmt('Worst', w['worst'])}\n\n"
+        f"Equity: ${eq:,.2f}"
+    )
+    if notifier:
+        notifier.send(msg)
+    return msg
+
+
 def cycle(s: Settings, broker, notifier, journal: Journal, *, force: bool = False) -> list[dict]:
     """One full pass: reconcile closed trades, flatten at EOD, then scan for new setups.
 
