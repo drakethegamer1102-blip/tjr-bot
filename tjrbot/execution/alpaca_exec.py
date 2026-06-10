@@ -51,6 +51,14 @@ class Broker:
         except Exception:
             return False
 
+    def is_shortable(self, symbol: str) -> bool:
+        """True if the asset can be sold short (skip the trade otherwise)."""
+        try:
+            a = self.tc.get_asset(symbol.replace("/", ""))
+            return bool(getattr(a, "tradable", False)) and bool(getattr(a, "shortable", False))
+        except Exception:
+            return False
+
     # --- writes ---
     def submit_bracket(self, plan, client_order_id: str, tif: TimeInForce = TimeInForce.DAY):
         """Submit a limit entry with attached take-profit and stop-loss."""

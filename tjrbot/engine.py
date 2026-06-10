@@ -152,6 +152,9 @@ def scan_once(
             plan = plan_trade(symbol, sig, equity, rc)
             if plan is None:
                 continue
+            if plan.side == "short" and broker is not None and not broker.is_shortable(symbol):
+                journal.log("info", f"{symbol}: short setup skipped (not shortable)")
+                continue
 
             date = today.index[-1].tz_convert(ET).strftime("%Y%m%d")
             coid = f"tjr-{symbol.replace('/', '')}-{date}-{sig.index}"
