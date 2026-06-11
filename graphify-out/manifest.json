@@ -35,9 +35,9 @@
     "semantic_hash": ""
   },
   "tests/test_risk.py": {
-    "mtime": 1780956637.6299987,
-    "ast_hash": "8250fbd1929e6781b0dde3ea34408705",
-    "semantic_hash": "8250fbd1929e6781b0dde3ea34408705"
+    "mtime": 1781215605.516437,
+    "ast_hash": "0c2dacd9707ba0eed72636d451f1592c",
+    "semantic_hash": ""
   },
   "tests/test_screener.py": {
     "mtime": 1781019626.2619958,
@@ -100,8 +100,8 @@
     "semantic_hash": "f6f0e22d7c58116abbeb2aa77887356b"
   },
   "tjrbot/engine.py": {
-    "mtime": 1781198082.0343132,
-    "ast_hash": "27f84147332bb3ff885640387b53fb6a",
+    "mtime": 1781215224.5830073,
+    "ast_hash": "9e7e4aa6f85502a0625cdc10faa4883f",
     "semantic_hash": ""
   },
   "tjrbot/execution/__init__.py": {
@@ -140,9 +140,9 @@
     "semantic_hash": "f463ab83cc07b74567227cbfff861f37"
   },
   "tjrbot/risk/engine.py": {
-    "mtime": 1780957146.1561043,
-    "ast_hash": "8fda22fa7bcf74d5df979c4ec4c7a96b",
-    "semantic_hash": "8fda22fa7bcf74d5df979c4ec4c7a96b"
+    "mtime": 1781215205.3767807,
+    "ast_hash": "b4e77a92b019bf9fbecfd37a8227578f",
+    "semantic_hash": ""
   },
   "tjrbot/smc/__init__.py": {
     "mtime": 1780955204.3699424,
@@ -200,8 +200,8 @@
     "semantic_hash": "ed676902d95c0533b5033d2f0bc95ddf"
   },
   "config.yaml": {
-    "mtime": 1781198042.1660817,
-    "ast_hash": "22e9d34ba229d6489122031a15703e35",
+    "mtime": 1781215205.3280632,
+    "ast_hash": "e8704e66ef5143cba712b0ea280c1087",
     "semantic_hash": ""
   },
   "requirements.txt": {
@@ -240,8 +240,8 @@
     "semantic_hash": ""
   },
   "tjrbot/strategies/__init__.py": {
-    "mtime": 1781197584.8704906,
-    "ast_hash": "12be1ebc2e7cf416bba8aa337324593e",
+    "mtime": 1781199364.9390883,
+    "ast_hash": "e670dcc5a5ba2c97231649e70b594c4d",
     "semantic_hash": ""
   },
   "tjrbot/strategies/orb.py": {
@@ -252,6 +252,16 @@
   "tjrbot/strategies/vwap_rev.py": {
     "mtime": 1781197601.0484664,
     "ast_hash": "b458d72a2c31301dd08ef146dd5c7249",
+    "semantic_hash": ""
+  },
+  "tjrbot/strategies/momentum.py": {
+    "mtime": 1781199355.3026772,
+    "ast_hash": "baf80e3886793c309a3978270cd00e71",
+    "semantic_hash": ""
+  },
+  "tjrbot/strategies/rsi_pullback.py": {
+    "mtime": 1781199362.356869,
+    "ast_hash": "225e44f08563696a6fe4091e2947efce",
     "semantic_hash": ""
   }
 }
