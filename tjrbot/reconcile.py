@@ -27,7 +27,7 @@ def reconcile(broker, journal, *, limit: int = 200) -> int:
     recorded = 0
     for o in orders or []:
         coid = getattr(o, "client_order_id", None) or ""
-        if not coid.startswith("tjr-") or journal.has_trade(coid):
+        if not coid.startswith("bot-") or journal.has_trade(coid):
             continue
         entry_px = getattr(o, "filled_avg_price", None)
         if not _filled(getattr(o, "status", "")) or not entry_px:

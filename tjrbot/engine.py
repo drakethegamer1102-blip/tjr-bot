@@ -23,6 +23,7 @@ from .risk.engine import RiskConfig, plan_trade
 from .reconcile import compute_pnl, reconcile
 from .smc.session import ET, in_session
 from .strategy import find_trades
+from .strategies import REGISTRY
 
 _AGG = {"open": "first", "high": "max", "low": "min", "close": "last", "volume": "sum"}
 
@@ -87,6 +88,33 @@ def flatten_if_eod(s: Settings, broker, notifier, journal: Journal) -> None:
         journal.log("error", f"eod flatten: {e}")
 
 
+def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat) -> list:
+    """Run every enabled strategy for one symbol's session; return tagged signals."""
+    cfg = s.raw.get("strategies") or {"tjr": {"enabled": True}}
+    out: list = []
+    if (cfg.get("tjr") or {}).get("enabled", True):
+        out += find_trades(
+            today, [pdh, pdl], htf_bars=htf if len(htf) >= 5 else None,
+            pivot_strength=int(strat.get("pivot_strength", 2)),
+            fvg_atr_mult=float(strat.get("fvg_atr_mult", 0.25)),
+            atr_period=int(strat.get("atr_period", 14)),
+            confirm_window=int(strat.get("confirm_window", 10)),
+            min_rr=float(strat.get("min_rr", 2.0)),
+            sessions=list(sessions), use_bias=True,
+        )
+    for name, gen in REGISTRY.items():
+        c = cfg.get(name) or {}
+        if not c.get("enabled", False):
+            continue
+        params = {k: v for k, v in c.items() if k != "enabled"}
+        try:
+            sigs = gen(today, **params)
+        except Exception:  # noqa: BLE001
+            sigs = []
+        out += [sg for sg in sigs if in_session(today.index[sg.index], list(sessions))]
+    return out
+
+
 def scan_once(
     s: Settings,
     broker,
@@ -129,18 +157,7 @@ def scan_once(
             hist = bars[bars.index < today.index[0]]
             htf = hist.resample("1h").agg(_AGG).dropna()
 
-            signals = find_trades(
-                today,
-                levels=[pdh, pdl],
-                htf_bars=htf if len(htf) >= 5 else None,
-                pivot_strength=int(strat.get("pivot_strength", 2)),
-                fvg_atr_mult=float(strat.get("fvg_atr_mult", 0.25)),
-                atr_period=int(strat.get("atr_period", 14)),
-                confirm_window=int(strat.get("confirm_window", 10)),
-                min_rr=float(strat.get("min_rr", 2.0)),
-                sessions=list(sessions),
-                use_bias=True,
-            )
+            signals = _collect_signals(s, today, pdh, pdl, htf, sessions, strat)
             # only act on a signal that completed on the most recent closed bar(s)
             fresh = [sig for sig in signals if sig.index >= len(today) - 2]
             if not fresh:
@@ -157,7 +174,7 @@ def scan_once(
                 continue
 
             date = today.index[-1].tz_convert(ET).strftime("%Y%m%d")
-            coid = f"tjr-{symbol.replace('/', '')}-{date}-{sig.index}"
+            coid = f"bot-{sig.strategy}-{symbol.replace('/', '')}-{date}-{sig.index}"
             if journal.has_order(coid) or (broker is not None and broker.order_exists(coid)):
                 continue
 
@@ -210,7 +227,7 @@ def daily_summary(s: Settings, broker, notifier, journal: Journal) -> str:
     for o in closed:
         coid = getattr(o, "client_order_id", "") or ""
         entry_px = getattr(o, "filled_avg_price", None)
-        if not coid.startswith("tjr-") or not entry_px:
+        if not coid.startswith("bot-") or not entry_px:
             continue
         legs = getattr(o, "legs", None) or []
         exit_leg = next(
@@ -268,7 +285,7 @@ def _closed_bot_trades(broker, journal: Journal) -> list[dict]:
     for o in closed:
         coid = getattr(o, "client_order_id", "") or ""
         entry_px = getattr(o, "filled_avg_price", None)
-        if not coid.startswith("tjr-") or not entry_px:
+        if not coid.startswith("bot-") or not entry_px:
             continue
         legs = getattr(o, "legs", None) or []
         exit_leg = next(

@@ -31,6 +31,8 @@ class Signal:
     stop: float
     target: float
     reasons: list[str] = field(default_factory=list)
+    strategy: str = "tjr"  # which strategy produced this signal
+    entry_type: str = "limit"  # "limit" = fill on a retrace to entry; "market" = fill now (breakout/momentum)
 
 
 def generate_signals(

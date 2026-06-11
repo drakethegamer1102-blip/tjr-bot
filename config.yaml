@@ -35,6 +35,14 @@ strategy:
   min_rr: 2.0                # minimum reward:risk to take a trade
   max_trades_per_day: 3
 
+# ----- Multi-strategy: run these alongside TJR; each is tracked separately -----
+# Backtest (45d, indicative): vwap_rev profitable (PF 1.24); orb lost (PF 0.91);
+# tjr ~breakeven. So vwap_rev + tjr are ON; orb is OFF pending refinement.
+strategies:
+  tjr:      { enabled: true }                  # TJR / SMC (uses the `strategy:` params above)
+  vwap_rev: { enabled: true, atr_mult: 2.0 }   # fade overstretched moves back to VWAP
+  orb:      { enabled: false, or_minutes: 15 } # opening-range breakout (OFF: lost in backtest)
+
 # ----- Market profiles -----
 profiles:
   stocks:

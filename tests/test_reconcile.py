@@ -41,7 +41,7 @@ def test_reconcile_records_win_and_is_idempotent(tmp_path):
     j = Journal(tmp_path / "j.db")
     # long entry 100, take-profit leg filled at 110, qty 10 -> +100
     o = _Order(
-        "tjr-AAPL-20260102-5", "AAPL", "OrderSide.BUY", "OrderStatus.FILLED", 100.0, 10,
+        "bot-tjr-AAPL-20260102-5", "AAPL", "OrderSide.BUY", "OrderStatus.FILLED", 100.0, 10,
         [_Leg("OrderStatus.FILLED", 110.0), _Leg("OrderStatus.CANCELED", None)],
     )
     assert reconcile(_Broker([o]), j) == 1
@@ -57,7 +57,7 @@ def test_reconcile_skips_open_positions(tmp_path):
     j = Journal(tmp_path / "j.db")
     # entry filled but neither exit leg filled -> still open, do not record
     o = _Order(
-        "tjr-MSFT-20260102-3", "MSFT", "OrderSide.BUY", "OrderStatus.FILLED", 200.0, 5,
+        "bot-tjr-MSFT-20260102-3", "MSFT", "OrderSide.BUY", "OrderStatus.FILLED", 200.0, 5,
         [_Leg("OrderStatus.NEW", None), _Leg("OrderStatus.NEW", None)],
     )
     assert reconcile(_Broker([o]), j) == 0
