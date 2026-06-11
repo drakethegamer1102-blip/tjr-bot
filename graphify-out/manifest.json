@@ -30,9 +30,9 @@
     "semantic_hash": "a93d961ea20c4867d88b9ea201a90442"
   },
   "tests/test_reconcile.py": {
-    "mtime": 1780957693.5671382,
-    "ast_hash": "96ed150712afe8fb2075af0f6da6ad35",
-    "semantic_hash": "96ed150712afe8fb2075af0f6da6ad35"
+    "mtime": 1781198136.5311787,
+    "ast_hash": "3b522fed6740290240ffd45612e9f34c",
+    "semantic_hash": ""
   },
   "tests/test_risk.py": {
     "mtime": 1780956637.6299987,
@@ -65,9 +65,9 @@
     "semantic_hash": "0d1cc8c1a5c1e8c17924130d7ee4f950"
   },
   "tjrbot/backtest.py": {
-    "mtime": 1780956820.659795,
-    "ast_hash": "8eba9b2ebb049d4f26efc151195b4130",
-    "semantic_hash": "8eba9b2ebb049d4f26efc151195b4130"
+    "mtime": 1781197759.4666684,
+    "ast_hash": "8b9d5971522110fd65d5de6dfefc65fb",
+    "semantic_hash": ""
   },
   "tjrbot/config.py": {
     "mtime": 1780956415.1580408,
@@ -100,8 +100,8 @@
     "semantic_hash": "f6f0e22d7c58116abbeb2aa77887356b"
   },
   "tjrbot/engine.py": {
-    "mtime": 1781130958.6715643,
-    "ast_hash": "bddcac71b7b8ca2e2bf3acd6fc6db06f",
+    "mtime": 1781198082.0343132,
+    "ast_hash": "27f84147332bb3ff885640387b53fb6a",
     "semantic_hash": ""
   },
   "tjrbot/execution/__init__.py": {
@@ -130,9 +130,9 @@
     "semantic_hash": "7695e83993735bf25a27213fa2f305d7"
   },
   "tjrbot/reconcile.py": {
-    "mtime": 1780957685.4779775,
-    "ast_hash": "bcd359b24ff2612642d83aea6d02e771",
-    "semantic_hash": "bcd359b24ff2612642d83aea6d02e771"
+    "mtime": 1781198083.3684466,
+    "ast_hash": "30fc224f893341bf07eb5b38a067bc0d",
+    "semantic_hash": ""
   },
   "tjrbot/risk/__init__.py": {
     "mtime": 1780956598.1052063,
@@ -155,9 +155,9 @@
     "semantic_hash": "a10b6e7392683714956ab3414dc106da"
   },
   "tjrbot/smc/signals.py": {
-    "mtime": 1780955240.7430668,
-    "ast_hash": "466fe2b1b4e486bdf0c9520ec98bb5bd",
-    "semantic_hash": "466fe2b1b4e486bdf0c9520ec98bb5bd"
+    "mtime": 1781197571.2553997,
+    "ast_hash": "9cfc08637329908beefdc9877ef3636f",
+    "semantic_hash": ""
   },
   "tjrbot/smc/structure.py": {
     "mtime": 1780955216.271523,
@@ -200,9 +200,9 @@
     "semantic_hash": "ed676902d95c0533b5033d2f0bc95ddf"
   },
   "config.yaml": {
-    "mtime": 1781019420.4514365,
-    "ast_hash": "03450a9c021213e1970befff675edca9",
-    "semantic_hash": "03450a9c021213e1970befff675edca9"
+    "mtime": 1781198042.1660817,
+    "ast_hash": "22e9d34ba229d6489122031a15703e35",
+    "semantic_hash": ""
   },
   "requirements.txt": {
     "mtime": 1780955204.313686,
@@ -217,6 +217,41 @@
   "EXTERNAL_CRON.md": {
     "mtime": 1781154867.726616,
     "ast_hash": "270c3b261c5612de3b80fe4c532d8729",
+    "semantic_hash": ""
+  },
+  "scripts/compare_strategies.py": {
+    "mtime": 1781197822.7712088,
+    "ast_hash": "765b540b5dca7aa6169da952addc0555",
+    "semantic_hash": ""
+  },
+  "tests/test_indicators.py": {
+    "mtime": 1781197638.020672,
+    "ast_hash": "b8ee42c998852a1188182a548487c5b4",
+    "semantic_hash": ""
+  },
+  "tests/test_strategies_new.py": {
+    "mtime": 1781197643.9553542,
+    "ast_hash": "bd6e69aa1581f549d909e766bc257eec",
+    "semantic_hash": ""
+  },
+  "tjrbot/indicators.py": {
+    "mtime": 1781197575.4625938,
+    "ast_hash": "2fb66881a90cecaa8043ffb16071188e",
+    "semantic_hash": ""
+  },
+  "tjrbot/strategies/__init__.py": {
+    "mtime": 1781197584.8704906,
+    "ast_hash": "12be1ebc2e7cf416bba8aa337324593e",
+    "semantic_hash": ""
+  },
+  "tjrbot/strategies/orb.py": {
+    "mtime": 1781197593.767663,
+    "ast_hash": "2e8c078923e12e31be2aee77a63c6dea",
+    "semantic_hash": ""
+  },
+  "tjrbot/strategies/vwap_rev.py": {
+    "mtime": 1781197601.0484664,
+    "ast_hash": "b458d72a2c31301dd08ef146dd5c7249",
     "semantic_hash": ""
   }
 }

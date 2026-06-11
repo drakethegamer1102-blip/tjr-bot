@@ -19,7 +19,7 @@ import pandas as pd
 from .config import Settings
 from .data.alpaca_data import get_crypto_bars, get_stock_bars
 from .journal import Journal
-from .risk.engine import RiskConfig, plan_trade
+from .risk.engine import RiskConfig, daily_loss_exceeded, plan_trade
 from .reconcile import compute_pnl, reconcile
 from .smc.session import ET, in_session
 from .strategy import find_trades
@@ -88,6 +88,36 @@ def flatten_if_eod(s: Settings, broker, notifier, journal: Journal) -> None:
         journal.log("error", f"eod flatten: {e}")
 
 
+def _daily_halt(s: Settings, broker) -> str | None:
+    """Persistent daily risk gate — works across stateless scheduled runs via the live account.
+
+    Returns a reason to stop opening new trades today, or None to proceed.
+    """
+    try:
+        acct = broker.account()
+        eq = float(acct.equity)
+        last_eq = float(acct.last_equity) if acct.last_equity else eq
+    except Exception:  # noqa: BLE001
+        return None
+    if daily_loss_exceeded(eq, last_eq, float(s.get("daily_max_loss_pct", 0.05))):
+        return f"daily loss limit ({(eq - last_eq) / last_eq * 100:.1f}%)"
+    try:
+        today = dt.datetime.now(ET).date()
+        filled = 0
+        for o in broker.closed_orders(limit=500):
+            coid = getattr(o, "client_order_id", "") or ""
+            if not coid.startswith("bot-") or "filled" not in str(getattr(o, "status", "")).lower():
+                continue
+            fa = getattr(o, "filled_at", None)
+            if fa and fa.astimezone(ET).date() == today:
+                filled += 1
+        if filled >= int(s.get("daily_max_trades", 4)):
+            return f"daily trade cap ({filled} trades)"
+    except Exception:  # noqa: BLE001
+        pass
+    return None
+
+
 def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat) -> list:
     """Run every enabled strategy for one symbol's session; return tagged signals."""
     cfg = s.raw.get("strategies") or {"tjr": {"enabled": True}}
@@ -135,6 +165,13 @@ def scan_once(
         return actions  # outside the trading window -> do nothing
 
     equity = broker.equity() if broker else 100_000.0
+    if broker is not None:
+        halt = _daily_halt(s, broker)
+        if halt:
+            journal.log("info", f"trading halted for today: {halt}")
+            return actions
+        if len(broker.positions()) >= int(s.get("max_concurrent_positions", 3)):
+            return actions
     strat = s.strategy
     symbols = _resolve_symbols(s, profile, journal)
 

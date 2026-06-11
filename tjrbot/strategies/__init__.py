@@ -5,11 +5,13 @@ single session's intraday bars. Signals carry `.strategy` and `.entry_type` so t
 engine, backtester, and per-strategy stats can treat them uniformly.
 """
 
-from . import orb, vwap_rev
+from . import momentum, orb, rsi_pullback, vwap_rev
 
 REGISTRY = {
     "orb": orb.generate,
     "vwap_rev": vwap_rev.generate,
+    "momentum": momentum.generate,
+    "rsi_pullback": rsi_pullback.generate,
 }
 
-__all__ = ["orb", "vwap_rev", "REGISTRY"]
+__all__ = ["orb", "vwap_rev", "momentum", "rsi_pullback", "REGISTRY"]

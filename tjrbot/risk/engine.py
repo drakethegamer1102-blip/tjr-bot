@@ -51,7 +51,15 @@ class RiskConfig:
             daily_max_losses=int(s.raw.get("daily_max_losses", 3)),
             daily_max_loss_pct=float(s.raw.get("daily_max_loss_pct", 0.05)),
             max_trades_per_day=int(st.get("max_trades_per_day", 3)),
+            max_position_pct=float(s.raw.get("max_position_pct", 0.20)),
         )
+
+
+def daily_loss_exceeded(equity: float, last_equity: float, max_loss_pct: float) -> bool:
+    """True if today's P&L (equity vs prior session close) is at/below -max_loss_pct."""
+    if not last_equity or last_equity <= 0:
+        return False
+    return (equity - last_equity) / last_equity <= -abs(max_loss_pct)
 
 
 def plan_trade(symbol: str, signal, equity: float, rc: RiskConfig) -> TradePlan | None:

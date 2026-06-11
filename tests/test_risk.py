@@ -62,3 +62,12 @@ def test_kill_switch_daily_loss():
     assert st.halted(rc) is None
     st.record(-3000)  # total -6000 > 5% of 100k
     assert st.halted(rc) == "daily loss limit reached"
+
+
+def test_daily_loss_exceeded():
+    from tjrbot.risk.engine import daily_loss_exceeded
+
+    assert daily_loss_exceeded(94000, 100000, 0.05) is True    # -6% breaches -5%
+    assert daily_loss_exceeded(96000, 100000, 0.05) is False   # -4% is fine
+    assert daily_loss_exceeded(110000, 100000, 0.05) is False  # up day
+    assert daily_loss_exceeded(90000, 0, 0.05) is False        # no baseline -> never halts

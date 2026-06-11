@@ -23,8 +23,11 @@ max_position_loss_pct: 0.10
 stop_mode: structural
 
 # Daily kill-switch: stop trading for the day if either is hit.
-daily_max_losses: 3          # number of losing trades
-daily_max_loss_pct: 0.05     # 5% of account lost in one day
+daily_max_losses: 3          # number of losing trades (within a run)
+daily_max_loss_pct: 0.05     # 5% of account down today -> NOW enforced across ALL scheduled runs (live account)
+daily_max_trades: 4          # hard cap on new trades opened per day (across all runs)
+max_concurrent_positions: 3  # never hold more than this many open positions at once
+max_position_pct: 0.20       # a single position can never exceed this fraction of equity (gap/slippage guard)
 
 # ----- Strategy (TJR / Smart-Money-Concepts) -----
 strategy:

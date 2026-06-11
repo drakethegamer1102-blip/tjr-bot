@@ -4,14 +4,954 @@
   "graph": {},
   "nodes": [
     {
+      "label": "compare_strategies.py",
+      "file_type": "code",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_compare_strategies",
+      "community": 5,
+      "norm_label": "compare_strategies.py"
+    },
+    {
+      "label": "main()",
+      "file_type": "code",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "scripts_compare_strategies_main",
+      "community": 5,
+      "norm_label": "main()"
+    },
+    {
+      "label": "Backtest TJR vs ORB vs VWAP-reversion head-to-head on real data.  Same risk sett",
+      "file_type": "rationale",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "scripts_compare_strategies_rationale_1",
+      "community": 5,
+      "norm_label": "backtest tjr vs orb vs vwap-reversion head-to-head on real data.  same risk sett"
+    },
+    {
+      "label": "test_indicators.py",
+      "file_type": "code",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_indicators",
+      "community": 11,
+      "norm_label": "test_indicators.py"
+    },
+    {
+      "label": "test_ema_constant()",
+      "file_type": "code",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "tests_test_indicators_test_ema_constant",
+      "community": 11,
+      "norm_label": "test_ema_constant()"
+    },
+    {
+      "label": "test_rsi_uptrend_high()",
+      "file_type": "code",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L13",
+      "_origin": "ast",
+      "id": "tests_test_indicators_test_rsi_uptrend_high",
+      "community": 11,
+      "norm_label": "test_rsi_uptrend_high()"
+    },
+    {
+      "label": "test_rsi_downtrend_low()",
+      "file_type": "code",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "tests_test_indicators_test_rsi_downtrend_low",
+      "community": 11,
+      "norm_label": "test_rsi_downtrend_low()"
+    },
+    {
+      "label": "test_vwap_equal_volume()",
+      "file_type": "code",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "tests_test_indicators_test_vwap_equal_volume",
+      "community": 11,
+      "norm_label": "test_vwap_equal_volume()"
+    },
+    {
+      "label": "Tests for the technical indicators.",
+      "file_type": "rationale",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_indicators_rationale_1",
+      "community": 11,
+      "norm_label": "tests for the technical indicators."
+    },
+    {
+      "label": "test_reconcile.py",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_reconcile",
+      "community": 0,
+      "norm_label": "test_reconcile.py"
+    },
+    {
+      "label": "_Leg",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_leg",
+      "community": 0,
+      "norm_label": "_leg"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_leg_init",
+      "community": 0,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "_Order",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_order",
+      "community": 0,
+      "norm_label": "_order"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_order_init",
+      "community": 0,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": "_Broker",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L26",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_broker",
+      "community": 0,
+      "norm_label": "_broker"
+    },
+    {
+      "label": ".__init__()",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_broker_init",
+      "community": 0,
+      "norm_label": ".__init__()"
+    },
+    {
+      "label": ".closed_orders()",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L30",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_broker_closed_orders",
+      "community": 0,
+      "norm_label": ".closed_orders()"
+    },
+    {
+      "label": "test_compute_pnl()",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_test_compute_pnl",
+      "community": 0,
+      "norm_label": "test_compute_pnl()"
+    },
+    {
+      "label": "test_reconcile_records_win_and_is_idempotent()",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
+      "community": 0,
+      "norm_label": "test_reconcile_records_win_and_is_idempotent()"
+    },
+    {
+      "label": "test_reconcile_skips_open_positions()",
+      "file_type": "code",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_test_reconcile_skips_open_positions",
+      "community": 0,
+      "norm_label": "test_reconcile_skips_open_positions()"
+    },
+    {
+      "label": "Tests for trade reconciliation (closed bracket orders -> recorded win/loss).",
+      "file_type": "rationale",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_reconcile_rationale_1",
+      "community": 0,
+      "norm_label": "tests for trade reconciliation (closed bracket orders -> recorded win/loss)."
+    },
+    {
+      "label": "test_strategies_new.py",
+      "file_type": "code",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_strategies_new",
+      "community": 11,
+      "norm_label": "test_strategies_new.py"
+    },
+    {
+      "label": "make_day()",
+      "file_type": "code",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "tests_test_strategies_new_make_day",
+      "community": 11,
+      "norm_label": "make_day()"
+    },
+    {
+      "label": "test_orb_long_breakout()",
+      "file_type": "code",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "tests_test_strategies_new_test_orb_long_breakout",
+      "community": 11,
+      "norm_label": "test_orb_long_breakout()"
+    },
+    {
+      "label": "test_vwap_rev_short_on_overstretch()",
+      "file_type": "code",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L33",
+      "_origin": "ast",
+      "id": "tests_test_strategies_new_test_vwap_rev_short_on_overstretch",
+      "community": 11,
+      "norm_label": "test_vwap_rev_short_on_overstretch()"
+    },
+    {
+      "label": "Tests for the ORB and VWAP-reversion strategies.",
+      "file_type": "rationale",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tests_test_strategies_new_rationale_1",
+      "community": 11,
+      "norm_label": "tests for the orb and vwap-reversion strategies."
+    },
+    {
+      "label": "backtest.py",
+      "file_type": "code",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tjrbot_backtest",
+      "community": 5,
+      "norm_label": "backtest.py"
+    },
+    {
+      "label": "Trade",
+      "file_type": "code",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "tjrbot_backtest_trade",
+      "community": 5,
+      "norm_label": "trade"
+    },
+    {
+      "label": "BacktestResult",
+      "file_type": "code",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "tjrbot_backtest_backtestresult",
+      "community": 5,
+      "norm_label": "backtestresult"
+    },
+    {
+      "label": "run_backtest()",
+      "file_type": "code",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "tjrbot_backtest_run_backtest",
+      "community": 5,
+      "norm_label": "run_backtest()"
+    },
+    {
+      "label": "DataFrame",
+      "file_type": "code",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "tjrbot_backtest_py_dataframe",
+      "community": 5,
+      "norm_label": "dataframe"
+    },
+    {
+      "label": "RiskConfig",
+      "file_type": "code",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L46",
+      "_origin": "ast",
+      "id": "riskconfig",
+      "community": 5,
+      "norm_label": "riskconfig"
+    },
+    {
+      "label": "summarize()",
+      "file_type": "code",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L165",
+      "_origin": "ast",
+      "id": "tjrbot_backtest_summarize",
+      "community": 5,
+      "norm_label": "summarize()"
+    },
+    {
+      "label": "backtest_strategy()",
+      "file_type": "code",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L198",
+      "_origin": "ast",
+      "id": "tjrbot_backtest_backtest_strategy",
+      "community": 5,
+      "norm_label": "backtest_strategy()"
+    },
+    {
+      "label": "Event-driven backtest of the TJR strategy on intraday bars.  Causal by construct",
+      "file_type": "rationale",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tjrbot_backtest_rationale_1",
+      "community": 5,
+      "norm_label": "event-driven backtest of the tjr strategy on intraday bars.  causal by construct"
+    },
+    {
+      "label": "Strategy-agnostic backtest. `build_signals(today, prev, hist)` returns Signals.",
+      "file_type": "rationale",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L208",
+      "_origin": "ast",
+      "id": "tjrbot_backtest_rationale_208",
+      "community": 5,
+      "norm_label": "strategy-agnostic backtest. `build_signals(today, prev, hist)` returns signals."
+    },
+    {
+      "label": "engine.py",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tjrbot_engine",
+      "community": 2,
+      "norm_label": "engine.py"
+    },
+    {
+      "label": "_recent_bars()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "tjrbot_engine_recent_bars",
+      "community": 2,
+      "norm_label": "_recent_bars()"
+    },
+    {
+      "label": "Settings",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "settings",
+      "community": 2,
+      "norm_label": "settings"
+    },
+    {
+      "label": "DataFrame",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L31",
+      "_origin": "ast",
+      "id": "tjrbot_engine_py_dataframe",
+      "community": 2,
+      "norm_label": "dataframe"
+    },
+    {
+      "label": "_sessions_for()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L37",
+      "_origin": "ast",
+      "id": "tjrbot_engine_sessions_for",
+      "community": 2,
+      "norm_label": "_sessions_for()"
+    },
+    {
+      "label": "_resolve_symbols()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "tjrbot_engine_resolve_symbols",
+      "community": 2,
+      "norm_label": "_resolve_symbols()"
+    },
+    {
+      "label": "Journal",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "journal",
+      "community": 2,
+      "norm_label": "journal"
+    },
+    {
+      "label": "_format_alert()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L63",
+      "_origin": "ast",
+      "id": "tjrbot_engine_format_alert",
+      "community": 2,
+      "norm_label": "_format_alert()"
+    },
+    {
+      "label": "flatten_if_eod()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L73",
+      "_origin": "ast",
+      "id": "tjrbot_engine_flatten_if_eod",
+      "community": 2,
+      "norm_label": "flatten_if_eod()"
+    },
+    {
+      "label": "_collect_signals()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L91",
+      "_origin": "ast",
+      "id": "tjrbot_engine_collect_signals",
+      "community": 2,
+      "norm_label": "_collect_signals()"
+    },
+    {
+      "label": "scan_once()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L118",
+      "_origin": "ast",
+      "id": "tjrbot_engine_scan_once",
+      "community": 2,
+      "norm_label": "scan_once()"
+    },
+    {
+      "label": "daily_summary()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L206",
+      "_origin": "ast",
+      "id": "tjrbot_engine_daily_summary",
+      "community": 2,
+      "norm_label": "daily_summary()"
+    },
+    {
+      "label": "_closed_bot_trades()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L277",
+      "_origin": "ast",
+      "id": "tjrbot_engine_closed_bot_trades",
+      "community": 2,
+      "norm_label": "_closed_bot_trades()"
+    },
+    {
+      "label": "summarize_trades()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L310",
+      "_origin": "ast",
+      "id": "tjrbot_engine_summarize_trades",
+      "community": 2,
+      "norm_label": "summarize_trades()"
+    },
+    {
+      "label": "weekly_summary()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L327",
+      "_origin": "ast",
+      "id": "tjrbot_engine_weekly_summary",
+      "community": 2,
+      "norm_label": "weekly_summary()"
+    },
+    {
+      "label": "cycle()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L355",
+      "_origin": "ast",
+      "id": "tjrbot_engine_cycle",
+      "community": 2,
+      "norm_label": "cycle()"
+    },
+    {
+      "label": "run_forever()",
+      "file_type": "code",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L366",
+      "_origin": "ast",
+      "id": "tjrbot_engine_run_forever",
+      "community": 2,
+      "norm_label": "run_forever()"
+    },
+    {
+      "label": "Live paper-trading engine: scan symbols -> size -> place bracket orders -> alert",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_1",
+      "community": 2,
+      "norm_label": "live paper-trading engine: scan symbols -> size -> place bracket orders -> alert"
+    },
+    {
+      "label": "The symbols to scan: the watchlist, plus a screened universe if enabled.",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L42",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_42",
+      "community": 2,
+      "norm_label": "the symbols to scan: the watchlist, plus a screened universe if enabled."
+    },
+    {
+      "label": "Day trading = no overnight: near the close, flatten any open stock positions.",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L74",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_74",
+      "community": 2,
+      "norm_label": "day trading = no overnight: near the close, flatten any open stock positions."
+    },
+    {
+      "label": "Run every enabled strategy for one symbol's session; return tagged signals.",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L92",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_92",
+      "community": 2,
+      "norm_label": "run every enabled strategy for one symbol's session; return tagged signals."
+    },
+    {
+      "label": "One pass over the watchlist. Returns the actions taken (or would take).",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L127",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_127",
+      "community": 2,
+      "norm_label": "one pass over the watchlist. returns the actions taken (or would take)."
+    },
+    {
+      "label": "Build and send an end-of-day Telegram report (even on no-trade days).      Alpac",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L207",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_207",
+      "community": 2,
+      "norm_label": "build and send an end-of-day telegram report (even on no-trade days).      alpac"
+    },
+    {
+      "label": "Every closed bracket the bot has placed, as {'symbol','pnl','dt'(ET)} rows.",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L278",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_278",
+      "community": 2,
+      "norm_label": "every closed bracket the bot has placed, as {'symbol','pnl','dt'(et)} rows."
+    },
+    {
+      "label": "Pure aggregation over [{'symbol','pnl','dt'}] rows (count, win rate, best/worst)",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L311",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_311",
+      "community": 2,
+      "norm_label": "pure aggregation over [{'symbol','pnl','dt'}] rows (count, win rate, best/worst)"
+    },
+    {
+      "label": "Send a Friday recap of the week's trading to Telegram.",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L328",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_328",
+      "community": 2,
+      "norm_label": "send a friday recap of the week's trading to telegram."
+    },
+    {
+      "label": "One full pass: reconcile closed trades, flatten at EOD, then scan for new setups",
+      "file_type": "rationale",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L356",
+      "_origin": "ast",
+      "id": "tjrbot_engine_rationale_356",
+      "community": 2,
+      "norm_label": "one full pass: reconcile closed trades, flatten at eod, then scan for new setups"
+    },
+    {
+      "label": "indicators.py",
+      "file_type": "code",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tjrbot_indicators",
+      "community": 11,
+      "norm_label": "indicators.py"
+    },
+    {
+      "label": "ema()",
+      "file_type": "code",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "tjrbot_indicators_ema",
+      "community": 11,
+      "norm_label": "ema()"
+    },
+    {
+      "label": "Series",
+      "file_type": "code",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "series",
+      "community": 11,
+      "norm_label": "series"
+    },
+    {
+      "label": "rsi()",
+      "file_type": "code",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "tjrbot_indicators_rsi",
+      "community": 11,
+      "norm_label": "rsi()"
+    },
+    {
+      "label": "vwap()",
+      "file_type": "code",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "tjrbot_indicators_vwap",
+      "community": 11,
+      "norm_label": "vwap()"
+    },
+    {
+      "label": "DataFrame",
+      "file_type": "code",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "tjrbot_indicators_py_dataframe",
+      "community": 11,
+      "norm_label": "dataframe"
+    },
+    {
+      "label": "Common technical indicators (pure pandas) used by the non-SMC strategies.",
+      "file_type": "rationale",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tjrbot_indicators_rationale_1",
+      "community": 11,
+      "norm_label": "common technical indicators (pure pandas) used by the non-smc strategies."
+    },
+    {
+      "label": "Cumulative VWAP over the given bars (pass one session's bars for intraday VWAP).",
+      "file_type": "rationale",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "tjrbot_indicators_rationale_24",
+      "community": 11,
+      "norm_label": "cumulative vwap over the given bars (pass one session's bars for intraday vwap)."
+    },
+    {
+      "label": "reconcile.py",
+      "file_type": "code",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tjrbot_reconcile",
+      "community": 2,
+      "norm_label": "reconcile.py"
+    },
+    {
+      "label": "compute_pnl()",
+      "file_type": "code",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "tjrbot_reconcile_compute_pnl",
+      "community": 2,
+      "norm_label": "compute_pnl()"
+    },
+    {
+      "label": "_filled()",
+      "file_type": "code",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L15",
+      "_origin": "ast",
+      "id": "tjrbot_reconcile_filled",
+      "community": 2,
+      "norm_label": "_filled()"
+    },
+    {
+      "label": "reconcile()",
+      "file_type": "code",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L19",
+      "_origin": "ast",
+      "id": "tjrbot_reconcile_reconcile",
+      "community": 2,
+      "norm_label": "reconcile()"
+    },
+    {
+      "label": "Turn closed bracket orders into recorded win/loss trades (for the dashboard).  W",
+      "file_type": "rationale",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "tjrbot_reconcile_rationale_1",
+      "community": 2,
+      "norm_label": "turn closed bracket orders into recorded win/loss trades (for the dashboard).  w"
+    },
+    {
+      "label": "Record any newly-closed bot trades. Returns how many were added.",
+      "file_type": "rationale",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "tjrbot_reconcile_rationale_20",
+      "community": 2,
+      "norm_label": "record any newly-closed bot trades. returns how many were added."
+    },
+    {
+      "label": "signals.py",
+      "file_type": "code",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "smc_signals",
+      "community": 1,
+      "norm_label": "signals.py"
+    },
+    {
+      "label": "Signal",
+      "file_type": "code",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "smc_signals_signal",
+      "community": 11,
+      "norm_label": "signal"
+    },
+    {
+      "label": "generate_signals()",
+      "file_type": "code",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "smc_signals_generate_signals",
+      "community": 1,
+      "norm_label": "generate_signals()"
+    },
+    {
+      "label": "DataFrame",
+      "file_type": "code",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L38",
+      "_origin": "ast",
+      "id": "tjrbot_smc_signals_py_dataframe",
+      "community": 1,
+      "norm_label": "dataframe"
+    },
+    {
+      "label": "Combine SMC primitives into TJR-style entry signals.  The TJR sequence (long exa",
+      "file_type": "rationale",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "smc_signals_rationale_1",
+      "community": 1,
+      "norm_label": "combine smc primitives into tjr-style entry signals.  the tjr sequence (long exa"
+    },
+    {
+      "label": "__init__.py",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "strategies_init",
+      "community": 11,
+      "norm_label": "__init__.py"
+    },
+    {
+      "label": "Non-SMC strategies that run alongside TJR (each returns tagged Signals).  Each s",
+      "file_type": "rationale",
+      "source_file": "tjrbot/strategies/__init__.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "strategies_init_rationale_1",
+      "community": 11,
+      "norm_label": "non-smc strategies that run alongside tjr (each returns tagged signals).  each s"
+    },
+    {
+      "label": "orb.py",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "strategies_orb",
+      "community": 11,
+      "norm_label": "orb.py"
+    },
+    {
+      "label": "generate()",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "strategies_orb_generate",
+      "community": 11,
+      "norm_label": "generate()"
+    },
+    {
+      "label": "DataFrame",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "tjrbot_strategies_orb_py_dataframe",
+      "community": 11,
+      "norm_label": "dataframe"
+    },
+    {
+      "label": "Signal",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "tjrbot_strategies_orb_py_signal",
+      "community": 11,
+      "norm_label": "signal"
+    },
+    {
+      "label": "Opening Range Breakout (ORB).  Long when a bar closes above the opening-range hi",
+      "file_type": "rationale",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "strategies_orb_rationale_1",
+      "community": 11,
+      "norm_label": "opening range breakout (orb).  long when a bar closes above the opening-range hi"
+    },
+    {
+      "label": "vwap_rev.py",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "strategies_vwap_rev",
+      "community": 11,
+      "norm_label": "vwap_rev.py"
+    },
+    {
+      "label": "generate()",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "strategies_vwap_rev_generate",
+      "community": 11,
+      "norm_label": "generate()"
+    },
+    {
+      "label": "DataFrame",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "tjrbot_strategies_vwap_rev_py_dataframe",
+      "community": 11,
+      "norm_label": "dataframe"
+    },
+    {
+      "label": "Signal",
+      "file_type": "code",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "tjrbot_strategies_vwap_rev_py_signal",
+      "community": 11,
+      "norm_label": "signal"
+    },
+    {
+      "label": "VWAP mean-reversion.  Range-bound sessions (the majority) tend to revert to VWAP",
+      "file_type": "rationale",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "strategies_vwap_rev_rationale_1",
+      "community": 11,
+      "norm_label": "vwap mean-reversion.  range-bound sessions (the majority) tend to revert to vwap"
+    },
+    {
       "label": "EXTERNAL_CRON.md",
       "file_type": "document",
       "source_file": "EXTERNAL_CRON.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "external_cron",
       "community": 7,
-      "norm_label": "external_cron.md"
+      "norm_label": "external_cron.md",
+      "id": "external_cron"
     },
     {
       "label": "Reliable scheduling via cron-job.org (free, no credit card)",
@@ -19,9 +959,9 @@
       "source_file": "EXTERNAL_CRON.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
       "community": 7,
-      "norm_label": "reliable scheduling via cron-job.org (free, no credit card)"
+      "norm_label": "reliable scheduling via cron-job.org (free, no credit card)",
+      "id": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card"
     },
     {
       "label": "1. Make a scoped token for the timer (safe)",
@@ -29,9 +969,9 @@
       "source_file": "EXTERNAL_CRON.md",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "external_cron_1_make_a_scoped_token_for_the_timer_safe",
       "community": 7,
-      "norm_label": "1. make a scoped token for the timer (safe)"
+      "norm_label": "1. make a scoped token for the timer (safe)",
+      "id": "external_cron_1_make_a_scoped_token_for_the_timer_safe"
     },
     {
       "label": "2. Create a free cron-job.org account",
@@ -39,9 +979,9 @@
       "source_file": "EXTERNAL_CRON.md",
       "source_location": "L16",
       "_origin": "ast",
-      "id": "external_cron_2_create_a_free_cron_job_org_account",
       "community": 7,
-      "norm_label": "2. create a free cron-job.org account"
+      "norm_label": "2. create a free cron-job.org account",
+      "id": "external_cron_2_create_a_free_cron_job_org_account"
     },
     {
       "label": "3. Add 3 cron jobs",
@@ -49,9 +989,9 @@
       "source_file": "EXTERNAL_CRON.md",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "external_cron_3_add_3_cron_jobs",
       "community": 7,
-      "norm_label": "3. add 3 cron jobs"
+      "norm_label": "3. add 3 cron jobs",
+      "id": "external_cron_3_add_3_cron_jobs"
     },
     {
       "label": "4. Verify",
@@ -59,9 +999,9 @@
       "source_file": "EXTERNAL_CRON.md",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "external_cron_4_verify",
       "community": 7,
-      "norm_label": "4. verify"
+      "norm_label": "4. verify",
+      "id": "external_cron_4_verify"
     },
     {
       "label": "Note on the old GitHub schedule",
@@ -69,9 +1009,9 @@
       "source_file": "EXTERNAL_CRON.md",
       "source_location": "L44",
       "_origin": "ast",
-      "id": "external_cron_note_on_the_old_github_schedule",
       "community": 7,
-      "norm_label": "note on the old github schedule"
+      "norm_label": "note on the old github schedule",
+      "id": "external_cron_note_on_the_old_github_schedule"
     },
     {
       "label": "settings.json",
@@ -152,256 +1092,6 @@
       "community": 2,
       "norm_label": "watch the bot scan the market right now (read-only \u2014 places no orders).  for eac",
       "id": "scripts_scan_now_rationale_1"
-    },
-    {
-      "label": "engine.py",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "engine.py",
-      "id": "tjrbot_engine"
-    },
-    {
-      "label": "_recent_bars()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L30",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "_recent_bars()",
-      "id": "tjrbot_engine_recent_bars"
-    },
-    {
-      "label": "Settings",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L30",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "settings",
-      "id": "settings"
-    },
-    {
-      "label": "DataFrame",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L30",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "dataframe",
-      "id": "dataframe"
-    },
-    {
-      "label": "_sessions_for()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L36",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "_sessions_for()",
-      "id": "tjrbot_engine_sessions_for"
-    },
-    {
-      "label": "_resolve_symbols()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L40",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "_resolve_symbols()",
-      "id": "tjrbot_engine_resolve_symbols"
-    },
-    {
-      "label": "Journal",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L40",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "journal",
-      "id": "journal"
-    },
-    {
-      "label": "_format_alert()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L62",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "_format_alert()",
-      "id": "tjrbot_engine_format_alert"
-    },
-    {
-      "label": "flatten_if_eod()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L72",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "flatten_if_eod()",
-      "id": "tjrbot_engine_flatten_if_eod"
-    },
-    {
-      "label": "scan_once()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L90",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "scan_once()",
-      "id": "tjrbot_engine_scan_once"
-    },
-    {
-      "label": "daily_summary()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L189",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "daily_summary()",
-      "id": "tjrbot_engine_daily_summary"
-    },
-    {
-      "label": "_closed_bot_trades()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L260",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "_closed_bot_trades()",
-      "id": "tjrbot_engine_closed_bot_trades"
-    },
-    {
-      "label": "summarize_trades()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L293",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "summarize_trades()",
-      "id": "tjrbot_engine_summarize_trades"
-    },
-    {
-      "label": "weekly_summary()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L310",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "weekly_summary()",
-      "id": "tjrbot_engine_weekly_summary"
-    },
-    {
-      "label": "cycle()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L338",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "cycle()",
-      "id": "tjrbot_engine_cycle"
-    },
-    {
-      "label": "run_forever()",
-      "file_type": "code",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L349",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "run_forever()",
-      "id": "tjrbot_engine_run_forever"
-    },
-    {
-      "label": "Live paper-trading engine: scan symbols -> size -> place bracket orders -> alert",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "live paper-trading engine: scan symbols -> size -> place bracket orders -> alert",
-      "id": "tjrbot_engine_rationale_1"
-    },
-    {
-      "label": "The symbols to scan: the watchlist, plus a screened universe if enabled.",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L41",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "the symbols to scan: the watchlist, plus a screened universe if enabled.",
-      "id": "tjrbot_engine_rationale_41"
-    },
-    {
-      "label": "Day trading = no overnight: near the close, flatten any open stock positions.",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L73",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "day trading = no overnight: near the close, flatten any open stock positions.",
-      "id": "tjrbot_engine_rationale_73"
-    },
-    {
-      "label": "One pass over the watchlist. Returns the actions taken (or would take).",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L99",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "one pass over the watchlist. returns the actions taken (or would take).",
-      "id": "tjrbot_engine_rationale_99"
-    },
-    {
-      "label": "Build and send an end-of-day Telegram report (even on no-trade days).      Alpac",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L190",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "build and send an end-of-day telegram report (even on no-trade days).      alpac",
-      "id": "tjrbot_engine_rationale_190"
-    },
-    {
-      "label": "Every closed bracket the bot has placed, as {'symbol','pnl','dt'(ET)} rows.",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L261",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "every closed bracket the bot has placed, as {'symbol','pnl','dt'(et)} rows.",
-      "id": "tjrbot_engine_rationale_261"
-    },
-    {
-      "label": "Pure aggregation over [{'symbol','pnl','dt'}] rows (count, win rate, best/worst)",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L294",
-      "_origin": "ast",
-      "community": 11,
-      "norm_label": "pure aggregation over [{'symbol','pnl','dt'}] rows (count, win rate, best/worst)",
-      "id": "tjrbot_engine_rationale_294"
-    },
-    {
-      "label": "Send a Friday recap of the week's trading to Telegram.",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L311",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "send a friday recap of the week's trading to telegram.",
-      "id": "tjrbot_engine_rationale_311"
-    },
-    {
-      "label": "One full pass: reconcile closed trades, flatten at EOD, then scan for new setups",
-      "file_type": "rationale",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L339",
-      "_origin": "ast",
-      "community": 2,
-      "norm_label": "one full pass: reconcile closed trades, flatten at eod, then scan for new setups",
-      "id": "tjrbot_engine_rationale_339"
     },
     {
       "label": "alpaca_exec.py",
@@ -659,7 +1349,7 @@
       "source_file": "scripts/dashboard.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "dashboard.py",
       "id": "scripts_dashboard"
     },
@@ -669,7 +1359,7 @@
       "source_file": "scripts/dashboard.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "launch the stats dashboard at http://127.0.0.1:8787",
       "id": "scripts_dashboard_rationale_1"
     },
@@ -739,7 +1429,7 @@
       "source_file": "scripts/verify_execution.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": "verify_execution.py",
       "id": "scripts_verify_execution"
     },
@@ -749,7 +1439,7 @@
       "source_file": "scripts/verify_execution.py",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": "main()",
       "id": "scripts_verify_execution_main"
     },
@@ -759,129 +1449,9 @@
       "source_file": "scripts/verify_execution.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 6,
+      "community": 3,
       "norm_label": "safely verify the alpaca order path: submit a non-marketable limit, then cancel",
       "id": "scripts_verify_execution_rationale_1"
-    },
-    {
-      "label": "test_reconcile.py",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "test_reconcile.py",
-      "id": "tests_test_reconcile"
-    },
-    {
-      "label": "_Leg",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L7",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "_leg",
-      "id": "tests_test_reconcile_leg"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L8",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": ".__init__()",
-      "id": "tests_test_reconcile_leg_init"
-    },
-    {
-      "label": "_Order",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L14",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "_order",
-      "id": "tests_test_reconcile_order"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": ".__init__()",
-      "id": "tests_test_reconcile_order_init"
-    },
-    {
-      "label": "_Broker",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L26",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "_broker",
-      "id": "tests_test_reconcile_broker"
-    },
-    {
-      "label": ".__init__()",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L27",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": ".__init__()",
-      "id": "tests_test_reconcile_broker_init"
-    },
-    {
-      "label": ".closed_orders()",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L30",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": ".closed_orders()",
-      "id": "tests_test_reconcile_broker_closed_orders"
-    },
-    {
-      "label": "test_compute_pnl()",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L34",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "test_compute_pnl()",
-      "id": "tests_test_reconcile_test_compute_pnl"
-    },
-    {
-      "label": "test_reconcile_records_win_and_is_idempotent()",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L40",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "test_reconcile_records_win_and_is_idempotent()",
-      "id": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent"
-    },
-    {
-      "label": "test_reconcile_skips_open_positions()",
-      "file_type": "code",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L56",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "test_reconcile_skips_open_positions()",
-      "id": "tests_test_reconcile_test_reconcile_skips_open_positions"
-    },
-    {
-      "label": "Tests for trade reconciliation (closed bracket orders -> recorded win/loss).",
-      "file_type": "rationale",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "tests for trade reconciliation (closed bracket orders -> recorded win/loss).",
-      "id": "tests_test_reconcile_rationale_1"
     },
     {
       "label": "test_risk.py",
@@ -1109,7 +1679,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "test_strategy.py",
       "id": "tests_test_strategy"
     },
@@ -1119,7 +1689,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "make_bars()",
       "id": "tests_test_strategy_make_bars"
     },
@@ -1129,7 +1699,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "test_daily_bias_bullish()",
       "id": "tests_test_strategy_test_daily_bias_bullish"
     },
@@ -1139,7 +1709,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "test_session_filter()",
       "id": "tests_test_strategy_test_session_filter"
     },
@@ -1149,7 +1719,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "tests for the daily-bias and session filters.",
       "id": "tests_test_strategy_rationale_1"
     },
@@ -1159,7 +1729,7 @@
       "source_file": "tests/test_summary.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
+      "community": 2,
       "norm_label": "test_summary.py",
       "id": "tests_test_summary"
     },
@@ -1169,7 +1739,7 @@
       "source_file": "tests/test_summary.py",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 11,
+      "community": 2,
       "norm_label": "test_summarize_trades()",
       "id": "tests_test_summary_test_summarize_trades"
     },
@@ -1179,7 +1749,7 @@
       "source_file": "tests/test_summary.py",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 11,
+      "community": 2,
       "norm_label": "test_summarize_trades_empty()",
       "id": "tests_test_summary_test_summarize_trades_empty"
     },
@@ -1189,7 +1759,7 @@
       "source_file": "tests/test_summary.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 11,
+      "community": 2,
       "norm_label": "tests for the summary aggregation (pure).",
       "id": "tests_test_summary_rationale_1"
     },
@@ -1212,86 +1782,6 @@
       "community": 10,
       "norm_label": "tjr / smart-money-concepts trading bot.",
       "id": "tjrbot_init_rationale_1"
-    },
-    {
-      "label": "backtest.py",
-      "file_type": "code",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "backtest.py",
-      "id": "tjrbot_backtest"
-    },
-    {
-      "label": "Trade",
-      "file_type": "code",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L23",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "trade",
-      "id": "tjrbot_backtest_trade"
-    },
-    {
-      "label": "BacktestResult",
-      "file_type": "code",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L38",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "backtestresult",
-      "id": "tjrbot_backtest_backtestresult"
-    },
-    {
-      "label": "run_backtest()",
-      "file_type": "code",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L46",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "run_backtest()",
-      "id": "tjrbot_backtest_run_backtest"
-    },
-    {
-      "label": "DataFrame",
-      "file_type": "code",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L46",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "dataframe",
-      "id": "tjrbot_backtest_py_dataframe"
-    },
-    {
-      "label": "RiskConfig",
-      "file_type": "code",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L46",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "riskconfig",
-      "id": "riskconfig"
-    },
-    {
-      "label": "summarize()",
-      "file_type": "code",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L165",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "summarize()",
-      "id": "tjrbot_backtest_summarize"
-    },
-    {
-      "label": "Event-driven backtest of the TJR strategy on intraday bars.  Causal by construct",
-      "file_type": "rationale",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 5,
-      "norm_label": "event-driven backtest of the tjr strategy on intraday bars.  causal by construct",
-      "id": "tjrbot_backtest_rationale_1"
     },
     {
       "label": "config.py",
@@ -1429,7 +1919,7 @@
       "source_file": "tjrbot/dashboard/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "__init__.py",
       "id": "dashboard_init"
     },
@@ -1439,7 +1929,7 @@
       "source_file": "tjrbot/dashboard/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "plain-english stats dashboard (flask).",
       "id": "dashboard_init_rationale_1"
     },
@@ -1449,7 +1939,7 @@
       "source_file": "tjrbot/dashboard/app.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "app.py",
       "id": "dashboard_app"
     },
@@ -1459,7 +1949,7 @@
       "source_file": "tjrbot/dashboard/app.py",
       "source_location": "L92",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "_money()",
       "id": "dashboard_app_money"
     },
@@ -1469,7 +1959,7 @@
       "source_file": "tjrbot/dashboard/app.py",
       "source_location": "L96",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "_signed()",
       "id": "dashboard_app_signed"
     },
@@ -1479,7 +1969,7 @@
       "source_file": "tjrbot/dashboard/app.py",
       "source_location": "L100",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "create_app()",
       "id": "dashboard_app_create_app"
     },
@@ -1489,7 +1979,7 @@
       "source_file": "tjrbot/dashboard/app.py",
       "source_location": "L100",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "flask",
       "id": "flask"
     },
@@ -1499,7 +1989,7 @@
       "source_file": "tjrbot/dashboard/app.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 0,
+      "community": 3,
       "norm_label": "a simple, readable dashboard: how the bot is doing, in plain english.  reads you",
       "id": "dashboard_app_rationale_1"
     },
@@ -1944,66 +2434,6 @@
       "id": "notify_telegram_rationale_15"
     },
     {
-      "label": "reconcile.py",
-      "file_type": "code",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "reconcile.py",
-      "id": "tjrbot_reconcile"
-    },
-    {
-      "label": "compute_pnl()",
-      "file_type": "code",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L11",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "compute_pnl()",
-      "id": "tjrbot_reconcile_compute_pnl"
-    },
-    {
-      "label": "_filled()",
-      "file_type": "code",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L15",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "_filled()",
-      "id": "tjrbot_reconcile_filled"
-    },
-    {
-      "label": "reconcile()",
-      "file_type": "code",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L19",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "reconcile()",
-      "id": "tjrbot_reconcile_reconcile"
-    },
-    {
-      "label": "Turn closed bracket orders into recorded win/loss trades (for the dashboard).  W",
-      "file_type": "rationale",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "turn closed bracket orders into recorded win/loss trades (for the dashboard).  w",
-      "id": "tjrbot_reconcile_rationale_1"
-    },
-    {
-      "label": "Record any newly-closed bot trades. Returns how many were added.",
-      "file_type": "rationale",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L20",
-      "_origin": "ast",
-      "community": 0,
-      "norm_label": "record any newly-closed bot trades. returns how many were added.",
-      "id": "tjrbot_reconcile_rationale_20"
-    },
-    {
       "label": "__init__.py",
       "file_type": "code",
       "source_file": "tjrbot/risk/__init__.py",
@@ -2169,7 +2599,7 @@
       "source_file": "tjrbot/smc/session.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "session.py",
       "id": "smc_session"
     },
@@ -2179,7 +2609,7 @@
       "source_file": "tjrbot/smc/session.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "in_session()",
       "id": "smc_session_in_session"
     },
@@ -2189,7 +2619,7 @@
       "source_file": "tjrbot/smc/session.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "trading session / ict-style killzone time windows (us/eastern).",
       "id": "smc_session_rationale_1"
     },
@@ -2199,59 +2629,9 @@
       "source_file": "tjrbot/smc/session.py",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "true if timestamp `ts` (tz-aware or naive=utc) falls in any named window.",
       "id": "smc_session_rationale_22"
-    },
-    {
-      "label": "signals.py",
-      "file_type": "code",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "signals.py",
-      "id": "smc_signals"
-    },
-    {
-      "label": "Signal",
-      "file_type": "code",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L27",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "signal",
-      "id": "smc_signals_signal"
-    },
-    {
-      "label": "generate_signals()",
-      "file_type": "code",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L36",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "generate_signals()",
-      "id": "smc_signals_generate_signals"
-    },
-    {
-      "label": "DataFrame",
-      "file_type": "code",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L36",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "dataframe",
-      "id": "tjrbot_smc_signals_py_dataframe"
-    },
-    {
-      "label": "Combine SMC primitives into TJR-style entry signals.  The TJR sequence (long exa",
-      "file_type": "rationale",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L1",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "combine smc primitives into tjr-style entry signals.  the tjr sequence (long exa",
-      "id": "smc_signals_rationale_1"
     },
     {
       "label": "structure.py",
@@ -2404,16 +2784,6 @@
       "id": "tjrbot_smc_zones_py_dataframe"
     },
     {
-      "label": "Series",
-      "file_type": "code",
-      "source_file": "tjrbot/smc/zones.py",
-      "source_location": "L33",
-      "_origin": "ast",
-      "community": 1,
-      "norm_label": "series",
-      "id": "series"
-    },
-    {
       "label": "find_fvgs()",
       "file_type": "code",
       "source_file": "tjrbot/smc/zones.py",
@@ -2499,7 +2869,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "strategy.py",
       "id": "tjrbot_strategy"
     },
@@ -2509,7 +2879,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "daily_bias()",
       "id": "tjrbot_strategy_daily_bias"
     },
@@ -2519,7 +2889,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "dataframe",
       "id": "tjrbot_strategy_py_dataframe"
     },
@@ -2529,7 +2899,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "find_trades()",
       "id": "tjrbot_strategy_find_trades"
     },
@@ -2539,7 +2909,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "signal",
       "id": "signal"
     },
@@ -2549,7 +2919,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "high-level tjr strategy: smc signals filtered by daily bias + session window.  t",
       "id": "tjrbot_strategy_rationale_1"
     },
@@ -2559,7 +2929,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 2,
+      "community": 12,
       "norm_label": "+1 bullish / -1 bearish / 0 neutral, from the latest htf structure break.",
       "id": "tjrbot_strategy_rationale_20"
     }
@@ -2568,233 +2938,1004 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "EXTERNAL_CRON.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "source": "external_cron",
-      "target": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "EXTERNAL_CRON.md",
-      "source_location": "L7",
-      "weight": 1.0,
-      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
-      "target": "external_cron_1_make_a_scoped_token_for_the_timer_safe",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "EXTERNAL_CRON.md",
-      "source_location": "L16",
-      "weight": 1.0,
-      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
-      "target": "external_cron_2_create_a_free_cron_job_org_account",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "EXTERNAL_CRON.md",
+      "source_file": "scripts/compare_strategies.py",
       "source_location": "L21",
       "weight": 1.0,
-      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
-      "target": "external_cron_3_add_3_cron_jobs",
+      "source": "scripts_compare_strategies",
+      "target": "scripts_compare_strategies_main",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports_from",
+      "context": "submodule_import",
       "confidence": "EXTRACTED",
-      "source_file": "EXTERNAL_CRON.md",
-      "source_location": "L40",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L17",
       "weight": 1.0,
-      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
-      "target": "external_cron_4_verify",
+      "source": "scripts_compare_strategies",
+      "target": "strategies_orb",
       "confidence_score": 1.0
     },
     {
-      "relation": "contains",
+      "relation": "imports_from",
+      "context": "submodule_import",
       "confidence": "EXTRACTED",
-      "source_file": "EXTERNAL_CRON.md",
-      "source_location": "L44",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L17",
       "weight": 1.0,
-      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
-      "target": "external_cron_note_on_the_old_github_schedule",
+      "source": "scripts_compare_strategies",
+      "target": "strategies_vwap_rev",
       "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/settings.json",
-      "source_location": "L2",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_settings",
-      "target": "claude_settings_hooks"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": ".claude/settings.json",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude_settings_hooks",
-      "target": "claude_settings_hooks_pretooluse"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "CLAUDE.md",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "claude",
-      "target": "claude_graphify"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_scan_now",
-      "target": "execution_alpaca_exec_broker"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L28",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_scan_now",
-      "target": "scripts_scan_now_main"
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "scripts_compare_strategies",
+      "target": "tjrbot_backtest",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "scripts_compare_strategies",
+      "target": "tjrbot_backtest_backtest_strategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "scripts_compare_strategies",
+      "target": "tjrbot_config",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/compare_strategies.py",
       "source_location": "L15",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_scan_now",
-      "target": "tjrbot_config"
+      "source": "scripts_compare_strategies",
+      "target": "tjrbot_engine",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L17",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L18",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_scan_now",
-      "target": "tjrbot_engine"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_scan_now",
-      "target": "tjrbot_engine_resolve_symbols"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_scan_now",
-      "target": "tjrbot_engine_sessions_for"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_scan_now",
-      "target": "tjrbot_journal"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_scan_now",
-      "target": "tjrbot_strategy"
+      "source": "scripts_compare_strategies",
+      "target": "tjrbot_strategy",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "scripts_compare_strategies_rationale_1",
+      "target": "scripts_compare_strategies",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/compare_strategies.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "source": "scripts_compare_strategies_main",
+      "target": "tjrbot_backtest_backtest_strategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_test_indicators",
+      "target": "tests_test_indicators_test_ema_constant",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "tests_test_indicators",
+      "target": "tests_test_indicators_test_rsi_downtrend_low",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "tests_test_indicators",
+      "target": "tests_test_indicators_test_rsi_uptrend_high",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tests_test_indicators",
+      "target": "tests_test_indicators_test_vwap_equal_volume",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_test_indicators",
+      "target": "tjrbot_indicators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_test_indicators",
+      "target": "tjrbot_indicators_ema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_test_indicators",
+      "target": "tjrbot_indicators_rsi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_test_indicators",
+      "target": "tjrbot_indicators_vwap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_indicators_rationale_1",
+      "target": "tests_test_indicators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "tests_test_indicators_test_ema_constant",
+      "target": "tjrbot_indicators_ema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_test_indicators_test_rsi_uptrend_high",
+      "target": "tjrbot_indicators_rsi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "source": "tests_test_indicators_test_rsi_downtrend_low",
+      "target": "tjrbot_indicators_rsi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_indicators.py",
+      "source_location": "L29",
+      "weight": 1.0,
+      "source": "tests_test_indicators_test_vwap_equal_volume",
+      "target": "tjrbot_indicators_vwap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L26",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tests_test_reconcile_broker"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tests_test_reconcile_leg"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L14",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tests_test_reconcile_order"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tests_test_reconcile_test_compute_pnl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L56",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tests_test_reconcile_test_reconcile_skips_open_positions"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tjrbot_journal"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tjrbot_journal_journal"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tjrbot_reconcile"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tjrbot_reconcile_compute_pnl"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile",
+      "target": "tjrbot_reconcile_reconcile"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
       "source_location": "L1",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "scripts_scan_now_rationale_1",
-      "target": "scripts_scan_now"
+      "source": "tests_test_reconcile_rationale_1",
+      "target": "tests_test_reconcile"
     },
     {
-      "relation": "calls",
-      "context": "call",
+      "relation": "method",
       "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L31",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L8",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "scripts_scan_now_main",
-      "target": "execution_alpaca_exec_broker"
+      "source": "tests_test_reconcile_leg",
+      "target": "tests_test_reconcile_leg_init"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L3",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "tests_test_reconcile_leg",
+      "target": "tjrbot_journal_journal"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L45",
+      "weight": 1.0,
       "confidence_score": 1.0,
-      "source_file": "scripts/scan_now.py",
+      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
+      "target": "tests_test_reconcile_leg"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L61",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
+      "target": "tests_test_reconcile_leg"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_order",
+      "target": "tests_test_reconcile_order_init"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L3",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "tests_test_reconcile_order",
+      "target": "tjrbot_journal_journal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L43",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
+      "target": "tests_test_reconcile_order"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L59",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
+      "target": "tests_test_reconcile_order"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
       "source_location": "L30",
       "weight": 1.0,
-      "source": "scripts_scan_now_main",
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_broker",
+      "target": "tests_test_reconcile_broker_closed_orders"
+    },
+    {
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_broker",
+      "target": "tests_test_reconcile_broker_init"
+    },
+    {
+      "relation": "uses",
+      "confidence": "INFERRED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L3",
+      "weight": 0.8,
+      "confidence_score": 0.5,
+      "source": "tests_test_reconcile_broker",
+      "target": "tjrbot_journal_journal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
+      "target": "tests_test_reconcile_broker"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
+      "target": "tests_test_reconcile_broker"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L35",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_test_compute_pnl",
+      "target": "tjrbot_reconcile_compute_pnl"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L41",
+      "weight": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
       "target": "journal"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L64",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L41",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "scripts_scan_now_main",
-      "target": "tjrbot_engine_resolve_symbols"
+      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
+      "target": "tjrbot_journal_journal"
     },
     {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "scripts/scan_now.py",
-      "source_location": "L34",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L47",
       "weight": 1.0,
       "confidence_score": 1.0,
-      "source": "scripts_scan_now_main",
-      "target": "tjrbot_engine_sessions_for"
+      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
+      "target": "tjrbot_reconcile_reconcile"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "INFERRED",
+      "confidence_score": 0.8,
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
+      "target": "journal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L57",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
+      "target": "tjrbot_journal_journal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_reconcile.py",
+      "source_location": "L63",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
+      "target": "tjrbot_reconcile_reconcile"
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_test_strategies_new",
+      "target": "strategies_orb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "tests_test_strategies_new",
+      "target": "strategies_vwap_rev",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tests_test_strategies_new",
+      "target": "tests_test_strategies_new_make_day",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "tests_test_strategies_new",
+      "target": "tests_test_strategies_new_test_orb_long_breakout",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "tests_test_strategies_new",
+      "target": "tests_test_strategies_new_test_vwap_rev_short_on_overstretch",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tests_test_strategies_new_rationale_1",
+      "target": "tests_test_strategies_new",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "tests_test_strategies_new_test_orb_long_breakout",
+      "target": "tests_test_strategies_new_make_day",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_strategies_new.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "source": "tests_test_strategies_new_test_vwap_rev_short_on_overstretch",
+      "target": "tests_test_strategies_new_make_day",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backtest.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_backtest",
+      "target": "tjrbot_backtest"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "risk_engine"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "risk_engine_dailyriskstate"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "risk_engine_plan_trade"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "risk_engine_riskconfig"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "smc_session"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "tjrbot_backtest_backtest_strategy",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "tjrbot_backtest_backtestresult"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "tjrbot_backtest_run_backtest"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L165",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "tjrbot_backtest_summarize"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "tjrbot_backtest_trade"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "tjrbot_strategy"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest",
+      "target": "tjrbot_strategy_find_trades"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_rationale_1",
+      "target": "tjrbot_backtest"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L290",
+      "weight": 1.0,
+      "source": "tjrbot_backtest_backtest_strategy",
+      "target": "tjrbot_backtest_trade",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L154",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_run_backtest",
+      "target": "tjrbot_backtest_trade"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "tjrbot_backtest_backtest_strategy",
+      "target": "tjrbot_backtest_backtestresult",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_run_backtest",
+      "target": "tjrbot_backtest_backtestresult"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L165",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_summarize",
+      "target": "tjrbot_backtest_backtestresult"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backtest.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_backtest",
+      "target": "tjrbot_backtest_run_backtest"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backtest.py",
+      "source_location": "L39",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_backtest_main",
+      "target": "tjrbot_backtest_run_backtest"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L96",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_run_backtest",
+      "target": "risk_engine_dailyriskstate"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L109",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_run_backtest",
+      "target": "risk_engine_plan_trade"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_run_backtest",
+      "target": "riskconfig"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_run_backtest",
+      "target": "tjrbot_backtest_py_dataframe"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L83",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_backtest_run_backtest",
+      "target": "tjrbot_strategy_find_trades"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "tjrbot_backtest_backtest_strategy",
+      "target": "tjrbot_backtest_py_dataframe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L198",
+      "weight": 1.0,
+      "source": "tjrbot_backtest_backtest_strategy",
+      "target": "riskconfig",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backtest.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_backtest",
+      "target": "tjrbot_backtest_summarize"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/backtest.py",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_backtest_main",
+      "target": "tjrbot_backtest_summarize"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/backtest.py",
+      "source_location": "L208",
+      "weight": 1.0,
+      "source": "tjrbot_backtest_rationale_208",
+      "target": "tjrbot_backtest_backtest_strategy",
+      "confidence_score": 1.0
     },
     {
       "relation": "imports_from",
@@ -2805,6 +3946,17 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "scripts_run_bot",
+      "target": "tjrbot_engine"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now",
       "target": "tjrbot_engine"
     },
     {
@@ -2970,6 +4122,16 @@
       "confidence_score": 1.0,
       "source": "tjrbot_engine",
       "target": "tjrbot_engine_closed_bot_trades"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "tjrbot_engine",
+      "target": "tjrbot_engine_collect_signals",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -3192,17 +4354,6 @@
     },
     {
       "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/engine.py",
-      "source_location": "L30",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_engine_recent_bars",
-      "target": "dataframe"
-    },
-    {
-      "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/engine.py",
@@ -3211,6 +4362,17 @@
       "confidence_score": 1.0,
       "source": "tjrbot_engine_recent_bars",
       "target": "settings"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "tjrbot_engine_recent_bars",
+      "target": "tjrbot_engine_py_dataframe",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3242,6 +4404,17 @@
       "confidence_score": 0.5,
       "source": "settings",
       "target": "tjrbot_journal_journal"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L91",
+      "weight": 1.0,
+      "source": "tjrbot_engine_collect_signals",
+      "target": "settings",
+      "confidence_score": 1.0
     },
     {
       "relation": "references",
@@ -3332,6 +4505,28 @@
       "target": "settings"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now",
+      "target": "tjrbot_engine_sessions_for"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L34",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now_main",
+      "target": "tjrbot_engine_sessions_for"
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
@@ -3343,14 +4538,36 @@
       "target": "tjrbot_engine_sessions_for"
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L17",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now",
+      "target": "tjrbot_engine_resolve_symbols"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L64",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now_main",
+      "target": "tjrbot_engine_resolve_symbols"
+    },
+    {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/engine.py",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_engine_rationale_41",
-      "target": "tjrbot_engine_resolve_symbols"
+      "source": "tjrbot_engine_rationale_42",
+      "target": "tjrbot_engine_resolve_symbols",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3404,6 +4621,17 @@
       "confidence_score": 0.5,
       "source": "journal",
       "target": "tjrbot_journal_journal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L30",
+      "weight": 1.0,
+      "source": "scripts_scan_now_main",
+      "target": "journal"
     },
     {
       "relation": "references",
@@ -3508,11 +4736,32 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/engine.py",
-      "source_location": "L73",
+      "source_location": "L74",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_engine_rationale_73",
-      "target": "tjrbot_engine_flatten_if_eod"
+      "source": "tjrbot_engine_rationale_74",
+      "target": "tjrbot_engine_flatten_if_eod",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L92",
+      "weight": 1.0,
+      "source": "tjrbot_engine_rationale_92",
+      "target": "tjrbot_engine_collect_signals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L160",
+      "weight": 1.0,
+      "source": "tjrbot_engine_scan_once",
+      "target": "tjrbot_engine_collect_signals",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3529,11 +4778,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/engine.py",
-      "source_location": "L99",
+      "source_location": "L127",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_engine_rationale_99",
-      "target": "tjrbot_engine_scan_once"
+      "source": "tjrbot_engine_rationale_127",
+      "target": "tjrbot_engine_scan_once",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3616,11 +4865,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/engine.py",
-      "source_location": "L190",
+      "source_location": "L207",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_engine_rationale_190",
-      "target": "tjrbot_engine_daily_summary"
+      "source": "tjrbot_engine_rationale_207",
+      "target": "tjrbot_engine_daily_summary",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3637,11 +4886,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/engine.py",
-      "source_location": "L261",
+      "source_location": "L278",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_engine_rationale_261",
-      "target": "tjrbot_engine_closed_bot_trades"
+      "source": "tjrbot_engine_rationale_278",
+      "target": "tjrbot_engine_closed_bot_trades",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3691,11 +4940,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/engine.py",
-      "source_location": "L294",
+      "source_location": "L311",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_engine_rationale_294",
-      "target": "tjrbot_engine_summarize_trades"
+      "source": "tjrbot_engine_rationale_311",
+      "target": "tjrbot_engine_summarize_trades",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3739,6 +4988,16 @@
       "confidence_score": 1.0,
       "source": "tjrbot_engine_rationale_311",
       "target": "tjrbot_engine_weekly_summary"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/engine.py",
+      "source_location": "L328",
+      "weight": 1.0,
+      "source": "tjrbot_engine_rationale_328",
+      "target": "tjrbot_engine_weekly_summary",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3788,11 +5047,11 @@
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/engine.py",
-      "source_location": "L339",
+      "source_location": "L356",
       "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_engine_rationale_339",
-      "target": "tjrbot_engine_cycle"
+      "source": "tjrbot_engine_rationale_356",
+      "target": "tjrbot_engine_cycle",
+      "confidence_score": 1.0
     },
     {
       "relation": "calls",
@@ -3859,6 +5118,923 @@
       "confidence_score": 1.0,
       "source": "tjrbot_engine_run_forever",
       "target": "tjrbot_journal_journal"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "strategies_orb",
+      "target": "tjrbot_indicators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev",
+      "target": "tjrbot_indicators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tjrbot_indicators",
+      "target": "tjrbot_indicators_ema",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tjrbot_indicators",
+      "target": "tjrbot_indicators_rsi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tjrbot_indicators",
+      "target": "tjrbot_indicators_vwap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "tjrbot_indicators_rationale_1",
+      "target": "tjrbot_indicators",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "tjrbot_indicators_ema",
+      "target": "series",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/zones.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_zones_atr",
+      "target": "series"
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L12",
+      "weight": 1.0,
+      "source": "tjrbot_indicators_rsi",
+      "target": "series",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "return_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tjrbot_indicators_vwap",
+      "target": "series",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev",
+      "target": "tjrbot_indicators_rsi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev_generate",
+      "target": "tjrbot_indicators_rsi",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "strategies_orb",
+      "target": "tjrbot_indicators_vwap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "source": "strategies_orb_generate",
+      "target": "tjrbot_indicators_vwap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev",
+      "target": "tjrbot_indicators_vwap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev_generate",
+      "target": "tjrbot_indicators_vwap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L24",
+      "weight": 1.0,
+      "source": "tjrbot_indicators_rationale_24",
+      "target": "tjrbot_indicators_vwap",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/indicators.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "tjrbot_indicators_vwap",
+      "target": "tjrbot_indicators_py_dataframe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/dashboard/app.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dashboard_app",
+      "target": "tjrbot_reconcile"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L11",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_reconcile",
+      "target": "tjrbot_reconcile_compute_pnl"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_reconcile",
+      "target": "tjrbot_reconcile_filled"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_reconcile",
+      "target": "tjrbot_reconcile_reconcile"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_reconcile_rationale_1",
+      "target": "tjrbot_reconcile"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L52",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_reconcile_reconcile",
+      "target": "tjrbot_reconcile_compute_pnl"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L33",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_reconcile_reconcile",
+      "target": "tjrbot_reconcile_filled"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/dashboard/app.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dashboard_app",
+      "target": "tjrbot_reconcile_reconcile"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/dashboard/app.py",
+      "source_location": "L117",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "dashboard_app_create_app",
+      "target": "tjrbot_reconcile_reconcile"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/reconcile.py",
+      "source_location": "L20",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_reconcile_rationale_20",
+      "target": "tjrbot_reconcile_reconcile"
+    },
+    {
+      "relation": "re_exports",
+      "context": "export",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/__init__.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_init",
+      "target": "smc_signals"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals",
+      "target": "smc_signals_generate_signals"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L27",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals",
+      "target": "smc_signals_signal"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals",
+      "target": "smc_structure"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L22",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals",
+      "target": "smc_structure_detect_structure"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals",
+      "target": "smc_zones"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals",
+      "target": "smc_zones_find_fvgs"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals",
+      "target": "smc_zones_find_sweeps"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals_rationale_1",
+      "target": "smc_signals"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "strategies_orb",
+      "target": "smc_signals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev",
+      "target": "smc_signals",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategy.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_strategy",
+      "target": "smc_signals"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/__init__.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_init",
+      "target": "smc_signals_signal"
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals_generate_signals",
+      "target": "smc_signals_signal"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "strategies_orb",
+      "target": "smc_signals_signal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L54",
+      "weight": 1.0,
+      "source": "strategies_orb_generate",
+      "target": "smc_signals_signal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev",
+      "target": "smc_signals_signal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev_generate",
+      "target": "smc_signals_signal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_risk.py",
+      "source_location": "L4",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_risk",
+      "target": "smc_signals_signal"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_risk.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_risk_sig",
+      "target": "smc_signals_signal"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategy.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_strategy",
+      "target": "smc_signals_signal"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/__init__.py",
+      "source_location": "L13",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_init",
+      "target": "smc_signals_generate_signals"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L46",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals_generate_signals",
+      "target": "smc_structure_detect_structure"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L47",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals_generate_signals",
+      "target": "smc_zones_find_fvgs"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L45",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals_generate_signals",
+      "target": "smc_zones_find_sweeps"
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/smc/signals.py",
+      "source_location": "L36",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "smc_signals_generate_signals",
+      "target": "tjrbot_smc_signals_py_dataframe"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_smc.py",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_smc",
+      "target": "smc_signals_generate_signals"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tests/test_smc.py",
+      "source_location": "L90",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tests_test_smc_test_generate_signals_long",
+      "target": "smc_signals_generate_signals"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategy.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_strategy",
+      "target": "smc_signals_generate_signals"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategy.py",
+      "source_location": "L38",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "tjrbot_strategy_find_trades",
+      "target": "smc_signals_generate_signals"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/__init__.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "strategies_init",
+      "target": "strategies_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/__init__.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "strategies_init",
+      "target": "strategies_orb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "submodule_import",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/__init__.py",
+      "source_location": "L8",
+      "weight": 1.0,
+      "source": "strategies_init",
+      "target": "strategies_vwap_rev",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/__init__.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "strategies_init_rationale_1",
+      "target": "strategies_init",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "strategies_orb",
+      "target": "strategies_orb_generate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "strategies_orb_rationale_1",
+      "target": "strategies_orb",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "strategies_orb_generate",
+      "target": "tjrbot_strategies_orb_py_dataframe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/orb.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "strategies_orb_generate",
+      "target": "tjrbot_strategies_orb_py_signal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev",
+      "target": "strategies_vwap_rev_generate",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev_rationale_1",
+      "target": "strategies_vwap_rev",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "parameter_type",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev_generate",
+      "target": "tjrbot_strategies_vwap_rev_py_dataframe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "context": "generic_arg",
+      "confidence": "EXTRACTED",
+      "source_file": "tjrbot/strategies/vwap_rev.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "source": "strategies_vwap_rev_generate",
+      "target": "tjrbot_strategies_vwap_rev_py_signal",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "external_cron",
+      "target": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_1_make_a_scoped_token_for_the_timer_safe"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_2_create_a_free_cron_job_org_account"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_3_add_3_cron_jobs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_4_verify"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_note_on_the_old_github_schedule"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.json",
+      "source_location": "L2",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_settings",
+      "target": "claude_settings_hooks"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".claude/settings.json",
+      "source_location": "L3",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude_settings_hooks",
+      "target": "claude_settings_hooks_pretooluse"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CLAUDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "claude",
+      "target": "claude_graphify"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L18",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now",
+      "target": "execution_alpaca_exec_broker"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L28",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now",
+      "target": "scripts_scan_now_main"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L15",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now",
+      "target": "tjrbot_config"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L19",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now",
+      "target": "tjrbot_journal"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L23",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now",
+      "target": "tjrbot_strategy"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L1",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now_rationale_1",
+      "target": "scripts_scan_now"
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "scripts/scan_now.py",
+      "source_location": "L31",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "scripts_scan_now_main",
+      "target": "execution_alpaca_exec_broker"
     },
     {
       "relation": "contains",
@@ -4207,39 +6383,6 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "scripts/backtest.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_backtest",
-      "target": "tjrbot_backtest"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/backtest.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_backtest",
-      "target": "tjrbot_backtest_run_backtest"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/backtest.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_backtest",
-      "target": "tjrbot_backtest_summarize"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/backtest.py",
       "source_location": "L14",
       "weight": 1.0,
       "confidence_score": 1.0,
@@ -4288,28 +6431,6 @@
       "confidence_score": 1.0,
       "source": "scripts_backtest_main",
       "target": "data_alpaca_data_get_stock_bars"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/backtest.py",
-      "source_location": "L39",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_backtest_main",
-      "target": "tjrbot_backtest_run_backtest"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "scripts/backtest.py",
-      "source_location": "L40",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "scripts_backtest_main",
-      "target": "tjrbot_backtest_summarize"
     },
     {
       "relation": "calls",
@@ -4580,322 +6701,6 @@
       "target": "tjrbot_config_load_settings"
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L26",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tests_test_reconcile_broker"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tests_test_reconcile_leg"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L14",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tests_test_reconcile_order"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L34",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tests_test_reconcile_test_compute_pnl"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L40",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L56",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tests_test_reconcile_test_reconcile_skips_open_positions"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tjrbot_journal"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tjrbot_journal_journal"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tjrbot_reconcile"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tjrbot_reconcile_compute_pnl"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile",
-      "target": "tjrbot_reconcile_reconcile"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_rationale_1",
-      "target": "tests_test_reconcile"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_leg",
-      "target": "tests_test_reconcile_leg_init"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L3",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "tests_test_reconcile_leg",
-      "target": "tjrbot_journal_journal"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L45",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
-      "target": "tests_test_reconcile_leg"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L61",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
-      "target": "tests_test_reconcile_leg"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_order",
-      "target": "tests_test_reconcile_order_init"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L3",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "tests_test_reconcile_order",
-      "target": "tjrbot_journal_journal"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L43",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
-      "target": "tests_test_reconcile_order"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L59",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
-      "target": "tests_test_reconcile_order"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L30",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_broker",
-      "target": "tests_test_reconcile_broker_closed_orders"
-    },
-    {
-      "relation": "method",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L27",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_broker",
-      "target": "tests_test_reconcile_broker_init"
-    },
-    {
-      "relation": "uses",
-      "confidence": "INFERRED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L3",
-      "weight": 0.8,
-      "confidence_score": 0.5,
-      "source": "tests_test_reconcile_broker",
-      "target": "tjrbot_journal_journal"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
-      "target": "tests_test_reconcile_broker"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L63",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
-      "target": "tests_test_reconcile_broker"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L35",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_compute_pnl",
-      "target": "tjrbot_reconcile_compute_pnl"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L41",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
-      "target": "tjrbot_journal_journal"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_records_win_and_is_idempotent",
-      "target": "tjrbot_reconcile_reconcile"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L57",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
-      "target": "tjrbot_journal_journal"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_reconcile.py",
-      "source_location": "L63",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_reconcile_test_reconcile_skips_open_positions",
-      "target": "tjrbot_reconcile_reconcile"
-    },
-    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -4927,17 +6732,6 @@
       "confidence_score": 1.0,
       "source": "tests_test_risk",
       "target": "risk_engine_riskconfig"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_risk.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_risk",
-      "target": "smc_signals_signal"
     },
     {
       "relation": "contains",
@@ -5018,17 +6812,6 @@
       "confidence_score": 1.0,
       "source": "tests_test_risk_rationale_1",
       "target": "tests_test_risk"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_risk.py",
-      "source_location": "L8",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_risk_sig",
-      "target": "smc_signals_signal"
     },
     {
       "relation": "calls",
@@ -5278,17 +7061,6 @@
       "weight": 1.0,
       "confidence_score": 1.0,
       "source": "tests_test_smc",
-      "target": "smc_signals_generate_signals"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_smc.py",
-      "source_location": "L5",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_smc",
       "target": "smc_structure_detect_structure"
     },
     {
@@ -5504,17 +7276,6 @@
       "target": "smc_structure_detect_structure"
     },
     {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tests/test_smc.py",
-      "source_location": "L90",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tests_test_smc_test_generate_signals_long",
-      "target": "smc_signals_generate_signals"
-    },
-    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -5659,221 +7420,6 @@
       "confidence_score": 1.0,
       "source": "tjrbot_init_rationale_1",
       "target": "tjrbot_init"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "risk_engine"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "risk_engine_dailyriskstate"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "risk_engine_plan_trade"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L17",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "risk_engine_riskconfig"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L18",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "smc_session"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "tjrbot_backtest_backtestresult"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L46",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "tjrbot_backtest_run_backtest"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L165",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "tjrbot_backtest_summarize"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "tjrbot_backtest_trade"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "tjrbot_strategy"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest",
-      "target": "tjrbot_strategy_find_trades"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_rationale_1",
-      "target": "tjrbot_backtest"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L154",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_run_backtest",
-      "target": "tjrbot_backtest_trade"
-    },
-    {
-      "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L46",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_run_backtest",
-      "target": "tjrbot_backtest_backtestresult"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L165",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_summarize",
-      "target": "tjrbot_backtest_backtestresult"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L96",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_run_backtest",
-      "target": "risk_engine_dailyriskstate"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L109",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_run_backtest",
-      "target": "risk_engine_plan_trade"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L46",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_run_backtest",
-      "target": "riskconfig"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L46",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_run_backtest",
-      "target": "tjrbot_backtest_py_dataframe"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/backtest.py",
-      "source_location": "L83",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_backtest_run_backtest",
-      "target": "tjrbot_strategy_find_trades"
     },
     {
       "relation": "imports_from",
@@ -6203,28 +7749,6 @@
       "target": "tjrbot_journal_journal"
     },
     {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/dashboard/app.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dashboard_app",
-      "target": "tjrbot_reconcile"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/dashboard/app.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dashboard_app",
-      "target": "tjrbot_reconcile_reconcile"
-    },
-    {
       "relation": "rationale_for",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/dashboard/app.py",
@@ -6255,17 +7779,6 @@
       "confidence_score": 1.0,
       "source": "dashboard_app_create_app",
       "target": "tjrbot_journal_journal"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/dashboard/app.py",
-      "source_location": "L117",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "dashboard_app_create_app",
-      "target": "tjrbot_reconcile_reconcile"
     },
     {
       "relation": "re_exports",
@@ -6831,78 +8344,6 @@
       "target": "notify_telegram_telegramnotifier_send"
     },
     {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L11",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_reconcile",
-      "target": "tjrbot_reconcile_compute_pnl"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_reconcile",
-      "target": "tjrbot_reconcile_filled"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L19",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_reconcile",
-      "target": "tjrbot_reconcile_reconcile"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_reconcile_rationale_1",
-      "target": "tjrbot_reconcile"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L52",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_reconcile_reconcile",
-      "target": "tjrbot_reconcile_compute_pnl"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L33",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_reconcile_reconcile",
-      "target": "tjrbot_reconcile_filled"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/reconcile.py",
-      "source_location": "L20",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_reconcile_rationale_20",
-      "target": "tjrbot_reconcile_reconcile"
-    },
-    {
       "relation": "re_exports",
       "context": "export",
       "confidence": "EXTRACTED",
@@ -7109,39 +8550,6 @@
       "confidence_score": 1.0,
       "source": "risk_engine_rationale_127",
       "target": "risk_engine_dailyriskstate_halted"
-    },
-    {
-      "relation": "re_exports",
-      "context": "export",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/__init__.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_init",
-      "target": "smc_signals"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/__init__.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_init",
-      "target": "smc_signals_generate_signals"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/__init__.py",
-      "source_location": "L13",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_init",
-      "target": "smc_signals_signal"
     },
     {
       "relation": "re_exports",
@@ -7358,190 +8766,6 @@
       "confidence_score": 1.0,
       "source": "tjrbot_strategy_find_trades",
       "target": "smc_session_in_session"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals",
-      "target": "smc_signals_generate_signals"
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L27",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals",
-      "target": "smc_signals_signal"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L22",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals",
-      "target": "smc_structure"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L22",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals",
-      "target": "smc_structure_detect_structure"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals",
-      "target": "smc_zones"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals",
-      "target": "smc_zones_find_fvgs"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L23",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals",
-      "target": "smc_zones_find_sweeps"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals_rationale_1",
-      "target": "smc_signals"
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/strategy.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_strategy",
-      "target": "smc_signals"
-    },
-    {
-      "relation": "references",
-      "context": "generic_arg",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals_generate_signals",
-      "target": "smc_signals_signal"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/strategy.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_strategy",
-      "target": "smc_signals_signal"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L46",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals_generate_signals",
-      "target": "smc_structure_detect_structure"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L47",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals_generate_signals",
-      "target": "smc_zones_find_fvgs"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L45",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals_generate_signals",
-      "target": "smc_zones_find_sweeps"
-    },
-    {
-      "relation": "references",
-      "context": "parameter_type",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/signals.py",
-      "source_location": "L36",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_signals_generate_signals",
-      "target": "tjrbot_smc_signals_py_dataframe"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/strategy.py",
-      "source_location": "L15",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_strategy",
-      "target": "smc_signals_generate_signals"
-    },
-    {
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/strategy.py",
-      "source_location": "L38",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "tjrbot_strategy_find_trades",
-      "target": "smc_signals_generate_signals"
     },
     {
       "relation": "contains",
@@ -7816,17 +9040,6 @@
     },
     {
       "relation": "references",
-      "context": "return_type",
-      "confidence": "EXTRACTED",
-      "source_file": "tjrbot/smc/zones.py",
-      "source_location": "L33",
-      "weight": 1.0,
-      "confidence_score": 1.0,
-      "source": "smc_zones_atr",
-      "target": "series"
-    },
-    {
-      "relation": "references",
       "context": "parameter_type",
       "confidence": "EXTRACTED",
       "source_file": "tjrbot/smc/zones.py",
@@ -8006,5 +9219,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "2bf24f30ea78fa7d8e1b1c254bbefe0c7f339e5e"
+  "built_at_commit": "ce95968589bbf9b953026ccd8af9b270a3e273e4"
 }
