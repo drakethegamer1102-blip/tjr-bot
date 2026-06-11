@@ -3,11 +3,12 @@ name: TJR Bot (paper)
 # Runs on GitHub's free runners. Times are UTC, tuned for US Eastern DAYLIGHT
 # time (EDT = UTC-4). In winter (EST) shift the windows +1 hour (see DEPLOY.md).
 on:
-  schedule:
-    - cron: "*/5 13-15 * * 1-5"   # ~09:00-11:55 ET  morning NY session (find setups)
-    - cron: "*/5 17-20 * * 1-5"   # ~13:00-16:55 ET  afternoon NY session + end-of-day flatten
-    - cron: "5 20 * * 1-5"        # ~16:05 ET        daily summary to Telegram
-    - cron: "10 20 * * 5"         # ~16:10 ET Fri    weekly recap to Telegram
+  # Scheduling is handled by cron-job.org (a reliable external timer) which calls
+  # the workflow_dispatch API below on a cron, in America/New_York time:
+  #   - every 5 min          -> mode=once     (scan; the bot self-filters to market hours)
+  #   - 4:05 PM ET, Mon-Fri  -> mode=summary  (daily recap)
+  #   - 4:10 PM ET, Fridays  -> mode=weekly   (weekly recap)
+  # GitHub's built-in schedule was removed because it dropped/delayed runs.
   workflow_dispatch:
     inputs:
       mode:

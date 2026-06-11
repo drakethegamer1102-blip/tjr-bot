@@ -213,5 +213,10 @@
     "mtime": 1781117549.5462244,
     "ast_hash": "862a0907a8498e8734fd763ad573f1bd",
     "semantic_hash": ""
+  },
+  "EXTERNAL_CRON.md": {
+    "mtime": 1781154867.726616,
+    "ast_hash": "270c3b261c5612de3b80fe4c532d8729",
+    "semantic_hash": ""
   }
 }

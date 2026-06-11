@@ -4,14 +4,84 @@
   "graph": {},
   "nodes": [
     {
+      "label": "EXTERNAL_CRON.md",
+      "file_type": "document",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "external_cron",
+      "community": 7,
+      "norm_label": "external_cron.md"
+    },
+    {
+      "label": "Reliable scheduling via cron-job.org (free, no credit card)",
+      "file_type": "document",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "community": 7,
+      "norm_label": "reliable scheduling via cron-job.org (free, no credit card)"
+    },
+    {
+      "label": "1. Make a scoped token for the timer (safe)",
+      "file_type": "document",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "external_cron_1_make_a_scoped_token_for_the_timer_safe",
+      "community": 7,
+      "norm_label": "1. make a scoped token for the timer (safe)"
+    },
+    {
+      "label": "2. Create a free cron-job.org account",
+      "file_type": "document",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "external_cron_2_create_a_free_cron_job_org_account",
+      "community": 7,
+      "norm_label": "2. create a free cron-job.org account"
+    },
+    {
+      "label": "3. Add 3 cron jobs",
+      "file_type": "document",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "external_cron_3_add_3_cron_jobs",
+      "community": 7,
+      "norm_label": "3. add 3 cron jobs"
+    },
+    {
+      "label": "4. Verify",
+      "file_type": "document",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "external_cron_4_verify",
+      "community": 7,
+      "norm_label": "4. verify"
+    },
+    {
+      "label": "Note on the old GitHub schedule",
+      "file_type": "document",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L44",
+      "_origin": "ast",
+      "id": "external_cron_note_on_the_old_github_schedule",
+      "community": 7,
+      "norm_label": "note on the old github schedule"
+    },
+    {
       "label": "settings.json",
       "file_type": "code",
       "source_file": ".claude/settings.json",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "claude_settings",
       "community": 9,
-      "norm_label": "settings.json"
+      "norm_label": "settings.json",
+      "id": "claude_settings"
     },
     {
       "label": "hooks",
@@ -19,9 +89,9 @@
       "source_file": ".claude/settings.json",
       "source_location": "L2",
       "_origin": "ast",
-      "id": "claude_settings_hooks",
       "community": 9,
-      "norm_label": "hooks"
+      "norm_label": "hooks",
+      "id": "claude_settings_hooks"
     },
     {
       "label": "PreToolUse",
@@ -29,9 +99,9 @@
       "source_file": ".claude/settings.json",
       "source_location": "L3",
       "_origin": "ast",
-      "id": "claude_settings_hooks_pretooluse",
       "community": 9,
-      "norm_label": "pretooluse"
+      "norm_label": "pretooluse",
+      "id": "claude_settings_hooks_pretooluse"
     },
     {
       "label": "CLAUDE.md",
@@ -39,9 +109,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "claude",
       "community": 8,
-      "norm_label": "claude.md"
+      "norm_label": "claude.md",
+      "id": "claude"
     },
     {
       "label": "graphify",
@@ -49,9 +119,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "claude_graphify",
       "community": 8,
-      "norm_label": "graphify"
+      "norm_label": "graphify",
+      "id": "claude_graphify"
     },
     {
       "label": "scan_now.py",
@@ -59,9 +129,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "scripts_scan_now",
       "community": 2,
-      "norm_label": "scan_now.py"
+      "norm_label": "scan_now.py",
+      "id": "scripts_scan_now"
     },
     {
       "label": "main()",
@@ -69,9 +139,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L28",
       "_origin": "ast",
-      "id": "scripts_scan_now_main",
       "community": 2,
-      "norm_label": "main()"
+      "norm_label": "main()",
+      "id": "scripts_scan_now_main"
     },
     {
       "label": "Watch the bot scan the market right now (read-only \u2014 places no orders).  For eac",
@@ -79,9 +149,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "scripts_scan_now_rationale_1",
       "community": 2,
-      "norm_label": "watch the bot scan the market right now (read-only \u2014 places no orders).  for eac"
+      "norm_label": "watch the bot scan the market right now (read-only \u2014 places no orders).  for eac",
+      "id": "scripts_scan_now_rationale_1"
     },
     {
       "label": "engine.py",
@@ -89,9 +159,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tjrbot_engine",
       "community": 2,
-      "norm_label": "engine.py"
+      "norm_label": "engine.py",
+      "id": "tjrbot_engine"
     },
     {
       "label": "_recent_bars()",
@@ -99,9 +169,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "tjrbot_engine_recent_bars",
       "community": 2,
-      "norm_label": "_recent_bars()"
+      "norm_label": "_recent_bars()",
+      "id": "tjrbot_engine_recent_bars"
     },
     {
       "label": "Settings",
@@ -109,9 +179,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "settings",
       "community": 2,
-      "norm_label": "settings"
+      "norm_label": "settings",
+      "id": "settings"
     },
     {
       "label": "DataFrame",
@@ -119,9 +189,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L30",
       "_origin": "ast",
-      "id": "dataframe",
       "community": 2,
-      "norm_label": "dataframe"
+      "norm_label": "dataframe",
+      "id": "dataframe"
     },
     {
       "label": "_sessions_for()",
@@ -129,9 +199,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L36",
       "_origin": "ast",
-      "id": "tjrbot_engine_sessions_for",
       "community": 2,
-      "norm_label": "_sessions_for()"
+      "norm_label": "_sessions_for()",
+      "id": "tjrbot_engine_sessions_for"
     },
     {
       "label": "_resolve_symbols()",
@@ -139,9 +209,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "tjrbot_engine_resolve_symbols",
       "community": 2,
-      "norm_label": "_resolve_symbols()"
+      "norm_label": "_resolve_symbols()",
+      "id": "tjrbot_engine_resolve_symbols"
     },
     {
       "label": "Journal",
@@ -149,9 +219,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "journal",
       "community": 2,
-      "norm_label": "journal"
+      "norm_label": "journal",
+      "id": "journal"
     },
     {
       "label": "_format_alert()",
@@ -159,9 +229,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L62",
       "_origin": "ast",
-      "id": "tjrbot_engine_format_alert",
       "community": 2,
-      "norm_label": "_format_alert()"
+      "norm_label": "_format_alert()",
+      "id": "tjrbot_engine_format_alert"
     },
     {
       "label": "flatten_if_eod()",
@@ -169,9 +239,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L72",
       "_origin": "ast",
-      "id": "tjrbot_engine_flatten_if_eod",
       "community": 2,
-      "norm_label": "flatten_if_eod()"
+      "norm_label": "flatten_if_eod()",
+      "id": "tjrbot_engine_flatten_if_eod"
     },
     {
       "label": "scan_once()",
@@ -179,9 +249,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L90",
       "_origin": "ast",
-      "id": "tjrbot_engine_scan_once",
       "community": 2,
-      "norm_label": "scan_once()"
+      "norm_label": "scan_once()",
+      "id": "tjrbot_engine_scan_once"
     },
     {
       "label": "daily_summary()",
@@ -189,9 +259,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L189",
       "_origin": "ast",
-      "id": "tjrbot_engine_daily_summary",
-      "community": 3,
-      "norm_label": "daily_summary()"
+      "community": 0,
+      "norm_label": "daily_summary()",
+      "id": "tjrbot_engine_daily_summary"
     },
     {
       "label": "_closed_bot_trades()",
@@ -199,9 +269,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L260",
       "_origin": "ast",
-      "id": "tjrbot_engine_closed_bot_trades",
       "community": 2,
-      "norm_label": "_closed_bot_trades()"
+      "norm_label": "_closed_bot_trades()",
+      "id": "tjrbot_engine_closed_bot_trades"
     },
     {
       "label": "summarize_trades()",
@@ -209,9 +279,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L293",
       "_origin": "ast",
-      "id": "tjrbot_engine_summarize_trades",
-      "community": 2,
-      "norm_label": "summarize_trades()"
+      "community": 11,
+      "norm_label": "summarize_trades()",
+      "id": "tjrbot_engine_summarize_trades"
     },
     {
       "label": "weekly_summary()",
@@ -219,9 +289,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L310",
       "_origin": "ast",
-      "id": "tjrbot_engine_weekly_summary",
       "community": 2,
-      "norm_label": "weekly_summary()"
+      "norm_label": "weekly_summary()",
+      "id": "tjrbot_engine_weekly_summary"
     },
     {
       "label": "cycle()",
@@ -229,9 +299,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L338",
       "_origin": "ast",
-      "id": "tjrbot_engine_cycle",
       "community": 2,
-      "norm_label": "cycle()"
+      "norm_label": "cycle()",
+      "id": "tjrbot_engine_cycle"
     },
     {
       "label": "run_forever()",
@@ -239,9 +309,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L349",
       "_origin": "ast",
-      "id": "tjrbot_engine_run_forever",
       "community": 2,
-      "norm_label": "run_forever()"
+      "norm_label": "run_forever()",
+      "id": "tjrbot_engine_run_forever"
     },
     {
       "label": "Live paper-trading engine: scan symbols -> size -> place bracket orders -> alert",
@@ -249,9 +319,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_1",
       "community": 2,
-      "norm_label": "live paper-trading engine: scan symbols -> size -> place bracket orders -> alert"
+      "norm_label": "live paper-trading engine: scan symbols -> size -> place bracket orders -> alert",
+      "id": "tjrbot_engine_rationale_1"
     },
     {
       "label": "The symbols to scan: the watchlist, plus a screened universe if enabled.",
@@ -259,9 +329,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L41",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_41",
       "community": 2,
-      "norm_label": "the symbols to scan: the watchlist, plus a screened universe if enabled."
+      "norm_label": "the symbols to scan: the watchlist, plus a screened universe if enabled.",
+      "id": "tjrbot_engine_rationale_41"
     },
     {
       "label": "Day trading = no overnight: near the close, flatten any open stock positions.",
@@ -269,9 +339,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L73",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_73",
       "community": 2,
-      "norm_label": "day trading = no overnight: near the close, flatten any open stock positions."
+      "norm_label": "day trading = no overnight: near the close, flatten any open stock positions.",
+      "id": "tjrbot_engine_rationale_73"
     },
     {
       "label": "One pass over the watchlist. Returns the actions taken (or would take).",
@@ -279,9 +349,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L99",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_99",
       "community": 2,
-      "norm_label": "one pass over the watchlist. returns the actions taken (or would take)."
+      "norm_label": "one pass over the watchlist. returns the actions taken (or would take).",
+      "id": "tjrbot_engine_rationale_99"
     },
     {
       "label": "Build and send an end-of-day Telegram report (even on no-trade days).      Alpac",
@@ -289,9 +359,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L190",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_190",
-      "community": 3,
-      "norm_label": "build and send an end-of-day telegram report (even on no-trade days).      alpac"
+      "community": 0,
+      "norm_label": "build and send an end-of-day telegram report (even on no-trade days).      alpac",
+      "id": "tjrbot_engine_rationale_190"
     },
     {
       "label": "Every closed bracket the bot has placed, as {'symbol','pnl','dt'(ET)} rows.",
@@ -299,9 +369,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L261",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_261",
       "community": 2,
-      "norm_label": "every closed bracket the bot has placed, as {'symbol','pnl','dt'(et)} rows."
+      "norm_label": "every closed bracket the bot has placed, as {'symbol','pnl','dt'(et)} rows.",
+      "id": "tjrbot_engine_rationale_261"
     },
     {
       "label": "Pure aggregation over [{'symbol','pnl','dt'}] rows (count, win rate, best/worst)",
@@ -309,9 +379,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L294",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_294",
-      "community": 2,
-      "norm_label": "pure aggregation over [{'symbol','pnl','dt'}] rows (count, win rate, best/worst)"
+      "community": 11,
+      "norm_label": "pure aggregation over [{'symbol','pnl','dt'}] rows (count, win rate, best/worst)",
+      "id": "tjrbot_engine_rationale_294"
     },
     {
       "label": "Send a Friday recap of the week's trading to Telegram.",
@@ -319,9 +389,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L311",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_311",
       "community": 2,
-      "norm_label": "send a friday recap of the week's trading to telegram."
+      "norm_label": "send a friday recap of the week's trading to telegram.",
+      "id": "tjrbot_engine_rationale_311"
     },
     {
       "label": "One full pass: reconcile closed trades, flatten at EOD, then scan for new setups",
@@ -329,9 +399,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L339",
       "_origin": "ast",
-      "id": "tjrbot_engine_rationale_339",
       "community": 2,
-      "norm_label": "one full pass: reconcile closed trades, flatten at eod, then scan for new setups"
+      "norm_label": "one full pass: reconcile closed trades, flatten at eod, then scan for new setups",
+      "id": "tjrbot_engine_rationale_339"
     },
     {
       "label": "alpaca_exec.py",
@@ -339,9 +409,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "execution_alpaca_exec",
       "community": 6,
-      "norm_label": "alpaca_exec.py"
+      "norm_label": "alpaca_exec.py",
+      "id": "execution_alpaca_exec"
     },
     {
       "label": "Broker",
@@ -349,9 +419,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L20",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker",
       "community": 6,
-      "norm_label": "broker"
+      "norm_label": "broker",
+      "id": "execution_alpaca_exec_broker"
     },
     {
       "label": ".__init__()",
@@ -359,9 +429,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_init",
       "community": 6,
-      "norm_label": ".__init__()"
+      "norm_label": ".__init__()",
+      "id": "execution_alpaca_exec_broker_init"
     },
     {
       "label": ".account()",
@@ -369,9 +439,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L25",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_account",
       "community": 6,
-      "norm_label": ".account()"
+      "norm_label": ".account()",
+      "id": "execution_alpaca_exec_broker_account"
     },
     {
       "label": ".equity()",
@@ -379,9 +449,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L28",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_equity",
       "community": 6,
-      "norm_label": ".equity()"
+      "norm_label": ".equity()",
+      "id": "execution_alpaca_exec_broker_equity"
     },
     {
       "label": ".positions()",
@@ -389,9 +459,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L31",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_positions",
       "community": 6,
-      "norm_label": ".positions()"
+      "norm_label": ".positions()",
+      "id": "execution_alpaca_exec_broker_positions"
     },
     {
       "label": ".closed_orders()",
@@ -399,9 +469,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_closed_orders",
       "community": 6,
-      "norm_label": ".closed_orders()"
+      "norm_label": ".closed_orders()",
+      "id": "execution_alpaca_exec_broker_closed_orders"
     },
     {
       "label": ".has_position()",
@@ -409,9 +479,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L39",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_has_position",
       "community": 6,
-      "norm_label": ".has_position()"
+      "norm_label": ".has_position()",
+      "id": "execution_alpaca_exec_broker_has_position"
     },
     {
       "label": ".order_exists()",
@@ -419,9 +489,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L46",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_order_exists",
       "community": 6,
-      "norm_label": ".order_exists()"
+      "norm_label": ".order_exists()",
+      "id": "execution_alpaca_exec_broker_order_exists"
     },
     {
       "label": ".is_shortable()",
@@ -429,9 +499,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L54",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_is_shortable",
       "community": 6,
-      "norm_label": ".is_shortable()"
+      "norm_label": ".is_shortable()",
+      "id": "execution_alpaca_exec_broker_is_shortable"
     },
     {
       "label": ".submit_bracket()",
@@ -439,9 +509,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L63",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_submit_bracket",
       "community": 6,
-      "norm_label": ".submit_bracket()"
+      "norm_label": ".submit_bracket()",
+      "id": "execution_alpaca_exec_broker_submit_bracket"
     },
     {
       "label": "TimeInForce",
@@ -449,9 +519,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L63",
       "_origin": "ast",
-      "id": "timeinforce",
       "community": 6,
-      "norm_label": "timeinforce"
+      "norm_label": "timeinforce",
+      "id": "timeinforce"
     },
     {
       "label": ".submit_test_limit()",
@@ -459,9 +529,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L84",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_submit_test_limit",
       "community": 6,
-      "norm_label": ".submit_test_limit()"
+      "norm_label": ".submit_test_limit()",
+      "id": "execution_alpaca_exec_broker_submit_test_limit"
     },
     {
       "label": ".cancel()",
@@ -469,9 +539,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L96",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_cancel",
       "community": 6,
-      "norm_label": ".cancel()"
+      "norm_label": ".cancel()",
+      "id": "execution_alpaca_exec_broker_cancel"
     },
     {
       "label": ".close_position()",
@@ -479,9 +549,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L99",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_close_position",
       "community": 6,
-      "norm_label": ".close_position()"
+      "norm_label": ".close_position()",
+      "id": "execution_alpaca_exec_broker_close_position"
     },
     {
       "label": ".close_all_positions()",
@@ -489,9 +559,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L102",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_broker_close_all_positions",
       "community": 6,
-      "norm_label": ".close_all_positions()"
+      "norm_label": ".close_all_positions()",
+      "id": "execution_alpaca_exec_broker_close_all_positions"
     },
     {
       "label": "Alpaca paper-trading execution: bracket orders + account/position helpers.  A br",
@@ -499,9 +569,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_rationale_1",
       "community": 6,
-      "norm_label": "alpaca paper-trading execution: bracket orders + account/position helpers.  a br"
+      "norm_label": "alpaca paper-trading execution: bracket orders + account/position helpers.  a br",
+      "id": "execution_alpaca_exec_rationale_1"
     },
     {
       "label": "Recently closed orders, with bracket legs nested.",
@@ -509,9 +579,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L35",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_rationale_35",
       "community": 6,
-      "norm_label": "recently closed orders, with bracket legs nested."
+      "norm_label": "recently closed orders, with bracket legs nested.",
+      "id": "execution_alpaca_exec_rationale_35"
     },
     {
       "label": "True if Alpaca already has an order with this id (idempotency for stateless runs",
@@ -519,9 +589,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L47",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_rationale_47",
       "community": 6,
-      "norm_label": "true if alpaca already has an order with this id (idempotency for stateless runs"
+      "norm_label": "true if alpaca already has an order with this id (idempotency for stateless runs",
+      "id": "execution_alpaca_exec_rationale_47"
     },
     {
       "label": "True if the asset can be sold short (skip the trade otherwise).",
@@ -529,9 +599,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L55",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_rationale_55",
       "community": 6,
-      "norm_label": "true if the asset can be sold short (skip the trade otherwise)."
+      "norm_label": "true if the asset can be sold short (skip the trade otherwise).",
+      "id": "execution_alpaca_exec_rationale_55"
     },
     {
       "label": "Submit a limit entry with attached take-profit and stop-loss.",
@@ -539,9 +609,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L64",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_rationale_64",
       "community": 6,
-      "norm_label": "submit a limit entry with attached take-profit and stop-loss."
+      "norm_label": "submit a limit entry with attached take-profit and stop-loss.",
+      "id": "execution_alpaca_exec_rationale_64"
     },
     {
       "label": "A plain, non-marketable limit order \u2014 used only to verify the order path.",
@@ -549,9 +619,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L85",
       "_origin": "ast",
-      "id": "execution_alpaca_exec_rationale_85",
       "community": 6,
-      "norm_label": "a plain, non-marketable limit order \u2014 used only to verify the order path."
+      "norm_label": "a plain, non-marketable limit order \u2014 used only to verify the order path.",
+      "id": "execution_alpaca_exec_rationale_85"
     },
     {
       "label": "backtest.py",
@@ -639,7 +709,7 @@
       "source_file": "scripts/run_bot.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "run_bot.py",
       "id": "scripts_run_bot"
     },
@@ -649,7 +719,7 @@
       "source_file": "scripts/run_bot.py",
       "source_location": "L17",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "main()",
       "id": "scripts_run_bot_main"
     },
@@ -659,7 +729,7 @@
       "source_file": "scripts/run_bot.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "entry point for the trading bot.      python scripts/run_bot.py --dry-run --forc",
       "id": "scripts_run_bot_rationale_1"
     },
@@ -669,7 +739,7 @@
       "source_file": "scripts/verify_execution.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
+      "community": 6,
       "norm_label": "verify_execution.py",
       "id": "scripts_verify_execution"
     },
@@ -679,7 +749,7 @@
       "source_file": "scripts/verify_execution.py",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 3,
+      "community": 6,
       "norm_label": "main()",
       "id": "scripts_verify_execution_main"
     },
@@ -689,7 +759,7 @@
       "source_file": "scripts/verify_execution.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
+      "community": 6,
       "norm_label": "safely verify the alpaca order path: submit a non-marketable limit, then cancel",
       "id": "scripts_verify_execution_rationale_1"
     },
@@ -1039,7 +1109,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "test_strategy.py",
       "id": "tests_test_strategy"
     },
@@ -1049,7 +1119,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "make_bars()",
       "id": "tests_test_strategy_make_bars"
     },
@@ -1059,7 +1129,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L16",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "test_daily_bias_bullish()",
       "id": "tests_test_strategy_test_daily_bias_bullish"
     },
@@ -1069,7 +1139,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L30",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "test_session_filter()",
       "id": "tests_test_strategy_test_session_filter"
     },
@@ -1079,7 +1149,7 @@
       "source_file": "tests/test_strategy.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "tests for the daily-bias and session filters.",
       "id": "tests_test_strategy_rationale_1"
     },
@@ -1089,7 +1159,7 @@
       "source_file": "tests/test_summary.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 11,
       "norm_label": "test_summary.py",
       "id": "tests_test_summary"
     },
@@ -1099,7 +1169,7 @@
       "source_file": "tests/test_summary.py",
       "source_location": "L6",
       "_origin": "ast",
-      "community": 2,
+      "community": 11,
       "norm_label": "test_summarize_trades()",
       "id": "tests_test_summary_test_summarize_trades"
     },
@@ -1109,7 +1179,7 @@
       "source_file": "tests/test_summary.py",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 2,
+      "community": 11,
       "norm_label": "test_summarize_trades_empty()",
       "id": "tests_test_summary_test_summarize_trades_empty"
     },
@@ -1119,7 +1189,7 @@
       "source_file": "tests/test_summary.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 2,
+      "community": 11,
       "norm_label": "tests for the summary aggregation (pure).",
       "id": "tests_test_summary_rationale_1"
     },
@@ -1799,7 +1869,7 @@
       "source_file": "tjrbot/notify/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "__init__.py",
       "id": "notify_init"
     },
@@ -1809,7 +1879,7 @@
       "source_file": "tjrbot/notify/__init__.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "notifications (telegram phone alerts).",
       "id": "notify_init_rationale_1"
     },
@@ -1819,7 +1889,7 @@
       "source_file": "tjrbot/notify/telegram.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "telegram.py",
       "id": "notify_telegram"
     },
@@ -1829,7 +1899,7 @@
       "source_file": "tjrbot/notify/telegram.py",
       "source_location": "L8",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "telegramnotifier",
       "id": "notify_telegram_telegramnotifier"
     },
@@ -1839,7 +1909,7 @@
       "source_file": "tjrbot/notify/telegram.py",
       "source_location": "L9",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": ".__init__()",
       "id": "notify_telegram_telegramnotifier_init"
     },
@@ -1849,7 +1919,7 @@
       "source_file": "tjrbot/notify/telegram.py",
       "source_location": "L14",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": ".send()",
       "id": "notify_telegram_telegramnotifier_send"
     },
@@ -1859,7 +1929,7 @@
       "source_file": "tjrbot/notify/telegram.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "telegram phone alerts via the bot api (simple http, no extra sdk).",
       "id": "notify_telegram_rationale_1"
     },
@@ -1869,7 +1939,7 @@
       "source_file": "tjrbot/notify/telegram.py",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 3,
+      "community": 2,
       "norm_label": "send a message. returns true on success, false on any failure.",
       "id": "notify_telegram_rationale_15"
     },
@@ -2099,7 +2169,7 @@
       "source_file": "tjrbot/smc/session.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "session.py",
       "id": "smc_session"
     },
@@ -2109,7 +2179,7 @@
       "source_file": "tjrbot/smc/session.py",
       "source_location": "L21",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "in_session()",
       "id": "smc_session_in_session"
     },
@@ -2119,7 +2189,7 @@
       "source_file": "tjrbot/smc/session.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "trading session / ict-style killzone time windows (us/eastern).",
       "id": "smc_session_rationale_1"
     },
@@ -2129,7 +2199,7 @@
       "source_file": "tjrbot/smc/session.py",
       "source_location": "L22",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "true if timestamp `ts` (tz-aware or naive=utc) falls in any named window.",
       "id": "smc_session_rationale_22"
     },
@@ -2429,7 +2499,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "strategy.py",
       "id": "tjrbot_strategy"
     },
@@ -2439,7 +2509,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "daily_bias()",
       "id": "tjrbot_strategy_daily_bias"
     },
@@ -2449,7 +2519,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L19",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "dataframe",
       "id": "tjrbot_strategy_py_dataframe"
     },
@@ -2459,7 +2529,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "find_trades()",
       "id": "tjrbot_strategy_find_trades"
     },
@@ -2469,7 +2539,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L25",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "signal",
       "id": "signal"
     },
@@ -2479,7 +2549,7 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "high-level tjr strategy: smc signals filtered by daily bias + session window.  t",
       "id": "tjrbot_strategy_rationale_1"
     },
@@ -2489,12 +2559,72 @@
       "source_file": "tjrbot/strategy.py",
       "source_location": "L20",
       "_origin": "ast",
-      "community": 7,
+      "community": 2,
       "norm_label": "+1 bullish / -1 bearish / 0 neutral, from the latest htf structure break.",
       "id": "tjrbot_strategy_rationale_20"
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "external_cron",
+      "target": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_1_make_a_scoped_token_for_the_timer_safe",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_2_create_a_free_cron_job_org_account",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_3_add_3_cron_jobs",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_4_verify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "EXTERNAL_CRON.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "source": "external_cron_reliable_scheduling_via_cron_job_org_free_no_credit_card",
+      "target": "external_cron_note_on_the_old_github_schedule",
+      "confidence_score": 1.0
+    },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -2521,9 +2651,9 @@
       "source_file": "CLAUDE.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "claude",
-      "target": "claude_graphify",
-      "confidence_score": 1.0
+      "target": "claude_graphify"
     },
     {
       "relation": "imports",
@@ -2532,9 +2662,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L18",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now",
-      "target": "execution_alpaca_exec_broker",
-      "confidence_score": 1.0
+      "target": "execution_alpaca_exec_broker"
     },
     {
       "relation": "contains",
@@ -2542,9 +2672,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now",
-      "target": "scripts_scan_now_main",
-      "confidence_score": 1.0
+      "target": "scripts_scan_now_main"
     },
     {
       "relation": "imports_from",
@@ -2553,9 +2683,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now",
-      "target": "tjrbot_config",
-      "confidence_score": 1.0
+      "target": "tjrbot_config"
     },
     {
       "relation": "imports_from",
@@ -2564,9 +2694,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now",
-      "target": "tjrbot_engine",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine"
     },
     {
       "relation": "imports",
@@ -2575,9 +2705,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now",
-      "target": "tjrbot_engine_resolve_symbols",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_resolve_symbols"
     },
     {
       "relation": "imports",
@@ -2586,9 +2716,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now",
-      "target": "tjrbot_engine_sessions_for",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_sessions_for"
     },
     {
       "relation": "imports_from",
@@ -2597,9 +2727,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now",
-      "target": "tjrbot_journal",
-      "confidence_score": 1.0
+      "target": "tjrbot_journal"
     },
     {
       "relation": "imports_from",
@@ -2608,9 +2738,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now",
-      "target": "tjrbot_strategy",
-      "confidence_score": 1.0
+      "target": "tjrbot_strategy"
     },
     {
       "relation": "rationale_for",
@@ -2618,9 +2748,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now_rationale_1",
-      "target": "scripts_scan_now",
-      "confidence_score": 1.0
+      "target": "scripts_scan_now"
     },
     {
       "relation": "calls",
@@ -2629,9 +2759,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L31",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now_main",
-      "target": "execution_alpaca_exec_broker",
-      "confidence_score": 1.0
+      "target": "execution_alpaca_exec_broker"
     },
     {
       "relation": "calls",
@@ -2651,9 +2781,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now_main",
-      "target": "tjrbot_engine_resolve_symbols",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_resolve_symbols"
     },
     {
       "relation": "calls",
@@ -2662,9 +2792,9 @@
       "source_file": "scripts/scan_now.py",
       "source_location": "L34",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "scripts_scan_now_main",
-      "target": "tjrbot_engine_sessions_for",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_sessions_for"
     },
     {
       "relation": "imports_from",
@@ -3067,9 +3197,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L30",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tjrbot_engine_recent_bars",
-      "target": "dataframe",
-      "confidence_score": 1.0
+      "target": "dataframe"
     },
     {
       "relation": "references",
@@ -3488,9 +3618,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L190",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tjrbot_engine_rationale_190",
-      "target": "tjrbot_engine_daily_summary",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_daily_summary"
     },
     {
       "relation": "calls",
@@ -3509,9 +3639,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L261",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tjrbot_engine_rationale_261",
-      "target": "tjrbot_engine_closed_bot_trades",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_closed_bot_trades"
     },
     {
       "relation": "calls",
@@ -3563,9 +3693,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L294",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tjrbot_engine_rationale_294",
-      "target": "tjrbot_engine_summarize_trades",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_summarize_trades"
     },
     {
       "relation": "calls",
@@ -3606,9 +3736,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L311",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tjrbot_engine_rationale_311",
-      "target": "tjrbot_engine_weekly_summary",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_weekly_summary"
     },
     {
       "relation": "calls",
@@ -3660,9 +3790,9 @@
       "source_file": "tjrbot/engine.py",
       "source_location": "L339",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "tjrbot_engine_rationale_339",
-      "target": "tjrbot_engine_cycle",
-      "confidence_score": 1.0
+      "target": "tjrbot_engine_cycle"
     },
     {
       "relation": "calls",
@@ -3869,9 +3999,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L54",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "execution_alpaca_exec_broker",
-      "target": "execution_alpaca_exec_broker_is_shortable",
-      "confidence_score": 1.0
+      "target": "execution_alpaca_exec_broker_is_shortable"
     },
     {
       "relation": "method",
@@ -3994,9 +4124,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L55",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "execution_alpaca_exec_rationale_55",
-      "target": "execution_alpaca_exec_broker_is_shortable",
-      "confidence_score": 1.0
+      "target": "execution_alpaca_exec_broker_is_shortable"
     },
     {
       "relation": "references",
@@ -4015,9 +4145,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L64",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "execution_alpaca_exec_rationale_64",
-      "target": "execution_alpaca_exec_broker_submit_bracket",
-      "confidence_score": 1.0
+      "target": "execution_alpaca_exec_broker_submit_bracket"
     },
     {
       "relation": "rationale_for",
@@ -4025,9 +4155,9 @@
       "source_file": "tjrbot/execution/alpaca_exec.py",
       "source_location": "L85",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "execution_alpaca_exec_rationale_85",
-      "target": "execution_alpaca_exec_broker_submit_test_limit",
-      "confidence_score": 1.0
+      "target": "execution_alpaca_exec_broker_submit_test_limit"
     },
     {
       "relation": "imports",
@@ -7876,5 +8006,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1eb31276015f72dd26d1e8e3182e93c3dd3c5623"
+  "built_at_commit": "2bf24f30ea78fa7d8e1b1c254bbefe0c7f339e5e"
 }
