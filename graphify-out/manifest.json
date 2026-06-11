@@ -1,212 +1,217 @@
 {
-  "/Users/drake/Claude/trading-bot/.claude/settings.json": {
+  ".claude/settings.json": {
     "mtime": 1781052058.2552965,
     "ast_hash": "bfee062c3962c14264fd704e975a6b38",
     "semantic_hash": "bfee062c3962c14264fd704e975a6b38"
   },
-  "/Users/drake/Claude/trading-bot/scripts/backtest.py": {
+  "scripts/backtest.py": {
     "mtime": 1780956831.208183,
     "ast_hash": "474432ae23f8d8eb8753319f597767ec",
     "semantic_hash": "474432ae23f8d8eb8753319f597767ec"
   },
-  "/Users/drake/Claude/trading-bot/scripts/dashboard.py": {
+  "scripts/dashboard.py": {
     "mtime": 1780957348.4545631,
     "ast_hash": "2ad1d45ddbcf99f970f4fdeb5d105daa",
     "semantic_hash": "2ad1d45ddbcf99f970f4fdeb5d105daa"
   },
-  "/Users/drake/Claude/trading-bot/scripts/healthcheck.py": {
+  "scripts/healthcheck.py": {
     "mtime": 1780956425.252136,
     "ast_hash": "a618c615e8b97dcaf2569a4663b20c2f",
     "semantic_hash": "a618c615e8b97dcaf2569a4663b20c2f"
   },
-  "/Users/drake/Claude/trading-bot/scripts/run_bot.py": {
+  "scripts/run_bot.py": {
     "mtime": 1781050956.8483808,
     "ast_hash": "630a83741a6131e09fd9fe94c8c09835",
     "semantic_hash": "630a83741a6131e09fd9fe94c8c09835"
   },
-  "/Users/drake/Claude/trading-bot/scripts/verify_execution.py": {
+  "scripts/verify_execution.py": {
     "mtime": 1780957175.1963809,
     "ast_hash": "a93d961ea20c4867d88b9ea201a90442",
     "semantic_hash": "a93d961ea20c4867d88b9ea201a90442"
   },
-  "/Users/drake/Claude/trading-bot/tests/test_reconcile.py": {
+  "tests/test_reconcile.py": {
     "mtime": 1780957693.5671382,
     "ast_hash": "96ed150712afe8fb2075af0f6da6ad35",
     "semantic_hash": "96ed150712afe8fb2075af0f6da6ad35"
   },
-  "/Users/drake/Claude/trading-bot/tests/test_risk.py": {
+  "tests/test_risk.py": {
     "mtime": 1780956637.6299987,
     "ast_hash": "8250fbd1929e6781b0dde3ea34408705",
     "semantic_hash": "8250fbd1929e6781b0dde3ea34408705"
   },
-  "/Users/drake/Claude/trading-bot/tests/test_screener.py": {
+  "tests/test_screener.py": {
     "mtime": 1781019626.2619958,
     "ast_hash": "70bf2ffa27f7fcdef5f9f4dd3affbae0",
     "semantic_hash": "70bf2ffa27f7fcdef5f9f4dd3affbae0"
   },
-  "/Users/drake/Claude/trading-bot/tests/test_smc.py": {
+  "tests/test_smc.py": {
     "mtime": 1780955253.9246786,
     "ast_hash": "9630c656f59a7032b7f88db76761e2cc",
     "semantic_hash": "9630c656f59a7032b7f88db76761e2cc"
   },
-  "/Users/drake/Claude/trading-bot/tests/test_strategy.py": {
+  "tests/test_strategy.py": {
     "mtime": 1780956642.0090628,
     "ast_hash": "85c56e32acd1b986a45ff4264b7c3952",
     "semantic_hash": "85c56e32acd1b986a45ff4264b7c3952"
   },
-  "/Users/drake/Claude/trading-bot/tests/test_summary.py": {
+  "tests/test_summary.py": {
     "mtime": 1781050975.1836474,
     "ast_hash": "6ef38fc1aa8963fb91ec85959b3c6507",
     "semantic_hash": "6ef38fc1aa8963fb91ec85959b3c6507"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/__init__.py": {
+  "tjrbot/__init__.py": {
     "mtime": 1780955204.3538177,
     "ast_hash": "0d1cc8c1a5c1e8c17924130d7ee4f950",
     "semantic_hash": "0d1cc8c1a5c1e8c17924130d7ee4f950"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/backtest.py": {
+  "tjrbot/backtest.py": {
     "mtime": 1780956820.659795,
     "ast_hash": "8eba9b2ebb049d4f26efc151195b4130",
     "semantic_hash": "8eba9b2ebb049d4f26efc151195b4130"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/config.py": {
+  "tjrbot/config.py": {
     "mtime": 1780956415.1580408,
     "ast_hash": "acf8b271f688f76aff9b0c2fc1993a1d",
     "semantic_hash": "acf8b271f688f76aff9b0c2fc1993a1d"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/dashboard/__init__.py": {
+  "tjrbot/dashboard/__init__.py": {
     "mtime": 1780957317.9777234,
     "ast_hash": "e01a67a1deac46eb239e246fb2987c22",
     "semantic_hash": "e01a67a1deac46eb239e246fb2987c22"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/dashboard/app.py": {
+  "tjrbot/dashboard/app.py": {
     "mtime": 1780957718.4575527,
     "ast_hash": "84f8dca3aa8ed4bdb91673552a28f1a9",
     "semantic_hash": "84f8dca3aa8ed4bdb91673552a28f1a9"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/data/__init__.py": {
+  "tjrbot/data/__init__.py": {
     "mtime": 1781019394.6312304,
     "ast_hash": "f3a392c80b00b594b0767631e70b874c",
     "semantic_hash": "f3a392c80b00b594b0767631e70b874c"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/data/alpaca_data.py": {
+  "tjrbot/data/alpaca_data.py": {
     "mtime": 1780956748.707789,
     "ast_hash": "a8b0eb37ede2c0d0608d102c58563488",
     "semantic_hash": "a8b0eb37ede2c0d0608d102c58563488"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/data/screener.py": {
+  "tjrbot/data/screener.py": {
     "mtime": 1781019684.8482833,
     "ast_hash": "f6f0e22d7c58116abbeb2aa77887356b",
     "semantic_hash": "f6f0e22d7c58116abbeb2aa77887356b"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/engine.py": {
-    "mtime": 1781050943.9686043,
-    "ast_hash": "2cfb370aace03f49fc83e0468848b40f",
-    "semantic_hash": "2cfb370aace03f49fc83e0468848b40f"
+  "tjrbot/engine.py": {
+    "mtime": 1781130958.6715643,
+    "ast_hash": "bddcac71b7b8ca2e2bf3acd6fc6db06f",
+    "semantic_hash": ""
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/execution/__init__.py": {
+  "tjrbot/execution/__init__.py": {
     "mtime": 1780957160.6581883,
     "ast_hash": "16983c425f92a2c7d0d9a87a0917af23",
     "semantic_hash": "16983c425f92a2c7d0d9a87a0917af23"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/execution/alpaca_exec.py": {
-    "mtime": 1780958236.779388,
-    "ast_hash": "2e77240cb4384d97c3a0741f6aeabcbd",
-    "semantic_hash": "2e77240cb4384d97c3a0741f6aeabcbd"
+  "tjrbot/execution/alpaca_exec.py": {
+    "mtime": 1781130953.4377022,
+    "ast_hash": "a818859de90310edc34874cb17d4aa64",
+    "semantic_hash": ""
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/journal.py": {
+  "tjrbot/journal.py": {
     "mtime": 1780957670.7419515,
     "ast_hash": "d0ddc2f541e79a894437574db863d4a0",
     "semantic_hash": "d0ddc2f541e79a894437574db863d4a0"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/notify/__init__.py": {
+  "tjrbot/notify/__init__.py": {
     "mtime": 1780956416.5633025,
     "ast_hash": "a6edb82c4f91de8eadbcd6016c9551dc",
     "semantic_hash": "a6edb82c4f91de8eadbcd6016c9551dc"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/notify/telegram.py": {
+  "tjrbot/notify/telegram.py": {
     "mtime": 1780956419.831714,
     "ast_hash": "7695e83993735bf25a27213fa2f305d7",
     "semantic_hash": "7695e83993735bf25a27213fa2f305d7"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/reconcile.py": {
+  "tjrbot/reconcile.py": {
     "mtime": 1780957685.4779775,
     "ast_hash": "bcd359b24ff2612642d83aea6d02e771",
     "semantic_hash": "bcd359b24ff2612642d83aea6d02e771"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/risk/__init__.py": {
+  "tjrbot/risk/__init__.py": {
     "mtime": 1780956598.1052063,
     "ast_hash": "f463ab83cc07b74567227cbfff861f37",
     "semantic_hash": "f463ab83cc07b74567227cbfff861f37"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/risk/engine.py": {
+  "tjrbot/risk/engine.py": {
     "mtime": 1780957146.1561043,
     "ast_hash": "8fda22fa7bcf74d5df979c4ec4c7a96b",
     "semantic_hash": "8fda22fa7bcf74d5df979c4ec4c7a96b"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/smc/__init__.py": {
+  "tjrbot/smc/__init__.py": {
     "mtime": 1780955204.3699424,
     "ast_hash": "6d48cfca459be561a20e3de92b41c8d3",
     "semantic_hash": "6d48cfca459be561a20e3de92b41c8d3"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/smc/session.py": {
+  "tjrbot/smc/session.py": {
     "mtime": 1781038407.084156,
     "ast_hash": "a10b6e7392683714956ab3414dc106da",
     "semantic_hash": "a10b6e7392683714956ab3414dc106da"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/smc/signals.py": {
+  "tjrbot/smc/signals.py": {
     "mtime": 1780955240.7430668,
     "ast_hash": "466fe2b1b4e486bdf0c9520ec98bb5bd",
     "semantic_hash": "466fe2b1b4e486bdf0c9520ec98bb5bd"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/smc/structure.py": {
+  "tjrbot/smc/structure.py": {
     "mtime": 1780955216.271523,
     "ast_hash": "a2ea3146868205c8168af2be254dab71",
     "semantic_hash": "a2ea3146868205c8168af2be254dab71"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/smc/zones.py": {
+  "tjrbot/smc/zones.py": {
     "mtime": 1780955229.9713168,
     "ast_hash": "fa68088bfe6f06e5c23f05f9e67ea61f",
     "semantic_hash": "fa68088bfe6f06e5c23f05f9e67ea61f"
   },
-  "/Users/drake/Claude/trading-bot/tjrbot/strategy.py": {
+  "tjrbot/strategy.py": {
     "mtime": 1780956625.871848,
     "ast_hash": "43824ae50cc33fd7352f038140ebd56d",
     "semantic_hash": "43824ae50cc33fd7352f038140ebd56d"
   },
-  "/Users/drake/Claude/trading-bot/.github/workflows/trade.yml": {
+  ".github/workflows/trade.yml": {
     "mtime": 1781050969.5501587,
     "ast_hash": "b4a54dcab7c3f330d3dcb2b4960e3f30",
     "semantic_hash": "b4a54dcab7c3f330d3dcb2b4960e3f30"
   },
-  "/Users/drake/Claude/trading-bot/CLAUDE.md": {
+  "CLAUDE.md": {
     "mtime": 1781052058.2549784,
     "ast_hash": "82efb97a359f5c7290bf2513d14686be",
     "semantic_hash": "82efb97a359f5c7290bf2513d14686be"
   },
-  "/Users/drake/Claude/trading-bot/DEPLOY.md": {
+  "DEPLOY.md": {
     "mtime": 1780958266.550526,
     "ast_hash": "6cdc3e03e153b6ebe78ed9d7358d391e",
     "semantic_hash": "6cdc3e03e153b6ebe78ed9d7358d391e"
   },
-  "/Users/drake/Claude/trading-bot/PROJECT_PLAN.md": {
+  "PROJECT_PLAN.md": {
     "mtime": 1780954838.7879996,
     "ast_hash": "e8146b58c04ca3e85aa1ecbf7dbfc5ef",
     "semantic_hash": "e8146b58c04ca3e85aa1ecbf7dbfc5ef"
   },
-  "/Users/drake/Claude/trading-bot/README.md": {
+  "README.md": {
     "mtime": 1780957805.9079351,
     "ast_hash": "ed676902d95c0533b5033d2f0bc95ddf",
     "semantic_hash": "ed676902d95c0533b5033d2f0bc95ddf"
   },
-  "/Users/drake/Claude/trading-bot/config.yaml": {
+  "config.yaml": {
     "mtime": 1781019420.4514365,
     "ast_hash": "03450a9c021213e1970befff675edca9",
     "semantic_hash": "03450a9c021213e1970befff675edca9"
   },
-  "/Users/drake/Claude/trading-bot/requirements.txt": {
+  "requirements.txt": {
     "mtime": 1780955204.313686,
     "ast_hash": "99b4805915d721c3e3197e6003831b36",
     "semantic_hash": "99b4805915d721c3e3197e6003831b36"
+  },
+  "scripts/scan_now.py": {
+    "mtime": 1781117549.5462244,
+    "ast_hash": "862a0907a8498e8734fd763ad573f1bd",
+    "semantic_hash": ""
   }
 }
