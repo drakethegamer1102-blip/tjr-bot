@@ -93,6 +93,7 @@ def test_generate_signals_long():
     longs = [s for s in signals if s.side == "long"]
     assert len(longs) >= 1
     s = longs[0]
-    assert abs(s.stop - 98.5) < 1e-9  # stop below the swept low
-    assert s.entry == 103.0  # enter at the bottom of the FVG (high of bar 9)
+    assert s.stop < 98.5  # stop below swept low with 0.05% buffer
+    assert abs(s.stop - 98.5 * 0.9995) < 1e-6
+    assert s.entry == 104.0  # enter at TOP of FVG (low of bar 11, retracing into gap)
     assert s.target > s.entry  # long target is above entry
