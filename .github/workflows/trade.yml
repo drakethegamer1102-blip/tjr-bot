@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "once | summary | weekly | healthcheck | strategy-report"
+        description: "once | summary | weekly | healthcheck | strategy-report | review"
         default: "healthcheck"
         type: string
 
@@ -54,6 +54,10 @@ jobs:
       - name: Strategy performance report
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'strategy-report' }}
         run: python scripts/strategy_report.py --telegram
+
+      - name: Autonomous strategy review
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'review' }}
+        run: python scripts/review_bot.py
 
       - name: Trading cycle
         if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}
