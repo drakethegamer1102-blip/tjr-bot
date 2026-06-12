@@ -15,6 +15,7 @@ from dataclasses import dataclass, field
 import pandas as pd
 
 from .risk.engine import DailyRiskState, RiskConfig, plan_trade
+from .regime import filter_signals as regime_filter
 from .smc.session import ET, in_session
 from .strategy import find_trades
 
@@ -204,6 +205,7 @@ def backtest_strategy(
     sessions: tuple[str, ...] = ("ny_open", "ny_pm"),
     entry_valid_bars: int = 12,
     start_equity: float = 100_000.0,
+    use_regime: bool = True,
 ) -> BacktestResult:
     """Strategy-agnostic backtest. `build_signals(today, prev, hist)` returns Signals.
 
@@ -229,6 +231,8 @@ def backtest_strategy(
         except Exception:  # noqa: BLE001
             continue
         signals = [s for s in signals if in_session(today.index[s.index], list(sessions))]
+        if use_regime:
+            signals = regime_filter(signals, today)
         if not signals:
             continue
 

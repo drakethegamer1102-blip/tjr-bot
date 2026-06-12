@@ -38,6 +38,12 @@ strategy:
   min_rr: 2.0                # minimum reward:risk to take a trade
   max_trades_per_day: 3
 
+# Trend/regime filter: block counter-trend trades only in strongly-trending (high-ADX) markets.
+# OFF by default — backtests showed it removes profitable mean-reversion fades and turned the
+# bot net-negative. The position-size + daily-loss caps are what actually prevent a blow-up.
+# Set true if you'd rather never short a strong uptrend, at the cost of some profit.
+regime_filter: false
+
 # ----- Multi-strategy: run these alongside TJR; each is tracked separately -----
 # Backtest (45d, indicative): vwap_rev profitable (PF 1.24); orb lost (PF 0.91);
 # tjr ~breakeven. So vwap_rev + tjr are ON; orb is OFF pending refinement.

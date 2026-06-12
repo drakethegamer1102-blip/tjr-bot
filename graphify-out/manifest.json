@@ -263,5 +263,15 @@
     "mtime": 1781199362.356869,
     "ast_hash": "225e44f08563696a6fe4091e2947efce",
     "semantic_hash": ""
+  },
+  "scripts/strategy_report.py": {
+    "mtime": 1781215837.9821653,
+    "ast_hash": "3434747425825b0a8c665e1162706115",
+    "semantic_hash": ""
+  },
+  "IMPROVEMENT_PROTOCOL.md": {
+    "mtime": 1781215877.6305585,
+    "ast_hash": "2344b1930ae3ee2694221a0978436390",
+    "semantic_hash": ""
   }
 }

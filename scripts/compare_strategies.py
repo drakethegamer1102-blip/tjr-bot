@@ -46,14 +46,9 @@ def main(argv: list[str]) -> int:
         b = get_stock_bars(s.alpaca_key, s.alpaca_secret, sym, "5Min", days)
         if not b.empty and len(b) > 50:
             bars_by_sym[sym] = b
-    print(f"Data: {list(bars_by_sym)}  (~{days}d, 5Min, free IEX feed — indicative only)\n")
-    print(f"{'strategy':11} {'trades':>6} {'win%':>5} {'tgt/stop/eod':>13} {'avgWin':>8} {'avgLoss':>8} {'PF':>5} {'exp/trade':>10}")
-    print("-" * 78)
+    print(f"Data: {list(bars_by_sym)}  (~{days}d, 5Min, free IEX feed — indicative only)")
 
-    for name, build in builds.items():
-        trades = []
-        for sym, b in bars_by_sym.items():
-            trades += backtest_strategy(b, sym, build, rc).trades
+    def row(name, trades):
         n = len(trades)
         wins = [t for t in trades if t.pnl > 0]
         losses = [t for t in trades if t.pnl < 0]
@@ -62,15 +57,20 @@ def main(argv: list[str]) -> int:
         pf = (gw / gl) if gl > 0 else (float("inf") if gw > 0 else 0)
         pf_s = "inf" if pf == float("inf") else f"{pf:.2f}"
         exp = (sum(t.pnl for t in trades) / n) if n else 0
-        avg_w = (gw / len(wins)) if wins else 0
-        avg_l = (gl / len(losses)) if losses else 0
-        tgt = sum(1 for t in trades if t.outcome == "target")
-        stp = sum(1 for t in trades if t.outcome == "stop")
-        eod = sum(1 for t in trades if t.outcome == "eod")
-        print(f"{name:11} {n:>6} {wr:>4.0f}% {f'{tgt}/{stp}/{eod}':>13} "
-              f"${avg_w:>6.0f} ${avg_l:>6.0f} {pf_s:>5} ${exp:>8.0f}")
-    print("\n(Same basis for all 3: structural stop, 3% risk, 100k start per symbol. "
-          "Judge by PF + win% + expectancy, not trade count.)")
+        shorts = sum(1 for t in trades if t.side == "short")
+        print(f"{name:11} {n:>6} {wr:>4.0f}% {f'{shorts}':>7} {pf_s:>6} ${exp:>8.0f} ${sum(t.pnl for t in trades):>9,.0f}")
+
+    for use_regime in (False, True):
+        label = "WITH regime filter" if use_regime else "WITHOUT regime filter (today's behavior)"
+        print(f"\n=== {label} ===")
+        print(f"{'strategy':11} {'trades':>6} {'win%':>5} {'shorts':>7} {'PF':>6} {'exp/trade':>10} {'totP&L':>10}")
+        print("-" * 64)
+        for name, build in builds.items():
+            trades = []
+            for sym, b in bars_by_sym.items():
+                trades += backtest_strategy(b, sym, build, rc, use_regime=use_regime).trades
+            row(name, trades)
+    print("\n(Structural stop, 3% risk, 100k/symbol. Judge by PF + win%, not trade count.)")
     return 0
 
 

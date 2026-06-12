@@ -21,6 +21,7 @@ from .data.alpaca_data import get_crypto_bars, get_stock_bars
 from .journal import Journal
 from .risk.engine import RiskConfig, daily_loss_exceeded, plan_trade
 from .reconcile import compute_pnl, reconcile
+from .regime import filter_signals
 from .smc.session import ET, in_session
 from .strategy import find_trades
 from .strategies import REGISTRY
@@ -142,6 +143,8 @@ def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat) -> list
         except Exception:  # noqa: BLE001
             sigs = []
         out += [sg for sg in sigs if in_session(today.index[sg.index], list(sessions))]
+    if s.get("regime_filter", False):  # off by default — backtest showed it removes profitable fades
+        out = filter_signals(out, today)
     return out
 
 

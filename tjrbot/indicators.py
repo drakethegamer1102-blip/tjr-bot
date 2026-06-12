@@ -26,3 +26,21 @@ def vwap(bars: pd.DataFrame) -> pd.Series:
     pv = (typical * bars["volume"]).cumsum()
     vol = bars["volume"].cumsum().replace(0, 1e-9)
     return pv / vol
+
+
+def adx(bars: pd.DataFrame, period: int = 14) -> pd.Series:
+    """Average Directional Index (Wilder) — measures trend STRENGTH (not direction).
+
+    High ADX (>~30) = strongly trending; low (<~20) = choppy/range-bound.
+    """
+    high, low, close = bars["high"], bars["low"], bars["close"]
+    up = high.diff()
+    down = -low.diff()
+    plus_dm = ((up > down) & (up > 0)) * up
+    minus_dm = ((down > up) & (down > 0)) * down
+    tr = pd.concat([high - low, (high - close.shift()).abs(), (low - close.shift()).abs()], axis=1).max(axis=1)
+    atr_ = tr.ewm(alpha=1 / period, adjust=False).mean().replace(0, 1e-9)
+    plus_di = 100 * plus_dm.ewm(alpha=1 / period, adjust=False).mean() / atr_
+    minus_di = 100 * minus_dm.ewm(alpha=1 / period, adjust=False).mean() / atr_
+    dx = 100 * (plus_di - minus_di).abs() / (plus_di + minus_di).replace(0, 1e-9)
+    return dx.ewm(alpha=1 / period, adjust=False).mean()
