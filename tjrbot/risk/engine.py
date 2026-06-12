@@ -26,6 +26,7 @@ class TradePlan:
     risk_dollars: float
     notional: float
     reasons: list[str] = field(default_factory=list)
+    entry_type: str = "limit"  # "limit" | "market"
 
 
 @dataclass
@@ -113,6 +114,7 @@ def plan_trade(symbol: str, signal, equity: float, rc: RiskConfig) -> TradePlan 
         risk_dollars=qty * per_unit_risk,
         notional=qty * entry,
         reasons=list(getattr(signal, "reasons", [])),
+        entry_type=getattr(signal, "entry_type", "limit"),
     )
 
 

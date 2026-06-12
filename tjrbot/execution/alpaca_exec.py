@@ -12,6 +12,7 @@ from alpaca.trading.enums import OrderClass, OrderSide, QueryOrderStatus, TimeIn
 from alpaca.trading.requests import (
     GetOrdersRequest,
     LimitOrderRequest,
+    MarketOrderRequest,
     StopLossRequest,
     TakeProfitRequest,
 )
@@ -61,24 +62,39 @@ class Broker:
 
     # --- writes ---
     def submit_bracket(self, plan, client_order_id: str, tif: TimeInForce = TimeInForce.DAY):
-        """Submit a limit entry with attached take-profit and stop-loss."""
+        """Submit a bracket order: market entry when plan.entry_type=='market', else limit."""
         is_crypto = "/" in plan.symbol
         qty = plan.qty if is_crypto else int(plan.qty)
         if not is_crypto and qty < 1:
             raise ValueError(f"{plan.symbol}: position rounds to <1 share")
 
         side = OrderSide.BUY if plan.side == "long" else OrderSide.SELL
-        req = LimitOrderRequest(
-            symbol=plan.symbol,
-            qty=qty,
-            side=side,
-            time_in_force=tif,
-            limit_price=round(plan.entry, 2),
-            order_class=OrderClass.BRACKET,
-            take_profit=TakeProfitRequest(limit_price=round(plan.target, 2)),
-            stop_loss=StopLossRequest(stop_price=round(plan.stop, 2)),
-            client_order_id=client_order_id,
-        )
+        tp = TakeProfitRequest(limit_price=round(plan.target, 2))
+        sl = StopLossRequest(stop_price=round(plan.stop, 2))
+
+        if getattr(plan, "entry_type", "limit") == "market":
+            req = MarketOrderRequest(
+                symbol=plan.symbol,
+                qty=qty,
+                side=side,
+                time_in_force=tif,
+                order_class=OrderClass.BRACKET,
+                take_profit=tp,
+                stop_loss=sl,
+                client_order_id=client_order_id,
+            )
+        else:
+            req = LimitOrderRequest(
+                symbol=plan.symbol,
+                qty=qty,
+                side=side,
+                time_in_force=tif,
+                limit_price=round(plan.entry, 2),
+                order_class=OrderClass.BRACKET,
+                take_profit=tp,
+                stop_loss=sl,
+                client_order_id=client_order_id,
+            )
         return self.tc.submit_order(req)
 
     def submit_test_limit(self, symbol: str, qty: float, limit_price: float, client_order_id: str):

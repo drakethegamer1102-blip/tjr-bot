@@ -50,20 +50,32 @@ def get_stock_bars(
     symbol: str,
     timeframe: str = "5Min",
     days: int = 30,
-    feed: DataFeed = DataFeed.IEX,
+    feed: DataFeed = DataFeed.SIP,
 ) -> pd.DataFrame:
-    """Free Alpaca plans use the IEX feed and cannot read the most recent ~15 min."""
+    """Fetch bars using SIP (real-time) if the plan allows it, falling back to IEX (15-min delay)."""
     client = StockHistoricalDataClient(key, secret)
-    end = dt.datetime.now(dt.timezone.utc) - dt.timedelta(minutes=16)
-    start = end - dt.timedelta(days=days)
-    req = StockBarsRequest(
-        symbol_or_symbols=symbol,
-        timeframe=_parse_tf(timeframe),
-        start=start,
-        end=end,
-        feed=feed,
-    )
-    return _clean(client.get_stock_bars(req).df, symbol)
+    # SIP: data is available up to ~1 min ago; IEX needs a 16-min buffer.
+    end_sip = dt.datetime.now(dt.timezone.utc) - dt.timedelta(minutes=1)
+    end_iex = dt.datetime.now(dt.timezone.utc) - dt.timedelta(minutes=16)
+
+    def _fetch(f: DataFeed, end: dt.datetime) -> pd.DataFrame:
+        start = end - dt.timedelta(days=days)
+        req = StockBarsRequest(
+            symbol_or_symbols=symbol,
+            timeframe=_parse_tf(timeframe),
+            start=start,
+            end=end,
+            feed=f,
+        )
+        return _clean(client.get_stock_bars(req).df, symbol)
+
+    if feed == DataFeed.SIP:
+        try:
+            return _fetch(DataFeed.SIP, end_sip)
+        except Exception:
+            # Free plan: SIP not allowed — fall back to IEX silently.
+            return _fetch(DataFeed.IEX, end_iex)
+    return _fetch(feed, end_iex)
 
 
 def get_crypto_bars(
