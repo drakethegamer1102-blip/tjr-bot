@@ -18,7 +18,7 @@ After this is working you can delete the old classic `ghp_…` token.
 In Settings, set your timezone to **America/New_York** so schedules follow ET and
 auto-handle daylight saving (no more UTC math).
 
-## 3. Add 3 cron jobs
+## 3. Add 4 cron jobs
 Every job uses the same URL + method + headers; only the body and schedule differ.
 
 - **URL:** `https://api.github.com/repos/drakethegamer1102-blip/tjr-bot/actions/workflows/trade.yml/dispatches`
@@ -35,7 +35,14 @@ Every job uses the same URL + method + headers; only the body and schedule diffe
 |-----|--------------|------------------------------|
 | **Scan** | `{"ref":"main","inputs":{"mode":"once"}}` | every 5 min, Mon–Fri, 09:30–16:00 |
 | **Daily summary** | `{"ref":"main","inputs":{"mode":"summary"}}` | 16:05, Mon–Fri |
+| **Nightly review** | `{"ref":"main","inputs":{"mode":"review"}}` | 16:30, Mon–Fri |
 | **Weekly recap** | `{"ref":"main","inputs":{"mode":"weekly"}}` | 16:10, Fridays |
+
+**Nightly review** is the self-improvement run: after the close it analyses the day's
+trades, auto-tunes `config.yaml` within guardrails (never touches risk rails, never
+disables *every* strategy, only learns from trades on/after `EVAL_SINCE`), runs the
+test suite, commits the change back to the repo so tomorrow's runs use it, and texts
+you a summary. Runs unattended — you don't need to be at your computer.
 
 ## 4. Verify
 On the Scan job, click **Run now / Test run**. You should get **HTTP 204**, and a run

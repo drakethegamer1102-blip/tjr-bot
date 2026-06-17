@@ -24,6 +24,8 @@ jobs:
   trade:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      contents: write          # review mode commits auto-tuned config.yaml back
     env:
       ALPACA_API_KEY_ID: ${{ secrets.ALPACA_API_KEY_ID }}
       ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
@@ -55,9 +57,31 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'strategy-report' }}
         run: python scripts/strategy_report.py --telegram
 
-      - name: Autonomous strategy review
+      # Nightly self-improvement: analyse the day's trades, adjust strategy config
+      # within guardrails (never risk rails, paper-only), run tests, and COMMIT the
+      # change back so the next day's runs pick it up. Pushes a summary to Telegram.
+      - name: Autonomous strategy review (apply + commit)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'review' }}
-        run: python scripts/review_bot.py
+        env:
+          # Only learn from trades on/after the day the bias+EMA+regime fixes shipped,
+          # so stale pre-fix losses can't auto-disable a now-corrected strategy.
+          EVAL_SINCE: "2026-06-15"
+        run: |
+          set -e
+          cp config.yaml /tmp/config.before.yaml
+          python scripts/review_bot.py --apply --telegram --days 14
+          # Verify the bot still imports + tests pass before committing any change.
+          python -m pytest tests/ -q
+          if ! diff -q /tmp/config.before.yaml config.yaml >/dev/null 2>&1; then
+            git config user.name "tjr-bot[bot]"
+            git config user.email "tjr-bot@users.noreply.github.com"
+            git add config.yaml
+            git commit -m "chore(review): auto-tune strategy config [skip ci]"
+            git push
+            echo "config.yaml updated and committed."
+          else
+            echo "No config change to commit."
+          fi
 
       - name: Trading cycle
         if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}

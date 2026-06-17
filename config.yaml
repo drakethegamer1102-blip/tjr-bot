@@ -34,23 +34,37 @@ strategy:
   pivot_strength: 2          # swing detection: 1 = aggressive, 3+ = conservative
   fvg_atr_mult: 0.25         # ignore fair-value-gaps smaller than 0.25 * ATR
   atr_period: 14
-  confirm_window: 10         # bars allowed between sweep -> MSS -> entry FVG
-  min_rr: 2.0                # minimum reward:risk to take a trade
+  confirm_window: 20         # bars allowed between sweep -> MSS -> entry FVG (was 10, too tight)
+  min_rr: 3.0                # minimum reward:risk to take a trade (was 2.0, too close)
   max_trades_per_day: 3
 
 # Trend/regime filter: block counter-trend trades only in strongly-trending (high-ADX) markets.
-# OFF by default — backtests showed it removes profitable mean-reversion fades and turned the
-# bot net-negative. The position-size + daily-loss caps are what actually prevent a blow-up.
-# Set true if you'd rather never short a strong uptrend, at the cost of some profit.
-regime_filter: false
+# Enabled 2026-06-12: today AAPL/MRVL vwap_rev losses were direct counter-trend trades
+# (long into AAPL downtrend, short into MRVL uptrend). ADX filter + vwap_rev EMA filter
+# together prevent repeating this. The backtest that justified "false" used old wrong signal
+# params (confirm_window=10, min_rr=2.0) — now fixed, so re-evaluate filter benefit.
+regime_filter: true
 
 # ----- Multi-strategy: run these alongside TJR; each is tracked separately -----
 # Backtest (45d, indicative): vwap_rev profitable (PF 1.24); orb lost (PF 0.91);
 # tjr ~breakeven. So vwap_rev + tjr are ON; orb is OFF pending refinement.
 strategies:
   tjr:      { enabled: true }                  # TJR / SMC (uses the `strategy:` params above)
-  vwap_rev: { enabled: true, atr_mult: 2.0 }   # fade overstretched moves back to VWAP
+  vwap_rev: { enabled: true, atr_mult: 2.5, min_bars_open: 6 }  # fade overstretched moves back to VWAP; 2.5x ATR threshold + skip first 30min
+  # momentum: trend breakout (fast EMA>slow EMA + N-bar high break). 30d backtest
+  # 2026-06-13: PF 1.58, +$4,638 / 167 trades — best edge of all four. Trend-gated.
+  momentum: { enabled: true, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0 }
   orb:      { enabled: false, or_minutes: 15 } # opening-range breakout (OFF: lost in backtest)
+  rsi_pullback: { enabled: false }             # Connors RSI(2) — 30d backtest PF 0.88 (loses), OFF
+  # macd_trend: MACD(12,26,9) cross above/below signal, gated by zero line + trend EMA.
+  # 30d backtest 2026-06-15: PF 2.76, +$2,078 / 66 trades — best PF of all. ON.
+  macd_trend: { enabled: true, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0 }
+  # squeeze_breakout: BB-inside-Keltner volatility squeeze release on a volume surge.
+  # 30d backtest 2026-06-15: PF 1.69, +$444 / 22 trades. ON.
+  squeeze_breakout: { enabled: true, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0 }
+  # bollinger_rev: BB(20,2σ) mean-reversion + RSI. 30d backtest PF 1.00 (breakeven) — OFF
+  # until it shows an edge; the nightly review can auto-enable it if PF>1.2.
+  bollinger_rev: { enabled: false, period: 20, num_std: 2.0 }
 
 # ----- Market profiles -----
 profiles:

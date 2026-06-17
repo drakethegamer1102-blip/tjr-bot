@@ -44,6 +44,27 @@ class Broker:
         except Exception:
             return False
 
+    def open_orders(self, symbol: str | None = None):
+        """All open (pending) orders, optionally filtered to one symbol."""
+        req = GetOrdersRequest(
+            status=QueryOrderStatus.OPEN,
+            limit=200,
+            symbols=[symbol.replace("/", "")] if symbol else None,
+        )
+        return self.tc.get_orders(filter=req)
+
+    def has_open_order(self, symbol: str) -> bool:
+        """True if any pending bot order exists for the symbol (prevents stacking
+        a second bracket on a symbol whose first entry hasn't filled yet)."""
+        try:
+            for o in self.open_orders(symbol):
+                cid = o.client_order_id or ""
+                if cid.startswith(("bot-", "tjr-")):
+                    return True
+        except Exception:
+            pass
+        return False
+
     def order_exists(self, client_order_id: str) -> bool:
         """True if Alpaca already has an order with this id (idempotency for stateless runs)."""
         try:

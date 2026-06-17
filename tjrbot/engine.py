@@ -11,6 +11,7 @@ Designed to run unattended on an always-on host. Each scan:
 
 from __future__ import annotations
 
+import copy
 import datetime as dt
 import time
 
@@ -23,7 +24,7 @@ from .risk.engine import RiskConfig, daily_loss_exceeded, plan_trade
 from .reconcile import compute_pnl, reconcile
 from .regime import filter_signals
 from .smc.session import ET, in_session
-from .strategy import find_trades
+from .strategy import daily_bias, find_trades
 from .strategies import REGISTRY
 
 _AGG = {"open": "first", "high": "max", "low": "min", "close": "last", "volume": "sum"}
@@ -104,33 +105,60 @@ def _daily_halt(s: Settings, broker) -> str | None:
         return f"daily loss limit ({(eq - last_eq) / last_eq * 100:.1f}%)"
     try:
         today = dt.datetime.now(ET).date()
-        filled = 0
+        # Count LOGICAL trades, not orders: partial-TP submits two brackets per
+        # trade (coid-a / coid-b), so collapse to the coid stem before counting.
+        stems: set[str] = set()
+        loss_stems: set[str] = set()
         for o in broker.closed_orders(limit=500):
             coid = getattr(o, "client_order_id", "") or ""
-            if not coid.startswith("bot-") or "filled" not in str(getattr(o, "status", "")).lower():
+            # tjr- was the legacy prefix; counting it too keeps the gate airtight
+            if not coid.startswith(("bot-", "tjr-")) or "filled" not in str(getattr(o, "status", "")).lower():
                 continue
             fa = getattr(o, "filled_at", None)
-            if fa and fa.astimezone(ET).date() == today:
-                filled += 1
-        if filled >= int(s.get("daily_max_trades", 4)):
-            return f"daily trade cap ({filled} trades)"
+            if not (fa and fa.astimezone(ET).date() == today):
+                continue
+            stem = coid[:-2] if coid.endswith(("-a", "-b")) else coid
+            stems.add(stem)
+            # Realized loss check via nested bracket legs: a filled exit leg worse
+            # than entry = a realized losing trade. (closed_orders uses nested=True.)
+            entry_px = float(getattr(o, "filled_avg_price", 0) or 0)
+            side = str(getattr(o, "side", "")).lower()
+            for leg in (getattr(o, "legs", None) or []):
+                if "filled" not in str(getattr(leg, "status", "")).lower():
+                    continue
+                exit_px = float(getattr(leg, "filled_avg_price", 0) or 0)
+                if not (entry_px and exit_px):
+                    continue
+                pnl = (exit_px - entry_px) if side.endswith("buy") else (entry_px - exit_px)
+                if pnl < 0:
+                    loss_stems.add(stem)
+                break
+        if len(stems) >= int(s.get("daily_max_trades", 4)):
+            return f"daily trade cap ({len(stems)} trades)"
+        if len(loss_stems) >= int(s.get("daily_max_losses", 3)):
+            return f"daily loss-count cap ({len(loss_stems)} losing trades)"
     except Exception:  # noqa: BLE001
         pass
     return None
 
 
-def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat) -> list:
+def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat, journal=None, symbol="?") -> list:
     """Run every enabled strategy for one symbol's session; return tagged signals."""
     cfg = s.raw.get("strategies") or {"tjr": {"enabled": True}}
     out: list = []
     if (cfg.get("tjr") or {}).get("enabled", True):
+        use_htf = htf is not None and len(htf) >= 5
+        bias = daily_bias(htf, int(strat.get("pivot_strength", 2))) if use_htf else 0
+        bias_label = {1: "BULLISH", -1: "BEARISH", 0: "NEUTRAL"}[bias]
+        if journal:
+            journal.log("info", f"{symbol}: HTF bias={bias_label} pdh={pdh:.2f} pdl={pdl:.2f} htf_bars={len(htf) if use_htf else 0}")
         out += find_trades(
-            today, [pdh, pdl], htf_bars=htf if len(htf) >= 5 else None,
+            today, [pdh, pdl], htf_bars=htf if use_htf else None,
             pivot_strength=int(strat.get("pivot_strength", 2)),
             fvg_atr_mult=float(strat.get("fvg_atr_mult", 0.25)),
             atr_period=int(strat.get("atr_period", 14)),
-            confirm_window=int(strat.get("confirm_window", 10)),
-            min_rr=float(strat.get("min_rr", 2.0)),
+            confirm_window=int(strat.get("confirm_window", 20)),
+            min_rr=float(strat.get("min_rr", 3.0)),
             sessions=list(sessions), use_bias=True,
         )
     for name, gen in REGISTRY.items():
@@ -182,8 +210,17 @@ def scan_once(
         try:
             if broker and broker.has_position(symbol):
                 continue
+            # Don't stack a second bracket on a symbol whose entry is still pending.
+            # (June 12: a few entries sat UNFILLED/EXPIRED for 20+ min; without this
+            # guard a later scan could double up before the first resolved.)
+            if broker and broker.has_open_order(symbol):
+                continue
 
-            bars = _recent_bars(s, symbol, tf, days=3)
+            # 10 days of history: the last 2 day-groups drive intraday levels, while
+            # the full window gives daily_bias a real HTF swing structure to read.
+            # (Pre-2026-06-13 this was days=3 → ~13 hourly bars → bias was noise, which
+            #  produced June 11's all-short loss day.)
+            bars = _recent_bars(s, symbol, tf, days=10)
             if bars.empty or len(bars) < 30:
                 continue
 
@@ -197,7 +234,7 @@ def scan_once(
             hist = bars[bars.index < today.index[0]]
             htf = hist.resample("1h").agg(_AGG).dropna()
 
-            signals = _collect_signals(s, today, pdh, pdl, htf, sessions, strat)
+            signals = _collect_signals(s, today, pdh, pdl, htf, sessions, strat, journal=journal, symbol=symbol)
             # only act on a signal that completed on the most recent closed bar(s)
             fresh = [sig for sig in signals if sig.index >= len(today) - 2]
             if not fresh:
@@ -218,21 +255,48 @@ def scan_once(
             if journal.has_order(coid) or (broker is not None and broker.order_exists(coid)):
                 continue
 
+            # Partial-TP: split into two brackets when we have enough shares.
+            # Leg A: half qty, TP at 1R (lock-in quick profit + moves risk off).
+            # Leg B: half qty, TP at original target (full R:R ride).
+            # Fallback to single bracket when qty < 2.
+            is_crypto = "/" in symbol
+            use_partial = (not is_crypto) and int(plan.qty) >= 2
+            risk = abs(plan.entry - plan.stop)
+            tp_quick = (plan.entry + risk) if plan.side == "long" else (plan.entry - risk)
+
+            legs = []
+            if use_partial:
+                half = int(plan.qty) // 2
+                remainder = int(plan.qty) - half
+                leg_a = copy.copy(plan); leg_a.qty = half;      leg_a.target = round(tp_quick, 2)
+                leg_b = copy.copy(plan); leg_b.qty = remainder; leg_b.target = plan.target
+                legs = [(leg_a, f"{coid}-a"), (leg_b, f"{coid}-b")]
+            else:
+                legs = [(plan, coid)]
+
             action = {
                 "symbol": symbol, "side": plan.side, "entry": round(plan.entry, 2),
                 "stop": round(plan.stop, 2), "target": round(plan.target, 2),
                 "qty": round(plan.qty, 4), "coid": coid, "reasons": plan.reasons,
+                "partial_tp": use_partial,
             }
 
             if dry_run or broker is None:
                 action["status"] = "dry-run"
             else:
-                order = broker.submit_bracket(plan, coid)
-                journal.record_order(
-                    coid, str(order.id), symbol, plan.side, plan.entry, plan.stop,
-                    plan.target, plan.qty, str(order.status), plan.reasons,
-                )
-                action["status"] = str(order.status)
+                first_order = None
+                for leg_plan, leg_coid in legs:
+                    if journal.has_order(leg_coid) or broker.order_exists(leg_coid):
+                        continue
+                    order = broker.submit_bracket(leg_plan, leg_coid)
+                    journal.record_order(
+                        leg_coid, str(order.id), symbol, leg_plan.side, leg_plan.entry,
+                        leg_plan.stop, leg_plan.target, leg_plan.qty,
+                        str(order.status), leg_plan.reasons,
+                    )
+                    if first_order is None:
+                        first_order = order
+                action["status"] = str(first_order.status) if first_order else "already-recorded"
                 if notifier:
                     notifier.send(_format_alert(plan, str(order.status)))
             actions.append(action)
@@ -262,8 +326,8 @@ def daily_summary(s: Settings, broker, notifier, journal: Journal) -> str:
         journal.log("error", f"summary fetch: {e}")
         closed = []
 
-    pnls: list[float] = []
-    today_n = 0
+    pnls: list[float] = []          # all closed round-trips in the fetched window
+    today_pnls: list[float] = []    # subset whose EXIT filled today (ET)
     for o in closed:
         coid = getattr(o, "client_order_id", "") or ""
         entry_px = getattr(o, "filled_avg_price", None)
@@ -278,15 +342,24 @@ def daily_summary(s: Settings, broker, notifier, journal: Journal) -> str:
         if exit_leg is None:
             continue
         side = "long" if str(getattr(o, "side", "")).lower().endswith("buy") else "short"
-        pnls.append(compute_pnl(side, float(entry_px), float(exit_leg.filled_avg_price),
-                                float(getattr(o, "filled_qty", 0) or 0)))
+        pnl = compute_pnl(side, float(entry_px), float(exit_leg.filled_avg_price),
+                          float(getattr(o, "filled_qty", 0) or 0))
+        pnls.append(pnl)
         fa = getattr(exit_leg, "filled_at", None)
         try:
             if fa and fa.astimezone(ET).date() == today:
-                today_n += 1
+                today_pnls.append(pnl)
         except Exception:  # noqa: BLE001
             pass
 
+    # ── TODAY (realized, closed round-trips that exited today) ──────────────
+    today_n = len(today_pnls)
+    today_wins = sum(1 for p in today_pnls if p > 0)
+    today_losses = sum(1 for p in today_pnls if p < 0)
+    today_realized = sum(today_pnls)
+    today_win_rate = (today_wins / today_n * 100) if today_n else 0.0
+
+    # ── ALL-TIME (everything in the fetched window) ────────────────────────
     n = len(pnls)
     wins = sum(1 for p in pnls if p > 0)
     losses = sum(1 for p in pnls if p < 0)
@@ -303,10 +376,14 @@ def daily_summary(s: Settings, broker, notifier, journal: Journal) -> str:
         f"{emoji} <b>Daily summary — {today:%a %b %d}</b>\n"
         f"{headline}\n\n"
         f"Equity: ${eq:,.2f}\n"
-        f"Today's P&L: ${today_pl:+,.2f} ({today_pct:+.2f}%)\n"
+        f"Account P&L today: ${today_pl:+,.2f} ({today_pct:+.2f}%)  "
+        f"<i>(incl. open positions)</i>\n"
         f"Open positions: {open_pos}\n\n"
-        f"<b>All-time (paper):</b>\n"
-        f"Trades: {n}  |  Win rate: {win_rate:.0f}% ({wins}W/{losses}L)\n"
+        f"<b>Today's closed trades:</b>\n"
+        f"{today_n} trade(s)  |  {today_win_rate:.0f}% win ({today_wins}W/{today_losses}L)\n"
+        f"Realized today: ${today_realized:+,.2f}\n\n"
+        f"<b>All-time (paper, last {n} closed):</b>\n"
+        f"Win rate: {win_rate:.0f}% ({wins}W/{losses}L)\n"
         f"Net P&L: ${net:+,.2f}"
     )
     if notifier:

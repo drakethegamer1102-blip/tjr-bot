@@ -13,18 +13,48 @@ def make_bars(rows):
     return df
 
 
+def _staircase(up: bool):
+    """A clean HH+HL (up) or LH+LL (down) staircase: alternating swing highs/lows
+    that each step in the trend direction, so both the swing-sequence read and the
+    net-of-structure-events read agree."""
+    rows = []
+    base = 100.0
+    step = 4.0 if up else -4.0
+    # pivots need `strength` bars of padding each side; build clear alternating swings
+    pivots = [base, base - 2, base + step, base + step - 2,
+              base + 2 * step, base + 2 * step - 2, base + 3 * step]
+    for i, p in enumerate(pivots):
+        # pad each pivot with two lower (or surrounding) bars so find_swings confirms it
+        rows.append((p - 1, p - 0.5, p - 1.5, p - 1))
+        rows.append((p - 0.5, p + 0.5, p - 0.8, p))      # the pivot bar (local extreme)
+        rows.append((p - 1, p - 0.5, p - 1.5, p - 1))
+    return make_bars(rows)
+
+
 def test_daily_bias_bullish():
+    # Robust read: needs a real HH+HL sequence, not a single MSS on a thin sample.
+    assert daily_bias(_staircase(up=True), strength=1) == 1
+
+
+def test_daily_bias_bearish():
+    assert daily_bias(_staircase(up=False), strength=1) == -1
+
+
+def test_daily_bias_neutral_on_thin_sample():
+    # A 6-bar window is too thin to read a trend (needs strength*4+6 bars) -> neutral
+    # (trade both sides), NOT a forced directional bias. This is the June-11 fix:
+    # a noisy/short HTF must never lock the bot into one direction.
     bars = make_bars(
         [
             (100, 101, 99, 100),
             (100, 102, 99, 101),
-            (101, 105, 100, 104),  # swing high 105
+            (101, 105, 100, 104),
             (104, 103, 101, 102),
             (102, 103, 101, 102),
-            (103, 107, 102, 106),  # close > 105 -> bullish MSS
+            (103, 107, 102, 106),
         ]
     )
-    assert daily_bias(bars, strength=2) == 1
+    assert daily_bias(bars, strength=2) == 0
 
 
 def test_session_filter():

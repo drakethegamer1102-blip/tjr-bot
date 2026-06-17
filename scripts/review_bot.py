@@ -60,6 +60,16 @@ def fetch_closed_trades(days: int = LOOKBACK_DAYS) -> list[dict]:
     EXIT_WINDOW_HOURS = 24
 
     since = datetime.now(timezone.utc) - timedelta(days=days)
+    # Floor: never evaluate trades made before EVAL_SINCE (YYYY-MM-DD). This stops the
+    # nightly loop from disabling a strategy based on losses that predate a code fix
+    # (e.g. the June-11 bias bug). Bump EVAL_SINCE whenever you ship a strategy change.
+    eval_since_str = os.getenv("EVAL_SINCE", "").strip()
+    if eval_since_str:
+        try:
+            floor = datetime.fromisoformat(eval_since_str).replace(tzinfo=timezone.utc)
+            since = max(since, floor)
+        except ValueError:
+            print(f"warning: bad EVAL_SINCE={eval_since_str!r}, ignoring")
     req = GetOrdersRequest(status=QueryOrderStatus.CLOSED, after=since, limit=500)
     orders = api.get_orders(req)
 
@@ -194,17 +204,44 @@ def per_strategy_stats(pnl_rows: list[dict]) -> dict[str, dict]:
 
 # ── proposals ─────────────────────────────────────────────────────────────────
 def propose_changes(stats: dict[str, dict], cfg: dict) -> list[dict]:
-    """Evidence-gated proposals. Only suggests changes with >= MIN_TRADES data."""
+    """Evidence-gated proposals. Only suggests changes with >= MIN_TRADES data.
+
+    Safety rails for unattended nightly runs:
+      - NEVER disable every strategy: at least one must stay on, so a single rough
+        fortnight (or stale losses from a since-fixed bug) can't shut the bot off.
+        We disable at most the *worst* qualifying strategy per night and only if a
+        profitable one remains enabled.
+    """
     proposals = []
+    strategies_cfg = cfg.get("strategies") or {}
+
+    def _enabled(name: str) -> bool:
+        c = strategies_cfg.get(name, {})
+        return c.get("enabled", True) if isinstance(c, dict) else True
+
+    # All strategies currently ON (tjr defaults ON when absent from the block).
+    all_names = set(strategies_cfg) | {"tjr"}
+    enabled_now = {n for n in all_names if _enabled(n)}
+
+    # Losers eligible to disable: enabled, enough data, PF below the floor — worst first.
+    losers = sorted(
+        [(n, st) for n, st in stats.items()
+         if st["n"] >= MIN_TRADES and st["pf"] < 0.8 and _enabled(n)],
+        key=lambda kv: kv[1]["pf"],
+    )
+    would_remain = enabled_now - {n for n, _ in losers}
+    # Never disable the last strategy: if killing all losers would leave nothing on,
+    # spare the least-bad loser (the last in the worst-first list).
+    to_disable = set(n for n, _ in losers)
+    if not would_remain and losers:
+        to_disable.discard(losers[-1][0])
 
     for strat, s in stats.items():
         if s["n"] < MIN_TRADES:
             continue
+        enabled = _enabled(strat)
 
-        # Disable a consistently losing strategy (PF < 0.8 over 2 weeks)
-        strat_cfg = (cfg.get("strategies") or {}).get(strat, {})
-        enabled = strat_cfg.get("enabled", True) if isinstance(strat_cfg, dict) else True
-        if s["pf"] < 0.8 and enabled:
+        if enabled and strat in to_disable:
             proposals.append({
                 "key": f"strategies.{strat}.enabled",
                 "old": True,
@@ -212,7 +249,7 @@ def propose_changes(stats: dict[str, dict], cfg: dict) -> list[dict]:
                 "reason": f"{strat}: PF {s['pf']:.2f} < 0.80 over {s['n']} trades → disable",
             })
 
-        # Re-enable a disabled strategy if it's now profitable
+        # Re-enable a disabled strategy if it's now clearly profitable
         if s["pf"] > 1.2 and not enabled:
             proposals.append({
                 "key": f"strategies.{strat}.enabled",
@@ -223,7 +260,8 @@ def propose_changes(stats: dict[str, dict], cfg: dict) -> list[dict]:
 
         # vwap_rev: tune atr_mult if max drawdown is high relative to total pnl
         if strat == "vwap_rev" and s["n"] >= MIN_TRADES:
-            current_mult = (strat_cfg or {}).get("atr_mult", 2.0) if isinstance(strat_cfg, dict) else 2.0
+            vr_cfg = strategies_cfg.get("vwap_rev", {})
+            current_mult = vr_cfg.get("atr_mult", 2.0) if isinstance(vr_cfg, dict) else 2.0
             if s["max_drawdown"] > abs(s["total_pnl"]) * 2 and current_mult > 1.5:
                 proposals.append({
                     "key": "strategies.vwap_rev.atr_mult",
@@ -251,10 +289,24 @@ def apply_proposals(proposals: list[dict], cfg: dict) -> dict:
 
 
 # ── main ──────────────────────────────────────────────────────────────────────
+def _notify(text: str):
+    """Best-effort Telegram push of the nightly review (no-op if unconfigured)."""
+    token = os.getenv("TELEGRAM_BOT_TOKEN", "")
+    chat = os.getenv("TELEGRAM_CHAT_ID", "")
+    if not token or not chat:
+        return
+    try:
+        from tjrbot.notify.telegram import TelegramNotifier
+        TelegramNotifier(token, chat).send(text)
+    except Exception as e:  # noqa: BLE001
+        print(f"telegram notify failed: {e}")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true", help="Apply approved proposals to config.yaml")
     parser.add_argument("--days", type=int, default=LOOKBACK_DAYS)
+    parser.add_argument("--telegram", action="store_true", help="Push the review summary to Telegram")
     args = parser.parse_args()
 
     print(f"\n{'='*60}")
@@ -267,6 +319,8 @@ def main():
 
     if not trades:
         print("No trades found in window — nothing to review.")
+        if args.telegram:
+            _notify(f"🤖 Nightly review: no trades in last {args.days}d — nothing to adjust.")
         return
 
     pnl_rows = compute_pnl(trades)
@@ -294,14 +348,31 @@ def main():
             print(f"  {i}. {p['key']}: {p['old']} → {p['new']}")
             print(f"     Reason: {p['reason']}")
 
+    applied = False
     if args.apply and proposals:
         print(f"\nApplying {len(proposals)} proposal(s) to config.yaml...")
         cfg = apply_proposals(proposals, cfg)
         with open(cfg_path, "w") as f:
             yaml.dump(cfg, f, default_flow_style=False, sort_keys=False)
-        print("Done. Run tests to verify: pytest trading-bot/")
+        applied = True
+        print("Done. (CI commits config.yaml so tomorrow's runs pick it up.)")
     elif proposals:
         print("\nRun with --apply to apply these changes.")
+
+    # ── Telegram summary so you see the nightly review on your phone ──────────────
+    if args.telegram:
+        lines = [f"🤖 <b>Nightly review</b> ({args.days}d, {len(trades)} trades)"]
+        for strat, st in sorted(stats.items()):
+            pf = f"{st['pf']:.2f}" if st["pf"] != float("inf") else "∞"
+            lines.append(f"• {strat}: {st['n']}t  PF {pf}  P&L ${st['total_pnl']:.0f}")
+        if not proposals:
+            lines.append("\n✅ No changes — performance in range.")
+        else:
+            verb = "Applied" if applied else "Proposed (not applied)"
+            lines.append(f"\n🔧 <b>{verb}:</b>")
+            for p in proposals:
+                lines.append(f"• {p['key']}: {p['old']}→{p['new']}")
+        _notify("\n".join(lines))
 
     print(f"\n{'='*60}\n")
 
