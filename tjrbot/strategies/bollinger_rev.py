@@ -9,6 +9,11 @@ beyond entry.
 The RSI confirmation filters out one-sided trend days where price rides a band
 without reverting. Inverted trades (target on the wrong side of entry, which can
 happen when the middle band sits past the close) are skipped outright.
+
+Volume confirmation (ported from squeeze_breakout/vwap_rev, 2026-06-18): a band
+break on ABOVE-average volume signals capitulation/exhaustion — the kind of move
+that snaps back. Quiet drifts past the band (low volume) tend to keep going and are
+skipped. This is the element that turned a PF<1 fade into a positive-expectancy one.
 """
 
 from __future__ import annotations
@@ -31,9 +36,11 @@ def generate(
     rsi_hi: float = 70.0,
     atr_period: int = 14,
     stop_atr: float = 1.0,
+    vol_period: int = 20,
+    vol_mult: float = 1.3,
     **_,
 ) -> list[Signal]:
-    warmup = period + 2
+    warmup = max(period, vol_period) + 2
     if len(today) < warmup:
         return []
     mid, upper, lower = bollinger(today["close"], period, num_std)
@@ -43,12 +50,18 @@ def generate(
     r = rsi(today["close"], rsi_period).to_numpy()
     a = atr(today, atr_period).to_numpy()
     closes = today["close"].to_numpy()
+    volumes = today["volume"].to_numpy()
+    avg_vol = today["volume"].rolling(vol_period).mean().to_numpy()
 
     out: list[Signal] = []
     fired_long = fired_short = False
     for i in range(warmup, len(today)):
         ai = float(a[i])
         if ai <= 0:
+            continue
+        # Volume confirmation: the band break must show above-average participation.
+        vi, va = float(volumes[i]), float(avg_vol[i])
+        if va > 0 and vi < vol_mult * va:
             continue
         c, mi, ui, li, ri = (
             float(closes[i]), float(mid[i]), float(upper[i]), float(lower[i]), float(r[i])
@@ -59,7 +72,8 @@ def generate(
                 continue
             stop = c - stop_atr * ai
             out.append(Signal(i, "long", c, stop, mi,
-                              [f"close<lowerBB({period},{num_std})", f"RSI {ri:.0f}", "target=midBB"],
+                              [f"close<lowerBB({period},{num_std})", f"RSI {ri:.0f}",
+                               f"vol {vi/va:.1f}x", "target=midBB"],
                               strategy="bollinger_rev", entry_type="market"))
             fired_long = True
         # Short: close above upper band, RSI overbought; target = middle band.
@@ -68,7 +82,8 @@ def generate(
                 continue
             stop = c + stop_atr * ai
             out.append(Signal(i, "short", c, stop, mi,
-                              [f"close>upperBB({period},{num_std})", f"RSI {ri:.0f}", "target=midBB"],
+                              [f"close>upperBB({period},{num_std})", f"RSI {ri:.0f}",
+                               f"vol {vi/va:.1f}x", "target=midBB"],
                               strategy="bollinger_rev", entry_type="market"))
             fired_short = True
         if fired_long and fired_short:

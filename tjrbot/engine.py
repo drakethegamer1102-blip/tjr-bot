@@ -29,6 +29,11 @@ from .strategies import REGISTRY
 
 _AGG = {"open": "first", "high": "max", "low": "min", "close": "last", "volume": "sum"}
 
+# Act on a signal only if it completed within the last FRESH_BARS closed bars. Keeps
+# entries near real time (no chasing stale setups) while tolerating the gap between a
+# bar closing and the next 5-min scan firing. 3 bars ≈ last 15 min on 5-min data.
+FRESH_BARS = 3
+
 
 def _recent_bars(s: Settings, symbol: str, tf: str, days: int = 3) -> pd.DataFrame:
     if "/" in symbol:
@@ -73,11 +78,20 @@ def _format_alert(plan, status: str) -> str:
 
 
 def flatten_if_eod(s: Settings, broker, notifier, journal: Journal) -> None:
-    """Day trading = no overnight: near the close, flatten any open stock positions."""
+    """Day trading = no overnight: near/after the close, flatten any open stock positions.
+
+    Fires on ANY weekday run at/after 15:55 ET — not only the exact 15:55-15:59 minute.
+    The old window (hour==15 and minute>=55) silently missed the flatten whenever no
+    cron run landed in those 5 minutes (cron drift / boundary), leaving a naked
+    overnight position with no protective bracket (its DAY-TIF stop had already
+    expired). That is exactly how the 06-16 ARM short went overnight and lost ~$507.
+    Brackets are now GTC too (see submit_bracket) so a missed flatten is double-guarded.
+    """
     if s.profile_name == "crypto":
         return
     now_et = dt.datetime.now(ET)
-    if now_et.weekday() >= 5 or not (now_et.hour == 15 and now_et.minute >= 55):
+    after_close = (now_et.hour == 15 and now_et.minute >= 55) or now_et.hour >= 16
+    if now_et.weekday() >= 5 or not after_close:
         return
     try:
         positions = broker.positions()
@@ -88,6 +102,61 @@ def flatten_if_eod(s: Settings, broker, notifier, journal: Journal) -> None:
             journal.log("info", f"eod flatten: {len(positions)} positions")
     except Exception as e:  # noqa: BLE001
         journal.log("error", f"eod flatten: {e}")
+
+
+def flatten_stale_positions(s: Settings, broker, notifier, journal: Journal) -> None:
+    """Backstop: close any position opened on a PRIOR day.
+
+    This is the safety net for a missed EOD flatten (cron drift, an outage, a boundary
+    run). A day-trading bot must never hold overnight; if a stale position is found at
+    the next session's first scan, close it immediately rather than carrying naked risk
+    (its DAY-TIF protective bracket has already expired). Crypto is exempt (24/7).
+    """
+    if s.profile_name == "crypto":
+        return
+    try:
+        positions = broker.positions()
+    except Exception as e:  # noqa: BLE001
+        journal.log("error", f"stale-position check: {e}")
+        return
+    today = dt.datetime.now(ET).date()
+    closed = 0
+    for p in positions:
+        # Find the most recent fill for this symbol to learn when it was opened.
+        try:
+            opened_today = _position_opened_today(broker, p.symbol, today)
+        except Exception:  # noqa: BLE001
+            opened_today = True  # on doubt, do NOT close (avoid churning a fresh entry)
+        if not opened_today:
+            try:
+                broker.close_position(p.symbol)
+                closed += 1
+                journal.log("info", f"stale flatten: closed overnight {p.symbol} qty={p.qty}")
+            except Exception as e:  # noqa: BLE001
+                journal.log("error", f"stale flatten {p.symbol}: {e}")
+    if closed and notifier:
+        notifier.send(f"⚠️ Closed {closed} stale overnight position(s) at session open.")
+
+
+def _position_opened_today(broker, symbol: str, today) -> bool:
+    """True if the symbol's open position was entered today (ET). Checks the most
+    recent filled bot entry order for the symbol."""
+    from alpaca.trading.requests import GetOrdersRequest
+    from alpaca.trading.enums import QueryOrderStatus
+    since = dt.datetime.now(dt.timezone.utc) - dt.timedelta(days=5)
+    req = GetOrdersRequest(status=QueryOrderStatus.CLOSED, after=since, limit=200,
+                           symbols=[symbol.replace("/", "")])
+    orders = broker.tc.get_orders(filter=req)
+    latest_fill = None
+    for o in orders:
+        if "filled" not in str(getattr(o, "status", "")).lower():
+            continue
+        fa = getattr(o, "filled_at", None)
+        if fa and (latest_fill is None or fa > latest_fill):
+            latest_fill = fa
+    if latest_fill is None:
+        return True  # unknown -> treat as fresh (don't churn)
+    return latest_fill.astimezone(ET).date() == today
 
 
 def _daily_halt(s: Settings, broker) -> str | None:
@@ -197,6 +266,8 @@ def scan_once(
 
     equity = broker.equity() if broker else 100_000.0
     if broker is not None:
+        # Backstop first: never carry a position opened on a prior day.
+        flatten_stale_positions(s, broker, notifier, journal)
         halt = _daily_halt(s, broker)
         if halt:
             journal.log("info", f"trading halted for today: {halt}")
@@ -235,76 +306,97 @@ def scan_once(
             htf = hist.resample("1h").agg(_AGG).dropna()
 
             signals = _collect_signals(s, today, pdh, pdl, htf, sessions, strat, journal=journal, symbol=symbol)
-            # only act on a signal that completed on the most recent closed bar(s)
-            fresh = [sig for sig in signals if sig.index >= len(today) - 2]
+            # Act on signals that completed on a recent closed bar. Keep the freshest
+            # signal PER STRATEGY (not just the single global latest) so momentum /
+            # macd_trend / squeeze — whose crossovers fire mid-session — actually get
+            # submitted instead of always losing the tie to whichever strategy printed
+            # last. (Pre-2026-06-18: a single `max(fresh)` meant the new strategies
+            # generated dozens of signals but almost never traded.)
+            fresh = [sig for sig in signals if sig.index >= len(today) - FRESH_BARS]
             if not fresh:
                 continue
-            sig = max(fresh, key=lambda x: x.index)
-
-            rc = RiskConfig.from_settings(s)
-            rc.allow_fractional = "/" in symbol
-            plan = plan_trade(symbol, sig, equity, rc)
-            if plan is None:
-                continue
-            if plan.side == "short" and broker is not None and not broker.is_shortable(symbol):
-                journal.log("info", f"{symbol}: short setup skipped (not shortable)")
-                continue
+            freshest_by_strat: dict[str, "Signal"] = {}
+            for sig in fresh:
+                cur = freshest_by_strat.get(sig.strategy)
+                if cur is None or sig.index > cur.index:
+                    freshest_by_strat[sig.strategy] = sig
 
             date = today.index[-1].tz_convert(ET).strftime("%Y%m%d")
-            coid = f"bot-{sig.strategy}-{symbol.replace('/', '')}-{date}-{sig.index}"
-            if journal.has_order(coid) or (broker is not None and broker.order_exists(coid)):
-                continue
-
-            # Partial-TP: split into two brackets when we have enough shares.
-            # Leg A: half qty, TP at 1R (lock-in quick profit + moves risk off).
-            # Leg B: half qty, TP at original target (full R:R ride).
-            # Fallback to single bracket when qty < 2.
-            is_crypto = "/" in symbol
-            use_partial = (not is_crypto) and int(plan.qty) >= 2
-            risk = abs(plan.entry - plan.stop)
-            tp_quick = (plan.entry + risk) if plan.side == "long" else (plan.entry - risk)
-
-            legs = []
-            if use_partial:
-                half = int(plan.qty) // 2
-                remainder = int(plan.qty) - half
-                leg_a = copy.copy(plan); leg_a.qty = half;      leg_a.target = round(tp_quick, 2)
-                leg_b = copy.copy(plan); leg_b.qty = remainder; leg_b.target = plan.target
-                legs = [(leg_a, f"{coid}-a"), (leg_b, f"{coid}-b")]
-            else:
-                legs = [(plan, coid)]
-
-            action = {
-                "symbol": symbol, "side": plan.side, "entry": round(plan.entry, 2),
-                "stop": round(plan.stop, 2), "target": round(plan.target, 2),
-                "qty": round(plan.qty, 4), "coid": coid, "reasons": plan.reasons,
-                "partial_tp": use_partial,
-            }
-
-            if dry_run or broker is None:
-                action["status"] = "dry-run"
-            else:
-                first_order = None
-                for leg_plan, leg_coid in legs:
-                    if journal.has_order(leg_coid) or broker.order_exists(leg_coid):
-                        continue
-                    order = broker.submit_bracket(leg_plan, leg_coid)
-                    journal.record_order(
-                        leg_coid, str(order.id), symbol, leg_plan.side, leg_plan.entry,
-                        leg_plan.stop, leg_plan.target, leg_plan.qty,
-                        str(order.status), leg_plan.reasons,
-                    )
-                    if first_order is None:
-                        first_order = order
-                action["status"] = str(first_order.status) if first_order else "already-recorded"
-                if notifier:
-                    notifier.send(_format_alert(plan, str(order.status)))
-            actions.append(action)
+            # One position per symbol at a time: if we already hold/ordered the symbol,
+            # don't stack a second strategy's entry on it this scan.
+            for sig in sorted(freshest_by_strat.values(), key=lambda x: x.index, reverse=True):
+                if broker is not None and (broker.has_position(symbol) or broker.has_open_order(symbol)):
+                    break
+                act = _submit_signal(s, broker, notifier, journal, symbol, sig, today,
+                                     date, equity, dry_run)
+                if act is not None:
+                    actions.append(act)
         except Exception as e:  # noqa: BLE001 - never let one symbol kill the loop
             journal.log("error", f"{symbol}: {e}")
             continue
 
     return actions
+
+
+def _submit_signal(s, broker, notifier, journal, symbol, sig, today, date, equity, dry_run):
+    """Size + risk-check + submit one signal as a (partial-TP) bracket. Returns the
+    action dict, or None if it was skipped."""
+    rc = RiskConfig.from_settings(s)
+    rc.allow_fractional = "/" in symbol
+    plan = plan_trade(symbol, sig, equity, rc)
+    if plan is None:
+        return None
+    if plan.side == "short" and broker is not None and not broker.is_shortable(symbol):
+        journal.log("info", f"{symbol}: short setup skipped (not shortable)")
+        return None
+
+    coid = f"bot-{sig.strategy}-{symbol.replace('/', '')}-{date}-{sig.index}"
+    if journal.has_order(coid) or (broker is not None and broker.order_exists(coid)):
+        return None
+
+    # Partial-TP: split into two brackets when we have enough shares.
+    # Leg A: half qty, TP at 1R (lock-in quick profit). Leg B: half, full target.
+    is_crypto = "/" in symbol
+    use_partial = (not is_crypto) and int(plan.qty) >= 2
+    risk = abs(plan.entry - plan.stop)
+    tp_quick = (plan.entry + risk) if plan.side == "long" else (plan.entry - risk)
+
+    if use_partial:
+        half = int(plan.qty) // 2
+        remainder = int(plan.qty) - half
+        leg_a = copy.copy(plan); leg_a.qty = half;      leg_a.target = round(tp_quick, 2)
+        leg_b = copy.copy(plan); leg_b.qty = remainder; leg_b.target = plan.target
+        legs = [(leg_a, f"{coid}-a"), (leg_b, f"{coid}-b")]
+    else:
+        legs = [(plan, coid)]
+
+    action = {
+        "symbol": symbol, "side": plan.side, "strategy": sig.strategy,
+        "entry": round(plan.entry, 2), "stop": round(plan.stop, 2),
+        "target": round(plan.target, 2), "qty": round(plan.qty, 4),
+        "coid": coid, "reasons": plan.reasons, "partial_tp": use_partial,
+    }
+
+    if dry_run or broker is None:
+        action["status"] = "dry-run"
+        return action
+
+    first_order = None
+    for leg_plan, leg_coid in legs:
+        if journal.has_order(leg_coid) or broker.order_exists(leg_coid):
+            continue
+        order = broker.submit_bracket(leg_plan, leg_coid)
+        journal.record_order(
+            leg_coid, str(order.id), symbol, leg_plan.side, leg_plan.entry,
+            leg_plan.stop, leg_plan.target, leg_plan.qty,
+            str(order.status), leg_plan.reasons,
+        )
+        if first_order is None:
+            first_order = order
+    action["status"] = str(first_order.status) if first_order else "already-recorded"
+    if first_order is not None and notifier:
+        notifier.send(_format_alert(plan, str(first_order.status)))
+    return action
 
 
 def daily_summary(s: Settings, broker, notifier, journal: Journal) -> str:

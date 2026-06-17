@@ -71,15 +71,26 @@ def test_no_inverted_trades_on_noisy_data():
 # ── targeted trigger tests ──────────────────────────────────────────────────
 def test_bollinger_rev_long_on_oversold_dip():
     # 22 flat bars at 100 (mid≈100), then a sharp dip below the lower band w/ low RSI
+    # AND a volume spike (capitulation) — the volume filter now requires this.
     rows = [(100, 100.3, 99.7, 100)] * 22
     rows += [(100, 100, 95.0, 95.0)]   # close 95 << lower band, RSI crashes
-    day = make_day(rows)
+    vols = [1000] * 22 + [5000]        # 5x volume spike on the dip bar
+    day = make_day(rows, volume=vols)
     sigs = bollinger_rev.generate(day, rsi_lo=40.0)
     longs = [s for s in sigs if s.side == "long"]
     assert len(longs) == 1
     assert longs[0].strategy == "bollinger_rev"
     assert longs[0].target > longs[0].entry      # target = middle band, above entry
     _assert_valid(sigs)
+
+
+def test_bollinger_rev_volume_filter_blocks_quiet_break():
+    # Same oversold dip but on FLAT (low) volume -> volume filter suppresses it.
+    rows = [(100, 100.3, 99.7, 100)] * 22
+    rows += [(100, 100, 95.0, 95.0)]
+    day = make_day(rows, volume=1000)  # no spike -> vol[i] !> 1.3*avg
+    sigs = bollinger_rev.generate(day, rsi_lo=40.0)
+    assert sigs == [], "quiet band break must be filtered by the volume gate"
 
 
 def test_macd_trend_warmup_guard():
