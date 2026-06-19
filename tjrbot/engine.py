@@ -22,7 +22,7 @@ from .data.alpaca_data import get_crypto_bars, get_stock_bars
 from .journal import Journal
 from .risk.engine import RiskConfig, daily_loss_exceeded, plan_trade
 from .reconcile import compute_pnl, reconcile
-from .regime import filter_signals
+from .regime import filter_signals, market_bias, market_filter
 from .smc.session import ET, in_session
 from .strategy import daily_bias, find_trades
 from .strategies import REGISTRY
@@ -43,6 +43,20 @@ def _recent_bars(s: Settings, symbol: str, tf: str, days: int = 3) -> pd.DataFra
 
 def _sessions_for(s: Settings) -> tuple[str, ...]:
     return ("ny", "london") if s.profile_name == "crypto" else ("ny_open", "ny_pm")
+
+
+def _market_bias_today(s: Settings, tf: str, proxy: str = "SPY") -> int:
+    """Broad-market bias for today from the index proxy (SPY). +1 risk-on / -1
+    risk-off / 0 unclear. Best-effort: any error -> 0 (filter simply doesn't apply)."""
+    try:
+        bars = _recent_bars(s, proxy, tf, days=2)
+        if bars.empty:
+            return 0
+        day_key = bars.index.tz_convert(ET).normalize()
+        today = list(bars.groupby(day_key))[-1][1]
+        return market_bias(today)
+    except Exception:  # noqa: BLE001
+        return 0
 
 
 def _resolve_symbols(s: Settings, profile: dict, journal: Journal) -> list[str]:
@@ -75,6 +89,40 @@ def _format_alert(plan, status: str) -> str:
         f"Qty {plan.qty:g}  (~${plan.notional:,.0f})\n"
         f"Why: {', '.join(plan.reasons)}"
     )
+
+
+def cancel_late_entries(s: Settings, broker, journal: Journal, cutoff_hour: int = 15,
+                        cutoff_min: int = 30) -> None:
+    """Cancel still-open bot ENTRY orders after the cutoff (default 15:30 ET).
+
+    A limit entry that fills in the last 30 min has no time to work before the EOD
+    flatten force-closes it — a near-guaranteed scratch/loss. (2026-06-18: a MRVL
+    limit submitted 11:00 finally filled at 15:50, then was flattened at 15:55.)
+    Cancelling late keeps the signal from becoming a dead-on-arrival trade. Only
+    cancels parent ENTRY orders that are still open and unfilled; live bracket exits
+    on already-filled positions are untouched.
+    """
+    if s.profile_name == "crypto":
+        return
+    now_et = dt.datetime.now(ET)
+    past_cutoff = (now_et.hour == cutoff_hour and now_et.minute >= cutoff_min) or now_et.hour > cutoff_hour
+    if now_et.weekday() >= 5 or not past_cutoff:
+        return
+    try:
+        canceled = 0
+        for o in broker.open_orders():
+            cid = getattr(o, "client_order_id", "") or ""
+            if not cid.startswith(("bot-", "tjr-")):
+                continue
+            # Only unfilled parent entries (skip anything already partially/fully filled).
+            if float(getattr(o, "filled_qty", 0) or 0) > 0:
+                continue
+            broker.cancel(o.id)
+            canceled += 1
+        if canceled:
+            journal.log("info", f"late-entry cancel: dropped {canceled} unfilled entry order(s) after {cutoff_hour}:{cutoff_min:02d}")
+    except Exception as e:  # noqa: BLE001
+        journal.log("error", f"late-entry cancel: {e}")
 
 
 def flatten_if_eod(s: Settings, broker, notifier, journal: Journal) -> None:
@@ -211,7 +259,8 @@ def _daily_halt(s: Settings, broker) -> str | None:
     return None
 
 
-def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat, journal=None, symbol="?") -> list:
+def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat, journal=None,
+                     symbol="?", mkt_bias=0) -> list:
     """Run every enabled strategy for one symbol's session; return tagged signals."""
     cfg = s.raw.get("strategies") or {"tjr": {"enabled": True}}
     out: list = []
@@ -242,6 +291,14 @@ def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat, journal
         out += [sg for sg in sigs if in_session(today.index[sg.index], list(sessions))]
     if s.get("regime_filter", False):  # off by default — backtest showed it removes profitable fades
         out = filter_signals(out, today)
+    # Broad-market gate: never short on a clearly risk-on day, never long on a
+    # clearly risk-off day (the 2026-06-18 TSLA/MSFT-short-into-a-green-day fix).
+    if s.get("market_filter", True) and mkt_bias != 0:
+        before = len(out)
+        out = market_filter(out, mkt_bias)
+        if journal and len(out) < before:
+            mb = {1: "risk-on", -1: "risk-off"}[mkt_bias]
+            journal.log("info", f"{symbol}: market_filter ({mb}) dropped {before - len(out)} counter-market signal(s)")
     return out
 
 
@@ -277,6 +334,12 @@ def scan_once(
     strat = s.strategy
     symbols = _resolve_symbols(s, profile, journal)
 
+    # Compute the broad-market bias ONCE per scan (SPY today's bars) and reuse it for
+    # every symbol's market_filter. Crypto profile has no equity index -> 0 (off).
+    mkt_bias = _market_bias_today(s, tf) if s.profile_name != "crypto" else 0
+    if mkt_bias != 0:
+        journal.log("info", f"market bias today = {'risk-on' if mkt_bias == 1 else 'risk-off'}")
+
     for symbol in symbols:
         try:
             if broker and broker.has_position(symbol):
@@ -305,7 +368,7 @@ def scan_once(
             hist = bars[bars.index < today.index[0]]
             htf = hist.resample("1h").agg(_AGG).dropna()
 
-            signals = _collect_signals(s, today, pdh, pdl, htf, sessions, strat, journal=journal, symbol=symbol)
+            signals = _collect_signals(s, today, pdh, pdl, htf, sessions, strat, journal=journal, symbol=symbol, mkt_bias=mkt_bias)
             # Act on signals that completed on a recent closed bar. Keep the freshest
             # signal PER STRATEGY (not just the single global latest) so momentum /
             # macd_trend / squeeze — whose crossovers fire mid-session — actually get
@@ -568,6 +631,7 @@ def cycle(s: Settings, broker, notifier, journal: Journal, *, force: bool = Fals
     """
     if broker is not None:
         reconcile(broker, journal)
+        cancel_late_entries(s, broker, journal)   # drop unfilled entries before the close
         flatten_if_eod(s, broker, notifier, journal)
     return scan_once(s, broker, notifier, journal, force=force)
 

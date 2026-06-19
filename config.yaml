@@ -45,6 +45,12 @@ strategy:
 # params (confirm_window=10, min_rr=2.0) — now fixed, so re-evaluate filter benefit.
 regime_filter: true
 
+# Market-breadth filter: block individual-name shorts on a clearly risk-on day and
+# longs on a clearly risk-off day, judged by SPY's session direction. Added 2026-06-18
+# after the bot shorted TSLA/MSFT into a broad green day (every stock +0.3%..+2.1%) and
+# got run over for ~$770. Index-level guard on top of the per-symbol regime filter.
+market_filter: true
+
 # ----- Multi-strategy: run these alongside TJR; each is tracked separately -----
 # Backtest (45d, indicative): vwap_rev profitable (PF 1.24); orb lost (PF 0.91);
 # tjr ~breakeven. So vwap_rev + tjr are ON; orb is OFF pending refinement.

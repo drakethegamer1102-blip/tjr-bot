@@ -2,7 +2,7 @@
 
 import pandas as pd
 
-from tjrbot.regime import filter_signals, trend_at
+from tjrbot.regime import filter_signals, market_bias, market_filter, trend_at
 from tjrbot.smc.signals import Signal
 
 
@@ -39,3 +39,47 @@ def test_range_allows_both():
     assert trend_at(today, 29) == 0
     sigs = [Signal(29, "short", 100, 101, 98), Signal(29, "long", 100, 99, 102)]
     assert len(filter_signals(sigs, today)) == 2
+
+
+# ── market breadth filter (the 2026-06-18 fix) ───────────────────────────────
+def test_market_bias_risk_on():
+    # Index opens 100, climbs to ~103 (close above open and above VWAP) -> +1
+    rows = [(100 + i * 0.1, 100 + i * 0.1 + 0.2, 100 + i * 0.1 - 0.2, 100 + i * 0.1) for i in range(30)]
+    assert market_bias(make_day(rows)) == 1
+
+
+def test_market_bias_risk_off():
+    rows = [(110 - i * 0.1, 110 - i * 0.1 + 0.2, 110 - i * 0.1 - 0.2, 110 - i * 0.1) for i in range(30)]
+    assert market_bias(make_day(rows)) == -1
+
+
+def test_market_bias_flat_is_neutral():
+    rows = [(100, 100.3, 99.7, 100 + (0.05 if i % 2 else -0.05)) for i in range(30)]
+    assert market_bias(make_day(rows)) == 0
+
+
+def test_market_filter_blocks_shorts_on_risk_on_day():
+    # This is the TSLA/MSFT case: counter-market short must be dropped, long kept.
+    sigs = [
+        Signal(20, "short", 400, 402, 396, strategy="tjr"),
+        Signal(20, "long", 400, 398, 404, strategy="momentum"),
+    ]
+    kept = market_filter(sigs, market_bias_value=1)
+    assert len(kept) == 1 and kept[0].side == "long"
+
+
+def test_market_filter_blocks_longs_on_risk_off_day():
+    sigs = [Signal(20, "long", 400, 398, 404, strategy="momentum")]
+    assert market_filter(sigs, market_bias_value=-1) == []
+
+
+def test_market_filter_noop_when_neutral():
+    sigs = [Signal(20, "short", 400, 402, 396), Signal(20, "long", 400, 398, 404)]
+    assert len(market_filter(sigs, market_bias_value=0)) == 2
+
+
+def test_trend_at_strong_adx_not_neutral():
+    # A clean strong uptrend: trend_at must flag +1 (2-of-3 majority), never 0.
+    rows = [(100 + i, 100 + i + 0.5, 100 + i - 0.5, 100 + i) for i in range(30)]
+    today = make_day(rows)
+    assert trend_at(today, 29) == 1
