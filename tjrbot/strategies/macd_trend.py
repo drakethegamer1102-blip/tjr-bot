@@ -3,13 +3,16 @@
 Go long on a bullish MACD cross (MACD above signal) that occurs above the zero line
 while price is above the trend EMA (up-trend); mirror for shorts. Stop = 1*ATR,
 target = reward:risk multiple. One trade per direction per day.
+
+Chop filter (2026-06-24): only fire when ADX >= adx_min. MACD whipsaws badly in a
+rangebound tape; backtest ADX>=20 lifts macd_trend PF 1.33 -> 1.61.
 """
 
 from __future__ import annotations
 
 import pandas as pd
 
-from ..indicators import ema
+from ..indicators import adx, ema
 from ..indicators_extra import macd
 from ..smc.signals import Signal
 from ..smc.zones import atr
@@ -25,9 +28,11 @@ def generate(
     min_rr: float = 2.0,
     atr_period: int = 14,
     stop_atr: float = 1.0,
+    adx_min: float = 20.0,
+    adx_period: int = 14,
     **_,
 ) -> list[Signal]:
-    warmup = slow + signal + 2
+    warmup = max(slow + signal, adx_period) + 2
     if len(today) < warmup:
         return []
     close = today["close"]
@@ -37,11 +42,15 @@ def generate(
     sl = signal_line.to_numpy()
     te = ema(close, trend_ema).to_numpy()
     a = atr(today, atr_period).to_numpy()
+    ax = adx(today, adx_period).to_numpy()
 
     out: list[Signal] = []
     fired_long = fired_short = False
     for i in range(warmup, len(today)):
         if i < 1 or a[i] <= 0:
+            continue
+        # Skip chop — MACD crossovers whipsaw when ADX is low (no real trend).
+        if adx_min > 0 and ax[i] < adx_min:
             continue
         cross_up = ml[i] > sl[i] and ml[i - 1] <= sl[i - 1]
         cross_dn = ml[i] < sl[i] and ml[i - 1] >= sl[i - 1]

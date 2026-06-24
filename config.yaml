@@ -70,12 +70,12 @@ strategies:
   vwap_rev: { enabled: true, atr_mult: 2.5, min_bars_open: 6 }  # fade overstretched moves back to VWAP; 2.5x ATR threshold + skip first 30min
   # momentum: trend breakout (fast EMA>slow EMA + N-bar high break). 30d backtest
   # 2026-06-13: PF 1.58, +$4,638 / 167 trades — best edge of all four. Trend-gated.
-  momentum: { enabled: true, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0 }
+  momentum: { enabled: true, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0, adx_min: 20 }
   orb:      { enabled: false, or_minutes: 15 } # opening-range breakout (OFF: lost in backtest)
   rsi_pullback: { enabled: false }             # Connors RSI(2) — 30d backtest PF 0.88 (loses), OFF
   # macd_trend: MACD(12,26,9) cross above/below signal, gated by zero line + trend EMA.
   # 30d backtest 2026-06-15: PF 2.76, +$2,078 / 66 trades — best PF of all. ON.
-  macd_trend: { enabled: true, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0 }
+  macd_trend: { enabled: true, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0, adx_min: 20 }
   # squeeze_breakout: BB-inside-Keltner volatility squeeze release on a volume surge.
   # 30d backtest 2026-06-15: PF 1.69, +$444 / 22 trades. ON.
   squeeze_breakout: { enabled: true, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0 }
