@@ -419,8 +419,13 @@ def _submit_signal(s, broker, notifier, journal, symbol, sig, today, date, equit
 
     # Partial-TP: split into two brackets when we have enough shares.
     # Leg A: half qty, TP at 1R (lock-in quick profit). Leg B: half, full target.
+    # OFF by default (2026-06-23): the two halves share one stop, so a stop-out loses
+    # BOTH halves fully while a win caps the first half at 1R — a strictly worse payoff
+    # than a single full-target bracket (live: NVDA/MSFT pairs both stopped together).
+    # Backtest shows no benefit, and it adds live order-management fragility. Re-enable
+    # only with breakeven-stop management on the runner. Toggle via config `partial_tp`.
     is_crypto = "/" in symbol
-    use_partial = (not is_crypto) and int(plan.qty) >= 2
+    use_partial = bool(s.get("partial_tp", False)) and (not is_crypto) and int(plan.qty) >= 2
     risk = abs(plan.entry - plan.stop)
     tp_quick = (plan.entry + risk) if plan.side == "long" else (plan.entry - risk)
 

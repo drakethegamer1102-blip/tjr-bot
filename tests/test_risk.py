@@ -45,6 +45,33 @@ def test_structural_stop_mode():
     assert abs(plan.qty - 1000.0) < 1e-9
 
 
+def test_min_stop_floor_widens_tight_long_stop():
+    # A structural stop only 0.2% away must be widened to the 0.5% floor (the live
+    # "stopped by pennies" bug). Target keeps the same 3R multiple off the wider risk.
+    rc = RiskConfig(risk_per_trade=0.03, stop_mode="structural", max_position_loss_pct=0.10,
+                    min_rr=3.0, min_stop_pct=0.005, max_position_pct=1.0)
+    plan = plan_trade("AAPL", sig(entry=100.0, stop=99.8, target=103.0), equity=100_000, rc=rc)
+    assert abs(plan.stop - 99.5) < 1e-9          # widened to 0.5% below entry
+    assert abs(plan.target - 101.5) < 1e-9       # entry + 3 * 0.5 (R:R preserved)
+
+
+def test_min_stop_floor_widens_tight_short_stop():
+    rc = RiskConfig(risk_per_trade=0.03, stop_mode="structural", max_position_loss_pct=0.10,
+                    min_rr=3.0, min_stop_pct=0.005, max_position_pct=1.0)
+    plan = plan_trade("AAPL", sig(side="short", entry=100.0, stop=100.2, target=97.0),
+                      equity=100_000, rc=rc)
+    assert abs(plan.stop - 100.5) < 1e-9         # widened to 0.5% above entry
+    assert abs(plan.target - 98.5) < 1e-9        # entry - 3 * 0.5
+
+
+def test_min_stop_floor_leaves_wide_stop_untouched():
+    # A stop already wider than the floor is unchanged.
+    rc = RiskConfig(risk_per_trade=0.03, stop_mode="structural", max_position_loss_pct=0.10,
+                    min_rr=3.0, min_stop_pct=0.005, max_position_pct=1.0)
+    plan = plan_trade("AAPL", sig(entry=100.0, stop=97.0, target=109.0), equity=100_000, rc=rc)
+    assert abs(plan.stop - 97.0) < 1e-9          # 3% gap > 0.5% floor -> untouched
+
+
 def test_kill_switch_losses():
     rc = RiskConfig(daily_max_losses=3, daily_max_loss_pct=0.99, max_trades_per_day=99)
     st = DailyRiskState(starting_equity=100_000)

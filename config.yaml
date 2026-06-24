@@ -22,6 +22,17 @@ max_position_loss_pct: 0.10
 #   "structural" -> stop sits just beyond the swept high/low (tighter, TJR-style)
 stop_mode: structural
 
+# Minimum stop distance as a fraction of entry. A structural stop closer than this is
+# widened to the floor (target keeps the same R:R). Added 2026-06-23: live tjr stops
+# sat 0.2-0.4% from entry and were stopped by noise (23% win, PF 0.13); a 0.5% floor
+# lifted backtest tjr to 43% win / PF 1.65.
+min_stop_pct: 0.005
+
+# Partial take-profit (split each entry into a 1R half + full-target half). OFF: the
+# two halves share one stop, so a stop-out loses both fully while a win caps the first
+# half — strictly worse than a single bracket, and no backtest benefit. See engine.py.
+partial_tp: false
+
 # Daily kill-switch: stop trading for the day if either is hit.
 daily_max_losses: 3          # number of losing trades (within a run)
 daily_max_loss_pct: 0.05     # 5% of account down today -> NOW enforced across ALL scheduled runs (live account)

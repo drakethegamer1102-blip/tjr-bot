@@ -40,6 +40,12 @@ class RiskConfig:
     daily_max_loss_pct: float = 0.05
     max_trades_per_day: int = 3
     allow_fractional: bool = True
+    # Minimum stop distance as a fraction of entry (e.g. 0.005 = 0.5%). Floor that
+    # prevents pathologically tight structural stops getting taken out by intraday
+    # noise. Live evidence (06-11..06-23): many tjr stops sat 0.2-0.4% from entry and
+    # were stopped by the spread/first wick (23% win, PF 0.13). The target keeps the
+    # same R:R multiple, so widening the stop widens the target proportionally.
+    min_stop_pct: float = 0.005
 
     @classmethod
     def from_settings(cls, s) -> "RiskConfig":
@@ -53,6 +59,7 @@ class RiskConfig:
             daily_max_loss_pct=float(s.raw.get("daily_max_loss_pct", 0.05)),
             max_trades_per_day=int(st.get("max_trades_per_day", 3)),
             max_position_pct=float(s.raw.get("max_position_pct", 0.20)),
+            min_stop_pct=float(s.raw.get("min_stop_pct", 0.005)),
         )
 
 
@@ -85,6 +92,13 @@ def plan_trade(symbol: str, signal, equity: float, rc: RiskConfig) -> TradePlan 
                 stop = max(stop, entry * (1 - rc.max_position_loss_pct))
             else:
                 stop = min(stop, entry * (1 + rc.max_position_loss_pct))
+
+    # Enforce a minimum stop distance: a structural stop closer than min_stop_pct of
+    # entry is just inside intraday noise and gets taken out instantly. Widen it to the
+    # floor (the target below preserves the same R:R off the wider risk).
+    min_dist = rc.min_stop_pct * entry if rc.min_stop_pct else 0.0
+    if min_dist > 0 and abs(entry - stop) < min_dist:
+        stop = entry - min_dist if side == "long" else entry + min_dist
 
     per_unit_risk = abs(entry - stop)
     if per_unit_risk <= 0:
