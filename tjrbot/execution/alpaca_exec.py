@@ -21,6 +21,8 @@ from alpaca.trading.requests import (
 class Broker:
     def __init__(self, key: str, secret: str, paper: bool = True):
         self.tc = TradingClient(key, secret, paper=paper)
+        self._key = key
+        self._secret = secret
 
     # --- reads ---
     def account(self):
@@ -138,3 +140,57 @@ class Broker:
 
     def close_all_positions(self):
         return self.tc.close_all_positions(cancel_orders=True)
+
+    def close_all_positions_extended_hours(self, slippage_pct: float = 0.01):
+        """Flatten every open position with EXTENDED-HOURS marketable limit orders.
+
+        A plain market (or DAY market) order can only fill during the regular session,
+        so after 16:00 it just cancels — that left positions open overnight and spammed
+        the EOD alert (2026-06-30). Extended-hours orders run until 8pm ET, but Alpaca
+        requires them to be LIMIT orders. We price each exit `slippage_pct` THROUGH the
+        last trade (sell below / buy above) so it's marketable and actually fills.
+        Returns the number of close orders submitted.
+        """
+        from alpaca.data.historical import StockHistoricalDataClient
+        from alpaca.data.requests import StockLatestTradeRequest
+
+        positions = self.tc.get_all_positions()
+        if not positions:
+            return 0
+        # cancel any stuck DAY exit orders first so they don't conflict
+        try:
+            self.tc.cancel_orders()
+        except Exception:  # noqa: BLE001
+            pass
+
+        data = StockHistoricalDataClient(self._key, self._secret)
+        submitted = 0
+        for p in positions:
+            sym = p.symbol
+            qty = abs(int(float(p.qty)))
+            if qty <= 0:
+                continue
+            is_long = str(p.side).lower().endswith("long")
+            try:
+                last = float(
+                    data.get_stock_latest_trade(StockLatestTradeRequest(symbol_or_symbols=sym))[sym].price
+                )
+            except Exception:  # noqa: BLE001
+                last = float(p.current_price or p.avg_entry_price)
+            # marketable limit: sell a touch below last, buy a touch above
+            limit = round(last * (1 - slippage_pct) if is_long else last * (1 + slippage_pct), 2)
+            req = LimitOrderRequest(
+                symbol=sym,
+                qty=qty,
+                side=OrderSide.SELL if is_long else OrderSide.BUY,
+                time_in_force=TimeInForce.DAY,
+                limit_price=limit,
+                extended_hours=True,
+                client_order_id=f"eodx-{sym}-{int(qty)}-{limit}",
+            )
+            try:
+                self.tc.submit_order(req)
+                submitted += 1
+            except Exception:  # noqa: BLE001
+                continue
+        return submitted

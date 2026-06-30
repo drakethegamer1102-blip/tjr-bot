@@ -19,11 +19,13 @@ class FakePos:
 
 class FakeBroker:
     """Minimal broker double: records close calls."""
-    def __init__(self, positions, opened_today=None):
+    def __init__(self, positions, opened_today=None, pending_ah=False):
         self._positions = positions
         self._opened_today = opened_today or {}
+        self._pending_ah = pending_ah
         self.closed = []
-        self.closed_all = False
+        self.closed_all = False          # regular-hours close_all_positions called
+        self.closed_all_ah = False       # after-hours close called
 
     def positions(self):
         return list(self._positions)
@@ -33,6 +35,15 @@ class FakeBroker:
 
     def close_all_positions(self):
         self.closed_all = True
+
+    def close_all_positions_extended_hours(self, slippage_pct=0.01):
+        self.closed_all_ah = True
+        return len(self._positions)
+
+    def open_orders(self, symbol=None):
+        class _O:
+            def __init__(s, cid): s.client_order_id = cid
+        return [_O("eodx-QQQ-25-700.0")] if self._pending_ah else []
 
 
 class FakeSettings:
@@ -57,44 +68,60 @@ def _freeze_now(monkeypatch, when_et):
 
 
 # ── EOD flatten window ───────────────────────────────────────────────────────
-def test_eod_flatten_fires_at_1550(monkeypatch):
-    # Start of the close window — flatten while market orders can still fill.
-    _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 15, 50, tzinfo=ET))  # Wed
+def test_eod_flatten_regular_close_at_1545(monkeypatch):
+    # 15:45-15:59: market still open -> plain market close (fills immediately).
+    _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 15, 45, tzinfo=ET))  # Wed
     b = FakeBroker([FakePos("AAPL")])
     engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
-    assert b.closed_all is True
+    assert b.closed_all is True and b.closed_all_ah is False
 
 
-def test_eod_flatten_fires_at_1555(monkeypatch):
-    _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 15, 56, tzinfo=ET))  # Wed
+def test_eod_flatten_regular_close_at_1556(monkeypatch):
+    _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 15, 56, tzinfo=ET))
     b = FakeBroker([FakePos("AAPL")])
     engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
-    assert b.closed_all is True
+    assert b.closed_all is True and b.closed_all_ah is False
 
 
-def test_eod_flatten_does_NOT_fire_after_close(monkeypatch):
-    # After 16:00 the market is closed: a SELL MARKET just cancels and the position
-    # stays open, so re-firing every scan spammed dozens of Telegrams (the 2026-06-30
-    # bug). The window must END at 16:00 so post-close scans are a no-op.
-    for hh, mm in [(16, 0), (16, 5), (16, 30), (16, 50)]:
+def test_eod_flatten_afterhours_close_post_1600(monkeypatch):
+    # 16:00-19:45: market closed -> extended-hours close (NOT a plain market order,
+    # which would just cancel). This is what actually exits the position.
+    for hh, mm in [(16, 0), (16, 30), (18, 0), (19, 30)]:
         _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, hh, mm, tzinfo=ET))
         b = FakeBroker([FakePos("AAPL")])
         engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
-        assert b.closed_all is False, f"must NOT flatten at {hh}:{mm:02d} (market closed)"
+        assert b.closed_all_ah is True, f"after-hours close must fire at {hh}:{mm:02d}"
+        assert b.closed_all is False  # never a doomed regular market order post-close
+
+
+def test_eod_flatten_afterhours_skips_if_pending(monkeypatch):
+    # An eodx- exit already pending -> do NOT submit another (no churn, no re-notify).
+    _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 16, 30, tzinfo=ET))
+    b = FakeBroker([FakePos("AAPL")], pending_ah=True)
+    engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
+    assert b.closed_all_ah is False
+
+
+def test_eod_flatten_noop_after_ah_cutoff(monkeypatch):
+    # After 19:45 we stop trying (too late to queue) -> no churn overnight.
+    _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 20, 0, tzinfo=ET))
+    b = FakeBroker([FakePos("AAPL")])
+    engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
+    assert b.closed_all is False and b.closed_all_ah is False
 
 
 def test_eod_flatten_skips_midday(monkeypatch):
     _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 12, 0, tzinfo=ET))
     b = FakeBroker([FakePos("AAPL")])
     engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
-    assert b.closed_all is False
+    assert b.closed_all is False and b.closed_all_ah is False
 
 
 def test_eod_flatten_skips_weekend(monkeypatch):
     _freeze_now(monkeypatch, dt.datetime(2026, 6, 20, 15, 56, tzinfo=ET))  # Saturday
     b = FakeBroker([FakePos("AAPL")])
     engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
-    assert b.closed_all is False
+    assert b.closed_all is False and b.closed_all_ah is False
 
 
 # ── stale-position backstop ──────────────────────────────────────────────────

@@ -142,17 +142,44 @@ def flatten_if_eod(s: Settings, broker, notifier, journal: Journal) -> None:
     if s.profile_name == "crypto":
         return
     now_et = dt.datetime.now(ET)
-    in_close_window = now_et.hour == 15 and now_et.minute >= 50
-    if now_et.weekday() >= 5 or not in_close_window:
+    if now_et.weekday() >= 5:
+        return
+    minutes = now_et.hour * 60 + now_et.minute
+    REG_OPEN = 15 * 60 + 45    # 15:45 — start trying while the regular session is open
+    CLOSE = 16 * 60           # 16:00
+    AH_CUTOFF = 19 * 60 + 45  # 19:45 — last safe time to queue an extended-hours exit
+    in_regular_window = REG_OPEN <= minutes < CLOSE
+    in_afterhours_window = CLOSE <= minutes < AH_CUTOFF
+    if not (in_regular_window or in_afterhours_window):
         return
     try:
         positions = broker.positions()
         if not positions:
-            return
-        broker.close_all_positions()
-        if notifier:
-            notifier.send(f"⏹️ End of day — flattening {len(positions)} open position(s).")
-        journal.log("info", f"eod flatten: {len(positions)} positions")
+            return  # nothing to do -> no notification (kills the post-close spam)
+        if in_regular_window:
+            # Market still open: plain market exit fills immediately.
+            broker.close_all_positions()
+            n = len(positions)
+        else:
+            # Market closed: a DAY market order would just cancel. Use extended-hours
+            # marketable LIMIT orders so the position ACTUALLY exits in after-hours.
+            # Skip if an after-hours exit (eodx-) is already pending, so a later scan
+            # doesn't stack duplicate orders (and doesn't re-notify).
+            try:
+                pending_ah = any(
+                    (getattr(o, "client_order_id", "") or "").startswith("eodx-")
+                    for o in broker.open_orders()
+                )
+            except Exception:  # noqa: BLE001
+                pending_ah = False
+            if pending_ah:
+                return
+            n = broker.close_all_positions_extended_hours()
+        if n:
+            when = "EOD" if in_regular_window else "after-hours"
+            if notifier:
+                notifier.send(f"⏹️ {when} flatten — closing {n} open position(s).")
+            journal.log("info", f"{when} flatten: {n} positions")
     except Exception as e:  # noqa: BLE001
         journal.log("error", f"eod flatten: {e}")
 
