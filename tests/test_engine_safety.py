@@ -57,6 +57,14 @@ def _freeze_now(monkeypatch, when_et):
 
 
 # ── EOD flatten window ───────────────────────────────────────────────────────
+def test_eod_flatten_fires_at_1550(monkeypatch):
+    # Start of the close window — flatten while market orders can still fill.
+    _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 15, 50, tzinfo=ET))  # Wed
+    b = FakeBroker([FakePos("AAPL")])
+    engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
+    assert b.closed_all is True
+
+
 def test_eod_flatten_fires_at_1555(monkeypatch):
     _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 15, 56, tzinfo=ET))  # Wed
     b = FakeBroker([FakePos("AAPL")])
@@ -64,13 +72,15 @@ def test_eod_flatten_fires_at_1555(monkeypatch):
     assert b.closed_all is True
 
 
-def test_eod_flatten_fires_after_1600(monkeypatch):
-    # The OLD window (hour==15 and minute>=55) would MISS this 16:00 run; the widened
-    # window must still flatten so nothing carries overnight.
-    _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, 16, 0, tzinfo=ET))
-    b = FakeBroker([FakePos("AAPL")])
-    engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
-    assert b.closed_all is True
+def test_eod_flatten_does_NOT_fire_after_close(monkeypatch):
+    # After 16:00 the market is closed: a SELL MARKET just cancels and the position
+    # stays open, so re-firing every scan spammed dozens of Telegrams (the 2026-06-30
+    # bug). The window must END at 16:00 so post-close scans are a no-op.
+    for hh, mm in [(16, 0), (16, 5), (16, 30), (16, 50)]:
+        _freeze_now(monkeypatch, dt.datetime(2026, 6, 17, hh, mm, tzinfo=ET))
+        b = FakeBroker([FakePos("AAPL")])
+        engine.flatten_if_eod(FakeSettings(), b, None, NullJournal())
+        assert b.closed_all is False, f"must NOT flatten at {hh}:{mm:02d} (market closed)"
 
 
 def test_eod_flatten_skips_midday(monkeypatch):

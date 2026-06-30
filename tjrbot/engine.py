@@ -126,28 +126,33 @@ def cancel_late_entries(s: Settings, broker, journal: Journal, cutoff_hour: int 
 
 
 def flatten_if_eod(s: Settings, broker, notifier, journal: Journal) -> None:
-    """Day trading = no overnight: near/after the close, flatten any open stock positions.
+    """Day trading = no overnight: in the final minutes of the REGULAR session, flatten
+    any open stock positions while market orders can still fill.
 
-    Fires on ANY weekday run at/after 15:55 ET — not only the exact 15:55-15:59 minute.
-    The old window (hour==15 and minute>=55) silently missed the flatten whenever no
-    cron run landed in those 5 minutes (cron drift / boundary), leaving a naked
-    overnight position with no protective bracket (its DAY-TIF stop had already
-    expired). That is exactly how the 06-16 ARM short went overnight and lost ~$507.
-    Brackets are now GTC too (see submit_bracket) so a missed flatten is double-guarded.
+    Window is 15:50-16:00 ET ONLY. Before 15:50 we're still trading; at/after 16:00 the
+    market is closed, so a SELL MARKET just gets canceled and the position stays open —
+    and the old "hour >= 16" window re-fired that on every 5-min scan, spamming a
+    Telegram each time and never actually closing anything (2026-06-30: dozens of
+    "End of day flattened" alerts, 3 positions left open). Overnight safety after a
+    missed window is covered by GTC brackets + flatten_stale_positions at next open.
+
+    Also: only notify when a close was actually submitted, and verify positions exist
+    AFTER the close call so a no-op never alerts.
     """
     if s.profile_name == "crypto":
         return
     now_et = dt.datetime.now(ET)
-    after_close = (now_et.hour == 15 and now_et.minute >= 55) or now_et.hour >= 16
-    if now_et.weekday() >= 5 or not after_close:
+    in_close_window = now_et.hour == 15 and now_et.minute >= 50
+    if now_et.weekday() >= 5 or not in_close_window:
         return
     try:
         positions = broker.positions()
-        if positions:
-            broker.close_all_positions()
-            if notifier:
-                notifier.send(f"⏹️ End of day — flattened {len(positions)} open position(s).")
-            journal.log("info", f"eod flatten: {len(positions)} positions")
+        if not positions:
+            return
+        broker.close_all_positions()
+        if notifier:
+            notifier.send(f"⏹️ End of day — flattening {len(positions)} open position(s).")
+        journal.log("info", f"eod flatten: {len(positions)} positions")
     except Exception as e:  # noqa: BLE001
         journal.log("error", f"eod flatten: {e}")
 
