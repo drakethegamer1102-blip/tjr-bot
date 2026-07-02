@@ -23,10 +23,12 @@ max_position_loss_pct: 0.10
 stop_mode: structural
 
 # Minimum stop distance as a fraction of entry. A structural stop closer than this is
-# widened to the floor (target keeps the same R:R). Added 2026-06-23: live tjr stops
-# sat 0.2-0.4% from entry and were stopped by noise (23% win, PF 0.13); a 0.5% floor
-# lifted backtest tjr to 43% win / PF 1.65.
-min_stop_pct: 0.005
+# widened to the floor (target keeps the same R:R). 2026-07-01: raised 0.5% -> 1.5%.
+# Live data showed STOP exits won 0% of the time — 0.5% stops were still inside 5-min
+# noise and got picked off before the trade could work. Floor sweep (45d backtest):
+# 1.5% lifts win rate to tjr 51% / momentum 57% / macd_trend 55% (from ~43%) while
+# keeping PF ~1.4-1.6. Wider stops let winners breathe; this is the main win-rate fix.
+min_stop_pct: 0.015
 
 # Partial take-profit (split each entry into a 1R half + full-target half). OFF: the
 # two halves share one stop, so a stop-out loses both fully while a win caps the first
@@ -61,6 +63,11 @@ regime_filter: true
 # after the bot shorted TSLA/MSFT into a broad green day (every stock +0.3%..+2.1%) and
 # got run over for ~$770. Index-level guard on top of the per-symbol regime filter.
 market_filter: true
+# How big a SPY move (% from the open) counts as a clear up/down day. 2026-07-01:
+# tightened 0.40 -> 0.25. On 06-29 SPY was only +0.10-0.31% through the morning, so the
+# filter read "neutral" and let MRVL/INTC shorts through (-$1,463) even though the tape
+# was up. A 0.25% threshold catches those earlier. Backtest: 55%->57% win, +$7.9k->$9.8k.
+market_bias_min_pct: 0.25
 
 # ----- Multi-strategy: run these alongside TJR; each is tracked separately -----
 # Backtest (45d, indicative): vwap_rev profitable (PF 1.24); orb lost (PF 0.91);

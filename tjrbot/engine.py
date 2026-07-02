@@ -54,7 +54,7 @@ def _market_bias_today(s: Settings, tf: str, proxy: str = "SPY") -> int:
             return 0
         day_key = bars.index.tz_convert(ET).normalize()
         today = list(bars.groupby(day_key))[-1][1]
-        return market_bias(today)
+        return market_bias(today, min_pct=float(s.get("market_bias_min_pct", 0.25)))
     except Exception:  # noqa: BLE001
         return 0
 
