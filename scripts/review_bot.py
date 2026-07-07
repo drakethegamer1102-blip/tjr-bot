@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -22,8 +23,11 @@ from pathlib import Path
 ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(ROOT))
 
-from dotenv import load_dotenv
-load_dotenv(ROOT / ".env")
+try:  # .env is a local convenience; CI passes real env vars and may lack the package
+    from dotenv import load_dotenv
+    load_dotenv(ROOT / ".env")
+except ImportError:
+    pass
 
 from alpaca.trading.client import TradingClient
 from alpaca.trading.requests import GetOrdersRequest
@@ -288,6 +292,78 @@ def apply_proposals(proposals: list[dict], cfg: dict) -> dict:
     return cfg
 
 
+def _yaml_scalar(v) -> str:
+    if isinstance(v, bool):
+        return "true" if v else "false"
+    return str(v)
+
+
+def _old_value_pattern(v) -> str:
+    """Regex matching the current on-disk text of a scalar (0.2 may be written 0.20)."""
+    if isinstance(v, bool):
+        return r"(?:true|True|false|False)"
+    if isinstance(v, (int, float)):
+        return r"[-+]?[0-9][0-9_]*(?:\.[0-9]+)?(?:[eE][-+]?[0-9]+)?"
+    return re.escape(str(v))
+
+
+def patch_config_text(text: str, proposals: list[dict]) -> str | None:
+    """Comment-preserving apply: edit only the changed scalars in the YAML text.
+
+    config.yaml's comments are the audit trail of every tuning decision, so we
+    never rewrite the whole file (yaml.dump strips comments). Handles the two
+    styles used in this config — inline flow (`tjr: { enabled: true }`) and
+    block mappings. Returns None if any proposal can't be located; the caller
+    must then leave the file untouched.
+    """
+    for p in proposals:
+        if any(rail in p["key"] for rail in RISK_RAILS):
+            continue  # apply_proposals skips these too
+        parts = p["key"].split(".")
+        param, new_s, old_pat = parts[-1], _yaml_scalar(p["new"]), _old_value_pattern(p["old"])
+
+        if len(parts) == 1:  # top-level scalar
+            pat = re.compile(rf"^({re.escape(param)}\s*:\s*){old_pat}(?![\w.])", re.M)
+            text, n = pat.subn(rf"\g<1>{new_s}", text, count=1)
+            if n != 1:
+                return None
+            continue
+
+        parent = parts[-2]
+        # inline flow style:  parent: { ..., param: old, ... }
+        flow = re.compile(
+            rf"^(\s*{re.escape(parent)}\s*:\s*\{{[^}}\n]*?\b{re.escape(param)}\s*:\s*){old_pat}(?![\w.])",
+            re.M)
+        text2, n = flow.subn(rf"\g<1>{new_s}", text, count=1)
+        if n == 1:
+            text = text2
+            continue
+
+        # block style: parent line, then a more-indented param line inside it
+        lines = text.split("\n")
+        done = False
+        for i, line in enumerate(lines):
+            m = re.match(rf"^(\s*){re.escape(parent)}\s*:\s*(#.*)?$", line)
+            if not m:
+                continue
+            indent = len(m.group(1))
+            for j in range(i + 1, len(lines)):
+                nxt = lines[j]
+                if nxt.strip() and (len(nxt) - len(nxt.lstrip())) <= indent:
+                    break  # left the parent's block
+                m2 = re.match(rf"^(\s*{re.escape(param)}\s*:\s*){old_pat}(\s*(?:#.*)?)$", nxt)
+                if m2:
+                    lines[j] = f"{m2.group(1)}{new_s}{m2.group(2)}"
+                    done = True
+                    break
+            if done:
+                break
+        if not done:
+            return None
+        text = "\n".join(lines)
+    return text
+
+
 # ── main ──────────────────────────────────────────────────────────────────────
 def _notify(text: str):
     """Best-effort Telegram push of the nightly review (no-op if unconfigured)."""
@@ -351,11 +427,18 @@ def main():
     applied = False
     if args.apply and proposals:
         print(f"\nApplying {len(proposals)} proposal(s) to config.yaml...")
-        cfg = apply_proposals(proposals, cfg)
-        with open(cfg_path, "w") as f:
-            yaml.dump(cfg, f, default_flow_style=False, sort_keys=False)
-        applied = True
-        print("Done. (CI commits config.yaml so tomorrow's runs pick it up.)")
+        original = cfg_path.read_text()
+        patched = patch_config_text(original, proposals)
+        expected = apply_proposals(proposals, cfg)
+        # The text patch must produce exactly the same config the dict-apply
+        # would — otherwise write nothing (never fall back to yaml.dump: it
+        # strips every comment, and the comments are the tuning audit trail).
+        if patched is not None and yaml.safe_load(patched) == expected:
+            cfg_path.write_text(patched)
+            applied = True
+            print("Done. (CI commits config.yaml so tomorrow's runs pick it up.)")
+        else:
+            print("ERROR: comment-preserving patch failed — config.yaml NOT changed.")
     elif proposals:
         print("\nRun with --apply to apply these changes.")
 

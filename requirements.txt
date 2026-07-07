@@ -9,6 +9,9 @@ alpaca-py>=0.20
 # Notifications (Telegram via simple HTTP calls)
 requests>=2.31
 
+# .env loading (review_bot imports it; nightly CI crashed while it was missing)
+python-dotenv>=1.0
+
 # Stats dashboard
 Flask>=3.0
 

@@ -73,7 +73,10 @@ market_bias_min_pct: 0.25
 # Backtest (45d, indicative): vwap_rev profitable (PF 1.24); orb lost (PF 0.91);
 # tjr ~breakeven. So vwap_rev + tjr are ON; orb is OFF pending refinement.
 strategies:
-  tjr:      { enabled: true }                  # TJR / SMC (uses the `strategy:` params above)
+  # tjr OFF 2026-07-07: live PF 0.59 over 19 trades (14d), −$3.8k all-time. Shorts alone
+  # lost ~$1.8k into rising tape (06-29, 07-01, 07-07 AVGO −$472); longs broke even.
+  # Long-only variant backtested WORSE (PF 0.38, 60d) — full disable per ≥20-trades PF<0.9 rule.
+  tjr:      { enabled: false }                 # TJR / SMC (uses the `strategy:` params above)
   vwap_rev: { enabled: true, atr_mult: 2.5, min_bars_open: 6 }  # fade overstretched moves back to VWAP; 2.5x ATR threshold + skip first 30min
   # momentum: trend breakout (fast EMA>slow EMA + N-bar high break). 30d backtest
   # 2026-06-13: PF 1.58, +$4,638 / 167 trades — best edge of all four. Trend-gated.
