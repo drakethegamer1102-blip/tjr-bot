@@ -99,7 +99,7 @@ def fetch_closed_trades(days: int = LOOKBACK_DAYS) -> list[dict]:
         if qty <= 0 or price <= 0:
             continue
         cid = o.client_order_id or ""
-        if cid.startswith("bot-") or cid.startswith("tjr-"):
+        if cid.startswith(("bot-", "tjr-", "apx-", "rip-")):
             entries.append(o)
         else:
             exits.append(o)
@@ -109,7 +109,7 @@ def fetch_closed_trades(days: int = LOOKBACK_DAYS) -> list[dict]:
 
     for entry in entries:
         cid = entry.client_order_id or ""
-        if cid.startswith("bot-"):
+        if cid.startswith(("bot-", "apx-", "rip-")):
             strat = cid.split("-")[1]
         else:
             strat = "tjr"

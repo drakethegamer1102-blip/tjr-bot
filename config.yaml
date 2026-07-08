@@ -69,26 +69,71 @@ market_filter: true
 # was up. A 0.25% threshold catches those earlier. Backtest: 55%->57% win, +$7.9k->$9.8k.
 market_bias_min_pct: 0.25
 
-# ----- Multi-strategy: run these alongside TJR; each is tracked separately -----
-# Backtest (45d, indicative): vwap_rev profitable (PF 1.24); orb lost (PF 0.91);
-# tjr ~breakeven. So vwap_rev + tjr are ON; orb is OFF pending refinement.
+# ----- Virtual bots (2026-07-08) -----
+# Two ensembles trade side by side in this one paper account, tracked by order-tag
+# prefix (apx-/rip-). LEARNING PHASE by user directive: many trades at LOW per-trade
+# risk (1% / 0.8% vs the old 3%) so per-strategy stats accumulate fast. The account
+# kill switch is UNCHANGED: daily_max_loss_pct 5% halts everything, positions stay
+# bracketed, max_concurrent_positions/max_position_pct untouched. Per-bot envelopes
+# below are sub-limits so one bot can't spend the whole day's risk budget.
+# honor_signal_target: keep each strategy's own target instead of rewriting to
+# min_rr*risk (the July root cause: reversion targets were forced 3R away).
+bots:
+  apex:     # trend/momentum ensemble — rides moves WITH the tape
+    prefix: apx
+    risk_per_trade: 0.010
+    daily_max_trades: 8
+    daily_max_losses: 4
+    daily_max_loss_pct: 0.025
+    min_stop_pct: 0.008
+    honor_signal_target: true
+  riptide:  # mean-reversion ensemble — fades stretches back to anchors
+    prefix: rip
+    risk_per_trade: 0.008
+    daily_max_trades: 10
+    daily_max_losses: 4
+    daily_max_loss_pct: 0.025
+    min_stop_pct: 0.004
+    honor_signal_target: true
+
+# ----- Strategies (each assigned to a bot via `bot:`; unassigned = legacy "bot-") -----
 strategies:
   # tjr OFF 2026-07-07: live PF 0.59 over 19 trades (14d), −$3.8k all-time. Shorts alone
   # lost ~$1.8k into rising tape (06-29, 07-01, 07-07 AVGO −$472); longs broke even.
   # Long-only variant backtested WORSE (PF 0.38, 60d) — full disable per ≥20-trades PF<0.9 rule.
+  # Root cause (07-08 deep-dive): sweep→MSS→FVG entries are inherently counter-trend, and
+  # min_rr 3.0 × the 1.5% stop floor put targets ≥4.5% away intraday = unreachable.
   tjr:      { enabled: false }                 # TJR / SMC (uses the `strategy:` params above)
-  vwap_rev: { enabled: true, atr_mult: 2.5, min_bars_open: 6 }  # fade overstretched moves back to VWAP; 2.5x ATR threshold + skip first 30min
+
+  # --- APEX (trend/momentum) ---
   # momentum: trend breakout (fast EMA>slow EMA + N-bar high break). 30d backtest
-  # 2026-06-13: PF 1.58, +$4,638 / 167 trades — best edge of all four. Trend-gated.
-  momentum: { enabled: true, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0, adx_min: 20 }
+  # 2026-06-13: PF 1.58, +$4,638 / 167 trades. Live 20t PF 1.01 under the old 3R-rewrite
+  # sizing; moves to APEX where its own 2R targets are honored.
+  momentum: { enabled: true, bot: apex, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0, adx_min: 20 }
+  # macd_trend: MACD(12,26,9) cross gated by zero line + trend EMA. 30d backtest PF 2.76.
+  macd_trend: { enabled: true, bot: apex, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0, adx_min: 20 }
+  # squeeze_breakout: BB-inside-Keltner squeeze release on volume. 30d backtest PF 1.69; live 2/2.
+  squeeze_breakout: { enabled: true, bot: apex, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0 }
+  # noise_band (NEW 07-08): Zarattini-style intraday momentum — break of the average
+  # time-of-day move-from-open envelope, VWAP-aligned. Precomputed levels tolerate the
+  # 15-min IEX delay. Published evidence class: Concretum "Beat the Market" (SPY).
+  noise_band: { enabled: true, bot: apex, lookback_days: 14, band_k: 1.0, stop_atr: 1.5, rr: 2.0 }
+
+  # --- RIPTIDE (mean reversion) ---
+  # vwap_rev: fade overstretched moves back to VWAP. Moves to RIPTIDE where its VWAP
+  # target is honored (was being rewritten to 3R — the July bleed).
+  vwap_rev: { enabled: true, bot: riptide, atr_mult: 2.5, min_bars_open: 6 }
+  # gap_fade (NEW 07-08): fade small (0.1-0.4%) index-ETF opening gaps toward prior close.
+  # OFF at launch: 60d backtest PF 0.51 over only 9 trades (small sample, but losing).
+  # Dormant until a backtest shows PF>=1.2 — the nightly review can then enable it.
+  gap_fade: { enabled: false, bot: riptide, min_gap: 0.001, max_gap: 0.004, stop_atr: 2.0 }
+  # band_tag (NEW 07-08): Keltner 2.5xATR band tag + RSI(2) extreme, daily SMA10 trend
+  # gate (Connors-style: only fade WITH the higher-timeframe trend). Target = band mid.
+  band_tag: { enabled: true, bot: riptide, kc_mult: 2.5, rsi_lo: 5, rsi_hi: 95, stop_atr: 1.2, sma_days: 10 }
+
+  # --- dormant (enable only on PF>=1.2 backtest evidence per protocol) ---
   orb:      { enabled: false, or_minutes: 15 } # opening-range breakout (OFF: lost in backtest)
   rsi_pullback: { enabled: false }             # Connors RSI(2) — 30d backtest PF 0.88 (loses), OFF
-  # macd_trend: MACD(12,26,9) cross above/below signal, gated by zero line + trend EMA.
-  # 30d backtest 2026-06-15: PF 2.76, +$2,078 / 66 trades — best PF of all. ON.
-  macd_trend: { enabled: true, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0, adx_min: 20 }
-  # squeeze_breakout: BB-inside-Keltner volatility squeeze release on a volume surge.
-  # 30d backtest 2026-06-15: PF 1.69, +$444 / 22 trades. ON.
-  squeeze_breakout: { enabled: true, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0 }
   # bollinger_rev: BB(20,2σ) mean-reversion + RSI. 30d backtest PF 1.00 (breakeven) — OFF
   # until it shows an edge; the nightly review can auto-enable it if PF>1.2.
   bollinger_rev: { enabled: false, period: 20, num_std: 2.0 }
@@ -96,7 +141,9 @@ strategies:
 # ----- Market profiles -----
 profiles:
   stocks:
-    symbols: [AAPL, MSFT, NVDA, TSLA, AMD, SPY, QQQ]   # always-watch list (kept even when screener is on)
+    # always-watch list (kept even when screener is on). IWM/DIA added 07-08 for
+    # RIPTIDE's gap_fade (index ETFs gap-fill most reliably).
+    symbols: [AAPL, MSFT, NVDA, TSLA, AMD, SPY, QQQ, IWM, DIA]
     universe:               # "go find" stocks: auto-screen liquid movers each scan
       enabled: true
       max_symbols: 20       # how many screened names to scan (plus the watchlist)

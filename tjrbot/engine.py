@@ -25,7 +25,7 @@ from .reconcile import compute_pnl, reconcile
 from .regime import filter_signals, market_bias, market_filter
 from .smc.session import ET, in_session
 from .strategy import daily_bias, find_trades
-from .strategies import REGISTRY
+from .strategies import NEEDS_HIST, REGISTRY
 
 _AGG = {"open": "first", "high": "max", "low": "min", "close": "last", "volume": "sum"}
 
@@ -33,6 +33,11 @@ _AGG = {"open": "first", "high": "max", "low": "min", "close": "last", "volume":
 # entries near real time (no chasing stale setups) while tolerating the gap between a
 # bar closing and the next 5-min scan firing. 3 bars ≈ last 15 min on 5-min data.
 FRESH_BARS = 3
+
+# Every client_order_id prefix this engine has ever written. "bot-" = legacy single-bot
+# era, "tjr-" = pre-multi-strategy era, "apx-"/"rip-" = the APEX and RIPTIDE virtual
+# bots (2026-07-08). Order-history scans (halts, summaries, reconcile) match on these.
+BOT_PREFIXES = ("bot-", "tjr-", "apx-", "rip-")
 
 
 def _recent_bars(s: Settings, symbol: str, tf: str, days: int = 3) -> pd.DataFrame:
@@ -112,7 +117,7 @@ def cancel_late_entries(s: Settings, broker, journal: Journal, cutoff_hour: int 
         canceled = 0
         for o in broker.open_orders():
             cid = getattr(o, "client_order_id", "") or ""
-            if not cid.startswith(("bot-", "tjr-")):
+            if not cid.startswith(BOT_PREFIXES):
                 continue
             # Only unfilled parent entries (skip anything already partially/fully filled).
             if float(getattr(o, "filled_qty", 0) or 0) > 0:
@@ -291,8 +296,72 @@ def _daily_halt(s: Settings, broker) -> str | None:
     return None
 
 
+def _bot_of_map(s: Settings) -> dict[str, str]:
+    """strategy name -> bot name, for strategies assigned to a virtual bot."""
+    cfg = s.raw.get("strategies") or {}
+    return {name: c["bot"] for name, c in cfg.items()
+            if isinstance(c, dict) and c.get("bot")}
+
+
+def _bot_halts(s: Settings, broker) -> set[str]:
+    """Per-bot daily gates (trade count / loss count / realized daily loss).
+
+    Each virtual bot (config `bots:`) has its own envelope, enforced from the live
+    account's closed orders by coid prefix — stateless across scheduled runs, same
+    pattern as _daily_halt. The ACCOUNT-level 5% halt in _daily_halt still overrides
+    everything; these are sub-limits so one bot can't spend the whole day's risk.
+    """
+    bots = s.raw.get("bots") or {}
+    if not bots or broker is None:
+        return set()
+    try:
+        eq = float(broker.account().equity)
+        orders = broker.closed_orders(limit=500)
+    except Exception:  # noqa: BLE001
+        return set()
+    today = dt.datetime.now(ET).date()
+    pref_to_bot = {str((c or {}).get("prefix", n)): n for n, c in bots.items()}
+    stems: dict[str, set] = {n: set() for n in bots}
+    loss_stems: dict[str, set] = {n: set() for n in bots}
+    pnl: dict[str, float] = {n: 0.0 for n in bots}
+    for o in orders:
+        coid = getattr(o, "client_order_id", "") or ""
+        bot = pref_to_bot.get(coid.split("-", 1)[0]) if "-" in coid else None
+        if bot is None or "filled" not in str(getattr(o, "status", "")).lower():
+            continue
+        fa = getattr(o, "filled_at", None)
+        if not (fa and fa.astimezone(ET).date() == today):
+            continue
+        stem = coid[:-2] if coid.endswith(("-a", "-b")) else coid
+        stems[bot].add(stem)
+        entry_px = float(getattr(o, "filled_avg_price", 0) or 0)
+        side = str(getattr(o, "side", "")).lower()
+        qty = float(getattr(o, "filled_qty", 0) or 0)
+        for leg in (getattr(o, "legs", None) or []):
+            if "filled" not in str(getattr(leg, "status", "")).lower():
+                continue
+            exit_px = float(getattr(leg, "filled_avg_price", 0) or 0)
+            if not (entry_px and exit_px):
+                continue
+            per_share = (exit_px - entry_px) if side.endswith("buy") else (entry_px - exit_px)
+            pnl[bot] += per_share * qty
+            if per_share < 0:
+                loss_stems[bot].add(stem)
+            break
+    halted: set[str] = set()
+    for name, c in bots.items():
+        c = c or {}
+        if len(stems[name]) >= int(c.get("daily_max_trades", 8)):
+            halted.add(name)
+        elif len(loss_stems[name]) >= int(c.get("daily_max_losses", 4)):
+            halted.add(name)
+        elif eq > 0 and pnl[name] < -float(c.get("daily_max_loss_pct", 0.025)) * eq:
+            halted.add(name)
+    return halted
+
+
 def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat, journal=None,
-                     symbol="?", mkt_bias=0) -> list:
+                     symbol="?", mkt_bias=0, hist=None) -> list:
     """Run every enabled strategy for one symbol's session; return tagged signals."""
     cfg = s.raw.get("strategies") or {"tjr": {"enabled": True}}
     out: list = []
@@ -315,7 +384,9 @@ def _collect_signals(s: Settings, today, pdh, pdl, htf, sessions, strat, journal
         c = cfg.get(name) or {}
         if not c.get("enabled", False):
             continue
-        params = {k: v for k, v in c.items() if k != "enabled"}
+        params = {k: v for k, v in c.items() if k not in ("enabled", "bot")}
+        if name in NEEDS_HIST:
+            params["hist"] = hist
         try:
             sigs = gen(today, **params)
         except Exception:  # noqa: BLE001
@@ -365,6 +436,11 @@ def scan_once(
             return actions
     strat = s.strategy
     symbols = _resolve_symbols(s, profile, journal)
+    bot_of = _bot_of_map(s)
+    bots_cfg = s.raw.get("bots") or {}
+    halted_bots = _bot_halts(s, broker) if broker is not None else set()
+    if halted_bots:
+        journal.log("info", f"bot envelope halt(s) today: {', '.join(sorted(halted_bots))}")
 
     # Compute the broad-market bias ONCE per scan (SPY today's bars) and reuse it for
     # every symbol's market_filter. Crypto profile has no equity index -> 0 (off).
@@ -382,11 +458,12 @@ def scan_once(
             if broker and broker.has_open_order(symbol):
                 continue
 
-            # 10 days of history: the last 2 day-groups drive intraday levels, while
-            # the full window gives daily_bias a real HTF swing structure to read.
+            # 16 days of history: the last 2 day-groups drive intraday levels, the
+            # full window gives daily_bias a real HTF swing structure to read, and
+            # noise_band needs 14 prior sessions for its time-of-day sigma bands.
             # (Pre-2026-06-13 this was days=3 → ~13 hourly bars → bias was noise, which
             #  produced June 11's all-short loss day.)
-            bars = _recent_bars(s, symbol, tf, days=10)
+            bars = _recent_bars(s, symbol, tf, days=16)
             if bars.empty or len(bars) < 30:
                 continue
 
@@ -400,7 +477,10 @@ def scan_once(
             hist = bars[bars.index < today.index[0]]
             htf = hist.resample("1h").agg(_AGG).dropna()
 
-            signals = _collect_signals(s, today, pdh, pdl, htf, sessions, strat, journal=journal, symbol=symbol, mkt_bias=mkt_bias)
+            signals = _collect_signals(s, today, pdh, pdl, htf, sessions, strat, journal=journal, symbol=symbol, mkt_bias=mkt_bias, hist=hist)
+            # Per-bot envelope: drop signals from bots that hit their daily gates.
+            if halted_bots:
+                signals = [sg for sg in signals if bot_of.get(sg.strategy) not in halted_bots]
             # Act on signals that completed on a recent closed bar. Keep the freshest
             # signal PER STRATEGY (not just the single global latest) so momentum /
             # macd_trend / squeeze — whose crossovers fire mid-session — actually get
@@ -422,8 +502,10 @@ def scan_once(
             for sig in sorted(freshest_by_strat.values(), key=lambda x: x.index, reverse=True):
                 if broker is not None and (broker.has_position(symbol) or broker.has_open_order(symbol)):
                     break
+                bot_name = bot_of.get(sig.strategy)
+                bot_cfg = (bots_cfg.get(bot_name) or {}) if bot_name else None
                 act = _submit_signal(s, broker, notifier, journal, symbol, sig, today,
-                                     date, equity, dry_run)
+                                     date, equity, dry_run, bot_cfg=bot_cfg)
                 if act is not None:
                     actions.append(act)
         except Exception as e:  # noqa: BLE001 - never let one symbol kill the loop
@@ -433,10 +515,11 @@ def scan_once(
     return actions
 
 
-def _submit_signal(s, broker, notifier, journal, symbol, sig, today, date, equity, dry_run):
+def _submit_signal(s, broker, notifier, journal, symbol, sig, today, date, equity, dry_run,
+                   bot_cfg=None):
     """Size + risk-check + submit one signal as a (partial-TP) bracket. Returns the
     action dict, or None if it was skipped."""
-    rc = RiskConfig.from_settings(s)
+    rc = RiskConfig.from_settings(s).with_bot_overrides(bot_cfg)
     rc.allow_fractional = "/" in symbol
     plan = plan_trade(symbol, sig, equity, rc)
     if plan is None:
@@ -445,7 +528,8 @@ def _submit_signal(s, broker, notifier, journal, symbol, sig, today, date, equit
         journal.log("info", f"{symbol}: short setup skipped (not shortable)")
         return None
 
-    coid = f"bot-{sig.strategy}-{symbol.replace('/', '')}-{date}-{sig.index}"
+    prefix = (bot_cfg or {}).get("prefix", "bot")
+    coid = f"{prefix}-{sig.strategy}-{symbol.replace('/', '')}-{date}-{sig.index}"
     if journal.has_order(coid) or (broker is not None and broker.order_exists(coid)):
         return None
 
@@ -523,7 +607,7 @@ def daily_summary(s: Settings, broker, notifier, journal: Journal) -> str:
     for o in closed:
         coid = getattr(o, "client_order_id", "") or ""
         entry_px = getattr(o, "filled_avg_price", None)
-        if not coid.startswith("bot-") or not entry_px:
+        if not coid.startswith(BOT_PREFIXES) or not entry_px:
             continue
         legs = getattr(o, "legs", None) or []
         exit_leg = next(
@@ -594,7 +678,7 @@ def _closed_bot_trades(broker, journal: Journal) -> list[dict]:
     for o in closed:
         coid = getattr(o, "client_order_id", "") or ""
         entry_px = getattr(o, "filled_avg_price", None)
-        if not coid.startswith("bot-") or not entry_px:
+        if not coid.startswith(BOT_PREFIXES) or not entry_px:
             continue
         legs = getattr(o, "legs", None) or []
         exit_leg = next(

@@ -3,6 +3,41 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-07-08 — APEX + RIPTIDE: two virtual bots (user-directed build)
+
+**Root-cause findings that shaped this:**
+1. tjr deep-dive: sweep→MSS→FVG entries are inherently counter-trend (kept shorting
+   rallies), and `plan_trade` forced `min_rr 3.0 × max(stop, 1.5%)` targets ≥4.5%
+   away intraday — statistically unreachable on mega-caps → 5% win rate.
+2. **The 3R-rewrite hurt EVERY strategy**: plan_trade discarded each strategy's own
+   target (vwap_rev's VWAP target, band midlines) and rewrote it to 3R. Fixed via
+   `honor_signal_target` in per-bot risk config.
+
+**New architecture — two ensembles in one paper account, split by order-tag prefix:**
+- **APEX** (`apx-`, trend/momentum): momentum, macd_trend, squeeze_breakout,
+  **noise_band** (NEW — Zarattini-style time-of-day envelope break, VWAP-aligned;
+  60d backtest PF 1.18, +$3,725 / 237 trades).
+- **RIPTIDE** (`rip-`, mean reversion): vwap_rev (target now honored),
+  **band_tag** (NEW — Keltner 2.5×ATR tag + RSI(2) + daily SMA10 trend gate;
+  60d backtest PF 1.55, +$1,917 / 99 trades; PF 1.94 with regime filter),
+  gap_fade (NEW but DORMANT — backtest PF 0.51/9t, needs PF≥1.2 to enable).
+- Legacy `bot-` group retains the dormant strategies (tjr/orb/rsi_pullback/bollinger_rev).
+
+**Learning phase (user directive: many trades, learn fast):** per-trade risk cut
+3% → 1% (APEX) / 0.8% (RIPTIDE); per-bot envelopes 8/10 trades/day, 4 losses/day,
+−2.5% realized daily loss each. UNCHANGED account rails: 5% daily halt, 3 concurrent
+positions, 20% max position, brackets on every order, EOD flatten. Worst-case day is
+still bounded at −5%; expected per-trade variance is 3-4× lower than before.
+
+**Plumbing:** `bots:` config + per-strategy `bot:` assignment; per-bot coid prefixes;
+`_bot_halts` per-bot daily gates; hist passed to NEEDS_HIST strategies; bars window
+10d→16d (noise_band needs 14 sessions); IWM/DIA added for gap_fade; reports and
+review_bot parse `apx-`/`rip-`; EVAL_SINCE → 2026-07-08.
+
+**Gates:** pytest 73/73 (11 new tests); 60d backtest — kept strategies did not worsen
+(orb 1.06→1.08, tjr n/a disabled). Anomaly logged: vwap_rev takes 0 backtest trades
+(volume-confirmation gate too strict on backtest volume data) but trades live; monitor.
+
 ## 2026-07-07 — CI fix + disable tjr
 
 **Root cause found: the nightly auto-improve has crashed every night since it shipped.**

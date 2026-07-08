@@ -14,7 +14,7 @@ from tjrbot.config import load_settings
 from tjrbot.data.alpaca_data import get_stock_bars
 from tjrbot.engine import _AGG
 from tjrbot.risk.engine import RiskConfig
-from tjrbot.strategies import orb, vwap_rev
+from tjrbot.strategies import band_tag, gap_fade, noise_band, orb, vwap_rev
 from tjrbot.strategy import find_trades
 
 
@@ -35,10 +35,20 @@ def main(argv: list[str]) -> int:
             min_rr=rc.min_rr, sessions=None, use_bias=True,
         )
 
+    # New-bot strategies run under the bots' risk config: strategy-native targets are
+    # honored (honor_signal_target) and the stop floor matches the bot envelope —
+    # backtesting them under the legacy 3R-rewrite would test a different system.
+    import copy as _copy
+    rc_apex = _copy.copy(rc); rc_apex.honor_signal_target = True; rc_apex.min_stop_pct = 0.008
+    rc_rip = _copy.copy(rc); rc_rip.honor_signal_target = True; rc_rip.min_stop_pct = 0.004
+
     builds = {
-        "tjr (SMC)": tjr_build,
-        "orb": lambda today, prev, hist: orb.generate(today, or_minutes=15, min_rr=rc.min_rr),
-        "vwap_rev": lambda today, prev, hist: vwap_rev.generate(today, atr_mult=2.0),
+        "tjr (SMC)": (tjr_build, rc),
+        "orb": (lambda today, prev, hist: orb.generate(today, or_minutes=15, min_rr=rc.min_rr), rc),
+        "vwap_rev": (lambda today, prev, hist: vwap_rev.generate(today, atr_mult=2.5, min_bars_open=6), rc_rip),
+        "noise_band": (lambda today, prev, hist: noise_band.generate(today, hist=hist), rc_apex),
+        "gap_fade": (lambda today, prev, hist: gap_fade.generate(today, hist=hist), rc_rip),
+        "band_tag": (lambda today, prev, hist: band_tag.generate(today, hist=hist), rc_rip),
     }
 
     bars_by_sym = {}
@@ -65,10 +75,10 @@ def main(argv: list[str]) -> int:
         print(f"\n=== {label} ===")
         print(f"{'strategy':11} {'trades':>6} {'win%':>5} {'shorts':>7} {'PF':>6} {'exp/trade':>10} {'totP&L':>10}")
         print("-" * 64)
-        for name, build in builds.items():
+        for name, (build, build_rc) in builds.items():
             trades = []
             for sym, b in bars_by_sym.items():
-                trades += backtest_strategy(b, sym, build, rc, use_regime=use_regime).trades
+                trades += backtest_strategy(b, sym, build, build_rc, use_regime=use_regime).trades
             row(name, trades)
     print("\n(Structural stop, 3% risk, 100k/symbol. Judge by PF + win%, not trade count.)")
     return 0

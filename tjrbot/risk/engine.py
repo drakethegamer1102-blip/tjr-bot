@@ -46,6 +46,23 @@ class RiskConfig:
     # were stopped by the spread/first wick (23% win, PF 0.13). The target keeps the
     # same R:R multiple, so widening the stop widens the target proportionally.
     min_stop_pct: float = 0.005
+    # When True, a valid signal-provided target is kept instead of being rewritten to
+    # min_rr * risk. Mean-reversion strategies (gap_fade, band_tag, vwap_rev) have
+    # near targets (gap fill / band midline) that ARE the edge — rewriting them to
+    # 3R made the target statistically unreachable (root cause of the July bleed).
+    honor_signal_target: bool = False
+
+    def with_bot_overrides(self, bot_cfg: dict | None) -> "RiskConfig":
+        """Per-bot envelope: tighter per-trade risk / stop floor + target honoring.
+        Only fields that keep or reduce per-trade $ risk are overridable."""
+        if not bot_cfg:
+            return self
+        import copy as _copy
+        rc = _copy.copy(self)
+        rc.risk_per_trade = min(self.risk_per_trade, float(bot_cfg.get("risk_per_trade", self.risk_per_trade)))
+        rc.min_stop_pct = float(bot_cfg.get("min_stop_pct", self.min_stop_pct))
+        rc.honor_signal_target = bool(bot_cfg.get("honor_signal_target", False))
+        return rc
 
     @classmethod
     def from_settings(cls, s) -> "RiskConfig":
@@ -118,6 +135,12 @@ def plan_trade(symbol: str, signal, equity: float, rc: RiskConfig) -> TradePlan 
         if side == "long"
         else entry - rc.min_rr * per_unit_risk
     )
+    # Honor the strategy's own target when the bot opts in (see RiskConfig note):
+    # reversion edges live in NEAR targets; forcing 3R on them guarantees stop-outs.
+    sig_target = float(getattr(signal, "target", 0) or 0)
+    if rc.honor_signal_target and sig_target > 0:
+        if (side == "long" and sig_target > entry) or (side == "short" and sig_target < entry):
+            target = sig_target
     return TradePlan(
         symbol=symbol,
         side=side,

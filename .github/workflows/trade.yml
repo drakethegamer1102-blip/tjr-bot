@@ -63,9 +63,10 @@ jobs:
       - name: Autonomous strategy review (apply + commit)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'review' }}
         env:
-          # Only learn from trades on/after the day the bias+EMA+regime fixes shipped,
-          # so stale pre-fix losses can't auto-disable a now-corrected strategy.
-          EVAL_SINCE: "2026-06-15"
+          # Only learn from trades on/after the last strategy-code change (2026-07-08:
+          # APEX/RIPTIDE bots + honor_signal_target sizing), so stale losses from the
+          # old 3R-rewrite era can't auto-disable a now-corrected strategy.
+          EVAL_SINCE: "2026-07-08"
         run: |
           set -e
           cp config.yaml /tmp/config.before.yaml

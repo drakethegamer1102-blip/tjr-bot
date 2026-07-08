@@ -18,12 +18,15 @@ from tjrbot.notify.telegram import TelegramNotifier
 from tjrbot.reconcile import compute_pnl
 
 
+PREFIX_BOT = {"bot": "core", "apx": "apex", "rip": "riptide"}
+
+
 def strategy_of(coid: str) -> str | None:
-    if coid.startswith("bot-"):
-        parts = coid.split("-")
-        return parts[1] if len(parts) > 1 else "?"
     if coid.startswith("tjr-"):  # legacy pre-multi-strategy orders
-        return "tjr"
+        return "core.tjr"
+    parts = coid.split("-")
+    if len(parts) > 1 and parts[0] in PREFIX_BOT:
+        return f"{PREFIX_BOT[parts[0]]}.{parts[1]}"
     return None
 
 
