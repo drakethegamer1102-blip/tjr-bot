@@ -117,7 +117,7 @@ strategies:
   # noise_band (NEW 07-08): Zarattini-style intraday momentum — break of the average
   # time-of-day move-from-open envelope, VWAP-aligned. Precomputed levels tolerate the
   # 15-min IEX delay. Published evidence class: Concretum "Beat the Market" (SPY).
-  noise_band: { enabled: true, bot: apex, lookback_days: 14, band_k: 1.0, stop_atr: 1.5, rr: 2.0 }
+  noise_band: { enabled: false, bot: apex, lookback_days: 14, band_k: 1.0, stop_atr: 1.5, rr: 2.0 }
 
   # --- RIPTIDE (mean reversion) ---
   # vwap_rev: fade overstretched moves back to VWAP. Moves to RIPTIDE where its VWAP
