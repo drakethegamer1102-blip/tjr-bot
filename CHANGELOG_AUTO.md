@@ -77,3 +77,31 @@ with resting stop-entry orders (Zarattini/Aziz/Barbon — resting levels neutral
 earn their keep by REMOVING trades; daily-timeframe filters (SPY vs 200-day SMA,
 daily ADX) are immune to the 15-min delay; 3% risk/trade is 3× the published norm;
 paper fills overstate thin edges.
+
+## 2026-07-08 — review-bot anti-overfit gate fixed (MIN_TRADES 5 → 20)
+
+**Anomaly found:** last night's CI auto-review (a7f63f8) disabled `noise_band` after a
+single 0-for-5 day (−$1,013). Protocol forbids judging any strategy on <20 closed
+trades, but `review_bot.py` had `MIN_TRADES = 5` — the nightly loop was allowed to
+overreact to one bad day.
+
+**Change (one per run):** `scripts/review_bot.py` `MIN_TRADES` 5 → 20, matching the
+protocol. Pure tightening: the auto-tuner now needs 4× more evidence before it
+disables, re-enables, or tunes anything. No strategy code touched.
+
+**noise_band left OFF despite the rule-violating disable:** re-enabling requires a
+backtest PF ≥ 1.2, and today's 60d backtest shows PF 1.13 / 243 trades — close but
+below the bar. It stays dormant; future runs re-evaluate. Its 5 live trades remain
+in the ledger and count toward the 20-trade sample if re-enabled later.
+
+**Live snapshot (since EVAL_SINCE 2026-06-15):** equity $90,204, today −$1,156
+(−$1,013 of it noise_band's debut). momentum 14t PF 0.72, macd_trend 1t,
+squeeze_breakout 2t 2/2, tjr 15t PF 0.00 (already disabled 07-07), noise_band 5t 0/5.
+Every live strategy is under 20 trades in-window → no strategy judgments this run.
+
+**Backtest (60d, unchanged by this run):** band_tag PF 1.94 with regime filter (best),
+noise_band 1.13, orb 1.03, tjr 0.84, gap_fade 0.51. Regime filter continues to earn
+its keep (band_tag 1.51 → 1.94 with filter on).
+
+**Gates:** pytest 73/73 passed. Backtest baseline identical (no strategy code changed).
+**EVAL_SINCE:** unchanged — review infra only, live strategy history remains valid.

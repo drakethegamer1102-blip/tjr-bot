@@ -50,7 +50,8 @@ RISK_RAILS = {
 }
 
 LOOKBACK_DAYS = 14  # analyse last 2 weeks of trades
-MIN_TRADES = 5      # need at least this many per strategy to draw conclusions
+MIN_TRADES = 20     # protocol: never judge a strategy on <20 closed trades (2026-07-08:
+                    # was 5, which let the nightly run disable noise_band on a 5-trade day)
 
 
 # ── data ──────────────────────────────────────────────────────────────────────
