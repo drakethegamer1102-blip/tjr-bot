@@ -12,7 +12,6 @@ from alpaca.trading.enums import OrderClass, OrderSide, QueryOrderStatus, TimeIn
 from alpaca.trading.requests import (
     GetOrdersRequest,
     LimitOrderRequest,
-    MarketOrderRequest,
     StopLossRequest,
     TakeProfitRequest,
 )
@@ -55,13 +54,19 @@ class Broker:
         )
         return self.tc.get_orders(filter=req)
 
+    # Every client_order_id prefix the engine writes (mirror of engine.BOT_PREFIXES,
+    # duplicated here so the execution layer never imports the engine). 2026-07-08:
+    # apx-/rip- were missing, so the anti-stacking guard below ignored pending
+    # APEX/RIPTIDE entries and a later scan could double up on the same symbol.
+    BOT_ORDER_PREFIXES = ("bot-", "tjr-", "apx-", "rip-")
+
     def has_open_order(self, symbol: str) -> bool:
         """True if any pending bot order exists for the symbol (prevents stacking
         a second bracket on a symbol whose first entry hasn't filled yet)."""
         try:
             for o in self.open_orders(symbol):
                 cid = o.client_order_id or ""
-                if cid.startswith(("bot-", "tjr-")):
+                if cid.startswith(self.BOT_ORDER_PREFIXES):
                     return True
         except Exception:
             pass
@@ -84,8 +89,19 @@ class Broker:
             return False
 
     # --- writes ---
+    # Max distance a "market" entry may fill from the signal price, as a fraction of
+    # entry. The stop/target are computed off the signal bar (free IEX data, ~15 min
+    # delayed), so an uncapped market order can fill far enough away that the planned
+    # stop sits pennies from the fill — live fills showed stops 0.08-0.5% from entry
+    # despite a 1.5% floor (MSFT 06-23 stopped the same minute it entered; AAPL 07-01
+    # stopped 0.54% below fill). A marketable LIMIT this far through the signal price
+    # fills immediately when the live price is close, and simply doesn't fill (no
+    # trade, no risk) when the market has already run away from the plan.
+    ENTRY_SLIPPAGE_CAP = 0.003
+
     def submit_bracket(self, plan, client_order_id: str, tif: TimeInForce = TimeInForce.DAY):
-        """Submit a bracket order: market entry when plan.entry_type=='market', else limit."""
+        """Submit a bracket order. entry_type=='market' becomes a marketable limit
+        capped ENTRY_SLIPPAGE_CAP through the signal price; else a plain limit."""
         is_crypto = "/" in plan.symbol
         qty = plan.qty if is_crypto else int(plan.qty)
         if not is_crypto and qty < 1:
@@ -96,11 +112,14 @@ class Broker:
         sl = StopLossRequest(stop_price=round(plan.stop, 2))
 
         if getattr(plan, "entry_type", "limit") == "market":
-            req = MarketOrderRequest(
+            cap = self.ENTRY_SLIPPAGE_CAP
+            limit = plan.entry * (1 + cap) if plan.side == "long" else plan.entry * (1 - cap)
+            req = LimitOrderRequest(
                 symbol=plan.symbol,
                 qty=qty,
                 side=side,
                 time_in_force=tif,
+                limit_price=round(limit, 2),
                 order_class=OrderClass.BRACKET,
                 take_profit=tp,
                 stop_loss=sl,

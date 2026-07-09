@@ -33,10 +33,17 @@ exactly. Goal: make the bot more profitable over weeks via evidence-gated change
 7. Append a dated entry to `CHANGELOG_AUTO.md` with the change + reasoning.
 
 ## Priority work items
-- **Over-shorting trending days** (caused the 2026-06-11 −6% day): add a trend/regime filter
-  so strategies don't fade/short a strongly trending market.
-- `submit_bracket` uses a LIMIT entry even for `entry_type="market"` signals — align it.
-- Free IEX data is ~15-min delayed (stale entries) — account for it or note its limits.
+- **Over-shorting trending days** (caused the 2026-06-11 −6% day): DONE — regime_filter +
+  market_filter shipped and enabled.
+- ~~`submit_bracket` LIMIT/market mismatch~~ RESOLVED 2026-07-08: "market" entries are now
+  marketable LIMITs capped `Broker.ENTRY_SLIPPAGE_CAP` (0.3%) through the signal price, so
+  fills can't land far from the planned stop/target geometry (15-min IEX delay was letting
+  stops sit 0.08-0.5% from actual fills).
+- `noise_band` (dormant) enters at market on a delayed break instead of the published
+  resting stop-entry design — convert to resting orders at precomputed levels before any
+  re-enable, then require the PF>=1.2 backtest gate as usual.
+- News gate (2026-07-08): fresh-headline symbols have RIPTIDE reversion entries blocked
+  (`news_filter:` in config). Never widen it into an entry SIGNAL without backtest evidence.
 
 ## Escalate to the user (do NOT auto-do) — Telegram and stop:
 Anything needing real-money mode, a paid data feed, or removing/loosening a safety rail.

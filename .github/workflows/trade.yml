@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "once | summary | weekly | healthcheck | strategy-report | review"
+        description: "once | summary | weekly | healthcheck | strategy-report | review | morning-brief"
         default: "healthcheck"
         type: string
 
@@ -57,16 +57,22 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'strategy-report' }}
         run: python scripts/strategy_report.py --telegram
 
+      # Pre-open news digest (add a cron-job.org entry ~9:00 AM ET, Mon-Fri).
+      - name: Morning news brief
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'morning-brief' }}
+        run: python scripts/morning_brief.py --telegram
+
       # Nightly self-improvement: analyse the day's trades, adjust strategy config
       # within guardrails (never risk rails, paper-only), run tests, and COMMIT the
       # change back so the next day's runs pick it up. Pushes a summary to Telegram.
       - name: Autonomous strategy review (apply + commit)
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'review' }}
         env:
-          # Only learn from trades on/after the last strategy-code change (2026-07-08:
-          # APEX/RIPTIDE bots + honor_signal_target sizing), so stale losses from the
-          # old 3R-rewrite era can't auto-disable a now-corrected strategy.
-          EVAL_SINCE: "2026-07-08"
+          # Only learn from trades on/after the last strategy-code change (2026-07-09:
+          # capped marketable-limit entries + news gate; before that the 07-08
+          # APEX/RIPTIDE launch), so stale losses from the old execution can't
+          # auto-disable a now-corrected strategy.
+          EVAL_SINCE: "2026-07-09"
         run: |
           set -e
           cp config.yaml /tmp/config.before.yaml

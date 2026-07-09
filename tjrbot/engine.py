@@ -20,6 +20,7 @@ import pandas as pd
 from .config import Settings
 from .data.alpaca_data import get_crypto_bars, get_stock_bars
 from .journal import Journal
+from .news import fetch_headlines as news_fetch_headlines
 from .risk.engine import RiskConfig, daily_loss_exceeded, plan_trade
 from .reconcile import compute_pnl, reconcile
 from .regime import filter_signals, market_bias, market_filter
@@ -265,7 +266,12 @@ def _daily_halt(s: Settings, broker) -> str | None:
         loss_stems: set[str] = set()
         for o in broker.closed_orders(limit=500):
             coid = getattr(o, "client_order_id", "") or ""
-            # tjr- was the legacy prefix; counting it too keeps the gate airtight
+            # DELIBERATE (user decision 2026-07-08): only legacy bot-/tjr- orders count
+            # toward the ACCOUNT-level trade/loss caps. APEX (apx-) and RIPTIDE (rip-)
+            # are governed by their own per-bot envelopes in _bot_halts (trade count,
+            # loss count, 2.5% realized loss each) during the many-small-trades learning
+            # phase. The 5% account equity halt above is prefix-independent and still
+            # covers everything.
             if not coid.startswith(("bot-", "tjr-")) or "filled" not in str(getattr(o, "status", "")).lower():
                 continue
             fa = getattr(o, "filled_at", None)
@@ -448,6 +454,23 @@ def scan_once(
     if mkt_bias != 0:
         journal.log("info", f"market bias today = {'risk-on' if mkt_bias == 1 else 'risk-off'}")
 
+    # News gate (config `news_filter:`): one API call per scan. Symbols with a fresh
+    # headline get their mean-reversion signals dropped below — a stock moving on news
+    # trends, and fading a news move is how reversion strategies get run over.
+    # Momentum/trend (APEX) signals are unaffected. Fail-open: API error -> no gate.
+    news_syms: set[str] = set()
+    news_block_bots: set[str] = set()
+    nf = s.raw.get("news_filter") or {}
+    if nf.get("enabled") and s.profile_name != "crypto":
+        news_block_bots = set(nf.get("block_bots") or [])
+        headlines = news_fetch_headlines(
+            s.alpaca_key, s.alpaca_secret, symbols,
+            hours=float(nf.get("lookback_hours", 18)),
+        )
+        news_syms = set(headlines)
+        if news_syms:
+            journal.log("info", f"news gate: fresh headlines on {', '.join(sorted(news_syms))}")
+
     for symbol in symbols:
         try:
             if broker and broker.has_position(symbol):
@@ -481,6 +504,12 @@ def scan_once(
             # Per-bot envelope: drop signals from bots that hit their daily gates.
             if halted_bots:
                 signals = [sg for sg in signals if bot_of.get(sg.strategy) not in halted_bots]
+            # News gate: drop blocked bots' signals on symbols with fresh headlines.
+            if news_block_bots and symbol.replace("/", "") in news_syms:
+                before_news = len(signals)
+                signals = [sg for sg in signals if bot_of.get(sg.strategy) not in news_block_bots]
+                if len(signals) < before_news:
+                    journal.log("info", f"{symbol}: news gate dropped {before_news - len(signals)} reversion signal(s)")
             # Act on signals that completed on a recent closed bar. Keep the freshest
             # signal PER STRATEGY (not just the single global latest) so momentum /
             # macd_trend / squeeze — whose crossovers fire mid-session — actually get

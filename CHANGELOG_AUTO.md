@@ -105,3 +105,31 @@ its keep (band_tag 1.51 → 1.94 with filter on).
 
 **Gates:** pytest 73/73 passed. Backtest baseline identical (no strategy code changed).
 **EVAL_SINCE:** unchanged — review infra only, live strategy history remains valid.
+
+## 2026-07-08 (evening, user-directed) — trade-ledger bug hunt + news layer
+
+Reviewed all 37 closed round-trips order-by-order. Three defects found, two fixed:
+
+1. **Anti-stacking guard blind to the new bots** (`Broker.has_open_order`): it only
+   matched `bot-`/`tjr-` order ids, so pending `apx-`/`rip-` entries were invisible
+   and a later scan could stack a second bracket on the same symbol. Fixed with a
+   shared `BOT_ORDER_PREFIXES` tuple.
+2. **Market entries inherited stale-price geometry**: stops/targets are computed off
+   the signal bar (15-min delayed IEX), but the MARKET entry filled at the live
+   price — ledger showed stops filling 0.08–0.5% from entry despite the 1.5% floor
+   (MSFT 06-23 stopped the minute it entered; AAPL 07-01 stopped 0.54% below fill).
+   "market" entries are now marketable LIMITs capped 0.3% through the signal price:
+   fill near the plan or don't fill at all (no trade = no risk). EVAL_SINCE → 2026-07-09.
+3. **Account-level daily trade/loss counters don't see apx-/rip- orders** — reviewed
+   with the user, kept AS DESIGNED for the learning phase (per-bot envelopes + the
+   prefix-independent 5% equity halt govern the bots) and documented in code.
+
+**News layer (user directive "go off the news every morning")**: new `tjrbot/news.py`
+(Alpaca/Benzinga, free with existing keys, fail-open). Engine gate drops RIPTIDE
+reversion signals on symbols with a headline in the last 18h (`news_filter:` config) —
+news moves trend; fading them is how reversion gets run over. New
+`scripts/morning_brief.py` + CI mode `morning-brief` sends a pre-open Telegram digest
+(needs a cron-job.org entry ~9:00 ET weekdays, mode=morning-brief).
+
+**Gates:** pytest 86/86 (13 new tests in tests/test_execution_and_news.py);
+compare_strategies 60 unchanged (band_tag 1.94 / noise_band 1.13 / orb 1.03 with filter).

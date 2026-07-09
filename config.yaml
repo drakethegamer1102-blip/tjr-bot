@@ -69,6 +69,16 @@ market_filter: true
 # was up. A 0.25% threshold catches those earlier. Backtest: 55%->57% win, +$7.9k->$9.8k.
 market_bias_min_pct: 0.25
 
+# News gate (2026-07-08, user directive "go off the news every morning"): symbols with
+# an Alpaca/Benzinga headline in the last lookback_hours get their MEAN-REVERSION
+# signals dropped — news moves trend, and fading a news move is how reversion gets run
+# over. Trend/momentum (APEX) still trades them. Fail-open on API errors. The morning
+# Telegram digest is scripts/morning_brief.py (CI mode "morning-brief").
+news_filter:
+  enabled: true
+  lookback_hours: 18
+  block_bots: [riptide]
+
 # ----- Virtual bots (2026-07-08) -----
 # Two ensembles trade side by side in this one paper account, tracked by order-tag
 # prefix (apx-/rip-). LEARNING PHASE by user directive: many trades at LOW per-trade
