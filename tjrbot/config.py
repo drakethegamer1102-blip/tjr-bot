@@ -11,6 +11,13 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent  # trading-bot/
 
+# Every client_order_id prefix the engine has ever written. THE canonical copy —
+# engine, execution, and reconcile all import this (2026-07-09: three hand-rolled
+# copies had drifted; reconcile's was missing "tjr-", so legacy round-trips never
+# reached the journal). "bot-" = legacy single-bot era, "tjr-" = pre-multi-strategy
+# era, "apx-"/"rip-" = the APEX and RIPTIDE virtual bots.
+BOT_PREFIXES = ("bot-", "tjr-", "apx-", "rip-")
+
 
 def load_env(path: Path | None = None) -> None:
     """Minimal .env loader (KEY=VALUE per line). Does not overwrite real env vars."""

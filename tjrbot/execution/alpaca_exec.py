@@ -16,6 +16,8 @@ from alpaca.trading.requests import (
     TakeProfitRequest,
 )
 
+from ..config import BOT_PREFIXES
+
 
 class Broker:
     def __init__(self, key: str, secret: str, paper: bool = True):
@@ -54,19 +56,15 @@ class Broker:
         )
         return self.tc.get_orders(filter=req)
 
-    # Every client_order_id prefix the engine writes (mirror of engine.BOT_PREFIXES,
-    # duplicated here so the execution layer never imports the engine). 2026-07-08:
-    # apx-/rip- were missing, so the anti-stacking guard below ignored pending
-    # APEX/RIPTIDE entries and a later scan could double up on the same symbol.
-    BOT_ORDER_PREFIXES = ("bot-", "tjr-", "apx-", "rip-")
-
     def has_open_order(self, symbol: str) -> bool:
         """True if any pending bot order exists for the symbol (prevents stacking
-        a second bracket on a symbol whose first entry hasn't filled yet)."""
+        a second bracket on a symbol whose first entry hasn't filled yet).
+        2026-07-08: apx-/rip- were missing from the old hardcoded prefix tuple, so
+        pending APEX/RIPTIDE entries were invisible and a later scan could double up."""
         try:
             for o in self.open_orders(symbol):
                 cid = o.client_order_id or ""
-                if cid.startswith(self.BOT_ORDER_PREFIXES):
+                if cid.startswith(BOT_PREFIXES):
                     return True
         except Exception:
             pass

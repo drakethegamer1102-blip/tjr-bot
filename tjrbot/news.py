@@ -17,7 +17,7 @@ def fetch_headlines(
     secret: str,
     symbols: list[str],
     hours: float = 18,
-    limit: int = 50,
+    limit: int = 200,
 ) -> dict[str, list[str]]:
     """symbol -> headlines from the last `hours`, newest first.
 
@@ -32,12 +32,24 @@ def fetch_headlines(
         return {}
     try:
         client = NewsClient(key, secret)
-        req = NewsRequest(
-            symbols=",".join(sorted(want)),
-            start=dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=hours),
-            limit=limit,
-        )
-        items = client.get_news(req).data.get("news", [])
+        # Alpaca caps each page at 50 stories. A busy 18h window over a ~29-symbol
+        # watchlist can exceed one page, and a truncated fetch silently reads as
+        # "no news" for the missing symbols — so follow next_page_token (bounded,
+        # so a runaway feed can't stall a scan).
+        items: list = []
+        page_token = None
+        for _ in range(4):
+            req = NewsRequest(
+                symbols=",".join(sorted(want)),
+                start=dt.datetime.now(dt.timezone.utc) - dt.timedelta(hours=hours),
+                limit=min(limit, 50),
+                page_token=page_token,
+            )
+            ns = client.get_news(req)
+            items.extend(ns.data.get("news", []))
+            page_token = getattr(ns, "next_page_token", None)
+            if not page_token or len(items) >= limit:
+                break
     except Exception:  # noqa: BLE001 - news must never take down a scan
         return {}
     out: dict[str, list[str]] = {}

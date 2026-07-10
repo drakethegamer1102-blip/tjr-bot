@@ -133,3 +133,30 @@ news moves trend; fading them is how reversion gets run over. New
 
 **Gates:** pytest 86/86 (13 new tests in tests/test_execution_and_news.py);
 compare_strategies 60 unchanged (band_tag 1.94 / noise_band 1.13 / orb 1.03 with filter).
+
+## 2026-07-09 (user-directed) — second bug sweep: 4 found, 4 fixed
+
+1. **vwap_rev could never fire** (the big one): the 06-12 EMA-alignment filter
+   contradicted its own stretch condition — price >2.5 ATR above VWAP is virtually
+   never below EMA20 on the same bar. 60d backtest: ZERO trades while "enabled".
+   Removed the gate; counter-trend protection stays with the engine's ADX regime
+   filter + market-breadth filter (built after that gate, for exactly that job).
+   Variant sweep: no-EMA = 31 trades / 55% win / PF 2.18 / +$1,237 over 60d
+   (stricter-RSI and 3-ATR variants worse or dead — the EMA gate was the defect,
+   not looseness). Rewrote the two EMA-gate unit tests: one now covers the plain
+   oversold-stretch long, the other proves regime.filter_signals blocks the
+   counter-trend short the removed gate used to.
+2. **reconcile.py missed legacy trades**: its prefix tuple lacked "tjr-", so
+   pre-multi-strategy round-trips never reached the journal. Root cause was three
+   hand-rolled copies of the prefix list — now ONE canonical `BOT_PREFIXES` in
+   config.py, imported by engine, execution, and reconcile.
+3. **News fetch could silently truncate**: Alpaca caps a page at 50 stories; a busy
+   18h window over ~29 symbols overflows that, and missing symbols read as "no
+   news" (gate fails open). fetch_headlines now follows next_page_token (max 4
+   pages / 200 stories). Live check: 68 headlines across the watchlist.
+4. Stale regime.py docstring said the filter is "off by default" — it has been on
+   since 06-12.
+
+**Gates:** pytest 86/86. Backtest: vwap_rev 0 trades -> PF 2.18/31t; all other
+strategies unchanged (orb/noise_band moved ±0.01-0.06 purely from the 60d window
+sliding a day). EVAL_SINCE already 2026-07-09, covers the vwap_rev change.

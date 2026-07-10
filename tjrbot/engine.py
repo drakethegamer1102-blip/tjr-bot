@@ -17,7 +17,7 @@ import time
 
 import pandas as pd
 
-from .config import Settings
+from .config import BOT_PREFIXES, Settings
 from .data.alpaca_data import get_crypto_bars, get_stock_bars
 from .journal import Journal
 from .news import fetch_headlines as news_fetch_headlines
@@ -35,10 +35,8 @@ _AGG = {"open": "first", "high": "max", "low": "min", "close": "last", "volume":
 # bar closing and the next 5-min scan firing. 3 bars ≈ last 15 min on 5-min data.
 FRESH_BARS = 3
 
-# Every client_order_id prefix this engine has ever written. "bot-" = legacy single-bot
-# era, "tjr-" = pre-multi-strategy era, "apx-"/"rip-" = the APEX and RIPTIDE virtual
-# bots (2026-07-08). Order-history scans (halts, summaries, reconcile) match on these.
-BOT_PREFIXES = ("bot-", "tjr-", "apx-", "rip-")
+# BOT_PREFIXES moved to config.py (canonical copy; engine/execution/reconcile all
+# import it so the three can't drift apart again). Re-exported here for callers.
 
 
 def _recent_bars(s: Settings, symbol: str, tf: str, days: int = 3) -> pd.DataFrame:

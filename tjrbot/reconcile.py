@@ -7,6 +7,8 @@ P&L, and store it in the journal. Idempotent: each setup is recorded only once.
 
 from __future__ import annotations
 
+from .config import BOT_PREFIXES
+
 
 def compute_pnl(side: str, entry: float, exit_: float, qty: float) -> float:
     return (exit_ - entry) * qty if side == "long" else (entry - exit_) * qty
@@ -27,7 +29,7 @@ def reconcile(broker, journal, *, limit: int = 200) -> int:
     recorded = 0
     for o in orders or []:
         coid = getattr(o, "client_order_id", None) or ""
-        if not coid.startswith(("bot-", "apx-", "rip-")) or journal.has_trade(coid):
+        if not coid.startswith(BOT_PREFIXES) or journal.has_trade(coid):
             continue
         entry_px = getattr(o, "filled_avg_price", None)
         if not _filled(getattr(o, "status", "")) or not entry_px:

@@ -6,7 +6,8 @@ no longs in a clear downtrend. In a range (no clear trend) both sides are allowe
 mean-reversion can still work. Trend is judged CAUSALLY per bar (only bars <= i) and only
 flags a direction when ADX shows real trend STRENGTH, so normal fades are not blocked.
 Direction comes from price vs VWAP, VWAP slope, and a fast EMA. (Standard practice: trade
-with the trend; fade only in ranges.) NOTE: off by default — see `regime_filter` in config.yaml.
+with the trend; fade only in ranges.) Toggled by `regime_filter` in config.yaml
+(enabled since 2026-06-12).
 """
 
 from __future__ import annotations
