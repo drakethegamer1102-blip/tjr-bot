@@ -22,6 +22,21 @@ entries); loosens no risk control.
 isn't in that harness — the tracked aggregate is untouched, so the change can't worsen it).
 
 **Diagnosis notes (no action, for next run):**
+- **★ BIGGEST FINDING — ~45% of trades exit UNMANAGED (bracket canceled at EOD, dumped at
+  next-day market open).** 29 of ~65 tagged entries have bracket legs `['CANCELED','CANCELED']`:
+  the stop+target were canceled at 4pm and the position was force-closed via a next-day
+  SIMPLE MARKET order (27 such liquidations, every single trading day incl. 07-14 MSFT/QQQ/TSM).
+  Nearly half of trades never touch their planned stop/target — they exit at an arbitrary
+  overnight-gap price with no risk management. Since backtests assume stop/target fills, this
+  is the primary reason live PF (0.53) collapses vs backtest (1.25+), i.e. the real "no green
+  day" cause. Mechanism: `submit_bracket` uses `TimeInForce.DAY` (alpaca_exec.py:100) so
+  brackets expire at the close; engine.py:141 claims "GTC brackets" cover overnight but that
+  is FALSE. `flatten_if_eod` (15:45–16:00) runs inside the 5-min scan, so GitHub-cron drift
+  that skips the final scan leaves the position naked overnight → next-morning stale-flatten.
+  FIX (next run, NOT blanket-GTC — that risks stale next-day entry fills): (a) reliability —
+  a dedicated 15:55 ET cron job that force-flattens, independent of the 5-min scan (USER infra
+  action on cron-job.org); (b) code — at EOD, re-submit a standalone GTC stop for any position
+  the flatten couldn't close so it's never naked. This outranks the RIPTIDE news-gate item.
 - The strategy_report reads ALL closed Alpaca orders (limit 500), so `core.tjr` −$3,044
   and `apex.noise_band` −$1,013 are **legacy** from before those were disabled (tjr last
   traded 07-07, noise_band 07-08). They are NOT still trading; the headline equity drop is
