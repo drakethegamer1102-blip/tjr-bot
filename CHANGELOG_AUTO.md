@@ -3,6 +3,37 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-07-14 — momentum adx_min 20→30 (tighten chop filter)
+
+**Change:** `strategies.momentum.adx_min: 20 → 30` in config.yaml. One change this run.
+
+**Evidence:** Live APEX momentum was the active bleeder — PF 0.53, win 25% over 8
+filled trades (07-09..07-14). Winners were 07-09 trend-day longs (MSFT +$145, META
++$258); the losses were low-conviction breakouts on choppy days that reversed on entry
+(PLTR −$164, AVGO −$130, EWY −$122, MU −$65, SPCX −$180). This is exactly the failure
+the strategy's own docstring warns about ("breakouts only work when ADX confirms trend").
+60d / 10-symbol backtest sweep (research script, since compare_strategies.py does NOT
+cover momentum): adx_min 20 → PF 1.25 / 54% / 259 trades; adx_min **30 → PF 1.33 / 55%
+/ 207 trades** (>150-trade, PF≥1.2 gate cleared); 35 marginally higher (1.36) but thinner
+— 30 chosen as the robust, non-overfit point. Strictly a tightening (fewer, higher-quality
+entries); loosens no risk control.
+
+**Gates:** pytest 86/86 pass. compare_strategies.py 60 unchanged vs baseline (momentum
+isn't in that harness — the tracked aggregate is untouched, so the change can't worsen it).
+
+**Diagnosis notes (no action, for next run):**
+- The strategy_report reads ALL closed Alpaca orders (limit 500), so `core.tjr` −$3,044
+  and `apex.noise_band` −$1,013 are **legacy** from before those were disabled (tjr last
+  traded 07-07, noise_band 07-08). They are NOT still trading; the headline equity drop is
+  dominated by that pre-fix history, not current behavior.
+- **RIPTIDE is effectively silent** — vwap_rev 0 fills and band_tag 1 order all-time since
+  the 07-08 split. Half the ensemble isn't trading. Worth diagnosing whether news_filter +
+  market_filter are gating out every reversion signal. Under the 20-trade floor → report only.
+- **Coverage gap:** compare_strategies.py backtests tjr/orb/vwap_rev/noise_band/gap_fade/
+  band_tag but NOT the 3 live APEX strategies (momentum/macd_trend/squeeze_breakout). The
+  protocol's "backtest must not worsen" gate is blind to the strategies actually trading.
+  Adding them to the harness is a candidate change for a future run.
+
 ## 2026-07-08 — APEX + RIPTIDE: two virtual bots (user-directed build)
 
 **Root-cause findings that shaped this:**

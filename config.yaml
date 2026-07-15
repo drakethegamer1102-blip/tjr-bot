@@ -119,7 +119,11 @@ strategies:
   # momentum: trend breakout (fast EMA>slow EMA + N-bar high break). 30d backtest
   # 2026-06-13: PF 1.58, +$4,638 / 167 trades. Live 20t PF 1.01 under the old 3R-rewrite
   # sizing; moves to APEX where its own 2R targets are honored.
-  momentum: { enabled: true, bot: apex, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0, adx_min: 20 }
+  # adx_min 20->30 (2026-07-14): live PF 0.53 over 8 trades came from choppy breakouts
+  # (PLTR/AVGO/EWY/MU longs that reversed on entry). 60d/10-sym backtest: adx_min 30 lifts
+  # PF 1.25->1.33, win 54%->55% over 207 trades (>150 sample) — a tightening, per the
+  # strategy's own "breakouts only work when ADX confirms trend" thesis. One change this run.
+  momentum: { enabled: true, bot: apex, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0, adx_min: 30 }
   # macd_trend: MACD(12,26,9) cross gated by zero line + trend EMA. 30d backtest PF 2.76.
   macd_trend: { enabled: true, bot: apex, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0, adx_min: 20 }
   # squeeze_breakout: BB-inside-Keltner squeeze release on volume. 30d backtest PF 1.69; live 2/2.
