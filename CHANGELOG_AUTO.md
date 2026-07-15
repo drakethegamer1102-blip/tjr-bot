@@ -26,9 +26,17 @@ isn't in that harness — the tracked aggregate is untouched, so the change can'
   and `apex.noise_band` −$1,013 are **legacy** from before those were disabled (tjr last
   traded 07-07, noise_band 07-08). They are NOT still trading; the headline equity drop is
   dominated by that pre-fix history, not current behavior.
-- **RIPTIDE is effectively silent** — vwap_rev 0 fills and band_tag 1 order all-time since
-  the 07-08 split. Half the ensemble isn't trading. Worth diagnosing whether news_filter +
-  market_filter are gating out every reversion signal. Under the 20-trade floor → report only.
+- **RIPTIDE silent — ROOT CAUSE FOUND: news gate 18h lookback.** Deep-dive this run:
+  vwap_rev/band_tag generate a healthy ~25 signals per 5 sessions across 9 symbols, spread
+  through the day, and they survive session/regime/freshness/plan_trade. The blocker is
+  `news_filter.lookback_hours: 18` with `block_bots: [riptide]` — measured live, an 18h
+  window flags a fresh headline on **8 of 9 watchlist symbols simultaneously** (every
+  mega-cap + index ETF always has news in any 18h window), so reversion is structurally
+  disabled on the core list. Lookback sweep: 1–4h → 0 blocked, 6h → 2 (MSFT/SPY), 12h → 8,
+  18h → 8. **PRE-LOADED next-run change: `lookback_hours 18 → 6`** — targets genuinely-fresh
+  intraday news (the thing reversion should avoid fading) instead of overnight flow. This is
+  narrowing an over-broad SIGNAL filter, not loosening a risk rail (size/stops/halt/kill-switch
+  untouched; trades stay bracketed). Deferred to next run only to honor one-change-per-run.
 - **Coverage gap:** compare_strategies.py backtests tjr/orb/vwap_rev/noise_band/gap_fade/
   band_tag but NOT the 3 live APEX strategies (momentum/macd_trend/squeeze_breakout). The
   protocol's "backtest must not worsen" gate is blind to the strategies actually trading.
