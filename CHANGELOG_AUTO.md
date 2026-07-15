@@ -3,6 +3,46 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-07-15 — NO CHANGE (verified last run's ★ finding, deferred the fix)
+
+**Live report:** equity $89,371 (today $-339). `core.tjr` and `apex.noise_band` are the
+big legacy negatives (−$2,877 / −$1,013) but both are disabled and stopped trading
+07-07/07-08 — not current bleed. `apex.momentum` (11t, PF 0.34, −$768) is the live
+concern; only 11 closed trades, below the protocol's 20-trade floor, so no action per
+the anti-overfitting rule (need ≥20 before judging/disabling).
+
+**Backtest (`compare_strategies.py 60`):** unchanged shape from prior runs — noise_band
+1.21, band_tag 1.36→1.60 with regime filter, orb 1.08, tjr 0.79 (regime filter makes tjr
+slightly worse, −2021 vs −1894 — consistent with tjr already being disabled live).
+
+**Investigated 2026-07-14's ★ finding (DAY-TIF bracket expiry → ~45% unmanaged exits):**
+Confirmed the mechanism in code — `submit_bracket` (`alpaca_exec.py:100`) submits the
+bracket's TP/SL legs at the parent's `time_in_force`, which is `TimeInForce.DAY`, so they
+expire at 16:00 ET regardless of the position. `flatten_if_eod` (`engine.py:132`) already
+covers this well IF at least one 5-min scan lands in the 15:45-19:45 ET window: regular
+session gets a plain market close, after-hours gets `close_all_positions_extended_hours`
+(`alpaca_exec.py:161`), which cancels stray orders first and submits extended-hours
+marketable-limit exits valid to 20:00. `flatten_stale_positions` (`engine.py:191`) is the
+next-morning backstop. So the true gap is narrower than "45% unmanaged": it's only the
+window where cron-job.org drops **every** scan across the full 4-hour flatten window —
+an infra failure, not a strategy/logic bug, and not something config or a strategy-code
+change can fix.
+
+The code-level hardening last run proposed (resubmit a standalone GTC stop the moment a
+bracket entry fills, so a naked position is never possible even with a fully-missed
+flatten window) requires new order-lifecycle logic: tracking a resting protective stop
+across fills, canceling it cleanly on normal bracket exit, and not double-submitting on
+every 5-min scan. That's real surface area on the live order path, and I have no way to
+validate it against a live fill tonight, unattended. Per the protocol ("when unsure, make
+NO change"), I'm deferring this rather than shipping an unverified order-management
+change. Recommend the user either (a) review/land this fix in an attended session, or
+(b) do the cheaper reliability fix first — a dedicated 15:55 ET cron-job.org entry that
+calls flatten independent of the 5-min scan, shrinking the missed-window blast radius
+without touching order code at all.
+
+**Gates:** pytest 86/86 passed. No code changed — backtest baseline untouched by
+definition.
+
 ## 2026-07-14 — momentum adx_min 20→30 (tighten chop filter)
 
 **Change:** `strategies.momentum.adx_min: 20 → 30` in config.yaml. One change this run.
