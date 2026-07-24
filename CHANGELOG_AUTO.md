@@ -3,6 +3,27 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-07-24 (user-directed) — re-enable squeeze_breakout (07-21 cut was wrong)
+
+**Reversing part of the 07-21 audit.** The user challenged the squeeze_breakout cut and
+was right. That cut leaned on the 60d free-IEX backtest (PF ~0.83, losing) over the live
+record — but this whole bot's hard lesson is that the delayed-feed backtest is the LESS
+trustworthy witness (it's what flattered momentum before momentum went 0-for-11 live).
+
+Live P&L pulled fresh from Alpaca (through 07-24): squeeze_breakout is the **2nd-best
+strategy on the board** — +$213 over 5 closed trades, 60% win (GOOG +$68 / GOOGL +$62 /
+META +$95 shorts; INTC -$5 / MU -$7 near-breakeven). Only orb (+$553/3t, live) is better.
+
+RE-ENABLED on the same "watch first 20 live fills" probation as orb. 5 trades is thin, so
+this grows the sample rather than declaring victory; it remains a market-entry breakout
+(shares the latency exposure), so if the edge reverts the nightly review re-cuts it.
+Downside is bounded by the APEX per-bot envelope + the 5% daily account halt.
+
+Enabled roster now: **orb, squeeze_breakout, vwap_rev, band_tag, confluence.**
+
+**Gates:** pytest 90/90. Config-only change (YAML validated). No strategy code touched.
+EVAL_SINCE (GH Actions var) still wants a bump to 2026-07-21+ for the nightly tuner.
+
 ## 2026-07-21 (user-directed) — full strategy audit: cut 2 losers, built + shipped a merged strategy
 
 **User ask:** audit every strategy, cut the ones not winning, web-research new strategies,
