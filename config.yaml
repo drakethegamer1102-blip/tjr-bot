@@ -143,10 +143,18 @@ strategies:
   # (like noise_band's design) that fills at the live breakout level instead of the
   # stale signal price — real order-lifecycle surface area, not an unattended change.
   momentum: { enabled: false, bot: apex, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0, adx_min: 30 }
-  # macd_trend: MACD(12,26,9) cross gated by zero line + trend EMA. 30d backtest PF 2.76.
-  macd_trend: { enabled: true, bot: apex, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0, adx_min: 20 }
-  # squeeze_breakout: BB-inside-Keltner squeeze release on volume. 30d backtest PF 1.69; live 2/2.
-  squeeze_breakout: { enabled: true, bot: apex, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0 }
+  # macd_trend: MACD(12,26,9) cross gated by zero line + trend EMA.
+  # DISABLED 2026-07-21 (audit): 60d full-matrix backtest PF 1.12 (marginal, well below
+  # the ~1.2 keep bar), live 6 trades / 33% / -$220. It's a market-entry breakout, so it
+  # carries the same 15-min-delay fill decay that killed momentum (entry computed off a
+  # stale signal bar). Weak edge + known structural latency flaw = cut.
+  macd_trend: { enabled: false, bot: apex, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0, adx_min: 20 }
+  # squeeze_breakout: BB-inside-Keltner squeeze release on volume.
+  # DISABLED 2026-07-21 (audit): 60d full-matrix backtest PF 0.80 (LOSING), exp -$10/trade
+  # over 37 trades. Live is +$213 over just 5 trades — too small a sample to override a
+  # losing backtest on a strategy with a negative expectancy. Also a market-entry breakout
+  # (same latency flaw). Cut; the nightly review can re-enable if a backtest clears PF>=1.2.
+  squeeze_breakout: { enabled: false, bot: apex, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0 }
   # noise_band (NEW 07-08): Zarattini-style intraday momentum — break of the average
   # time-of-day move-from-open envelope, VWAP-aligned. Precomputed levels tolerate the
   # 15-min IEX delay. Published evidence class: Concretum "Beat the Market" (SPY).
@@ -163,6 +171,24 @@ strategies:
   # band_tag (NEW 07-08): Keltner 2.5xATR band tag + RSI(2) extreme, daily SMA10 trend
   # gate (Connors-style: only fade WITH the higher-timeframe trend). Target = band mid.
   band_tag: { enabled: true, bot: riptide, kc_mult: 2.5, rsi_lo: 5, rsi_hi: 95, stop_atr: 1.2, sma_days: 10 }
+
+  # confluence (NEW 2026-07-21): the "merged" strategy, built from the fundamentals of the
+  # three strategies that survived the audit (vwap_rev + band_tag + orb) plus VWAP-reversion
+  # web research. Fades the ±1.5-SD VWAP band ONLY when 4 edges align: (1) volume-weighted
+  # SD stretch from VWAP, (2) RSI(14) extreme, (3) daily-trend gate (fade WITH the higher-tf
+  # trend, Connors-style), (4) above-avg volume — plus session-timing (skip open + midday
+  # lull). Entry is a LIMIT retrace (band_tag's latency-safe fill), so it's immune to the
+  # 15-min IEX delay that killed the market-entry breakouts. Target = VWAP, stop = 2 SD.
+  # Tuned + OUT-OF-SAMPLE validated (60d, regime on): PF 2.76 / 57% win over 16 test
+  # symbols, PF 2.23 on 8 symbols never used in tuning, PF 1.31 stretched over 28 symbols.
+  # Regime-dependent (PF ~1.11 with the filter off) — expected for a fade; the daily gate +
+  # engine regime filter are load-bearing. A stop-geometry guard (only take the trade when
+  # the -stop band sits below entry and VWAP above it) rejects the incoherent early-session
+  # setups that inflated an initial sweep. SELECTIVE by design (~14 trades/60d/16 syms) —
+  # it waits for real 4-way confluence, so it won't trade often. Watch its first 20 LIVE
+  # trades before trusting fully: the backtest fills a limit on a retrace, and live data
+  # lag can miss a fill the backtest assumes; if live fill rate is poor, revisit.
+  confluence: { enabled: true, bot: riptide, band_sigma: 1.5, stop_sigma: 2.0, rsi_period: 14, rsi_lo: 30, rsi_hi: 70, sma_days: 10 }
 
   # orb: opening-range breakout, gated by VWAP side. The "lost in backtest" comment
   # this carried was stale — every compare_strategies.py run on record shows it

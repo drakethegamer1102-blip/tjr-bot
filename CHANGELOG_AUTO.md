@@ -3,6 +3,65 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-07-21 (user-directed) — full strategy audit: cut 2 losers, built + shipped a merged strategy
+
+**User ask:** audit every strategy, cut the ones not winning, web-research new strategies,
+and build ONE new strategy merging the fundamentals of what's working.
+
+**Full-matrix backtest (new `scripts/compare_all.py`, 60d, 8 core symbols — the old
+compare_strategies.py omitted the APEX momentum family):** ranked all 9 by PF + live P&L.
+Reconciled against a fresh direct-from-Alpaca live P&L pull (48 round-trips through 07-21).
+Key lesson reaffirmed: **backtest PF is untrustworthy for market-entry breakout strategies**
+— momentum backtests 1.29 but went 0-for-11 live, because the backtest fills at the signal
+bar's close while live fills 15 min later off delayed IEX data. So live evidence overrides
+backtest wherever the two disagree.
+
+**Cuts (2 new disables):**
+- `macd_trend`: backtest PF 1.12 (marginal), live 6t/33%/-$220, market-entry breakout with
+  the same latency flaw as momentum. Cut.
+- `squeeze_breakout`: backtest PF 0.80 (LOSING), -$10/trade over 37t; live +$213 over only
+  5t is too small to override a negative-expectancy backtest. Cut.
+- (already off, confirmed staying off: momentum, noise_band, tjr, gap_fade, rsi_pullback,
+  bollinger_rev.)
+
+**Final roster — 4 enabled:** `orb` (APEX, PF 1.23), `vwap_rev` (RIPTIDE, PF 2.12 w/regime),
+`band_tag` (RIPTIDE, PF 1.24 w/regime), `confluence` (RIPTIDE, NEW). Note the whole APEX
+momentum family died from the delayed-feed latency flaw; the surviving edge is almost all
+mean-reversion (RIPTIDE), which *tolerates* the 15-min delay — you fade INTO the lag instead
+of chasing through it. This matches the web research below.
+
+**Web research (WebSearch sweep on VWAP reversion + ORB + breakout entries):** VWAP 2-SD
+reversion reverts ~63% of the time intraday (QuantConnect / quantifiedstrategies), stop past
+3 SD / target VWAP, needs a mandatory regime filter (fails badly on trend days), best in the
+first 90 min + last 60 min, avoid the mid-day lull. Breakouts: resting stop-entry orders fill
+at the real level regardless of your data delay (the proper fix for momentum, deferred);
+RVOL>2 is the highest-value breakout filter.
+
+**NEW STRATEGY — `confluence` (tjrbot/strategies/confluence.py):** the requested merge. Built
+from the shared DNA of the three survivors + the research. Fades the ±1.5-SD VWAP band ONLY
+when four independent edges align: (1) a volume-weighted-SD stretch from VWAP (from vwap_rev,
+upgraded from ATR-multiple to a true VWAP sigma band per the research), (2) RSI(14) extreme
+(from vwap_rev/band_tag), (3) a daily-trend gate — fade WITH the higher-timeframe trend,
+Connors-style (from band_tag), (4) above-average volume (from vwap_rev/orb). Plus session
+timing (skip the open + the mid-day lull) and — critically — a **limit (retrace) entry** (from
+band_tag), which is IMMUNE to the delayed-feed latency flaw that killed the breakouts. Target
+= VWAP, stop = 2 SD.
+
+Tuning was disciplined: the first cut (RSI(2)≤5) was far too strict — PF 0.86. A parameter
+sweep found RSI(14) 30/70 + 1.5-SD band + 2.0-SD stop, then it was validated OUT-OF-SAMPLE on
+8 symbols never used in tuning (PF 2.23) and across 16/28 symbols (PF 2.76 / 1.31), and it
+stays positive with the regime filter off (PF ~1.11). A **stop-geometry guard** (only fire
+when the -stop band is below entry and VWAP above it) was added after a unit test caught an
+inverted-stop trade on early-session bars where sigma is still tiny — that guard trimmed the
+inflated early numbers to the honest PF 2.76. It's SELECTIVE by design (~14 trades/60d/16 syms)
+and flagged in config to watch its first 20 LIVE trades (backtest assumes a retrace limit fills;
+live data lag can miss it).
+
+**Gates:** pytest 90/90 (4 new confluence tests, incl. the daily-gate block + the stop-guard).
+New `scripts/compare_all.py` is the full-matrix tool going forward. EVAL_SINCE (GH Actions var,
+not editable here) should be bumped to 2026-07-21 so the nightly tuner judges the new roster
+fresh.
+
 ## 2026-07-20 (user-directed) — surfaced a 12-day silent-bot bug, disabled momentum, re-enabled orb
 
 **Biggest finding: an uncommitted local fix from 07-19 was never shipped.** `FRESH_BARS`
