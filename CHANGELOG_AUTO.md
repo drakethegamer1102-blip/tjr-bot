@@ -3,6 +3,76 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-07-20 (user-directed) — surfaced a 12-day silent-bot bug, disabled momentum, re-enabled orb
+
+**Biggest finding: an uncommitted local fix from 07-19 was never shipped.** `FRESH_BARS`
+(engine.py) had been 3 (~15 min) since the beginning; with 5-min scans plus feed lag the
+signal bar is routinely 4-8 bars behind "now" by the time a scan runs, so the freshness
+filter matched almost no signals — **the bot placed ~0 trades for 12 days, 07-07→07-19**.
+This sat in the working tree, uncommitted and unpushed, discovered only because tonight's
+session found `tjrbot/engine.py` modified with no corresponding commit. Fixed value
+(FRESH_BARS=6, ~30 min) was already validated via a day-of-live-scan replay per its own
+code comment. Committing it now — this is likely the single biggest lever in this diff,
+bigger than either strategy change below, since a strategy that never trades can't
+recover no matter how good its edge is.
+
+**Live P&L pull direct from Alpaca (GH Actions ledger, not local state/bot.db which is
+stale/pre-multi-strategy):** equity $88,264 (was $89,371 on 07-15, $90,204 on 07-08 —
+steady bleed). Reconstructed 46 closed round-trips 06-26..07-17 by pairing bracket
+parents with their filled TP/SL legs (client_order_id prefix → bot/strategy).
+
+**apex.momentum DISABLED** — CI's 07-17 nightly auto-tune (commit 63bc3d6) already did
+this independently, same conclusion. The 07-14 adx_min 20→30 tune (shipped on an 8-trade
+sample) did not fix the bleed — it went 0-for-11 / **-$1,743** in the three trading days
+after (07-14..07-17), on top of -$65 before it. Total live: 17 trades, 1 win, PF≈0. This
+is a 17-trade, ~6% win-rate result; if the strategy's true win rate were anywhere near
+the claimed 55% backtest figure, seeing 1 win in 17 is roughly a 1-in-2000 event — this
+is a broken strategy, not bad luck.
+
+Root cause is structural, confirmed in code: `alpaca_exec.py` computes entry/stop/target
+off the signal bar's close on **15-min-delayed free IEX data**, then fills as a
+marketable limit capped 0.3% through that stale price minutes later (this is the same
+delay the 07-08 fix already flagged, but that fix only capped entry slippage — it didn't
+address that stop/target geometry is still anchored to a stale reference). Breakout/
+momentum entries are the most latency-sensitive signal type that exists: by the time the
+fill lands, the move the breakout was chasing has typically already extended and started
+reverting, so the position opens near the local top/bottom almost regardless of ADX.
+Mean-reversion strategies (vwap_rev, band_tag) don't share this failure mode — fading
+into a delay works in the strategy's favor instead of against it. Every post-tune loss
+(META/NFLX/DRAM/MU/INTC/TSM/AMD/PYPL/TSLA/AVGO/PLTR) fits this pattern: small, fast
+stop-outs within the same session, clustered in the first two hours after open.
+
+Config change only (`strategies.momentum.enabled: false`); no code touched. Deferred:
+rewriting momentum to a resting stop-entry (fills at the live breakout price instead of
+a delayed close), same fix philosophy as noise_band's design — real order-lifecycle
+surface area, not something to ship unattended.
+
+**apex.orb RE-ENABLED.** Its config comment ("OFF: lost in backtest") was stale — every
+`compare_strategies.py 60` run on record shows it profitable: PF 1.06 (07-07), 1.08
+(07-09), 1.16 / +$3,887 / 224 trades (07-20, today). Consistent across independent
+60-day windows and a large sample (>150 trades every time) — clears the PF≥1.2-ish bar
+in spirit and the >150-trade evidence floor easily. Assigned to `bot: apex` (it's a
+same-direction breakout, not a fade). Same market-entry-off-delayed-signal-bar mechanism
+that hurt momentum applies here too, but ORB only takes one shot per direction per day
+off a fixed opening range — much less exposed than momentum's rolling 20-bar breakout
+that can re-trigger all session. Flagged in config to watch its first 20 live trades
+before trusting it fully.
+
+**Also confirmed, no action needed:** `noise_band` already disabled (0-for-5, -$1,013,
+matches prior finding). `regime_filter: true` is live and working (engine.py:406's
+inline comment claiming "off by default" is stale/wrong — harmless, doc-only). `macd_trend`
+(5 trades) and `band_tag`/RIPTIDE (4 trades) too small to judge either way per the
+20-trade protocol floor. `squeeze_breakout` is the one clean live winner: 5 trades,
+60% win, +$213 — left unchanged.
+
+**EVAL_SINCE:** needs bumping to 2026-07-20 in the GitHub Actions repo variable/secret —
+not editable from this environment (it's a GH Actions env var, not in config.yaml).
+User action required: update it so the nightly auto-tuner's clock on momentum/orb
+starts fresh from this change instead of judging pre-fix history.
+
+**Gates:** pytest 86/86 passed. `compare_strategies.py 60` numbers above are this run's
+live baseline (unchanged by the config-only edit — it hardcodes its own strategy builds).
+
 ## 2026-07-15 — NO CHANGE (verified last run's ★ finding, deferred the fix)
 
 **Live report:** equity $89,371 (today $-339). `core.tjr` and `apex.noise_band` are the

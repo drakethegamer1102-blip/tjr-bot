@@ -30,6 +30,12 @@ stop_mode: structural
 # keeping PF ~1.4-1.6. Wider stops let winners breathe; this is the main win-rate fix.
 min_stop_pct: 0.015
 
+# How many recently-closed bars a signal may be old and still tradeable. 2026-07-19:
+# raised 3 -> 6. At 3 (≈15 min) the bot matched almost no signals live (5-min scans +
+# feed lag put the signal bar 4-8 bars behind "now") and placed ~0 trades for 12 days.
+# 6 (≈30 min) recovers the full actionable signal set while staying near real time.
+fresh_bars: 6
+
 # Partial take-profit (split each entry into a 1R half + full-target half). OFF: the
 # two halves share one stop, so a stop-out loses both fully while a win caps the first
 # half — strictly worse than a single bracket, and no backtest benefit. See engine.py.
@@ -123,6 +129,19 @@ strategies:
   # (PLTR/AVGO/EWY/MU longs that reversed on entry). 60d/10-sym backtest: adx_min 30 lifts
   # PF 1.25->1.33, win 54%->55% over 207 trades (>150 sample) — a tightening, per the
   # strategy's own "breakouts only work when ADX confirms trend" thesis. One change this run.
+  # DID NOT WORK: live went 0-for-11 / -$1,743 in the 3 trading days right after (07-14
+  # ..07-17), on top of -$65 before it — total live PF ~0 over 17 trades post-fix and
+  # pre-fix combined. CI already disabled it here (07-17 auto-tune commit 63bc3d6).
+  # Root cause is structural, not a parameter: entry/stop/target are all computed off
+  # the signal bar's close on 15-min-delayed IEX data (see alpaca_exec.py
+  # ENTRY_SLIPPAGE_CAP), then filled minutes later as a marketable limit. Breakout/
+  # momentum entries are the most latency-sensitive signal type there is — by the time
+  # the fill lands, the move the breakout was chasing has typically already extended
+  # and started reverting, so the position opens near the local top/bottom regardless
+  # of ADX. Mean-reversion strategies (vwap_rev, band_tag) don't have this problem —
+  # fading INTO the delay helps them. Stays OFF pending a resting-stop-entry rewrite
+  # (like noise_band's design) that fills at the live breakout level instead of the
+  # stale signal price — real order-lifecycle surface area, not an unattended change.
   momentum: { enabled: false, bot: apex, ema_fast: 9, ema_slow: 21, lookback: 20, min_rr: 2.0, adx_min: 30 }
   # macd_trend: MACD(12,26,9) cross gated by zero line + trend EMA. 30d backtest PF 2.76.
   macd_trend: { enabled: true, bot: apex, fast: 12, slow: 26, signal: 9, trend_ema: 50, min_rr: 2.0, adx_min: 20 }
@@ -145,8 +164,16 @@ strategies:
   # gate (Connors-style: only fade WITH the higher-timeframe trend). Target = band mid.
   band_tag: { enabled: true, bot: riptide, kc_mult: 2.5, rsi_lo: 5, rsi_hi: 95, stop_atr: 1.2, sma_days: 10 }
 
-  # --- dormant (enable only on PF>=1.2 backtest evidence per protocol) ---
-  orb:      { enabled: false, or_minutes: 15 } # opening-range breakout (OFF: lost in backtest)
+  # orb: opening-range breakout, gated by VWAP side. The "lost in backtest" comment
+  # this carried was stale — every compare_strategies.py run on record shows it
+  # profitable (60d: PF 1.06 on 07-07, 1.08 on 07-09, 1.16/+$3,887/224t on 07-20),
+  # consistent across multiple independent windows and >150 trades. Moved to APEX
+  # (trend/momentum family) since it's a same-direction breakout, not a fade.
+  # Re-enabled 2026-07-20. Watch first 20 live trades before trusting it fully —
+  # same market-entry-off-delayed-signal-bar mechanism that hurt momentum (see that
+  # entry's note); ORB's single-shot-per-day-off-a-fixed-range structure is less
+  # exposed to that than momentum's rolling 20-bar breakout, but it is not immune.
+  orb:      { enabled: true, bot: apex, or_minutes: 15 }
   rsi_pullback: { enabled: false }             # Connors RSI(2) — 30d backtest PF 0.88 (loses), OFF
   # bollinger_rev: BB(20,2σ) mean-reversion + RSI. 30d backtest PF 1.00 (breakeven) — OFF
   # until it shows an edge; the nightly review can auto-enable it if PF>1.2.

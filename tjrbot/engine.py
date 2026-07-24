@@ -32,8 +32,15 @@ _AGG = {"open": "first", "high": "max", "low": "min", "close": "last", "volume":
 
 # Act on a signal only if it completed within the last FRESH_BARS closed bars. Keeps
 # entries near real time (no chasing stale setups) while tolerating the gap between a
-# bar closing and the next 5-min scan firing. 3 bars ≈ last 15 min on 5-min data.
-FRESH_BARS = 3
+# bar closing and the next scan firing.
+#
+# 2026-07-19 CRITICAL FIX: was 3 (≈15 min). That silently killed the bot — signals
+# fire mid-session and, with 5-min scans + Alpaca feed lag, the signal bar is routinely
+# 4-8 bars behind "now" by the time a scan runs, so 3 bars matched ~0 signals and the
+# bot placed ~0 trades for 12 days (07-07 → 07-19). A day-of-live-scan replay showed
+# FRESH_BARS=6 recovers the full actionable set (6 setups → 20) while staying recent
+# (≈30 min). Tunable via config `fresh_bars`.
+FRESH_BARS = 6
 
 # BOT_PREFIXES moved to config.py (canonical copy; engine/execution/reconcile all
 # import it so the three can't drift apart again). Re-exported here for callers.
@@ -514,7 +521,8 @@ def scan_once(
             # submitted instead of always losing the tie to whichever strategy printed
             # last. (Pre-2026-06-18: a single `max(fresh)` meant the new strategies
             # generated dozens of signals but almost never traded.)
-            fresh = [sig for sig in signals if sig.index >= len(today) - FRESH_BARS]
+            fresh_bars = int(s.get("fresh_bars", FRESH_BARS))
+            fresh = [sig for sig in signals if sig.index >= len(today) - fresh_bars]
             if not fresh:
                 continue
             freshest_by_strat: dict[str, "Signal"] = {}
