@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import pandas as pd
 
+from ..indicators import vwap
 from ..indicators_extra import bollinger, keltner
 from ..smc.signals import Signal
 from ..smc.zones import atr
@@ -32,6 +33,7 @@ def generate(
     min_rr: float = 2.0,
     atr_period: int = 14,
     stop_atr: float = 1.0,
+    vwap_confirm: bool = True,
     **_,
 ) -> list[Signal]:
     warmup = max(bb_period, kc_period, vol_period) + 2
@@ -50,6 +52,12 @@ def generate(
     squeeze_on = (bbu < kcu) & (bbl > kcl)
     avg_vol = today["volume"].rolling(vol_period).mean().to_numpy()
     a = atr(today, atr_period).to_numpy()
+    # orb's winning edge, ported 2026-07-27: only take a breakout that agrees with VWAP
+    # (the day's volume-weighted fair value). A break WITH real order flow behind it is
+    # on the trend-consistent side of VWAP; a break against VWAP is usually a false pop
+    # that reverts. This is the single filter that separates orb (live winner) from the
+    # breakout strategies that died. Cheap, no look-ahead (VWAP is causal/cumulative).
+    vw = vwap(today).to_numpy()
 
     out: list[Signal] = []
     fired_long = fired_short = False
@@ -64,18 +72,18 @@ def generate(
         vol_ok = vol[i] > vol_mult * avg_vol[i]
         if not vol_ok:
             continue
-        if not fired_long and c[i] > bbu[i]:
+        if not fired_long and c[i] > bbu[i] and (not vwap_confirm or c[i] > vw[i]):
             entry = float(c[i])
             stop = entry - stop_atr * a[i]
             out.append(Signal(i, "long", entry, stop, entry + min_rr * (entry - stop),
-                              ["squeeze release", "close > BB upper", "volume surge"],
+                              ["squeeze release", "close > BB upper", "volume surge", "above VWAP"],
                               strategy="squeeze_breakout", entry_type="market"))
             fired_long = True
-        elif not fired_short and c[i] < bbl[i]:
+        elif not fired_short and c[i] < bbl[i] and (not vwap_confirm or c[i] < vw[i]):
             entry = float(c[i])
             stop = entry + stop_atr * a[i]
             out.append(Signal(i, "short", entry, stop, entry - min_rr * (stop - entry),
-                              ["squeeze release", "close < BB lower", "volume surge"],
+                              ["squeeze release", "close < BB lower", "volume surge", "below VWAP"],
                               strategy="squeeze_breakout", entry_type="market"))
             fired_short = True
         if fired_long and fired_short:

@@ -3,6 +3,31 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-07-27 (user-directed) — port orb's winning edge (VWAP confirm) into squeeze_breakout
+
+**Why orb wins (studied from today's live fills + the code):** today was +$740, all 6
+trades ORB, 4W/2L. Every fill landed 9:55–10:15 ET — right after the 15-min opening
+range forms. Its edge is four things: (1) ONE fixed reference (the 9:30–9:45 range), not
+a rolling level that re-triggers all day the way momentum's 20-bar high did; (2) a
+two-factor gate — break of range AND correct side of VWAP (real order flow behind the
+move); (3) one shot per direction per day (minimal latency/over-trading exposure);
+(4) a structural stop (the opposite side of the range = a true invalidation level).
+
+**Portable piece = the VWAP-confirmation filter.** Applied it to squeeze_breakout (the
+other enabled APEX breakout, which lacked it): a long now requires close > VWAP, a short
+requires close < VWAP. Config-gated `vwap_confirm: true` (default on, tunable).
+Real-engine 60d backtest: -$813 -> -$533 (removes the 5 worst trades, win% 44->45). Both
+still negative in the delayed-feed backtest — but this is the correct direction, making
+the strategy selective the way orb is. Not forced onto the mean-reversion strategies
+(vwap_rev/band_tag/confluence already use VWAP as their anchor; a break-confirm filter
+doesn't apply to fades).
+
+**Also delivered (user request):** `~/Desktop/ORB TRADING.md` — a standalone, hand-off
+spec of ORB with three sections: plain-English transcript (how it trades, for a human),
+a precise rule spec, and drop-in self-contained Python (only needs pandas). The exported
+code was executed standalone to confirm it produces a correct signal before shipping.
+
+**Gates:** pytest 90/90. YAML validated. graphify updated. No change to orb itself.
 ## 2026-07-24 (user-directed) — re-enable squeeze_breakout (07-21 cut was wrong)
 
 **Reversing part of the 07-21 audit.** The user challenged the squeeze_breakout cut and

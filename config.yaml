@@ -159,7 +159,11 @@ strategies:
   # not a verdict. Downside capped by the APEX per-bot envelope + 5% daily account halt.
   # It IS a market-entry breakout (shares orb/momentum's latency exposure) — if the live
   # edge reverts as the sample grows, the nightly review re-cuts it. One shot/dir/day.
-  squeeze_breakout: { enabled: true, bot: apex, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0 }
+  # vwap_confirm (2026-07-27): ported orb's winning edge — only take the breakout if it
+  # agrees with VWAP (long above / short below the day's volume-weighted fair value).
+  # Real-engine 60d backtest: -$813 -> -$533, removes the 5 worst trades. It's the one
+  # filter that separates orb (live winner) from the breakouts that died.
+  squeeze_breakout: { enabled: true, bot: apex, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0, vwap_confirm: true }
   # noise_band (NEW 07-08): Zarattini-style intraday momentum — break of the average
   # time-of-day move-from-open envelope, VWAP-aligned. Precomputed levels tolerate the
   # 15-min IEX delay. Published evidence class: Concretum "Beat the Market" (SPY).
