@@ -54,7 +54,9 @@ def main(argv: list[str]) -> int:
     if not _live_gate(s.alpaca_paper):
         return 2
 
-    feed = os.getenv("REBOUND_FEED", "iex")
+    # An unset GitHub secret resolves to "" (not absent), which is an invalid feed value —
+    # treat blank/whitespace as the default. Same guard for the live-confirm key below.
+    feed = (os.getenv("REBOUND_FEED") or "").strip().lower() or "iex"
     eng = ReboundEngine(broker, data, ReboundConfig(feed=feed))
 
     tag = "PAPER" if s.alpaca_paper else "LIVE"
