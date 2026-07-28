@@ -6,6 +6,9 @@ PyYAML>=6.0
 # Broker + market data
 alpaca-py>=0.20
 
+# Real futures data (ES=F) for the daily futures strategies + backtests
+yfinance>=0.2.40
+
 # Notifications (Telegram via simple HTTP calls)
 requests>=2.31
 

@@ -1,0 +1,692 @@
+{
+  "DAYBREAK": {
+    "equity": 51731.8,
+    "trades": [
+      {
+        "day": "2026-05-01",
+        "side": "long",
+        "entry": 7256.0,
+        "exit": 7258.0,
+        "points": 2.0,
+        "pnl": 20.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-04",
+        "side": "long",
+        "entry": 7276.25,
+        "exit": 7230.25,
+        "points": -46.0,
+        "pnl": -460.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-05",
+        "side": "long",
+        "entry": 7228.75,
+        "exit": 7287.25,
+        "points": 58.5,
+        "pnl": 585.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-06",
+        "side": "long",
+        "entry": 7300.5,
+        "exit": 7389.5,
+        "points": 89.0,
+        "pnl": 890.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-07",
+        "side": "long",
+        "entry": 7380.5,
+        "exit": 7363.0,
+        "points": -17.5,
+        "pnl": -175.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-08",
+        "side": "long",
+        "entry": 7340.0,
+        "exit": 7419.0,
+        "points": 79.0,
+        "pnl": 790.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-11",
+        "side": "long",
+        "entry": 7403.5,
+        "exit": 7436.75,
+        "points": 33.25,
+        "pnl": 332.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-12",
+        "side": "long",
+        "entry": 7435.5,
+        "exit": 7426.5,
+        "points": -9.0,
+        "pnl": -90.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-13",
+        "side": "long",
+        "entry": 7419.25,
+        "exit": 7469.5,
+        "points": 50.25,
+        "pnl": 502.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-14",
+        "side": "long",
+        "entry": 7477.5,
+        "exit": 7525.5,
+        "points": 48.0,
+        "pnl": 480.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-15",
+        "side": "long",
+        "entry": 7522.25,
+        "exit": 7432.25,
+        "points": -90.0,
+        "pnl": -900.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-18",
+        "side": "long",
+        "entry": 7410.0,
+        "exit": 7425.75,
+        "points": 15.75,
+        "pnl": 157.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-19",
+        "side": "long",
+        "entry": 7423.5,
+        "exit": 7378.0,
+        "points": -45.5,
+        "pnl": -455.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-20",
+        "side": "long",
+        "entry": 7377.0,
+        "exit": 7451.75,
+        "points": 74.75,
+        "pnl": 747.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-21",
+        "side": "long",
+        "entry": 7432.75,
+        "exit": 7466.0,
+        "points": 33.25,
+        "pnl": 332.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-22",
+        "side": "long",
+        "entry": 7467.0,
+        "exit": 7491.0,
+        "points": 24.0,
+        "pnl": 240.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-26",
+        "side": "long",
+        "entry": 7519.0,
+        "exit": 7537.0,
+        "points": 18.0,
+        "pnl": 180.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-27",
+        "side": "long",
+        "entry": 7533.0,
+        "exit": 7540.0,
+        "points": 7.0,
+        "pnl": 70.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-28",
+        "side": "long",
+        "entry": 7553.75,
+        "exit": 7581.75,
+        "points": 28.0,
+        "pnl": 280.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-05-29",
+        "side": "long",
+        "entry": 7587.5,
+        "exit": 7595.75,
+        "points": 8.25,
+        "pnl": 82.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-01",
+        "side": "long",
+        "entry": 7595.0,
+        "exit": 7613.25,
+        "points": 18.25,
+        "pnl": 182.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-02",
+        "side": "long",
+        "entry": 7612.0,
+        "exit": 7623.75,
+        "points": 11.75,
+        "pnl": 117.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-03",
+        "side": "long",
+        "entry": 7628.0,
+        "exit": 7571.75,
+        "points": -56.25,
+        "pnl": -562.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-04",
+        "side": "long",
+        "entry": 7539.75,
+        "exit": 7601.0,
+        "points": 61.25,
+        "pnl": 612.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-05",
+        "side": "long",
+        "entry": 7589.5,
+        "exit": 7400.5,
+        "points": -189.0,
+        "pnl": -1890.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-08",
+        "side": "long",
+        "entry": 7368.0,
+        "exit": 7416.0,
+        "points": 48.0,
+        "pnl": 480.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-09",
+        "side": "long",
+        "entry": 7412.75,
+        "exit": 7392.75,
+        "points": -20.0,
+        "pnl": -200.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-10",
+        "side": "long",
+        "entry": 7380.0,
+        "exit": 7278.5,
+        "points": -101.5,
+        "pnl": -1015.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-11",
+        "side": "long",
+        "entry": 7259.25,
+        "exit": 7396.0,
+        "points": 136.75,
+        "pnl": 1367.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-12",
+        "side": "long",
+        "entry": 7397.5,
+        "exit": 7435.0,
+        "points": 37.5,
+        "pnl": 375.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-15",
+        "side": "long",
+        "entry": 7480.0,
+        "exit": 7561.25,
+        "points": 81.25,
+        "pnl": 812.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-16",
+        "side": "long",
+        "entry": 7560.75,
+        "exit": 7518.5,
+        "points": -42.25,
+        "pnl": -422.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-17",
+        "side": "long",
+        "entry": 7514.5,
+        "exit": 7424.5,
+        "points": -90.0,
+        "pnl": -900.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-18",
+        "side": "long",
+        "entry": 7440.5,
+        "exit": 7508.43,
+        "points": 67.93,
+        "pnl": 679.3,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-22",
+        "side": "long",
+        "entry": 7543.25,
+        "exit": 7541.25,
+        "points": -2.0,
+        "pnl": -20.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-23",
+        "side": "long",
+        "entry": 7541.25,
+        "exit": 7437.5,
+        "points": -103.75,
+        "pnl": -1037.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-24",
+        "side": "long",
+        "entry": 7449.25,
+        "exit": 7428.25,
+        "points": -21.0,
+        "pnl": -210.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-25",
+        "side": "long",
+        "entry": 7476.25,
+        "exit": 7423.25,
+        "points": -53.0,
+        "pnl": -530.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-26",
+        "side": "long",
+        "entry": 7431.0,
+        "exit": 7401.75,
+        "points": -29.25,
+        "pnl": -292.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-29",
+        "side": "long",
+        "entry": 7398.0,
+        "exit": 7500.25,
+        "points": 102.25,
+        "pnl": 1022.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-06-30",
+        "side": "long",
+        "entry": 7495.5,
+        "exit": 7548.25,
+        "points": 52.75,
+        "pnl": 527.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-01",
+        "side": "long",
+        "entry": 7543.25,
+        "exit": 7543.5,
+        "points": 0.25,
+        "pnl": 2.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-02",
+        "side": "long",
+        "entry": 7536.0,
+        "exit": 7528.25,
+        "points": -7.75,
+        "pnl": -77.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-06",
+        "side": "long",
+        "entry": 7562.25,
+        "exit": 7591.5,
+        "points": 29.25,
+        "pnl": 292.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-07",
+        "side": "long",
+        "entry": 7597.0,
+        "exit": 7551.25,
+        "points": -45.75,
+        "pnl": -457.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-08",
+        "side": "long",
+        "entry": 7545.0,
+        "exit": 7528.75,
+        "points": -16.25,
+        "pnl": -162.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-09",
+        "side": "long",
+        "entry": 7517.25,
+        "exit": 7588.75,
+        "points": 71.5,
+        "pnl": 715.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-10",
+        "side": "long",
+        "entry": 7587.25,
+        "exit": 7620.25,
+        "points": 33.0,
+        "pnl": 330.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-13",
+        "side": "long",
+        "entry": 7607.0,
+        "exit": 7563.0,
+        "points": -44.0,
+        "pnl": -440.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-14",
+        "side": "long",
+        "entry": 7557.0,
+        "exit": 7591.25,
+        "points": 34.25,
+        "pnl": 342.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-15",
+        "side": "long",
+        "entry": 7589.75,
+        "exit": 7614.75,
+        "points": 25.0,
+        "pnl": 250.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-16",
+        "side": "long",
+        "entry": 7615.0,
+        "exit": 7577.75,
+        "points": -37.25,
+        "pnl": -372.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-17",
+        "side": "long",
+        "entry": 7572.75,
+        "exit": 7497.75,
+        "points": -75.0,
+        "pnl": -750.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-20",
+        "side": "long",
+        "entry": 7485.0,
+        "exit": 7484.25,
+        "points": -0.75,
+        "pnl": -7.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-21",
+        "side": "long",
+        "entry": 7484.0,
+        "exit": 7545.75,
+        "points": 61.75,
+        "pnl": 617.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-22",
+        "side": "long",
+        "entry": 7545.0,
+        "exit": 7540.25,
+        "points": -4.75,
+        "pnl": -47.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-23",
+        "side": "long",
+        "entry": 7530.25,
+        "exit": 7445.0,
+        "points": -85.25,
+        "pnl": -852.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-24",
+        "side": "long",
+        "entry": 7450.5,
+        "exit": 7447.5,
+        "points": -3.0,
+        "pnl": -30.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-27",
+        "side": "long",
+        "entry": 7490.0,
+        "exit": 7448.25,
+        "points": -41.75,
+        "pnl": -417.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-28",
+        "side": "long",
+        "entry": 7464.0,
+        "exit": 7473.0,
+        "points": 9.0,
+        "pnl": 90.0,
+        "note": "bull regime (>200d SMA)"
+      }
+    ]
+  },
+  "REBOUND": {
+    "equity": 54126.8,
+    "trades": [
+      {
+        "day": "2026-05-19",
+        "side": "long",
+        "entry": 7423.5,
+        "exit": 7378.0,
+        "points": -45.5,
+        "pnl": -455.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-05-20",
+        "side": "long",
+        "entry": 7377.0,
+        "exit": 7451.75,
+        "points": 74.75,
+        "pnl": 747.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-06-11",
+        "side": "long",
+        "entry": 7259.25,
+        "exit": 7396.0,
+        "points": 136.75,
+        "pnl": 1367.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-06-18",
+        "side": "long",
+        "entry": 7440.5,
+        "exit": 7508.43,
+        "points": 67.93,
+        "pnl": 679.3,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-06-25",
+        "side": "long",
+        "entry": 7476.25,
+        "exit": 7423.25,
+        "points": -53.0,
+        "pnl": -530.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-06-26",
+        "side": "long",
+        "entry": 7431.0,
+        "exit": 7401.75,
+        "points": -29.25,
+        "pnl": -292.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-06-29",
+        "side": "long",
+        "entry": 7398.0,
+        "exit": 7500.25,
+        "points": 102.25,
+        "pnl": 1022.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-07-06",
+        "side": "long",
+        "entry": 7562.25,
+        "exit": 7591.5,
+        "points": 29.25,
+        "pnl": 292.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-07-09",
+        "side": "long",
+        "entry": 7517.25,
+        "exit": 7588.75,
+        "points": 71.5,
+        "pnl": 715.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-07-20",
+        "side": "long",
+        "entry": 7485.0,
+        "exit": 7484.25,
+        "points": -0.75,
+        "pnl": -7.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-07-21",
+        "side": "long",
+        "entry": 7484.0,
+        "exit": 7545.75,
+        "points": 61.75,
+        "pnl": 617.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-07-24",
+        "side": "long",
+        "entry": 7450.5,
+        "exit": 7447.5,
+        "points": -3.0,
+        "pnl": -30.0,
+        "note": "2 consecutive down days -> reversal"
+      }
+    ]
+  },
+  "GAPFILL": {
+    "equity": 51882.5,
+    "trades": [
+      {
+        "day": "2026-05-08",
+        "side": "long",
+        "entry": 7340.0,
+        "exit": 7419.0,
+        "points": 79.0,
+        "pnl": 790.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-06-04",
+        "side": "long",
+        "entry": 7539.75,
+        "exit": 7601.0,
+        "points": 61.25,
+        "pnl": 612.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-06-08",
+        "side": "long",
+        "entry": 7368.0,
+        "exit": 7416.0,
+        "points": 48.0,
+        "pnl": 480.0,
+        "note": "fade gap-down > 0.3%"
+      }
+    ]
+  }
+}

@@ -99,23 +99,29 @@ jobs:
         if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5' && github.event.schedule != '20 20 * * 1-5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}
         run: python scripts/run_bot.py --once
 
-      # ORB FUTURES paper simulation (prop-firm prep, MES proxied by SPY x10).
-      # Triggered once daily AFTER the close by a cron-job.org entry (mode=orb-futures,
-      # ~4:20 PM ET, Mon-Fri). Simulates the full session, appends CLOSED trades to the
-      # JSON ledger, sends a Telegram recap, then COMMITS the ledger back so the paper
-      # equity persists across GitHub's stateless runs. Paper/simulation only.
-      - name: ORB FUTURES paper sim
+      # FUTURES paper sims (prop-firm prep) — run once daily AFTER the close via GitHub's
+      # built-in cron (20:20 UTC = 4:20 PM ET, Mon-Fri) or on demand (mode=orb-futures).
+      # Two paper products, each its own Telegram message, both ledgers committed back so
+      # equity persists across GitHub's stateless runs. Paper/simulation only:
+      #   1. ORB FUTURES        — intraday ORB on micro index futures (MES/MNQ/M2K/MYM).
+      #   2. FUTURES DAILY      — the 3 validated daily edges DAYBREAK / REBOUND / GAPFILL
+      #                           on real ES=F data, one combined review message.
+      - name: Futures paper sims
         if: ${{ github.event.schedule == '20 20 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures') }}
         run: |
           set -e
-          python scripts/orb_futures_paper.py --days 1 --telegram
-          if [ -n "$(git status --porcelain orb_futures_ledger.json)" ]; then
-            git config user.name "tjr-bot[bot]"
-            git config user.email "tjr-bot@users.noreply.github.com"
-            git add orb_futures_ledger.json
-            git commit -m "chore(orb-futures): paper ledger update [skip ci]"
+          python scripts/orb_futures_paper.py --days 1 --telegram || true
+          python scripts/futures_daily_paper.py --days 5 --telegram || true
+          git config user.name "tjr-bot[bot]"
+          git config user.email "tjr-bot@users.noreply.github.com"
+          CHANGED=""
+          for f in orb_futures_ledger.json futures_daily_ledger.json; do
+            if [ -n "$(git status --porcelain "$f")" ]; then git add "$f"; CHANGED="yes"; fi
+          done
+          if [ -n "$CHANGED" ]; then
+            git commit -m "chore(futures): paper ledger update [skip ci]"
             git push
-            echo "ORB FUTURES ledger committed."
+            echo "Futures ledgers committed."
           else
-            echo "No new ORB FUTURES trades to record."
+            echo "No new futures trades to record."
           fi
