@@ -14,6 +14,7 @@ from . import (
     momentum,
     noise_band,
     orb,
+    orb_futures,
     rsi_pullback,
     squeeze_breakout,
     vwap_rev,
@@ -21,6 +22,7 @@ from . import (
 
 REGISTRY = {
     "orb": orb.generate,
+    "orb_futures": orb_futures.generate,
     "vwap_rev": vwap_rev.generate,
     "momentum": momentum.generate,
     "rsi_pullback": rsi_pullback.generate,
@@ -37,7 +39,7 @@ REGISTRY = {
 NEEDS_HIST = {"noise_band", "gap_fade", "band_tag", "confluence"}
 
 __all__ = [
-    "orb", "vwap_rev", "momentum", "rsi_pullback",
+    "orb", "orb_futures", "vwap_rev", "momentum", "rsi_pullback",
     "bollinger_rev", "macd_trend", "squeeze_breakout",
     "noise_band", "gap_fade", "band_tag", "confluence", "REGISTRY", "NEEDS_HIST",
 ]
