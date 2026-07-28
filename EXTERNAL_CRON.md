@@ -37,6 +37,13 @@ Every job uses the same URL + method + headers; only the body and schedule diffe
 | **Daily summary** | `{"ref":"main","inputs":{"mode":"summary"}}` | 16:05, Mon–Fri |
 | **Nightly review** | `{"ref":"main","inputs":{"mode":"review"}}` | 16:30, Mon–Fri |
 | **Weekly recap** | `{"ref":"main","inputs":{"mode":"weekly"}}` | 16:10, Fridays |
+| **REBOUND enter** | `{"ref":"main","inputs":{"mode":"rebound-open"}}` | 09:35, Mon–Fri |
+| **REBOUND exit** | `{"ref":"main","inputs":{"mode":"rebound-close"}}` | 15:55, Mon–Fri |
+| **Futures sims** | `{"ref":"main","inputs":{"mode":"orb-futures"}}` | 16:20, Mon–Fri |
+
+The last three moved off GitHub's built-in `schedule:` onto cron-job.org for reliability
+(GitHub cron delays/skips runs and auto-disables after 60 days of no commits). Once these
+are added and verified, the workflow's `schedule:` block can be removed (ask Claude).
 
 **Nightly review** is the self-improvement run: after the close it analyses the day's
 trades, auto-tunes `config.yaml` within guardrails (never touches risk rails, never
