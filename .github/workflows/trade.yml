@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "once | summary | weekly | healthcheck | strategy-report | review | morning-brief"
+        description: "once | summary | weekly | healthcheck | strategy-report | review | morning-brief | orb-futures"
         default: "healthcheck"
         type: string
 
@@ -93,3 +93,24 @@ jobs:
       - name: Trading cycle
         if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}
         run: python scripts/run_bot.py --once
+
+      # ORB FUTURES paper simulation (prop-firm prep, MES proxied by SPY x10).
+      # Run once daily AFTER the close (add a cron-job.org entry ~4:20 PM ET, Mon-Fri,
+      # mode=orb-futures). Simulates the full session, appends CLOSED trades to a local
+      # JSON ledger, sends a Telegram recap, then COMMITS the ledger back so the paper
+      # equity persists across GitHub's stateless runs. Paper/simulation only.
+      - name: ORB FUTURES paper sim
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures' }}
+        run: |
+          set -e
+          python scripts/orb_futures_paper.py --days 1 --telegram
+          if [ -n "$(git status --porcelain orb_futures_ledger.json)" ]; then
+            git config user.name "tjr-bot[bot]"
+            git config user.email "tjr-bot@users.noreply.github.com"
+            git add orb_futures_ledger.json
+            git commit -m "chore(orb-futures): paper ledger update [skip ci]"
+            git push
+            echo "ORB FUTURES ledger committed."
+          else
+            echo "No new ORB FUTURES trades to record."
+          fi

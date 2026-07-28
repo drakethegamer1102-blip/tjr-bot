@@ -37,7 +37,9 @@ PROXY_SYMBOL = "SPY"          # stands in for MES (both track the S&P 500)
 # approximation (SPY tracks total-return-adjusted price, not the exact index) but makes the
 # paper economics realistic instead of ~7x too small.
 PROXY_TO_INDEX = 10.0
-LEDGER = Path(__file__).resolve().parent.parent / "state" / "orb_futures_paper.json"
+# NOT under state/ (which is gitignored): this ledger is committed back by the GitHub
+# Actions workflow so paper equity survives GitHub's stateless runs.
+LEDGER = Path(__file__).resolve().parent.parent / "orb_futures_ledger.json"
 START_EQUITY = 50_000.0       # a typical futures paper/eval account size
 
 
