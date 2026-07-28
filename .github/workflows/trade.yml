@@ -3,13 +3,17 @@ name: TJR Bot (paper)
 # Runs on GitHub's free runners. Times are UTC, tuned for US Eastern DAYLIGHT
 # time (EDT = UTC-4). In winter (EST) shift the windows +1 hour (see DEPLOY.md).
 on:
-  # ALL scheduling is handled by cron-job.org (a reliable external timer) calling the
-  # workflow_dispatch API below, in America/New_York time:
-  #   - every 5 min          -> mode=once         (scan; self-filters to market hours)
-  #   - 4:05 PM ET, Mon-Fri  -> mode=summary      (daily recap)
-  #   - 4:10 PM ET, Fridays  -> mode=weekly       (weekly recap)
-  #   - 4:20 PM ET, Mon-Fri  -> mode=orb-futures  (ORB FUTURES paper sim)
-  # GitHub's built-in schedule was removed because it dropped/delayed runs.
+  # Intraday scheduling (every-5-min scans, daily/weekly recaps) is handled by
+  # cron-job.org calling the workflow_dispatch API below — GitHub's built-in schedule
+  # was too unreliable for time-critical 5-min trade scans.
+  #
+  # ORB FUTURES is a once-a-day, AFTER-CLOSE paper sim, so a few minutes of GitHub
+  # schedule jitter is harmless — it uses GitHub's built-in cron (no external timer /
+  # cron-job.org account needed). Runs 20:20 UTC = 4:20 PM ET (EDT). In winter (EST)
+  # bump to '20 21 * * 1-5' for a true after-close run (see DEPLOY.md DST note).
+  # If GitHub proves unreliable for it, move to a cron-job.org entry (mode=orb-futures).
+  schedule:
+    - cron: "20 20 * * 1-5"     # 4:20 PM ET (EDT), Mon-Fri -> ORB FUTURES paper sim
   workflow_dispatch:
     inputs:
       mode:
@@ -92,7 +96,7 @@ jobs:
           fi
 
       - name: Trading cycle
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}
+        if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5' && github.event.schedule != '20 20 * * 1-5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}
         run: python scripts/run_bot.py --once
 
       # ORB FUTURES paper simulation (prop-firm prep, MES proxied by SPY x10).
@@ -101,7 +105,7 @@ jobs:
       # JSON ledger, sends a Telegram recap, then COMMITS the ledger back so the paper
       # equity persists across GitHub's stateless runs. Paper/simulation only.
       - name: ORB FUTURES paper sim
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures' }}
+        if: ${{ github.event.schedule == '20 20 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures') }}
         run: |
           set -e
           python scripts/orb_futures_paper.py --days 1 --telegram
