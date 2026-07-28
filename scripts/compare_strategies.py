@@ -53,7 +53,7 @@ def main(argv: list[str]) -> int:
 
     bars_by_sym = {}
     for sym in symbols:
-        b = get_stock_bars(s.alpaca_key, s.alpaca_secret, sym, "5Min", days)
+        b = get_stock_bars(s.alpaca_key, s.alpaca_secret, sym, "5Min", days, realtime=False)
         if not b.empty and len(b) > 50:
             bars_by_sym[sym] = b
     print(f"Data: {list(bars_by_sym)}  (~{days}d, 5Min, free IEX feed — indicative only)")

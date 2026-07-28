@@ -145,7 +145,7 @@ def main(argv: list[str]) -> int:
     n_all = len(led["trades"]); net_all = sum(t["pnl"] for t in led["trades"])
     w_all = sum(1 for t in led["trades"] if t["pnl"] > 0)
     wr = (w_all / n_all * 100) if n_all else 0
-    head = ("🔮 <b>ORB FUTURES</b> (paper · micro index futures)\n"
+    head = ("📈 <b>FUTURES · ORB</b> (paper · micro index futures)\n"
             f"equity <b>${led['equity']:,.0f}</b>  ·  lifetime {n_all}t · "
             f"{wr:.0f}% win · net ${net_all:+,.0f}")
     if new_trades:

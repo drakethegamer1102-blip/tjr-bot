@@ -28,7 +28,7 @@ def main(argv: list[str]) -> int:
         bars = get_crypto_bars(s.alpaca_key, s.alpaca_secret, symbol, tf, days)
         sessions = ("ny", "london")
     else:  # stock
-        bars = get_stock_bars(s.alpaca_key, s.alpaca_secret, symbol, tf, days)
+        bars = get_stock_bars(s.alpaca_key, s.alpaca_secret, symbol, tf, days, realtime=False)
         sessions = ("ny_open",)
 
     print(f"Fetched {len(bars)} {tf} bars for {symbol} (~{days} days).")

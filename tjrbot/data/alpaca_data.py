@@ -44,6 +44,45 @@ def _clean(df: pd.DataFrame | None, symbol: str) -> pd.DataFrame:
     return df.sort_index()
 
 
+def _append_realtime_bar(
+    df: pd.DataFrame, client: StockHistoricalDataClient, symbol: str,
+    timeframe: str, feed: DataFeed,
+) -> pd.DataFrame:
+    """Extend `df` with a real-time 'current' bar built from the latest live trade.
+
+    The historical-bars endpoint on IEX lags ~16 min, so the newest completed bar is
+    stale. The latest-trade endpoint is real-time (seconds fresh) on the SAME free plan.
+    We snap the live trade price to the current bar's timestamp bucket and append/merge it
+    so every strategy sees price right up to NOW. Fail-open: any error -> return df
+    unchanged (a scan must never crash on this).
+    """
+    try:
+        from alpaca.data.requests import StockLatestTradeRequest
+        tr = client.get_stock_latest_trade(
+            StockLatestTradeRequest(symbol_or_symbols=symbol, feed=feed))[symbol]
+        price = float(tr.price)
+        ts = pd.to_datetime(tr.timestamp, utc=True)
+        if price <= 0 or df.empty:
+            return df
+        # bucket the live trade into the current timeframe bar (floor to the interval)
+        tf = _parse_tf(timeframe)
+        minutes = {"1Min": 1, "5Min": 5, "15Min": 15, "30Min": 30}.get(timeframe, 5)
+        bucket = ts.floor(f"{minutes}min")
+        if bucket <= df.index[-1]:
+            # live trade falls inside the last known bar — just update its close/high/low
+            last = df.iloc[-1]
+            df.loc[df.index[-1], "high"] = max(float(last["high"]), price)
+            df.loc[df.index[-1], "low"] = min(float(last["low"]), price)
+            df.loc[df.index[-1], "close"] = price
+        else:
+            # a new forming bar since the last completed one
+            df.loc[bucket] = {"open": price, "high": price, "low": price,
+                              "close": price, "volume": 0.0}
+        return df.sort_index()
+    except Exception:
+        return df
+
+
 def get_stock_bars(
     key: str,
     secret: str,
@@ -51,8 +90,16 @@ def get_stock_bars(
     timeframe: str = "5Min",
     days: int = 30,
     feed: DataFeed = DataFeed.SIP,
+    realtime: bool = True,
 ) -> pd.DataFrame:
-    """Fetch bars using SIP (real-time) if the plan allows it, falling back to IEX (15-min delay)."""
+    """Fetch recent bars, extended with a REAL-TIME current bar so strategies see price
+    up to NOW — not the ~16-min-stale newest IEX historical bar.
+
+    The historical-bars endpoint lags (IEX ~16 min; SIP ~1 min), but the latest-TRADE
+    endpoint is real-time on the same plan. We fetch the completed bars, then append a
+    live forming bar from the latest trade (`realtime=True`, the default). Pass
+    `realtime=False` for backtests / when a purely-historical series is wanted.
+    """
     client = StockHistoricalDataClient(key, secret)
     # SIP: data is available up to ~1 min ago; IEX needs a 16-min buffer.
     end_sip = dt.datetime.now(dt.timezone.utc) - dt.timedelta(minutes=1)
@@ -67,13 +114,16 @@ def get_stock_bars(
             end=end,
             feed=f,
         )
-        return _clean(client.get_stock_bars(req).df, symbol)
+        df = _clean(client.get_stock_bars(req).df, symbol)
+        if realtime:
+            df = _append_realtime_bar(df, client, symbol, timeframe, f)
+        return df
 
     if feed == DataFeed.SIP:
         try:
             return _fetch(DataFeed.SIP, end_sip)
         except Exception:
-            # Free plan: SIP not allowed — fall back to IEX silently.
+            # Free plan: SIP not allowed — fall back to IEX silently (still real-time via trade).
             return _fetch(DataFeed.IEX, end_iex)
     return _fetch(feed, end_iex)
 

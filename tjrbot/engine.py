@@ -189,7 +189,7 @@ def flatten_if_eod(s: Settings, broker, notifier, journal: Journal) -> None:
         if n:
             when = "EOD" if in_regular_window else "after-hours"
             if notifier:
-                notifier.send(f"⏹️ {when} flatten — closing {n} open position(s).")
+                notifier.send(f"🛡️ RISK · {when} flatten — closing {n} open position(s).")
             journal.log("info", f"{when} flatten: {n} positions")
     except Exception as e:  # noqa: BLE001
         journal.log("error", f"eod flatten: {e}")
@@ -226,7 +226,7 @@ def flatten_stale_positions(s: Settings, broker, notifier, journal: Journal) -> 
             except Exception as e:  # noqa: BLE001
                 journal.log("error", f"stale flatten {p.symbol}: {e}")
     if closed and notifier:
-        notifier.send(f"⚠️ Closed {closed} stale overnight position(s) at session open.")
+        notifier.send(f"🛡️ RISK · Closed {closed} stale overnight position(s) at session open.")
 
 
 def _position_opened_today(broker, symbol: str, today) -> bool:
@@ -799,7 +799,7 @@ def run_forever(s: Settings, interval: int = 60, force: bool = False) -> None:
     broker = Broker(s.alpaca_key, s.alpaca_secret, paper=s.alpaca_paper)
     notifier = TelegramNotifier(s.telegram_token, s.telegram_chat_id)
     journal = Journal()
-    notifier.send("🤖 <b>TJR bot started</b> (paper). Watching the market for setups…")
+    notifier.send("🔧 SYSTEM · <b>TJR bot started</b> (paper). Watching the market for setups…")
     journal.log("info", "bot started")
 
     while True:

@@ -12,12 +12,17 @@ on:
   # cron-job.org account needed). Runs 20:20 UTC = 4:20 PM ET (EDT). In winter (EST)
   # bump to '20 21 * * 1-5' for a true after-close run (see DEPLOY.md DST note).
   # If GitHub proves unreliable for it, move to a cron-job.org entry (mode=orb-futures).
+  # REBOUND is a daily strategy (enter near the open, exit near the close) — minutes of
+  # schedule jitter don't matter, so it uses GitHub's built-in cron too. Times are EDT
+  # (summer); in winter (EST) add 1 hour to each (see DEPLOY.md DST note).
   schedule:
-    - cron: "20 20 * * 1-5"     # 4:20 PM ET (EDT), Mon-Fri -> ORB FUTURES paper sim
+    - cron: "20 20 * * 1-5"     # 4:20 PM ET (EDT), Mon-Fri -> ORB FUTURES + FUTURES DAILY
+    - cron: "35 13 * * 1-5"     # 9:35 AM ET (EDT), Mon-Fri -> REBOUND enter (--open)
+    - cron: "55 19 * * 1-5"     # 3:55 PM ET (EDT), Mon-Fri -> REBOUND exit  (--close)
   workflow_dispatch:
     inputs:
       mode:
-        description: "once | summary | weekly | healthcheck | strategy-report | review | morning-brief | orb-futures"
+        description: "once | summary | weekly | healthcheck | strategy-report | review | morning-brief | orb-futures | rebound-open | rebound-close"
         default: "healthcheck"
         type: string
 
@@ -96,7 +101,7 @@ jobs:
           fi
 
       - name: Trading cycle
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5' && github.event.schedule != '20 20 * * 1-5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}
+        if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5' && github.event.schedule != '20 20 * * 1-5' && github.event.schedule != '35 13 * * 1-5' && github.event.schedule != '55 19 * * 1-5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}
         run: python scripts/run_bot.py --once
 
       # FUTURES paper sims (prop-firm prep) — run once daily AFTER the close via GitHub's
@@ -125,3 +130,23 @@ jobs:
           else
             echo "No new futures trades to record."
           fi
+
+      # REBOUND live strategy (SPY, real-time feed) — the one validated live-tradable edge.
+      # ENTER near the open: 13:35 UTC = 9:35 AM ET (EDT), or on demand (mode=rebound-open).
+      # Enters only if REBOUND fired (2 down days) and the circuit breaker passes; idempotent.
+      # PAPER unless ALPACA_PAPER=false AND REBOUND_LIVE_CONFIRM=I_UNDERSTAND are set as secrets.
+      - name: REBOUND enter
+        if: ${{ github.event.schedule == '35 13 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'rebound-open') }}
+        env:
+          REBOUND_LIVE_CONFIRM: ${{ secrets.REBOUND_LIVE_CONFIRM }}
+          REBOUND_FEED: ${{ secrets.REBOUND_FEED }}
+        run: python scripts/rebound_live.py --open
+
+      # EXIT near the close: 19:55 UTC = 3:55 PM ET (EDT), or on demand (mode=rebound-close).
+      # Unconditional flatten of any open REBOUND position (1-day hold). Safe to always run.
+      - name: REBOUND exit
+        if: ${{ github.event.schedule == '55 19 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'rebound-close') }}
+        env:
+          REBOUND_LIVE_CONFIRM: ${{ secrets.REBOUND_LIVE_CONFIRM }}
+          REBOUND_FEED: ${{ secrets.REBOUND_FEED }}
+        run: python scripts/rebound_live.py --close

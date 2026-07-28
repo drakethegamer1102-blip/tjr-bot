@@ -76,7 +76,7 @@ def main(argv: list[str]) -> int:
     report = "\n".join(lines)
     print(report)
     if send and s.telegram_token:
-        TelegramNotifier(s.telegram_token, s.telegram_chat_id).send("📊 " + report)
+        TelegramNotifier(s.telegram_token, s.telegram_chat_id).send("📋 SUMMARY · " + report)
     return 0
 
 

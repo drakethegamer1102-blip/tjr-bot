@@ -69,7 +69,7 @@ def main(argv: list[str]) -> int:
         eq = broker.equity()
         msg = f"status: equity ${eq:,.0f} · holding SPY: {held}"
 
-    line = f"🔁 REBOUND [{tag}] {mode[2:]}: {msg}"
+    line = f"💰 REBOUND [{tag}] {mode[2:]}: {msg}"
     print(line)
     if s.telegram_token and TelegramNotifier and mode != "--status":
         TelegramNotifier(s.telegram_token, s.telegram_chat_id).send(line)

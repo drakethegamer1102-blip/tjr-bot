@@ -110,7 +110,7 @@ def main(argv):
     _save(led)
 
     # ---- combined review, one line per strategy ----
-    lines = ["📊 <b>FUTURES DAILY</b> review (paper · real ES=F · MES ×2)"]
+    lines = ["📈 <b>FUTURES · DAILY</b> review (paper · real ES=F · MES ×2)"]
     grand = 0.0
     for name in REGISTRY:
         book = led[name]; ts = book["trades"]
