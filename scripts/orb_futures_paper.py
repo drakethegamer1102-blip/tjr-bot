@@ -1,16 +1,22 @@
-"""ORB FUTURES — paper-trading simulator (MES proxied by SPY bars).
+"""ORB FUTURES — intraday, multi-instrument paper simulator (prop-firm prep).
 
-Alpaca has no futures, so this simulates the ORB FUTURES strategy on the S&P 500:
-it pulls SPY 5-minute bars (a clean stand-in for the MES price series — MES tracks the
-same index), runs the ORB FUTURES logic, simulates fills/stops/targets/EOD-flatten in a
-local paper ledger, and sends the SAME Telegram alerts the live bot uses.
+Alpaca has no futures, so this simulates ORB FUTURES on a basket of micro index futures,
+each priced via a liquid ETF proxy scaled to the contract's index level (see
+FUTURES_UNIVERSE in tjrbot/strategies/orb_futures.py):
+    MES (S&P 500) via SPY, MNQ (Nasdaq) via QQQ, M2K (Russell) via IWM, MYM (Dow) via DIA.
 
-Nothing here touches a broker or real money. It writes a JSON ledger to
-state/orb_futures_paper.json so results accumulate across runs.
+Unlike the old once-a-day version, this scans the WHOLE session across ALL instruments —
+the same breadth + intraday behaviour the live stock ORB has. That breadth is exactly why
+the single-instrument version underperformed: on a day the S&P chops but the Nasdaq or
+Russell trends, this now catches the trending one.
+
+It keeps a JSON paper ledger (orb_futures_ledger.json at repo root, committed back by CI so
+equity persists), and sends its OWN dedicated Telegram message — separate from the stock
+bot's summary.
 
 Usage:
-    python scripts/orb_futures_paper.py            # simulate the most recent session, alert
-    python scripts/orb_futures_paper.py --days 30  # backfill/simulate the last N days
+    python scripts/orb_futures_paper.py                # simulate the latest session, alert
+    python scripts/orb_futures_paper.py --days 30      # backfill last N sessions
     python scripts/orb_futures_paper.py --no-telegram
 """
 
@@ -23,24 +29,17 @@ from pathlib import Path
 from tjrbot.config import load_settings
 from tjrbot.data.alpaca_data import get_stock_bars
 from tjrbot.strategies import orb_futures
-from tjrbot.strategies.orb_futures import contracts_for, MES_POINT_VALUE
+from tjrbot.strategies.orb_futures import FUTURES_UNIVERSE, contracts_for
 
 try:
     from tjrbot.notify.telegram import TelegramNotifier
 except Exception:  # notify optional
     TelegramNotifier = None  # type: ignore
 
-PROXY_SYMBOL = "SPY"          # stands in for MES (both track the S&P 500)
-# SPY trades at ~1/10 of the S&P 500 index (and thus ~1/10 of MES/ES, which quote the
-# index directly). Scale SPY OHLC up by ~10 so entries/stops/targets land on the real MES
-# price scale and the $5/point contract math produces representative dollar P&L. This is an
-# approximation (SPY tracks total-return-adjusted price, not the exact index) but makes the
-# paper economics realistic instead of ~7x too small.
-PROXY_TO_INDEX = 10.0
-# NOT under state/ (which is gitignored): this ledger is committed back by the GitHub
-# Actions workflow so paper equity survives GitHub's stateless runs.
 LEDGER = Path(__file__).resolve().parent.parent / "orb_futures_ledger.json"
-START_EQUITY = 50_000.0       # a typical futures paper/eval account size
+START_EQUITY = 50_000.0        # typical futures paper/eval account size
+RISK_FRACTION = 0.01           # 1% of equity risked per trade
+MAX_CONCURRENT = 3             # never hold more than this many futures at once (prop-style)
 
 
 def _load_ledger() -> dict:
@@ -53,98 +52,116 @@ def _load_ledger() -> dict:
 
 
 def _save_ledger(led: dict) -> None:
-    LEDGER.parent.mkdir(parents=True, exist_ok=True)
     LEDGER.write_text(json.dumps(led, indent=2, default=str))
 
 
-def _simulate_day(today, equity: float) -> list[dict]:
-    """Return closed paper trades for one session (list of dicts)."""
-    sigs = orb_futures.generate(today)
-    results = []
-    for s in sigs:
-        n = contracts_for(equity, s.entry, s.stop, risk_fraction=0.01)
+def _proxy_bars(s, etf: str, days: int):
+    """Return one ETF's 5-min bars for the requested lookback."""
+    return get_stock_bars(s.alpaca_key, s.alpaca_secret, etf, "5Min", max(days + 2, 3))
+
+
+def _simulate_session(sym: str, spec: dict, today, equity: float) -> list[dict]:
+    """Simulate ORB FUTURES for ONE instrument on ONE session. Intraday walk-forward:
+    the signal is detected at its bar, then filled/managed bar-by-bar (stop/target/EOD)."""
+    scaled = today.copy()
+    m = spec["proxy_mult"]
+    for c in ("open", "high", "low", "close"):
+        scaled[c] = scaled[c] * m
+
+    sigs = orb_futures.generate(
+        scaled, tick_size=spec["tick_size"], point_value=spec["point_value"],
+    )
+    out = []
+    for sig in sigs:
+        n = contracts_for(equity, sig.entry, sig.stop,
+                          point_value=spec["point_value"], risk_fraction=RISK_FRACTION)
         if n < 1:
             continue
-        # walk forward from the signal bar: stop / target / else EOD close
-        fut = today.iloc[s.index + 1:]
+        fut = scaled.iloc[sig.index + 1:]
         if fut.empty:
             continue
-        exit_px = float(today["close"].iloc[-1])   # EOD default
-        exit_kind = "eod"
+        exit_px = float(scaled["close"].iloc[-1]); kind = "eod"
         for _, b in fut.iterrows():
-            if s.side == "long":
-                if b.low <= s.stop:
-                    exit_px, exit_kind = s.stop, "stop"; break
-                if b.high >= s.target:
-                    exit_px, exit_kind = s.target, "target"; break
+            if sig.side == "long":
+                if b.low <= sig.stop:  exit_px, kind = sig.stop, "stop"; break
+                if b.high >= sig.target: exit_px, kind = sig.target, "target"; break
             else:
-                if b.high >= s.stop:
-                    exit_px, exit_kind = s.stop, "stop"; break
-                if b.low <= s.target:
-                    exit_px, exit_kind = s.target, "target"; break
-        points = (exit_px - s.entry) if s.side == "long" else (s.entry - exit_px)
-        pnl = points * MES_POINT_VALUE * n
-        results.append({
-            "day": str(today.index[-1].date()),
-            "side": s.side, "contracts": n,
-            "entry": round(s.entry, 2), "stop": round(s.stop, 2),
-            "target": round(s.target, 2), "exit": round(exit_px, 2),
-            "exit_kind": exit_kind, "points": round(points, 2), "pnl": round(pnl, 2),
+                if b.high >= sig.stop: exit_px, kind = sig.stop, "stop"; break
+                if b.low <= sig.target: exit_px, kind = sig.target, "target"; break
+        points = (exit_px - sig.entry) if sig.side == "long" else (sig.entry - exit_px)
+        pnl = points * spec["point_value"] * n
+        out.append({
+            "day": str(today.index[-1].date()), "symbol": sym, "side": sig.side,
+            "contracts": n, "entry": round(sig.entry, 2), "stop": round(sig.stop, 2),
+            "target": round(sig.target, 2), "exit": round(exit_px, 2),
+            "exit_kind": kind, "points": round(points, 2), "pnl": round(pnl, 2),
+            "entry_ts": str(scaled.index[sig.index]),   # for concurrency ordering
         })
-    return results
+    return out
 
 
 def main(argv: list[str]) -> int:
-    days = 1
-    if "--days" in argv:
-        days = int(argv[argv.index("--days") + 1])
+    days = int(argv[argv.index("--days") + 1]) if "--days" in argv else 1
     send = "--no-telegram" not in argv
 
     s = load_settings()
-    bars = get_stock_bars(s.alpaca_key, s.alpaca_secret, PROXY_SYMBOL, "5Min", max(days + 2, 3))
-    if bars.empty:
-        print("no bars returned"); return 1
-    # scale SPY prices to the MES/S&P-500 index level (volume left as-is)
-    for col in ("open", "high", "low", "close"):
-        bars[col] = bars[col] * PROXY_TO_INDEX
+    # fetch every proxy once
+    proxy_data = {}
+    for sym, spec in FUTURES_UNIVERSE.items():
+        b = _proxy_bars(s, spec["proxy"], days)
+        if not b.empty:
+            proxy_data[sym] = b
 
     led = _load_ledger()
-    seen_days = {t["day"] for t in led["trades"]}
-    sessions = sorted(bars.groupby(bars.index.date), key=lambda kv: kv[0])
-    sessions = sessions[-days:]
+    seen = {(t["day"], t["symbol"]) for t in led["trades"]}
+
+    # union of session dates across instruments, oldest->newest, last `days`
+    all_days = sorted({d for b in proxy_data.values() for d in set(b.index.date)})[-days:]
 
     new_trades = []
-    for _day, today in sessions:
-        today = today.between_time("09:30", "16:00")
-        if len(today) < 6:
-            continue
-        day_str = str(today.index[-1].date())
-        if day_str in seen_days:      # don't double-count a day already simulated
-            continue
-        for t in _simulate_day(today, led["equity"]):
+    for day in all_days:
+        # collect this day's candidate trades across instruments, cap concurrency by risk order
+        day_trades = []
+        for sym, spec in FUTURES_UNIVERSE.items():
+            if sym not in proxy_data:
+                continue
+            b = proxy_data[sym]
+            today = b[b.index.date == day]
+            today = today.between_time("09:30", "16:00")
+            if len(today) < 6 or (str(day), sym) in seen:
+                continue
+            day_trades += _simulate_session(sym, spec, today, led["equity"])
+        # concurrency cap: the day's FIRST MAX_CONCURRENT trades by actual entry time
+        # (a real account can only hold so many at once; earliest signals win the slot).
+        day_trades.sort(key=lambda t: t["entry_ts"])
+        for t in day_trades[:MAX_CONCURRENT]:
             led["equity"] += t["pnl"]
             led["trades"].append(t)
             new_trades.append(t)
 
     _save_ledger(led)
 
-    # ---- report ----
-    tot = sum(t["pnl"] for t in led["trades"])
-    n = len(led["trades"])
-    wins = sum(1 for t in led["trades"] if t["pnl"] > 0)
-    wr = (wins / n * 100) if n else 0
-    header = (f"ORB FUTURES (paper, MES via SPY) — equity ${led['equity']:,.0f}\n"
-              f"lifetime: {n} trades · win {wr:.0f}% · net ${tot:+,.0f}")
+    # ---- report (its OWN dedicated message) ----
+    n_all = len(led["trades"]); net_all = sum(t["pnl"] for t in led["trades"])
+    w_all = sum(1 for t in led["trades"] if t["pnl"] > 0)
+    wr = (w_all / n_all * 100) if n_all else 0
+    head = ("🔮 <b>ORB FUTURES</b> (paper · micro index futures)\n"
+            f"equity <b>${led['equity']:,.0f}</b>  ·  lifetime {n_all}t · "
+            f"{wr:.0f}% win · net ${net_all:+,.0f}")
     if new_trades:
-        lines = [f"  {t['side'].upper()} {t['contracts']}x @ {t['entry']} "
-                 f"-> {t['exit']} ({t['exit_kind']})  ${t['pnl']:+,.0f}" for t in new_trades]
-        body = header + "\n" + f"new today ({len(new_trades)}):\n" + "\n".join(lines)
+        day_net = sum(t["pnl"] for t in new_trades)
+        day_w = sum(1 for t in new_trades if t["pnl"] > 0)
+        lines = [f"  {t['symbol']} {t['side'].upper()} {t['contracts']}x "
+                 f"@ {t['entry']} → {t['exit']} ({t['exit_kind']})  ${t['pnl']:+,.0f}"
+                 for t in new_trades]
+        body = (head + f"\n<b>today: {len(new_trades)} trades · {day_w}/{len(new_trades)} win · "
+                f"${day_net:+,.0f}</b>\n" + "\n".join(lines))
     else:
-        body = header + "\nno new ORB FUTURES trades this run."
-    print(body)
+        body = head + "\nno ORB FUTURES setups today."
+    print(body.replace("<b>", "").replace("</b>", ""))
 
     if send and TelegramNotifier and s.telegram_token:
-        TelegramNotifier(s.telegram_token, s.telegram_chat_id).send("🔮 " + body)
+        TelegramNotifier(s.telegram_token, s.telegram_chat_id).send(body)
     return 0
 
 

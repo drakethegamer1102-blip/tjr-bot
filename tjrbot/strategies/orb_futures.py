@@ -30,6 +30,20 @@ from ..smc.signals import Signal
 MES_TICK_SIZE = 0.25      # minimum price increment
 MES_POINT_VALUE = 5.0     # dollars per 1.00 index point per contract
 
+# --- Futures universe for the intraday paper sim -------------------------------------
+# Alpaca has no futures, so each micro-future is priced via a liquid ETF proxy scaled to
+# the index level. `proxy_mult` maps ETF price -> index/contract price; tick_size and
+# point_value are the real CME micro-contract specs so dollar P&L is representative.
+#   symbol : the micro future | proxy : the ETF that stands in for it
+#   proxy_mult : ETF * this ~= the contract's quoted index level
+#   tick_size / point_value : real CME micro spec
+FUTURES_UNIVERSE = {
+    "MES": {"proxy": "SPY", "proxy_mult": 10.0, "tick_size": 0.25, "point_value": 5.0,  "name": "Micro S&P 500"},
+    "MNQ": {"proxy": "QQQ", "proxy_mult": 41.0, "tick_size": 0.25, "point_value": 2.0,  "name": "Micro Nasdaq-100"},
+    "M2K": {"proxy": "IWM", "proxy_mult": 10.0, "tick_size": 0.10, "point_value": 5.0,  "name": "Micro Russell 2000"},
+    "MYM": {"proxy": "DIA", "proxy_mult": 80.0, "tick_size": 1.0,  "point_value": 0.50, "name": "Micro Dow"},
+}
+
 
 def _round_to_tick(price: float, tick: float) -> float:
     return round(round(price / tick) * tick, 2)
