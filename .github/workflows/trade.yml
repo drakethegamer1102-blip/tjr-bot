@@ -3,22 +3,17 @@ name: TJR Bot (paper)
 # Runs on GitHub's free runners. Times are UTC, tuned for US Eastern DAYLIGHT
 # time (EDT = UTC-4). In winter (EST) shift the windows +1 hour (see DEPLOY.md).
 on:
-  # Intraday scheduling (every-5-min scans, daily/weekly recaps) is handled by
-  # cron-job.org calling the workflow_dispatch API below — GitHub's built-in schedule
-  # was too unreliable for time-critical 5-min trade scans.
-  #
-  # ORB FUTURES is a once-a-day, AFTER-CLOSE paper sim, so a few minutes of GitHub
-  # schedule jitter is harmless — it uses GitHub's built-in cron (no external timer /
-  # cron-job.org account needed). Runs 20:20 UTC = 4:20 PM ET (EDT). In winter (EST)
-  # bump to '20 21 * * 1-5' for a true after-close run (see DEPLOY.md DST note).
-  # If GitHub proves unreliable for it, move to a cron-job.org entry (mode=orb-futures).
-  # REBOUND is a daily strategy (enter near the open, exit near the close) — minutes of
-  # schedule jitter don't matter, so it uses GitHub's built-in cron too. Times are EDT
-  # (summer); in winter (EST) add 1 hour to each (see DEPLOY.md DST note).
-  schedule:
-    - cron: "20 20 * * 1-5"     # 4:20 PM ET (EDT), Mon-Fri -> ORB FUTURES + FUTURES DAILY
-    - cron: "35 13 * * 1-5"     # 9:35 AM ET (EDT), Mon-Fri -> REBOUND enter (--open)
-    - cron: "55 19 * * 1-5"     # 3:55 PM ET (EDT), Mon-Fri -> REBOUND exit  (--close)
+  # ALL scheduling is handled by cron-job.org (a reliable external timer) calling the
+  # workflow_dispatch API below, in America/New_York time. GitHub's built-in schedule was
+  # removed entirely — it delays/skips runs and auto-disables after 60 days of no commits.
+  # cron-job.org entries (see EXTERNAL_CRON.md):
+  #   every 5 min 09:30-16:00 -> mode=once           (scan)
+  #   16:05                    -> mode=summary        (daily recap)
+  #   16:10 Fri                -> mode=weekly         (weekly recap)
+  #   16:30                    -> mode=review         (nightly auto-tune)
+  #   09:35                    -> mode=rebound-open   (REBOUND enter)
+  #   15:55                    -> mode=rebound-close  (REBOUND exit)
+  #   16:20                    -> mode=orb-futures    (ORB FUTURES + FUTURES DAILY sims)
   workflow_dispatch:
     inputs:
       mode:
@@ -52,11 +47,11 @@ jobs:
       - run: pip install -r requirements.txt
 
       - name: Daily summary
-        if: ${{ github.event.schedule == '5 20 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'summary') }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'summary' }}
         run: python scripts/run_bot.py --summary
 
       - name: Weekly recap
-        if: ${{ github.event.schedule == '10 20 * * 5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'weekly') }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'weekly' }}
         run: python scripts/run_bot.py --weekly
 
       - name: Connectivity self-test
@@ -101,18 +96,18 @@ jobs:
           fi
 
       - name: Trading cycle
-        if: ${{ (github.event_name == 'schedule' && github.event.schedule != '5 20 * * 1-5' && github.event.schedule != '10 20 * * 5' && github.event.schedule != '20 20 * * 1-5' && github.event.schedule != '35 13 * * 1-5' && github.event.schedule != '55 19 * * 1-5') || (github.event_name == 'workflow_dispatch' && inputs.mode == 'once') }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'once' }}
         run: python scripts/run_bot.py --once
 
-      # FUTURES paper sims (prop-firm prep) — run once daily AFTER the close via GitHub's
-      # built-in cron (20:20 UTC = 4:20 PM ET, Mon-Fri) or on demand (mode=orb-futures).
+      # FUTURES paper sims (prop-firm prep) — triggered once daily AFTER the close by a
+      # cron-job.org entry (mode=orb-futures, ~4:20 PM ET, Mon-Fri).
       # Two paper products, each its own Telegram message, both ledgers committed back so
       # equity persists across GitHub's stateless runs. Paper/simulation only:
       #   1. ORB FUTURES        — intraday ORB on micro index futures (MES/MNQ/M2K/MYM).
       #   2. FUTURES DAILY      — the 3 validated daily edges DAYBREAK / REBOUND / GAPFILL
       #                           on real ES=F data, one combined review message.
       - name: Futures paper sims
-        if: ${{ github.event.schedule == '20 20 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures') }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures' }}
         run: |
           set -e
           python scripts/orb_futures_paper.py --days 1 --telegram || true
@@ -132,20 +127,20 @@ jobs:
           fi
 
       # REBOUND live strategy (SPY, real-time feed) — the one validated live-tradable edge.
-      # ENTER near the open: 13:35 UTC = 9:35 AM ET (EDT), or on demand (mode=rebound-open).
+      # ENTER near the open: cron-job.org fires mode=rebound-open ~9:35 AM ET, Mon-Fri.
       # Enters only if REBOUND fired (2 down days) and the circuit breaker passes; idempotent.
       # PAPER unless ALPACA_PAPER=false AND REBOUND_LIVE_CONFIRM=I_UNDERSTAND are set as secrets.
       - name: REBOUND enter
-        if: ${{ github.event.schedule == '35 13 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'rebound-open') }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'rebound-open' }}
         env:
           REBOUND_LIVE_CONFIRM: ${{ secrets.REBOUND_LIVE_CONFIRM }}
           REBOUND_FEED: ${{ secrets.REBOUND_FEED }}
         run: python scripts/rebound_live.py --open
 
-      # EXIT near the close: 19:55 UTC = 3:55 PM ET (EDT), or on demand (mode=rebound-close).
+      # EXIT near the close: cron-job.org fires mode=rebound-close ~3:55 PM ET, Mon-Fri.
       # Unconditional flatten of any open REBOUND position (1-day hold). Safe to always run.
       - name: REBOUND exit
-        if: ${{ github.event.schedule == '55 19 * * 1-5' || (github.event_name == 'workflow_dispatch' && inputs.mode == 'rebound-close') }}
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'rebound-close' }}
         env:
           REBOUND_LIVE_CONFIRM: ${{ secrets.REBOUND_LIVE_CONFIRM }}
           REBOUND_FEED: ${{ secrets.REBOUND_FEED }}
