@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 50399.3,
+    "equity": 51859.3,
     "trades": [
       {
         "day": "2026-05-01",
@@ -549,6 +549,15 @@
         "exit": 7330.75,
         "points": -133.25,
         "pnl": -1332.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-07-30",
+        "side": "long",
+        "entry": 7338.0,
+        "exit": 7484.0,
+        "points": 146.0,
+        "pnl": 1460.0,
         "note": "bull regime (>200d SMA)"
       }
     ]
