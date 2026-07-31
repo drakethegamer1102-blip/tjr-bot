@@ -172,7 +172,9 @@ strategies:
   # --- RIPTIDE (mean reversion) ---
   # vwap_rev: fade overstretched moves back to VWAP. Moves to RIPTIDE where its VWAP
   # target is honored (was being rewritten to 3R — the July bleed).
-  vwap_rev: { enabled: true, bot: riptide, atr_mult: 2.5, min_bars_open: 6 }
+  # DISABLED 2026-07-31 (user cut): only ever fired ONCE live (-$31) across weeks — the
+  # 2.5-ATR stretch + 6-bar filter almost never triggers on the watchlist. Dead weight.
+  vwap_rev: { enabled: false, bot: riptide, atr_mult: 2.5, min_bars_open: 6 }
   # gap_fade (NEW 07-08): fade small (0.1-0.4%) index-ETF opening gaps toward prior close.
   # OFF at launch: 60d backtest PF 0.51 over only 9 trades (small sample, but losing).
   # Dormant until a backtest shows PF>=1.2 — the nightly review can then enable it.
@@ -197,7 +199,10 @@ strategies:
   # it waits for real 4-way confluence, so it won't trade often. Watch its first 20 LIVE
   # trades before trusting fully: the backtest fills a limit on a retrace, and live data
   # lag can miss a fill the backtest assumes; if live fill rate is poor, revisit.
-  confluence: { enabled: true, bot: riptide, band_sigma: 1.5, stop_sigma: 2.0, rsi_period: 14, rsi_lo: 30, rsi_hi: 70, sma_days: 10 }
+  # DISABLED 2026-07-31 (user cut): NEVER fired a single live trade in weeks. Its 4-way
+  # confluence gate is so selective it effectively never triggers on the live watchlist —
+  # backtest promise (PF 2.76) never had a chance to prove out live. Dead weight for now.
+  confluence: { enabled: false, bot: riptide, band_sigma: 1.5, stop_sigma: 2.0, rsi_period: 14, rsi_lo: 30, rsi_hi: 70, sma_days: 10 }
 
   # orb: opening-range breakout, gated by VWAP side. The "lost in backtest" comment
   # this carried was stale — every compare_strategies.py run on record shows it
