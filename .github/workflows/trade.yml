@@ -110,21 +110,23 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures' }}
         run: |
           set -e
+          # update all paper ledgers silently, then the digest sends the separated messages
           python scripts/orb_futures_paper.py --days 1 --no-telegram || true
-          python scripts/futures_daily_paper.py --days 5 --no-telegram || true
-          python scripts/daily_strategy_digest.py || true
+          python scripts/futures_daily_paper.py --days 5 --telegram || true   # 6 futures-daily strats
+          python scripts/stock_daily_paper.py --days 5 --telegram || true     # 3 stock-daily strats
+          python scripts/daily_strategy_digest.py || true                     # live account, per-strategy
           git config user.name "tjr-bot[bot]"
           git config user.email "tjr-bot@users.noreply.github.com"
           CHANGED=""
-          for f in orb_futures_ledger.json futures_daily_ledger.json; do
+          for f in orb_futures_ledger.json futures_daily_ledger.json stock_daily_ledger.json; do
             if [ -n "$(git status --porcelain "$f")" ]; then git add "$f"; CHANGED="yes"; fi
           done
           if [ -n "$CHANGED" ]; then
-            git commit -m "chore(futures): paper ledger update [skip ci]"
+            git commit -m "chore(sims): paper ledger update [skip ci]"
             git push
-            echo "Futures ledgers committed."
+            echo "Ledgers committed."
           else
-            echo "No new futures trades to record."
+            echo "No new sim trades to record."
           fi
 
       # REBOUND live strategy (SPY, real-time feed) — the one validated live-tradable edge.

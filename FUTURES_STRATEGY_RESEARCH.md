@@ -46,3 +46,23 @@ GAPFILL/REBOUND trigger-day overlap 31% — genuinely differentiated edges.
 - Sizing/economics: ES = $50/point, MES (micro) = $5/point. Paper sim uses MES.
 - All three are LONG-biased — consistent with equity indices' long-run upward drift; none
   rely on shorting, which also fits most prop risk rules.
+
+---
+
+## Batch 2 (2026-07-31) — 3 MORE futures edges (all-era robust)
+
+Added after the ORB-FUTURES intraday experiment proved a loser (−$5,485). Found via a
+battery test of pre-specified published edges on 26y ES=F, keeping only those profitable in
+ALL FOUR eras (1999-2007 / 2008-2015 / 2016-2020 / 2021-2026). Distinct in mechanism.
+
+| Name | Rule | Per-era PF | 250d sim (MES×2) |
+|------|------|-----------|------------------|
+| **TUESDAY** | Turnaround Tuesday (Mon down → long Tue) | 1.12/1.41/2.58/1.29 | +$1,905 |
+| **CAPITULATION** | fade a −1.5% panic day, exit next close | 1.14/1.24/1.45/1.26 | +$4,260 |
+| **DIPBUYER** | 10-day-low dip in a golden-cross (50>200) uptrend | 2.78/1.09/1.76/1.50 | +$8,338 |
+
+Combined all 6 futures-daily (DAYBREAK/REBOUND/GAPFILL + these): +$45,668 / 250d.
+
+**Rejected (honest record):** UPRIDE (2-up-day momentum) passed the per-era PF screen but
+LOST on the recent next-day-close path (−$1,775/250d) — not shipped. Pure breakouts
+(50d/100d-high) failed era-robustness. Files: tjrbot/strategies/futures_daily_v2.py.

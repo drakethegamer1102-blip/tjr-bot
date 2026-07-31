@@ -1,0 +1,329 @@
+{
+  "DIPSNAP": {
+    "equity": 53807.570000000014,
+    "trades": [
+      {
+        "day": "2025-08-04",
+        "side": "long",
+        "entry": 618.81,
+        "exit": 624.25,
+        "pnl": 543.97,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-08-22",
+        "side": "long",
+        "entry": 630.77,
+        "exit": 638.24,
+        "pnl": 746.72,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-11-19",
+        "side": "long",
+        "entry": 655.35,
+        "exit": 657.19,
+        "pnl": 183.48,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-12-18",
+        "side": "long",
+        "entry": 672.03,
+        "exit": 670.91,
+        "pnl": -112.07,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2026-01-21",
+        "side": "long",
+        "entry": 676.06,
+        "exit": 681.78,
+        "pnl": 571.96,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2026-02-06",
+        "side": "long",
+        "entry": 677.86,
+        "exit": 686.97,
+        "pnl": 911.16,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2026-03-16",
+        "side": "long",
+        "entry": 664.85,
+        "exit": 665.49,
+        "pnl": 64.66,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2026-06-11",
+        "side": "long",
+        "entry": 726.89,
+        "exit": 735.86,
+        "pnl": 897.69,
+        "note": "RSI2<5 oversold in uptrend"
+      }
+    ]
+  },
+  "PULLBACK": {
+    "equity": 51823.790000000015,
+    "trades": [
+      {
+        "day": "2025-08-04",
+        "side": "long",
+        "entry": 618.81,
+        "exit": 624.25,
+        "pnl": 543.97,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-10-13",
+        "side": "long",
+        "entry": 655.22,
+        "exit": 657.59,
+        "pnl": 237.03,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-11-19",
+        "side": "long",
+        "entry": 655.35,
+        "exit": 657.19,
+        "pnl": 183.48,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-11-21",
+        "side": "long",
+        "entry": 649.67,
+        "exit": 653.61,
+        "pnl": 394.73,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-12-17",
+        "side": "long",
+        "entry": 674.3,
+        "exit": 665.88,
+        "pnl": -842.02,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-12-18",
+        "side": "long",
+        "entry": 672.03,
+        "exit": 670.91,
+        "pnl": -112.07,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-01-21",
+        "side": "long",
+        "entry": 676.06,
+        "exit": 681.78,
+        "pnl": 571.96,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-02-06",
+        "side": "long",
+        "entry": 677.86,
+        "exit": 686.97,
+        "pnl": 911.16,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-03-16",
+        "side": "long",
+        "entry": 664.85,
+        "exit": 665.49,
+        "pnl": 64.66,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-03-20",
+        "side": "long",
+        "entry": 654.82,
+        "exit": 646.9,
+        "pnl": -791.96,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-03-23",
+        "side": "long",
+        "entry": 656.38,
+        "exit": 653.7,
+        "pnl": -268.31,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-03-30",
+        "side": "long",
+        "entry": 638.47,
+        "exit": 630.35,
+        "pnl": -811.91,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-03-31",
+        "side": "long",
+        "entry": 637.3,
+        "exit": 648.67,
+        "pnl": 1137.07,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-07-24",
+        "side": "long",
+        "entry": 738.51,
+        "exit": 738.93,
+        "pnl": 42.0,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-07-30",
+        "side": "long",
+        "entry": 736.05,
+        "exit": 741.69,
+        "pnl": 564.0,
+        "note": "10d-low dip in golden-cross uptrend"
+      }
+    ]
+  },
+  "TUESDAY-EQ": {
+    "equity": 51494.700000000004,
+    "trades": [
+      {
+        "day": "2025-08-12",
+        "side": "long",
+        "entry": 631.29,
+        "exit": 635.65,
+        "pnl": 435.18,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-08-19",
+        "side": "long",
+        "entry": 636.07,
+        "exit": 632.8,
+        "pnl": -327.37,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-08-26",
+        "side": "long",
+        "entry": 635.16,
+        "exit": 638.09,
+        "pnl": 292.75,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-11-18",
+        "side": "long",
+        "entry": 656.66,
+        "exit": 654.66,
+        "pnl": -200.34,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-12-02",
+        "side": "long",
+        "entry": 676.32,
+        "exit": 675.93,
+        "pnl": -38.67,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-12-09",
+        "side": "long",
+        "entry": 677.54,
+        "exit": 677.43,
+        "pnl": -10.91,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-12-16",
+        "side": "long",
+        "entry": 673.65,
+        "exit": 673.29,
+        "pnl": -35.7,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-12-30",
+        "side": "long",
+        "entry": 683.82,
+        "exit": 683.38,
+        "pnl": -43.77,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-02-24",
+        "side": "long",
+        "entry": 678.3,
+        "exit": 683.72,
+        "pnl": 542.11,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-03-31",
+        "side": "long",
+        "entry": 637.3,
+        "exit": 648.67,
+        "pnl": 1137.07,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-04-21",
+        "side": "long",
+        "entry": 708.45,
+        "exit": 702.27,
+        "pnl": -618.41,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-05-05",
+        "side": "long",
+        "entry": 719.92,
+        "exit": 721.91,
+        "pnl": 199.49,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-05-19",
+        "side": "long",
+        "entry": 732.89,
+        "exit": 731.84,
+        "pnl": -104.74,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-06-23",
+        "side": "long",
+        "entry": 733.81,
+        "exit": 733.58,
+        "pnl": -23.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-07-14",
+        "side": "long",
+        "entry": 750.91,
+        "exit": 751.83,
+        "pnl": 92.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-07-21",
+        "side": "long",
+        "entry": 746.29,
+        "exit": 748.28,
+        "pnl": 199.01,
+        "note": "Turnaround Tuesday (Mon down)"
+      }
+    ]
+  }
+}
