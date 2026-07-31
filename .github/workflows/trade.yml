@@ -99,19 +99,20 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'once' }}
         run: python scripts/run_bot.py --once
 
-      # FUTURES paper sims (prop-firm prep) — triggered once daily AFTER the close by a
-      # cron-job.org entry (mode=orb-futures, ~4:20 PM ET, Mon-Fri).
-      # Two paper products, each its own Telegram message, both ledgers committed back so
-      # equity persists across GitHub's stateless runs. Paper/simulation only:
-      #   1. ORB FUTURES        — intraday ORB on micro index futures (MES/MNQ/M2K/MYM).
-      #   2. FUTURES DAILY      — the 3 validated daily edges DAYBREAK / REBOUND / GAPFILL
-      #                           on real ES=F data, one combined review message.
-      - name: Futures paper sims
+      # AFTER-CLOSE digest (prop-firm prep + daily review) — one cron-job.org entry
+      # (mode=orb-futures, ~4:20 PM ET, Mon-Fri). It:
+      #   1. Updates the two futures paper ledgers SILENTLY (--no-telegram).
+      #   2. Sends the per-strategy digest: THREE SEPARATE Telegram messages
+      #      (🟢 LIVE stocks · 📈 FUTURES DAILY · 📈 FUTURES ORB), each listing exactly
+      #      which strategy traded today and whether it made money.
+      #   3. Commits the ledgers back so paper equity persists across stateless runs.
+      - name: After-close digest
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures' }}
         run: |
           set -e
-          python scripts/orb_futures_paper.py --days 1 --telegram || true
-          python scripts/futures_daily_paper.py --days 5 --telegram || true
+          python scripts/orb_futures_paper.py --days 1 --no-telegram || true
+          python scripts/futures_daily_paper.py --days 5 --no-telegram || true
+          python scripts/daily_strategy_digest.py || true
           git config user.name "tjr-bot[bot]"
           git config user.email "tjr-bot@users.noreply.github.com"
           CHANGED=""
