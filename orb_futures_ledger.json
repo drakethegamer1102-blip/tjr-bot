@@ -1,5 +1,5 @@
 {
-  "equity": 44699.65,
+  "equity": 45426.65,
   "trades": [
     {
       "day": "2026-06-29",
@@ -994,6 +994,34 @@
       "points": -20.0,
       "pnl": -400.0,
       "entry_ts": "2026-07-31 13:30:00+00:00"
+    },
+    {
+      "day": "2026-07-31",
+      "symbol": "MYM",
+      "side": "short",
+      "contracts": 10,
+      "entry": 41884.0,
+      "stop": 41945.0,
+      "target": 41762.0,
+      "exit": 41762.0,
+      "exit_kind": "target",
+      "points": 122.0,
+      "pnl": 610.0,
+      "entry_ts": "2026-07-31 13:30:00+00:00"
+    },
+    {
+      "day": "2026-07-31",
+      "symbol": "M2K",
+      "side": "short",
+      "contracts": 3,
+      "entry": 2912.0,
+      "stop": 2938.0,
+      "target": 2860.0,
+      "exit": 2904.2,
+      "exit_kind": "eod",
+      "points": 7.8,
+      "pnl": 117.0,
+      "entry_ts": "2026-07-31 13:45:00+00:00"
     }
   ]
 }
