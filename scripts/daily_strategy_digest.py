@@ -39,18 +39,39 @@ def _verdict(pnl: float) -> str:
     return "🟢 WIN" if pnl > 0 else "🔴 LOSS" if pnl < 0 else "⚪ flat"
 
 
+def _trade_line(t: dict) -> str:
+    """One expanded line per trade: symbol, side, entry→exit, qty, P&L, verdict, reason."""
+    sym = t.get("sym", "")
+    side = (t.get("side") or "").upper()
+    entry = t.get("entry"); exit_ = t.get("exit"); qty = t.get("qty")
+    px = ""
+    if entry is not None and exit_ is not None:
+        px = f" {entry:g}→{exit_:g}"
+    q = f" ×{qty:g}" if qty else ""
+    exitk = f" [{t['exit_kind']}]" if t.get("exit_kind") else ""
+    note = f" — {t['note']}" if t.get("note") else ""
+    head = f"    • {sym} {side}{q}{px}".rstrip()
+    return f"{head}  <b>${t['pnl']:+,.0f}</b> {_verdict(t['pnl'])}{exitk}{note}"
+
+
 def _fmt_day(rows: list[dict], header: str, empty_note: str) -> str:
-    """rows: [{strat, pnl}] for one day. Build one message body."""
+    """rows: [{strat, pnl, ...trade detail}] for one day. Expanded: each strategy lists its
+    trades one per line (symbol, side, entry→exit, qty, P&L), then a per-strategy subtotal,
+    then the day net."""
     if not rows:
         return f"{header}\n  {empty_note}"
-    by = defaultdict(lambda: [0, 0.0])   # strat -> [count, pnl]
+    by: dict[str, list[dict]] = defaultdict(list)
     for r in rows:
-        by[r["strat"]][0] += 1
-        by[r["strat"]][1] += r["pnl"]
+        by[r["strat"]].append(r)
     net = sum(r["pnl"] for r in rows)
     lines = [header]
-    for st, (cnt, pnl) in sorted(by.items(), key=lambda x: -x[1][1]):
-        lines.append(f"  <b>{st}</b> · {cnt}t · ${pnl:+,.0f}  {_verdict(pnl)}")
+    # strategies ordered by their subtotal (winners first)
+    for st in sorted(by, key=lambda k: -sum(r["pnl"] for r in by[k])):
+        trs = by[st]
+        sub = sum(r["pnl"] for r in trs)
+        lines.append(f"  <b>{st}</b> · {len(trs)}t · ${sub:+,.0f}  {_verdict(sub)}")
+        for t in trs:
+            lines.append(_trade_line(t))
     lines.append(f"  ── day net <b>${net:+,.0f}</b>  {_verdict(net)}")
     return "\n".join(lines)
 
@@ -84,9 +105,12 @@ def _live_rows(broker, day: str) -> list[dict]:
         if when != day:
             continue
         side = "long" if str(getattr(o, "side", "")).lower().endswith("buy") else "short"
-        pnl = compute_pnl(side, float(entry), float(ex.filled_avg_price),
-                         float(getattr(o, "filled_qty", 0) or 0))
-        out.append({"strat": st, "pnl": pnl})
+        qty = float(getattr(o, "filled_qty", 0) or 0)
+        xpx = float(ex.filled_avg_price)
+        pnl = compute_pnl(side, float(entry), xpx, qty)
+        out.append({"strat": st, "pnl": pnl, "sym": getattr(o, "symbol", ""),
+                    "side": side, "entry": round(float(entry), 2), "exit": round(xpx, 2),
+                    "qty": qty})
     return out
 
 
@@ -95,15 +119,21 @@ def _ledger_rows(path: Path, day: str, kind: str) -> list[dict]:
         return []
     d = json.loads(path.read_text())
     out = []
-    if kind == "daily":   # {STRAT: {trades:[{day,pnl}]}}
+    if kind in ("daily", "stock"):  # {STRAT: {trades:[{day,side,entry,exit,pnl,note}]}}
+        sym = "SPY" if kind == "stock" else "MES"
         for name, book in d.items():
             for t in book.get("trades", []):
-                if t["day"] == day:
-                    out.append({"strat": name, "pnl": t["pnl"]})
-    else:                 # orb futures: {trades:[{day,symbol,pnl}]}
+                if t.get("day") == day:
+                    out.append({"strat": name, "pnl": t["pnl"], "side": t.get("side"),
+                                "entry": t.get("entry"), "exit": t.get("exit"),
+                                "note": t.get("note"), "sym": sym})
+    else:                 # orb futures: {trades:[{day,symbol,side,contracts,entry,exit,exit_kind,pnl}]}
         for t in d.get("trades", []):
-            if t["day"] == day:
-                out.append({"strat": t.get("symbol", "?"), "pnl": t["pnl"]})
+            if t.get("day") == day:
+                out.append({"strat": t.get("symbol", "?"), "pnl": t["pnl"],
+                            "sym": t.get("symbol", ""), "side": t.get("side"),
+                            "entry": t.get("entry"), "exit": t.get("exit"),
+                            "qty": t.get("contracts"), "exit_kind": t.get("exit_kind")})
     return out
 
 
@@ -116,13 +146,16 @@ def main(argv: list[str]) -> int:
 
     messages = [
         _fmt_day(_live_rows(broker, day),
-                 f"🟢 <b>LIVE · stocks</b> — {day}",
+                 f"🟢 <b>LIVE · stocks</b> (real account) — {day}",
                  "no live trades today."),
+        _fmt_day(_ledger_rows(ROOT / "stock_daily_ledger.json", day, "stock"),
+                 f"🟢 <b>STOCK · DAILY</b> (paper · DIPSNAP/PULLBACK/TUESDAY-EQ) — {day}",
+                 "no stock-daily setups today."),
         _fmt_day(_ledger_rows(ROOT / "futures_daily_ledger.json", day, "daily"),
-                 f"📈 <b>FUTURES · DAILY</b> — {day}",
-                 "no DAYBREAK/REBOUND/GAPFILL trades today."),
+                 f"📈 <b>FUTURES · DAILY</b> (paper · 6 strategies) — {day}",
+                 "no futures-daily setups today."),
         _fmt_day(_ledger_rows(ROOT / "orb_futures_ledger.json", day, "orb"),
-                 f"📈 <b>FUTURES · ORB</b> — {day}",
+                 f"📈 <b>FUTURES · ORB</b> (paper · intraday micro) — {day}",
                  "no ORB-futures trades today."),
     ]
 

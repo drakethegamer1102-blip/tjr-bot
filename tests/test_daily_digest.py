@@ -39,3 +39,21 @@ def test_losing_day_flagged_loss():
     rows = [{"strat": "orb", "pnl": -1469}]
     body = digest._fmt_day(rows, "HEAD", "none")
     assert "LOSS" in body and "$-1,469" in body
+
+
+def test_expanded_trade_line_shows_detail():
+    rows = [{"strat": "orb", "pnl": 72, "sym": "GOOGL", "side": "short",
+             "entry": 333.24, "exit": 331.87, "qty": 53}]
+    body = digest._fmt_day(rows, "HEAD", "none")
+    assert "GOOGL SHORT" in body
+    assert "333.24" in body and "331.87" in body     # entry->exit shown
+    assert "×53" in body                              # qty shown
+    assert "$+72" in body and "WIN" in body
+
+
+def test_ledger_trade_line_shows_reason():
+    t = {"strat": "DIPBUYER", "pnl": 1345, "sym": "MES", "side": "long",
+         "entry": 7338, "exit": 7472.5, "note": "10d-low pullback"}
+    body = digest._fmt_day([t], "HEAD", "none")
+    assert "10d-low pullback" in body                 # the strategy's reason is included
+    assert "MES LONG" in body
