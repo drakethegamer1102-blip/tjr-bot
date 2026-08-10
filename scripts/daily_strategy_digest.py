@@ -119,14 +119,15 @@ def _ledger_rows(path: Path, day: str, kind: str) -> list[dict]:
         return []
     d = json.loads(path.read_text())
     out = []
-    if kind in ("daily", "stock"):  # {STRAT: {trades:[{day,side,entry,exit,pnl,note}]}}
-        sym = "SPY" if kind == "stock" else "MES"
+    if kind in ("daily", "stock", "crypto"):  # {STRAT: {trades:[{day,side,entry,exit,pnl,note}]}}
+        default_sym = {"stock": "SPY", "daily": "MES"}.get(kind, "")
         for name, book in d.items():
             for t in book.get("trades", []):
                 if t.get("day") == day:
                     out.append({"strat": name, "pnl": t["pnl"], "side": t.get("side"),
                                 "entry": t.get("entry"), "exit": t.get("exit"),
-                                "note": t.get("note"), "sym": sym})
+                                "note": t.get("note"),
+                                "sym": t.get("coin", default_sym)})   # crypto carries per-trade coin
     else:                 # orb futures: {trades:[{day,symbol,side,contracts,entry,exit,exit_kind,pnl}]}
         for t in d.get("trades", []):
             if t.get("day") == day:
@@ -157,6 +158,9 @@ def main(argv: list[str]) -> int:
         _fmt_day(_ledger_rows(ROOT / "orb_futures_ledger.json", day, "orb"),
                  f"📈 <b>FUTURES · ORB</b> (paper · intraday micro) — {day}",
                  "no ORB-futures trades today."),
+        _fmt_day(_ledger_rows(ROOT / "crypto_daily_ledger.json", day, "crypto"),
+                 f"🪙 <b>CRYPTO · DAILY</b> (paper · BTC+ETH · MOONSHOT/CRYPTODIP/CRYPTORSI) — {day}",
+                 "no crypto setups today."),
     ]
 
     tg = TelegramNotifier(s.telegram_token, s.telegram_chat_id) if (send and TelegramNotifier and s.telegram_token) else None

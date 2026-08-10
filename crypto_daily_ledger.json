@@ -1,0 +1,737 @@
+{
+  "MOONSHOT": {
+    "equity": 51631.42,
+    "trades": [
+      {
+        "day": "2025-04-23",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 93427.59,
+        "exit": 93699.11,
+        "pnl": 29.06,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-04-26",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 94714.65,
+        "exit": 94646.93,
+        "pnl": -7.15,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-05-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 96494.97,
+        "exit": 96910.07,
+        "pnl": 43.02,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-05-09",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 103239.12,
+        "exit": 102970.85,
+        "pnl": -25.99,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-05-11",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 104701.07,
+        "exit": 104106.36,
+        "pnl": -56.8,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-05-19",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 106430.53,
+        "exit": 105606.18,
+        "pnl": -77.45,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-05-22",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 109673.49,
+        "exit": 111673.28,
+        "pnl": 182.34,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-05-23",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 111679.36,
+        "exit": 107287.8,
+        "pnl": -393.23,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-10",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 111329.2,
+        "exit": 115987.2,
+        "pnl": 418.4,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-11",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 115986.23,
+        "exit": 117516.99,
+        "pnl": 131.98,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-12",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 117530.71,
+        "exit": 117435.23,
+        "pnl": -8.12,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-14",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 119115.79,
+        "exit": 119849.7,
+        "pnl": 61.61,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-15",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 119853.85,
+        "exit": 117777.19,
+        "pnl": -173.27,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-08-14",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 123339.4,
+        "exit": 118359.58,
+        "pnl": -403.75,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-09-17",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 116840.51,
+        "exit": 116468.51,
+        "pnl": -31.84,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-10-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 118652.38,
+        "exit": 120681.26,
+        "pnl": 170.99,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-10-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 120656.98,
+        "exit": 122266.53,
+        "pnl": 133.4,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-10-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 122267.47,
+        "exit": 122425.43,
+        "pnl": 12.92,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-06-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2813.74,
+        "exit": 2773.53,
+        "pnl": -142.91,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-10",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2770.74,
+        "exit": 2954.85,
+        "pnl": 664.47,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2954.83,
+        "exit": 2957.89,
+        "pnl": 10.33,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-16",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3139.89,
+        "exit": 3371.51,
+        "pnl": 737.66,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-17",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3371.51,
+        "exit": 3476.78,
+        "pnl": 312.26,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-18",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3476.12,
+        "exit": 3549.02,
+        "pnl": 209.69,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-19",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3548.93,
+        "exit": 3595.27,
+        "pnl": 130.6,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-21",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3758.92,
+        "exit": 3763.37,
+        "pnl": 11.84,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-07-28",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3875.26,
+        "exit": 3787.43,
+        "pnl": -226.64,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-08-09",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4009.15,
+        "exit": 4263.6,
+        "pnl": 634.67,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-08-10",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4263.55,
+        "exit": 4254.22,
+        "pnl": -21.89,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-08-13",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4590.66,
+        "exit": 4756.28,
+        "pnl": 360.77,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-08-14",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4756.04,
+        "exit": 4548.17,
+        "pnl": -437.08,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-08-23",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4831.09,
+        "exit": 4776.09,
+        "pnl": -113.84,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2025-10-07",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4687.71,
+        "exit": 4451.15,
+        "pnl": -504.63,
+        "note": "20d-high breakout in uptrend"
+      }
+    ]
+  },
+  "CRYPTODIP": {
+    "equity": 50266.750000000015,
+    "trades": [
+      {
+        "day": "2025-02-26",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 88638.89,
+        "exit": 84347.02,
+        "pnl": -484.2,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-02-27",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 84076.86,
+        "exit": 84704.23,
+        "pnl": 74.62,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-04-07",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78221.34,
+        "exit": 79235.34,
+        "pnl": 129.63,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-05-31",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 103994.72,
+        "exit": 104638.09,
+        "pnl": 61.87,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-06-06",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 101574.37,
+        "exit": 104390.34,
+        "pnl": 277.23,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-06-22",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 102212.03,
+        "exit": 100987.14,
+        "pnl": -119.84,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-08-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 113320.39,
+        "exit": 112526.91,
+        "pnl": -70.02,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-08-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112525.8,
+        "exit": 114217.67,
+        "pnl": 150.35,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-08-20",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112828.02,
+        "exit": 114274.74,
+        "pnl": 128.22,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-08-26",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 110124.1,
+        "exit": 111802.66,
+        "pnl": 152.42,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-08-30",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 108409.41,
+        "exit": 108808.07,
+        "pnl": 36.77,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-09-23",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112757.48,
+        "exit": 112014.5,
+        "pnl": -65.89,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-09-24",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112007.66,
+        "exit": 113328.63,
+        "pnl": 117.94,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-09-26",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 109041.3,
+        "exit": 109712.83,
+        "pnl": 61.59,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-11-05",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 101579.23,
+        "exit": 103891.84,
+        "pnl": 227.66,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-11-15",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 94420.47,
+        "exit": 95549.15,
+        "pnl": 119.54,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-08-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3487.96,
+        "exit": 3392.74,
+        "pnl": -272.98,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-08-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3392.74,
+        "exit": 3497.38,
+        "pnl": 308.41,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-09-23",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4203.02,
+        "exit": 4165.5,
+        "pnl": -89.26,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-09-26",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3868.69,
+        "exit": 4035.89,
+        "pnl": 432.18,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-10-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3840.96,
+        "exit": 3750.61,
+        "pnl": -235.22,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-11-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3602.04,
+        "exit": 3292.57,
+        "pnl": -859.14,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-11-05",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3292.15,
+        "exit": 3425.17,
+        "pnl": 404.06,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-11-21",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2829.26,
+        "exit": 2765.7,
+        "pnl": -224.67,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2025-11-22",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2766.09,
+        "exit": 2767.61,
+        "pnl": 5.48,
+        "note": "10d-low dip in golden-cross uptrend"
+      }
+    ]
+  },
+  "CRYPTORSI": {
+    "equity": 51880.900000000016,
+    "trades": [
+      {
+        "day": "2025-02-26",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 88638.89,
+        "exit": 84347.02,
+        "pnl": -484.2,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-02-27",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 84076.86,
+        "exit": 84704.23,
+        "pnl": 74.62,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-05-31",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 103994.72,
+        "exit": 104638.09,
+        "pnl": 61.87,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-06-06",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 101574.37,
+        "exit": 104390.34,
+        "pnl": 277.23,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-06-22",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 102212.03,
+        "exit": 100987.14,
+        "pnl": -119.84,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-06-23",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 100987.48,
+        "exit": 105577.77,
+        "pnl": 454.54,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-08-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 115738.95,
+        "exit": 113320.09,
+        "pnl": -208.99,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-08-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 113320.39,
+        "exit": 112526.91,
+        "pnl": -70.02,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-08-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112525.8,
+        "exit": 114217.67,
+        "pnl": 150.35,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-08-20",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112828.02,
+        "exit": 114274.74,
+        "pnl": 128.22,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-09-23",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112757.48,
+        "exit": 112014.5,
+        "pnl": -65.89,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-09-24",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112007.66,
+        "exit": 113328.63,
+        "pnl": 117.94,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-10-12",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 110811.52,
+        "exit": 115169.77,
+        "pnl": 393.3,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-08-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3487.96,
+        "exit": 3392.74,
+        "pnl": -272.98,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-08-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3392.74,
+        "exit": 3497.38,
+        "pnl": 308.41,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-08-20",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4073.17,
+        "exit": 4334.5,
+        "pnl": 641.59,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-09-23",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4203.02,
+        "exit": 4165.5,
+        "pnl": -89.26,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-09-24",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4165.41,
+        "exit": 4153.47,
+        "pnl": -28.67,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-09-25",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4153.52,
+        "exit": 3868.33,
+        "pnl": -686.62,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-09-26",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3868.69,
+        "exit": 4035.89,
+        "pnl": 432.18,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-10-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3840.96,
+        "exit": 3750.61,
+        "pnl": -235.22,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2025-10-12",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3750.95,
+        "exit": 4164.43,
+        "pnl": 1102.34,
+        "note": "RSI2<5 oversold in uptrend"
+      }
+    ]
+  }
+}

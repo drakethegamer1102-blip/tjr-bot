@@ -110,15 +110,17 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures' }}
         run: |
           set -e
-          # update all paper ledgers silently, then the digest sends the separated messages
+          # update all paper ledgers SILENTLY; the digest is the single source of the
+          # separated Telegram messages (live + stock + futures-daily + orb + crypto).
           python scripts/orb_futures_paper.py --days 1 --no-telegram || true
-          python scripts/futures_daily_paper.py --days 5 --telegram || true   # 6 futures-daily strats
-          python scripts/stock_daily_paper.py --days 5 --telegram || true     # 3 stock-daily strats
-          python scripts/daily_strategy_digest.py || true                     # live account, per-strategy
+          python scripts/futures_daily_paper.py --days 5 --no-telegram || true   # 6 futures-daily strats
+          python scripts/stock_daily_paper.py --days 5 --no-telegram || true     # 3 stock-daily strats
+          python scripts/crypto_daily_paper.py --days 5 --no-telegram || true    # 3 crypto-daily strats
+          python scripts/daily_strategy_digest.py || true                        # sends all 5 messages
           git config user.name "tjr-bot[bot]"
           git config user.email "tjr-bot@users.noreply.github.com"
           CHANGED=""
-          for f in orb_futures_ledger.json futures_daily_ledger.json stock_daily_ledger.json; do
+          for f in orb_futures_ledger.json futures_daily_ledger.json stock_daily_ledger.json crypto_daily_ledger.json; do
             if [ -n "$(git status --porcelain "$f")" ]; then git add "$f"; CHANGED="yes"; fi
           done
           if [ -n "$CHANGED" ]; then
