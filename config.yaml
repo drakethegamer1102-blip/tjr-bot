@@ -213,7 +213,7 @@ strategies:
   # same market-entry-off-delayed-signal-bar mechanism that hurt momentum (see that
   # entry's note); ORB's single-shot-per-day-off-a-fixed-range structure is less
   # exposed to that than momentum's rolling 20-bar breakout, but it is not immune.
-  orb:      { enabled: true, bot: apex, or_minutes: 15 }
+  orb:      { enabled: false, bot: apex, or_minutes: 15 }
   rsi_pullback: { enabled: false }             # Connors RSI(2) — 30d backtest PF 0.88 (loses), OFF
   # bollinger_rev: BB(20,2σ) mean-reversion + RSI. 30d backtest PF 1.00 (breakeven) — OFF
   # until it shows an edge; the nightly review can auto-enable it if PF>1.2.
