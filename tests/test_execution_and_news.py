@@ -79,10 +79,29 @@ class TestEntrySlippageCap:
         req = self._submit("long", entry_type="limit")
         assert req.limit_price == 700.0
 
-    def test_bracket_legs_preserved(self):
-        req = self._submit("long")
+    def test_limit_entry_legs_unshifted(self):
+        # plain limit fills at plan price or better -> stop/target as planned
+        req = self._submit("long", entry_type="limit")
         assert req.take_profit.limit_price == 721.0
         assert req.stop_loss.stop_price == 689.5
+
+    def test_market_legs_shifted_by_drift(self):
+        # BUGFIX: a market entry can fill up to cap worse; stop & target shift out by
+        # `entry*cap` so the planned stop distance survives a worst-case fill.
+        drift = round(700.0 * Broker.ENTRY_SLIPPAGE_CAP, 2)   # 2.1
+        req_long = self._submit("long")
+        assert req_long.stop_loss.stop_price == round(689.5 + drift, 2)     # 691.6
+        assert req_long.take_profit.limit_price == round(721.0 + drift, 2)  # 723.1
+        req_short = self._submit("short")
+        assert req_short.stop_loss.stop_price == round(710.5 - drift, 2)    # 708.4
+        assert req_short.take_profit.limit_price == round(679.0 - drift, 2) # 676.9
+
+    def test_stop_distance_preserved_from_worst_fill(self):
+        # the whole point: worst-case fill (entry*(1+cap)) to the shifted stop == planned dist
+        req = self._submit("long")
+        worst_fill = 700.0 * (1 + Broker.ENTRY_SLIPPAGE_CAP)
+        planned_dist = 700.0 - 689.5
+        assert abs((worst_fill - req.stop_loss.stop_price) - planned_dist) < 0.02
 
 
 class TestNewsFetchFailOpen:

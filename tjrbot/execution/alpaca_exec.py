@@ -106,12 +106,25 @@ class Broker:
             raise ValueError(f"{plan.symbol}: position rounds to <1 share")
 
         side = OrderSide.BUY if plan.side == "long" else OrderSide.SELL
-        tp = TakeProfitRequest(limit_price=round(plan.target, 2))
-        sl = StopLossRequest(stop_price=round(plan.stop, 2))
+        stop_px, target_px = plan.stop, plan.target
 
         if getattr(plan, "entry_type", "limit") == "market":
             cap = self.ENTRY_SLIPPAGE_CAP
             limit = plan.entry * (1 + cap) if plan.side == "long" else plan.entry * (1 - cap)
+            # BUGFIX 2026-07-31: a marketable entry can fill up to `cap` WORSE than the
+            # signal price, but the stop/target legs are submitted atomically off the
+            # signal price — so a drifted fill collapsed the stop to pennies (SMH stopped
+            # 0.08% from fill; 8 collapsed-stop losses observed). Shift both exits out by
+            # the worst-case fill drift (`cap`), so even a fill AT the cap keeps the full
+            # planned stop distance. Long fills higher -> push stop & target UP; short
+            # fills lower -> push them DOWN.
+            drift = plan.entry * cap
+            if plan.side == "long":
+                stop_px = plan.stop + drift
+                target_px = plan.target + drift
+            else:
+                stop_px = plan.stop - drift
+                target_px = plan.target - drift
             req = LimitOrderRequest(
                 symbol=plan.symbol,
                 qty=qty,
@@ -119,11 +132,13 @@ class Broker:
                 time_in_force=tif,
                 limit_price=round(limit, 2),
                 order_class=OrderClass.BRACKET,
-                take_profit=tp,
-                stop_loss=sl,
+                take_profit=TakeProfitRequest(limit_price=round(target_px, 2)),
+                stop_loss=StopLossRequest(stop_price=round(stop_px, 2)),
                 client_order_id=client_order_id,
             )
         else:
+            # A plain limit fills at the plan price or better, so no drift correction is
+            # needed — use the planned stop/target as-is.
             req = LimitOrderRequest(
                 symbol=plan.symbol,
                 qty=qty,
@@ -131,8 +146,8 @@ class Broker:
                 time_in_force=tif,
                 limit_price=round(plan.entry, 2),
                 order_class=OrderClass.BRACKET,
-                take_profit=tp,
-                stop_loss=sl,
+                take_profit=TakeProfitRequest(limit_price=round(plan.target, 2)),
+                stop_loss=StopLossRequest(stop_price=round(plan.stop, 2)),
                 client_order_id=client_order_id,
             )
         return self.tc.submit_order(req)
