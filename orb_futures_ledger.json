@@ -1,5 +1,5 @@
 {
-  "equity": 41887.15,
+  "equity": 41164.65,
   "trades": [
     {
       "day": "2026-06-29",
@@ -1400,6 +1400,48 @@
       "points": -28.75,
       "pnl": -402.5,
       "entry_ts": "2026-08-14 12:50:00+00:00"
+    },
+    {
+      "day": "2026-08-17",
+      "symbol": "MNQ",
+      "side": "short",
+      "contracts": 2,
+      "entry": 30021.0,
+      "stop": 30104.75,
+      "target": 29853.5,
+      "exit": 30104.75,
+      "exit_kind": "stop",
+      "points": -83.75,
+      "pnl": -335.0,
+      "entry_ts": "2026-08-17 12:40:00+00:00"
+    },
+    {
+      "day": "2026-08-17",
+      "symbol": "MES",
+      "side": "short",
+      "contracts": 10,
+      "entry": 7762.0,
+      "stop": 7767.25,
+      "target": 7751.5,
+      "exit": 7767.25,
+      "exit_kind": "stop",
+      "points": -5.25,
+      "pnl": -262.5,
+      "entry_ts": "2026-08-17 12:45:00+00:00"
+    },
+    {
+      "day": "2026-08-17",
+      "symbol": "MYM",
+      "side": "short",
+      "contracts": 10,
+      "entry": 42801.0,
+      "stop": 42826.0,
+      "target": 42751.0,
+      "exit": 42826.0,
+      "exit_kind": "stop",
+      "points": -25.0,
+      "pnl": -125.0,
+      "entry_ts": "2026-08-17 13:30:00+00:00"
     }
   ]
 }
