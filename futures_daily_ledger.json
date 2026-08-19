@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 60497.4,
+    "equity": 60649.9,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2233,11 +2233,20 @@
         "points": -51.5,
         "pnl": -515.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-08-19",
+        "side": "long",
+        "entry": 7714.0,
+        "exit": 7729.25,
+        "points": 15.25,
+        "pnl": 152.5,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 61625.600000000006,
+    "equity": 61778.100000000006,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2777,6 +2786,15 @@
         "exit": 7714.5,
         "points": -51.5,
         "pnl": -515.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-08-19",
+        "side": "long",
+        "entry": 7714.0,
+        "exit": 7729.25,
+        "points": 15.25,
+        "pnl": 152.5,
         "note": "2 consecutive down days -> reversal"
       }
     ]
