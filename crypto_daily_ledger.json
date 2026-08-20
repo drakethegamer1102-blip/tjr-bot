@@ -1,6 +1,6 @@
 {
   "MOONSHOT": {
-    "equity": 51631.42,
+    "equity": 52429.54,
     "trades": [
       {
         "day": "2025-04-23",
@@ -297,6 +297,24 @@
         "entry": 4687.71,
         "exit": 4451.15,
         "pnl": -504.63,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2026-08-20",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 69289.44,
+        "exit": 72707.65,
+        "pnl": 493.32,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2026-08-20",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2251.93,
+        "exit": 2320.57,
+        "pnl": 304.8,
         "note": "20d-high breakout in uptrend"
       }
     ]
