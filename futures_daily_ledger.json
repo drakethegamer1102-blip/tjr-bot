@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 59974.9,
+    "equity": 60189.9,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2251,6 +2251,15 @@
         "points": -67.5,
         "pnl": -675.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-08-21",
+        "side": "long",
+        "entry": 7669.0,
+        "exit": 7690.5,
+        "points": 21.5,
+        "pnl": 215.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
@@ -3238,7 +3247,7 @@
     ]
   },
   "DIPBUYER": {
-    "equity": 58337.5,
+    "equity": 58552.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3355,6 +3364,15 @@
         "exit": 7472.5,
         "points": 134.5,
         "pnl": 1345.0,
+        "note": "10d-low pullback in golden-cross uptrend"
+      },
+      {
+        "day": "2026-08-21",
+        "side": "long",
+        "entry": 7669.0,
+        "exit": 7690.5,
+        "points": 21.5,
+        "pnl": 215.0,
         "note": "10d-low pullback in golden-cross uptrend"
       }
     ]
