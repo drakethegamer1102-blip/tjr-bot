@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 60057.4,
+    "equity": 59479.9,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2314,11 +2314,20 @@
         "points": -20.5,
         "pnl": -205.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-01",
+        "side": "long",
+        "entry": 7701.25,
+        "exit": 7643.5,
+        "points": -57.75,
+        "pnl": -577.5,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 61778.100000000006,
+    "equity": 61200.600000000006,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2868,6 +2877,15 @@
         "points": 15.25,
         "pnl": 152.5,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-09-01",
+        "side": "long",
+        "entry": 7701.25,
+        "exit": 7643.5,
+        "points": -57.75,
+        "pnl": -577.5,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
@@ -3021,7 +3039,7 @@
     ]
   },
   "TUESDAY": {
-    "equity": 51282.5,
+    "equity": 50705.0,
     "trades": [
       {
         "day": "2025-08-12",
@@ -3192,6 +3210,15 @@
         "exit": 7692.75,
         "points": 16.75,
         "pnl": 167.5,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-09-01",
+        "side": "long",
+        "entry": 7701.25,
+        "exit": 7643.5,
+        "points": -57.75,
+        "pnl": -577.5,
         "note": "Turnaround Tuesday (Mon down)"
       }
     ]
