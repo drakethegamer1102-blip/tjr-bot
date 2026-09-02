@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 59479.9,
+    "equity": 59837.4,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2323,11 +2323,20 @@
         "points": -57.75,
         "pnl": -577.5,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-02",
+        "side": "long",
+        "entry": 7645.0,
+        "exit": 7680.75,
+        "points": 35.75,
+        "pnl": 357.5,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 61200.600000000006,
+    "equity": 61558.100000000006,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2886,6 +2895,15 @@
         "points": -57.75,
         "pnl": -577.5,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-09-02",
+        "side": "long",
+        "entry": 7645.0,
+        "exit": 7680.75,
+        "points": 35.75,
+        "pnl": 357.5,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
@@ -3337,7 +3355,7 @@
     ]
   },
   "DIPBUYER": {
-    "equity": 58552.5,
+    "equity": 58910.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3463,6 +3481,15 @@
         "exit": 7690.5,
         "points": 21.5,
         "pnl": 215.0,
+        "note": "10d-low pullback in golden-cross uptrend"
+      },
+      {
+        "day": "2026-09-02",
+        "side": "long",
+        "entry": 7645.0,
+        "exit": 7680.75,
+        "points": 35.75,
+        "pnl": 357.5,
         "note": "10d-low pullback in golden-cross uptrend"
       }
     ]
