@@ -1,6 +1,6 @@
 {
   "MOONSHOT": {
-    "equity": 52509.77,
+    "equity": 52712.229999999996,
     "trades": [
       {
         "day": "2025-04-23",
@@ -303,27 +303,18 @@
         "day": "2026-08-20",
         "coin": "BTC",
         "side": "long",
-        "entry": 69289.44,
-        "exit": 72707.65,
-        "pnl": 493.32,
-        "note": "20d-high breakout in uptrend"
-      },
-      {
-        "day": "2026-08-20",
-        "coin": "ETH",
-        "side": "long",
-        "entry": 2251.93,
-        "exit": 2320.57,
-        "pnl": 304.8,
+        "entry": 69268.25,
+        "exit": 73032.76,
+        "pnl": 543.47,
         "note": "20d-high breakout in uptrend"
       },
       {
         "day": "2026-08-21",
         "coin": "BTC",
         "side": "long",
-        "entry": 73013.0,
-        "exit": 77408.6,
-        "pnl": 602.03,
+        "entry": 73031.09,
+        "exit": 78335.19,
+        "pnl": 726.28,
         "note": "20d-high breakout in uptrend"
       },
       {
@@ -333,6 +324,15 @@
         "entry": 78332.55,
         "exit": 77083.41,
         "pnl": -159.47,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2026-08-20",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2251.44,
+        "exit": 2326.38,
+        "pnl": 332.86,
         "note": "20d-high breakout in uptrend"
       },
       {
@@ -776,6 +776,2064 @@
         "exit": 4164.43,
         "pnl": 1102.34,
         "note": "RSI2<5 oversold in uptrend"
+      }
+    ]
+  },
+  "BBREAK": {
+    "equity": 54554.020000000004,
+    "trades": [
+      {
+        "day": "2025-04-23",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 93427.59,
+        "exit": 93699.11,
+        "pnl": 29.06,
+        "note": "close 93442 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-04-24",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 93692.4,
+        "exit": 93943.8,
+        "pnl": 26.83,
+        "note": "close 93699 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-04-25",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 93954.25,
+        "exit": 94720.5,
+        "pnl": 81.56,
+        "note": "close 93944 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-09",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 103239.12,
+        "exit": 102970.85,
+        "pnl": -25.99,
+        "note": "close 103241 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-10",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 102973.71,
+        "exit": 104696.33,
+        "pnl": 167.29,
+        "note": "close 102971 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-11",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 104701.07,
+        "exit": 104106.36,
+        "pnl": -56.8,
+        "note": "close 104696 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-12",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 104106.96,
+        "exit": 102812.95,
+        "pnl": -124.3,
+        "note": "close 104106 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-11",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 115986.23,
+        "exit": 117516.99,
+        "pnl": 131.98,
+        "note": "close 115987 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-12",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 117530.71,
+        "exit": 117435.23,
+        "pnl": -8.12,
+        "note": "close 117517 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-13",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 117432.2,
+        "exit": 119116.12,
+        "pnl": 143.39,
+        "note": "close 117435 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-14",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 119115.79,
+        "exit": 119849.7,
+        "pnl": 61.61,
+        "note": "close 119116 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-15",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 119853.85,
+        "exit": 117777.19,
+        "pnl": -173.27,
+        "note": "close 119850 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-08-14",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 123339.4,
+        "exit": 118359.58,
+        "pnl": -403.75,
+        "note": "close 123344 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-09-12",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 115507.79,
+        "exit": 116101.58,
+        "pnl": 51.41,
+        "note": "close 115508 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-09-13",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 116093.56,
+        "exit": 115950.51,
+        "pnl": -12.32,
+        "note": "close 116102 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-10-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 120656.98,
+        "exit": 122266.53,
+        "pnl": 133.4,
+        "note": "close 120681 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-10-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 122267.47,
+        "exit": 122425.43,
+        "pnl": 12.92,
+        "note": "close 122267 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 89945.05,
+        "exit": 90603.19,
+        "pnl": 73.17,
+        "note": "close 89945 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 90603.0,
+        "exit": 91413.49,
+        "pnl": 89.46,
+        "note": "close 90603 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-05",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 91414.62,
+        "exit": 93882.55,
+        "pnl": 269.97,
+        "note": "close 91413 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-06",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 93876.95,
+        "exit": 93729.03,
+        "pnl": -15.76,
+        "note": "close 93883 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-07",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 93727.47,
+        "exit": 91308.05,
+        "pnl": -258.13,
+        "note": "close 93729 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-14",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 95322.91,
+        "exit": 96929.33,
+        "pnl": 168.52,
+        "note": "close 95322 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-15",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 96931.29,
+        "exit": 95551.19,
+        "pnl": -142.38,
+        "note": "close 96929 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-03-05",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 72712.66,
+        "exit": 70841.12,
+        "pnl": -257.39,
+        "note": "close 72711 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-03-17",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 74855.3,
+        "exit": 73922.48,
+        "pnl": -124.62,
+        "note": "close 74861 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-04-14",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 74478.4,
+        "exit": 74181.61,
+        "pnl": -39.85,
+        "note": "close 74485 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-05-06",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 80930.73,
+        "exit": 81427.53,
+        "pnl": 61.39,
+        "note": "close 80927 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-05-07",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 81428.85,
+        "exit": 80009.99,
+        "pnl": -174.25,
+        "note": "close 81428 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-07-22",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 66506.79,
+        "exit": 66100.8,
+        "pnl": -61.05,
+        "note": "close 66505 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-20",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 69268.25,
+        "exit": 73032.76,
+        "pnl": 543.47,
+        "note": "close 69266 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-21",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 73031.09,
+        "exit": 78335.19,
+        "pnl": 726.28,
+        "note": "close 73033 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-22",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78332.55,
+        "exit": 77083.41,
+        "pnl": -159.47,
+        "note": "close 78335 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-23",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77082.84,
+        "exit": 77755.27,
+        "pnl": 87.23,
+        "note": "close 77083 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-24",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77748.88,
+        "exit": 78964.48,
+        "pnl": 156.35,
+        "note": "close 77755 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-09",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2206.13,
+        "exit": 2345.51,
+        "pnl": 631.78,
+        "note": "close 2207 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-10",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2345.76,
+        "exit": 2582.42,
+        "pnl": 1008.89,
+        "note": "close 2346 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2582.71,
+        "exit": 2510.24,
+        "pnl": -280.61,
+        "note": "close 2582 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-12",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2510.29,
+        "exit": 2496.4,
+        "pnl": -55.34,
+        "note": "close 2510 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-05-14",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2680.26,
+        "exit": 2610.06,
+        "pnl": -261.91,
+        "note": "close 2680 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-06-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2813.74,
+        "exit": 2773.53,
+        "pnl": -142.91,
+        "note": "close 2814 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-10",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2770.74,
+        "exit": 2954.85,
+        "pnl": 664.47,
+        "note": "close 2771 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2954.83,
+        "exit": 2957.89,
+        "pnl": 10.33,
+        "note": "close 2955 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-12",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2958.33,
+        "exit": 2942.91,
+        "pnl": -52.13,
+        "note": "close 2958 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-13",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2942.85,
+        "exit": 2973.36,
+        "pnl": 103.66,
+        "note": "close 2943 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-16",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3139.89,
+        "exit": 3371.51,
+        "pnl": 737.66,
+        "note": "close 3140 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-17",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3371.51,
+        "exit": 3476.78,
+        "pnl": 312.26,
+        "note": "close 3372 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-18",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3476.12,
+        "exit": 3549.02,
+        "pnl": 209.69,
+        "note": "close 3477 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-19",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3548.93,
+        "exit": 3595.27,
+        "pnl": 130.6,
+        "note": "close 3549 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-07-21",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3758.92,
+        "exit": 3763.37,
+        "pnl": 11.84,
+        "note": "close 3759 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-08-09",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4009.15,
+        "exit": 4263.6,
+        "pnl": 634.67,
+        "note": "close 4010 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-08-10",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4263.55,
+        "exit": 4254.22,
+        "pnl": -21.89,
+        "note": "close 4264 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-08-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4254.23,
+        "exit": 4226.97,
+        "pnl": -64.09,
+        "note": "close 4254 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-08-13",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4590.66,
+        "exit": 4756.28,
+        "pnl": 360.77,
+        "note": "close 4591 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-08-14",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4756.04,
+        "exit": 4548.17,
+        "pnl": -437.08,
+        "note": "close 4756 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-09-13",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4714.7,
+        "exit": 4668.18,
+        "pnl": -98.68,
+        "note": "close 4715 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-09-14",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4668.17,
+        "exit": 4609.6,
+        "pnl": -125.47,
+        "note": "close 4668 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-12-10",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3321.2,
+        "exit": 3325.39,
+        "pnl": 12.6,
+        "note": "close 3321 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2025-12-11",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3324.39,
+        "exit": 3237.06,
+        "pnl": -262.69,
+        "note": "close 3325 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3124.31,
+        "exit": 3125.92,
+        "pnl": 5.14,
+        "note": "close 3124 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3125.96,
+        "exit": 3140.71,
+        "pnl": 47.19,
+        "note": "close 3126 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-05",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3141.49,
+        "exit": 3226.13,
+        "pnl": 269.44,
+        "note": "close 3141 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-06",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3226.12,
+        "exit": 3295.95,
+        "pnl": 216.45,
+        "note": "close 3226 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-07",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3295.91,
+        "exit": 3166.84,
+        "pnl": -391.6,
+        "note": "close 3296 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-14",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3322.19,
+        "exit": 3354.72,
+        "pnl": 97.92,
+        "note": "close 3322 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-01-15",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3354.77,
+        "exit": 3317.1,
+        "pnl": -112.27,
+        "note": "close 3355 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-03-05",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2126.56,
+        "exit": 2071.61,
+        "pnl": -258.42,
+        "note": "close 2127 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-03-16",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2177.78,
+        "exit": 2351.18,
+        "pnl": 796.19,
+        "note": "close 2177 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-03-17",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2351.13,
+        "exit": 2318.05,
+        "pnl": -140.7,
+        "note": "close 2351 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-03-18",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2318.56,
+        "exit": 2203.67,
+        "pnl": -495.5,
+        "note": "close 2318 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-04-08",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2242.28,
+        "exit": 2190.34,
+        "pnl": -231.64,
+        "note": "close 2242 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-04-14",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2370.31,
+        "exit": 2323.31,
+        "pnl": -198.31,
+        "note": "close 2371 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-20",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2251.44,
+        "exit": 2326.38,
+        "pnl": 332.86,
+        "note": "close 2251 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-21",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2326.38,
+        "exit": 2515.28,
+        "pnl": 811.99,
+        "note": "close 2326 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-22",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2515.39,
+        "exit": 2424.25,
+        "pnl": -362.33,
+        "note": "close 2515 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-08-23",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2424.22,
+        "exit": 2463.82,
+        "pnl": 163.35,
+        "note": "close 2424 > upper BB (20,2.0\u03c3)"
+      }
+    ]
+  },
+  "TURNOFMONTH": {
+    "equity": 51848.51,
+    "trades": [
+      {
+        "day": "2025-05-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 94212.86,
+        "exit": 96492.34,
+        "pnl": 241.95,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2025-05-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 96494.97,
+        "exit": 96910.07,
+        "pnl": 43.02,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-05-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 96904.63,
+        "exit": 95891.8,
+        "pnl": -104.52,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-05-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 95877.19,
+        "exit": 94315.98,
+        "pnl": -162.83,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-06-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 104637.3,
+        "exit": 105652.1,
+        "pnl": 96.98,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2025-06-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 105649.81,
+        "exit": 105881.53,
+        "pnl": 21.93,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2025-06-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 105888.48,
+        "exit": 105432.47,
+        "pnl": -43.06,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2025-06-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 105434.37,
+        "exit": 104731.98,
+        "pnl": -66.62,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2025-07-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 107144.38,
+        "exit": 105698.28,
+        "pnl": -134.97,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2025-07-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 105703.1,
+        "exit": 108859.32,
+        "pnl": 298.59,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-07-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 108845.02,
+        "exit": 109647.98,
+        "pnl": 73.77,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-07-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 109635.66,
+        "exit": 108034.34,
+        "pnl": -146.06,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-08-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 115738.95,
+        "exit": 113320.09,
+        "pnl": -208.99,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2025-08-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 113320.39,
+        "exit": 112526.91,
+        "pnl": -70.02,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-08-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112525.8,
+        "exit": 114217.67,
+        "pnl": 150.35,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-08-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 114223.92,
+        "exit": 115071.88,
+        "pnl": 74.24,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-09-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 108228.75,
+        "exit": 109250.59,
+        "pnl": 94.42,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2025-09-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 109243.07,
+        "exit": 111200.59,
+        "pnl": 179.19,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2025-09-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 111190.7,
+        "exit": 111723.21,
+        "pnl": 47.89,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2025-09-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 111718.15,
+        "exit": 110723.6,
+        "pnl": -89.02,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2025-10-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 114057.59,
+        "exit": 118648.93,
+        "pnl": 402.55,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2025-10-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 118652.38,
+        "exit": 120681.26,
+        "pnl": 170.99,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-10-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 120656.98,
+        "exit": 122266.53,
+        "pnl": 133.4,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-10-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 122267.47,
+        "exit": 122425.43,
+        "pnl": 12.92,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-11-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 109558.62,
+        "exit": 110064.02,
+        "pnl": 46.13,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2025-11-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 110064.43,
+        "exit": 110639.62,
+        "pnl": 52.26,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2025-11-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 110646.91,
+        "exit": 106547.52,
+        "pnl": -370.49,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2025-11-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 106541.42,
+        "exit": 101590.52,
+        "pnl": -464.69,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2025-12-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 90389.11,
+        "exit": 86321.57,
+        "pnl": -450.0,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2025-12-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 86322.54,
+        "exit": 91350.2,
+        "pnl": 582.43,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-12-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 91345.09,
+        "exit": 93527.8,
+        "pnl": 238.95,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-12-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 93454.26,
+        "exit": 92141.62,
+        "pnl": -140.46,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-01-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 87508.05,
+        "exit": 88731.98,
+        "pnl": 139.87,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-01-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 88733.06,
+        "exit": 89944.7,
+        "pnl": 136.55,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-01-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 89945.05,
+        "exit": 90603.19,
+        "pnl": 73.17,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-01-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 90603.0,
+        "exit": 91413.49,
+        "pnl": 89.46,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-02-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78626.12,
+        "exit": 76974.45,
+        "pnl": -210.07,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-02-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 76968.88,
+        "exit": 78688.77,
+        "pnl": 223.45,
+        "note": "turn-of-month (dom 1/28)"
+      },
+      {
+        "day": "2026-02-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78693.51,
+        "exit": 75633.55,
+        "pnl": -388.85,
+        "note": "turn-of-month (dom 2/28)"
+      },
+      {
+        "day": "2026-02-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 75640.09,
+        "exit": 73019.7,
+        "pnl": -346.43,
+        "note": "turn-of-month (dom 3/28)"
+      },
+      {
+        "day": "2026-03-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 67005.88,
+        "exit": 65738.1,
+        "pnl": -189.2,
+        "note": "turn-of-month (dom 28/28)"
+      },
+      {
+        "day": "2026-03-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 65734.08,
+        "exit": 68775.85,
+        "pnl": 462.74,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-03-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 68785.08,
+        "exit": 68293.65,
+        "pnl": -71.44,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-03-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 68290.56,
+        "exit": 72710.58,
+        "pnl": 647.24,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-04-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 68232.89,
+        "exit": 68078.55,
+        "pnl": -22.62,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-04-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 68077.9,
+        "exit": 66888.57,
+        "pnl": -174.7,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-04-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 66889.02,
+        "exit": 66931.1,
+        "pnl": 6.29,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2026-04-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 66938.65,
+        "exit": 67290.52,
+        "pnl": 52.57,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2026-05-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 76305.05,
+        "exit": 78179.0,
+        "pnl": 245.59,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2026-05-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78177.75,
+        "exit": 78657.25,
+        "pnl": 61.33,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-05-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78656.73,
+        "exit": 78538.23,
+        "pnl": -15.07,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-05-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78540.29,
+        "exit": 79827.91,
+        "pnl": 163.94,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-06-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 73580.21,
+        "exit": 71319.77,
+        "pnl": -307.21,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-06-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 71321.03,
+        "exit": 66703.66,
+        "pnl": -647.41,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-06-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 66694.01,
+        "exit": 64014.37,
+        "pnl": -401.78,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2026-06-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 64020.07,
+        "exit": 63801.57,
+        "pnl": -34.13,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2026-07-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 58562.45,
+        "exit": 60003.76,
+        "pnl": 246.12,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2026-07-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 60004.77,
+        "exit": 61485.3,
+        "pnl": 246.74,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-07-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 61492.07,
+        "exit": 62544.2,
+        "pnl": 171.1,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-07-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 62545.13,
+        "exit": 63088.3,
+        "pnl": 86.85,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-08-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 62813.66,
+        "exit": 62763.32,
+        "pnl": -8.01,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-08-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 62763.45,
+        "exit": 63482.0,
+        "pnl": 114.49,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-08-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 63485.44,
+        "exit": 63460.9,
+        "pnl": -3.87,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-08-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 63458.41,
+        "exit": 64055.95,
+        "pnl": 94.16,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-05-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1794.04,
+        "exit": 1839.22,
+        "pnl": 251.84,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2025-05-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1839.17,
+        "exit": 1842.71,
+        "pnl": 19.21,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-05-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1842.72,
+        "exit": 1833.84,
+        "pnl": -48.18,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-05-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1833.65,
+        "exit": 1808.59,
+        "pnl": -136.63,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-06-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2529.1,
+        "exit": 2536.27,
+        "pnl": 28.35,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2025-06-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2536.18,
+        "exit": 2607.1,
+        "pnl": 279.6,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2025-06-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2607.2,
+        "exit": 2593.28,
+        "pnl": -53.38,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2025-06-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2593.48,
+        "exit": 2608.64,
+        "pnl": 58.46,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2025-07-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2486.43,
+        "exit": 2405.79,
+        "pnl": -324.3,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2025-07-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2405.86,
+        "exit": 2571.34,
+        "pnl": 687.81,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-07-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2570.8,
+        "exit": 2591.01,
+        "pnl": 78.62,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-07-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2590.85,
+        "exit": 2508.52,
+        "pnl": -317.76,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-08-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3696.14,
+        "exit": 3488.37,
+        "pnl": -562.15,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2025-08-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3487.96,
+        "exit": 3392.74,
+        "pnl": -272.98,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-08-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3392.74,
+        "exit": 3497.38,
+        "pnl": 308.41,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-08-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3497.61,
+        "exit": 3718.99,
+        "pnl": 632.93,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-09-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4389.63,
+        "exit": 4314.47,
+        "pnl": -171.21,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2025-09-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4314.39,
+        "exit": 4325.37,
+        "pnl": 25.44,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2025-09-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4324.7,
+        "exit": 4450.39,
+        "pnl": 290.64,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2025-09-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4450.22,
+        "exit": 4298.74,
+        "pnl": -340.37,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2025-10-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4146.03,
+        "exit": 4351.11,
+        "pnl": 494.64,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2025-10-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4352.24,
+        "exit": 4487.92,
+        "pnl": 311.75,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-10-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4486.93,
+        "exit": 4514.87,
+        "pnl": 62.26,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-10-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4514.91,
+        "exit": 4489.2,
+        "pnl": -56.95,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2025-11-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3847.17,
+        "exit": 3874.19,
+        "pnl": 70.22,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2025-11-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3873.89,
+        "exit": 3911.06,
+        "pnl": 95.95,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2025-11-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3911.75,
+        "exit": 3602.31,
+        "pnl": -791.05,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2025-11-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3602.04,
+        "exit": 3292.57,
+        "pnl": -859.14,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2025-12-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2991.92,
+        "exit": 2800.19,
+        "pnl": -640.84,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2025-12-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2800.22,
+        "exit": 2997.94,
+        "pnl": 706.07,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2025-12-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2997.8,
+        "exit": 3191.57,
+        "pnl": 646.37,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2025-12-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3188.34,
+        "exit": 3134.32,
+        "pnl": -169.45,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-01-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2967.0,
+        "exit": 3000.39,
+        "pnl": 112.56,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-01-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3000.45,
+        "exit": 3124.42,
+        "pnl": 413.17,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-01-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3124.31,
+        "exit": 3125.92,
+        "pnl": 5.14,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-01-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3125.96,
+        "exit": 3140.71,
+        "pnl": 47.19,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-02-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2445.07,
+        "exit": 2267.96,
+        "pnl": -724.33,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-02-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2267.56,
+        "exit": 2344.36,
+        "pnl": 338.66,
+        "note": "turn-of-month (dom 1/28)"
+      },
+      {
+        "day": "2026-02-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2344.45,
+        "exit": 2227.56,
+        "pnl": -498.57,
+        "note": "turn-of-month (dom 2/28)"
+      },
+      {
+        "day": "2026-02-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2227.97,
+        "exit": 2143.5,
+        "pnl": -379.1,
+        "note": "turn-of-month (dom 3/28)"
+      },
+      {
+        "day": "2026-03-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1965.39,
+        "exit": 1939.07,
+        "pnl": -133.94,
+        "note": "turn-of-month (dom 28/28)"
+      },
+      {
+        "day": "2026-03-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1939.06,
+        "exit": 2027.27,
+        "pnl": 454.91,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-03-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2027.41,
+        "exit": 1982.77,
+        "pnl": -220.18,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-03-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1982.71,
+        "exit": 2126.51,
+        "pnl": 725.24,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-04-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2104.72,
+        "exit": 2138.74,
+        "pnl": 161.63,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-04-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2138.72,
+        "exit": 2056.85,
+        "pnl": -382.8,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-04-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2056.7,
+        "exit": 2053.39,
+        "pnl": -16.14,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2026-04-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2053.58,
+        "exit": 2065.35,
+        "pnl": 57.3,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2026-05-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2256.34,
+        "exit": 2295.09,
+        "pnl": 171.73,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2026-05-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2295.04,
+        "exit": 2316.23,
+        "pnl": 92.32,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-05-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2316.21,
+        "exit": 2321.64,
+        "pnl": 23.42,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-05-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2321.82,
+        "exit": 2346.4,
+        "pnl": 105.87,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-06-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2004.24,
+        "exit": 2003.22,
+        "pnl": -5.1,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-06-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2003.26,
+        "exit": 1857.72,
+        "pnl": -726.54,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-06-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1857.64,
+        "exit": 1811.73,
+        "pnl": -247.14,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2026-06-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1811.74,
+        "exit": 1769.58,
+        "pnl": -232.72,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2026-07-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1569.91,
+        "exit": 1608.96,
+        "pnl": 248.75,
+        "note": "turn-of-month (dom 30/30)"
+      },
+      {
+        "day": "2026-07-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1609.01,
+        "exit": 1698.17,
+        "pnl": 554.11,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-07-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1698.42,
+        "exit": 1756.52,
+        "pnl": 342.09,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-07-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1756.58,
+        "exit": 1779.03,
+        "pnl": 127.85,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-08-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1860.37,
+        "exit": 1843.42,
+        "pnl": -91.13,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-08-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1843.42,
+        "exit": 1882.52,
+        "pnl": 212.13,
+        "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-08-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1882.78,
+        "exit": 1858.26,
+        "pnl": -130.27,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-08-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 1858.22,
+        "exit": 1868.39,
+        "pnl": 54.71,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-09-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78539.86,
+        "exit": 77403.62,
+        "pnl": -144.67,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-09-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77402.14,
+        "exit": 77300.48,
+        "pnl": -13.13,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-09-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77300.16,
+        "exit": 81271.74,
+        "pnl": 513.79,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2026-09-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 81271.54,
+        "exit": 79671.97,
+        "pnl": -196.82,
+        "note": "turn-of-month (dom 3/30)"
+      },
+      {
+        "day": "2026-09-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2466.58,
+        "exit": 2417.84,
+        "pnl": -197.57,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-09-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2417.83,
+        "exit": 2391.5,
+        "pnl": -108.89,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-09-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2391.6,
+        "exit": 2508.02,
+        "pnl": 486.79,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2026-09-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2508.02,
+        "exit": 2456.08,
+        "pnl": -207.09,
+        "note": "turn-of-month (dom 3/30)"
+      }
+    ]
+  },
+  "WILLIAMSR": {
+    "equity": 51092.85,
+    "trades": [
+      {
+        "day": "2025-05-31",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 103994.72,
+        "exit": 104638.09,
+        "pnl": 61.87,
+        "note": "%R(10)=-96 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-08-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 113320.39,
+        "exit": 112526.91,
+        "pnl": -70.02,
+        "note": "%R(10)=-92 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-08-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112525.8,
+        "exit": 114217.67,
+        "pnl": 150.35,
+        "note": "%R(10)=-93 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-08-20",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112828.02,
+        "exit": 114274.74,
+        "pnl": 128.22,
+        "note": "%R(10)=-99 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-08-22",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112433.73,
+        "exit": 116874.09,
+        "pnl": 394.93,
+        "note": "%R(10)=-97 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-08-26",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 110124.1,
+        "exit": 111802.66,
+        "pnl": 152.42,
+        "note": "%R(10)=-91 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-08-30",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 108409.41,
+        "exit": 108808.07,
+        "pnl": 36.77,
+        "note": "%R(10)=-91 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-09-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 108228.75,
+        "exit": 109250.59,
+        "pnl": 94.42,
+        "note": "%R(10)=-92 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-09-24",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 112007.66,
+        "exit": 113328.63,
+        "pnl": 117.94,
+        "note": "%R(10)=-92 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-09-26",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 109041.3,
+        "exit": 109712.83,
+        "pnl": 61.59,
+        "note": "%R(10)=-96 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-08-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3392.74,
+        "exit": 3497.38,
+        "pnl": 308.41,
+        "note": "%R(10)=-96 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-08-20",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4073.17,
+        "exit": 4334.5,
+        "pnl": 641.59,
+        "note": "%R(10)=-100 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-09-22",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 4451.58,
+        "exit": 4202.88,
+        "pnl": -558.68,
+        "note": "%R(10)=-93 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-09-26",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3868.69,
+        "exit": 4035.89,
+        "pnl": 432.18,
+        "note": "%R(10)=-95 oversold, >200d SMA"
+      },
+      {
+        "day": "2025-11-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 3602.04,
+        "exit": 3292.57,
+        "pnl": -859.14,
+        "note": "%R(10)=-94 oversold, >200d SMA"
       }
     ]
   }

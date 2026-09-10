@@ -23,9 +23,11 @@ from pathlib import Path
 from tjrbot.config import load_settings
 from tjrbot.strategies.futures_daily import REGISTRY as _REG1
 from tjrbot.strategies.futures_daily_v2 import REGISTRY as _REG2
+from tjrbot.strategies.futures_daily_v3 import REGISTRY as _REG3
 
-# all six validated daily futures strategies: DAYBREAK/REBOUND/GAPFILL + TUESDAY/CAPITULATION/UPRIDE
-REGISTRY = {**_REG1, **_REG2}
+# 9 validated daily futures strategies: DAYBREAK/REBOUND/GAPFILL + TUESDAY/CAPITULATION/DIPBUYER
+# + RSI2/IBS/BOLLREV (v3 mean-reversion batch)
+REGISTRY = {**_REG1, **_REG2, **_REG3}
 
 try:
     from tjrbot.notify.telegram import TelegramNotifier

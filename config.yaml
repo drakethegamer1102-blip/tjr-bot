@@ -163,7 +163,8 @@ strategies:
   # agrees with VWAP (long above / short below the day's volume-weighted fair value).
   # Real-engine 60d backtest: -$813 -> -$533, removes the 5 worst trades. It's the one
   # filter that separates orb (live winner) from the breakouts that died.
-  squeeze_breakout: { enabled: true, bot: apex, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0, vwap_confirm: true }
+  # CUT 2026-08-26: PF 0.45 live (-$188), PF 0.88 virtual (-$55). Intraday breakout has no edge.
+  squeeze_breakout: { enabled: false, bot: apex, bb_period: 20, kc_period: 20, vol_mult: 1.2, min_rr: 2.0, vwap_confirm: true }
   # noise_band (NEW 07-08): Zarattini-style intraday momentum — break of the average
   # time-of-day move-from-open envelope, VWAP-aligned. Precomputed levels tolerate the
   # 15-min IEX delay. Published evidence class: Concretum "Beat the Market" (SPY).
@@ -181,7 +182,8 @@ strategies:
   gap_fade: { enabled: false, bot: riptide, min_gap: 0.001, max_gap: 0.004, stop_atr: 2.0 }
   # band_tag (NEW 07-08): Keltner 2.5xATR band tag + RSI(2) extreme, daily SMA10 trend
   # gate (Connors-style: only fade WITH the higher-timeframe trend). Target = band mid.
-  band_tag: { enabled: true, bot: riptide, kc_mult: 2.5, rsi_lo: 5, rsi_hi: 95, stop_atr: 1.2, sma_days: 10 }
+  # CUT 2026-08-26: PF 0.62 virtual (-$129); lone +$87 live trade was noise. No edge.
+  band_tag: { enabled: false, bot: riptide, kc_mult: 2.5, rsi_lo: 5, rsi_hi: 95, stop_atr: 1.2, sma_days: 10 }
 
   # confluence (NEW 2026-07-21): the "merged" strategy, built from the fundamentals of the
   # three strategies that survived the audit (vwap_rev + band_tag + orb) plus VWAP-reversion
@@ -213,6 +215,7 @@ strategies:
   # same market-entry-off-delayed-signal-bar mechanism that hurt momentum (see that
   # entry's note); ORB's single-shot-per-day-off-a-fixed-range structure is less
   # exposed to that than momentum's rolling 20-bar breakout, but it is not immune.
+  # CUT 2026-08-26: PF 0.74 virtual (-$2,081, biggest $ loser). 2600-trade backtest confirms no edge.
   orb:      { enabled: false, bot: apex, or_minutes: 15 }
   rsi_pullback: { enabled: false }             # Connors RSI(2) — 30d backtest PF 0.88 (loses), OFF
   # bollinger_rev: BB(20,2σ) mean-reversion + RSI. 30d backtest PF 1.00 (breakeven) — OFF

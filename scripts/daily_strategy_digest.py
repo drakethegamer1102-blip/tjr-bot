@@ -153,13 +153,11 @@ def main(argv: list[str]) -> int:
                  f"🟢 <b>STOCK · DAILY</b> (paper · DIPSNAP/PULLBACK/TUESDAY-EQ) — {day}",
                  "no stock-daily setups today."),
         _fmt_day(_ledger_rows(ROOT / "futures_daily_ledger.json", day, "daily"),
-                 f"📈 <b>FUTURES · DAILY</b> (paper · 6 strategies) — {day}",
+                 f"📈 <b>FUTURES · DAILY</b> (paper · 9 strategies) — {day}",
                  "no futures-daily setups today."),
-        _fmt_day(_ledger_rows(ROOT / "orb_futures_ledger.json", day, "orb"),
-                 f"📈 <b>FUTURES · ORB</b> (paper · intraday micro) — {day}",
-                 "no ORB-futures trades today."),
+        # CUT 2026-08-26: ORB-futures killed — PF 0.63, -$7,348 over 85 trades. No Telegram message.
         _fmt_day(_ledger_rows(ROOT / "crypto_daily_ledger.json", day, "crypto"),
-                 f"🪙 <b>CRYPTO · DAILY</b> (paper · BTC+ETH · MOONSHOT/CRYPTODIP/CRYPTORSI) — {day}",
+                 f"🪙 <b>CRYPTO · DAILY</b> (paper · BTC+ETH · 6 strategies) — {day}",
                  "no crypto setups today."),
     ]
 

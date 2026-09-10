@@ -18,7 +18,10 @@ import sys
 from pathlib import Path
 
 from tjrbot.config import load_settings
-from tjrbot.strategies.crypto_daily import REGISTRY
+from tjrbot.strategies.crypto_daily import REGISTRY as _CREG1
+from tjrbot.strategies.crypto_daily_v2 import REGISTRY as _CREG2
+
+REGISTRY = {**_CREG1, **_CREG2}   # 3 original + 3 v2 (BBREAK/TURNOFMONTH/WILLIAMSR)
 
 try:
     from tjrbot.notify.telegram import TelegramNotifier

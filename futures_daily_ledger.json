@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 59654.9,
+    "equity": 63277.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2172,30 +2172,354 @@
         "note": "bull regime (>200d SMA)"
       },
       {
+        "day": "2025-06-12",
+        "side": "long",
+        "entry": 6022.25,
+        "exit": 6049.5,
+        "points": 27.25,
+        "pnl": 272.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-13",
+        "side": "long",
+        "entry": 6045.0,
+        "exit": 5979.25,
+        "points": -65.75,
+        "pnl": -657.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-16",
+        "side": "long",
+        "entry": 5949.0,
+        "exit": 6035.75,
+        "points": 86.75,
+        "pnl": 867.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-17",
+        "side": "long",
+        "entry": 6038.5,
+        "exit": 5985.0,
+        "points": -53.5,
+        "pnl": -535.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-18",
+        "side": "long",
+        "entry": 5977.25,
+        "exit": 5981.5,
+        "points": 4.25,
+        "pnl": 42.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-20",
+        "side": "long",
+        "entry": 5984.0,
+        "exit": 6010.21,
+        "points": 26.21,
+        "pnl": 262.1,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-23",
+        "side": "long",
+        "entry": 5964.0,
+        "exit": 6077.0,
+        "points": 113.0,
+        "pnl": 1130.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-24",
+        "side": "long",
+        "entry": 6078.0,
+        "exit": 6146.25,
+        "points": 68.25,
+        "pnl": 682.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-25",
+        "side": "long",
+        "entry": 6144.75,
+        "exit": 6147.0,
+        "points": 2.25,
+        "pnl": 22.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-26",
+        "side": "long",
+        "entry": 6144.75,
+        "exit": 6195.0,
+        "points": 50.25,
+        "pnl": 502.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-27",
+        "side": "long",
+        "entry": 6197.5,
+        "exit": 6223.75,
+        "points": 26.25,
+        "pnl": 262.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-06-30",
+        "side": "long",
+        "entry": 6223.25,
+        "exit": 6253.75,
+        "points": 30.5,
+        "pnl": 305.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-01",
+        "side": "long",
+        "entry": 6245.75,
+        "exit": 6248.75,
+        "points": 3.0,
+        "pnl": 30.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-02",
+        "side": "long",
+        "entry": 6247.75,
+        "exit": 6275.0,
+        "points": 27.25,
+        "pnl": 272.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-03",
+        "side": "long",
+        "entry": 6276.5,
+        "exit": 6324.25,
+        "points": 47.75,
+        "pnl": 477.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-04",
+        "side": "long",
+        "entry": 6320.75,
+        "exit": 6283.5,
+        "points": -37.25,
+        "pnl": -372.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-07",
+        "side": "long",
+        "entry": 6307.75,
+        "exit": 6276.0,
+        "points": -31.75,
+        "pnl": -317.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-08",
+        "side": "long",
+        "entry": 6262.5,
+        "exit": 6272.0,
+        "points": 9.5,
+        "pnl": 95.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-09",
+        "side": "long",
+        "entry": 6272.0,
+        "exit": 6307.25,
+        "points": 35.25,
+        "pnl": 352.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-10",
+        "side": "long",
+        "entry": 6306.0,
+        "exit": 6324.25,
+        "points": 18.25,
+        "pnl": 182.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-11",
+        "side": "long",
+        "entry": 6323.0,
+        "exit": 6300.0,
+        "points": -23.0,
+        "pnl": -230.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-14",
+        "side": "long",
+        "entry": 6274.0,
+        "exit": 6311.0,
+        "points": 37.0,
+        "pnl": 370.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-15",
+        "side": "long",
+        "entry": 6309.5,
+        "exit": 6284.0,
+        "points": -25.5,
+        "pnl": -255.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-16",
+        "side": "long",
+        "entry": 6273.75,
+        "exit": 6303.25,
+        "points": 29.5,
+        "pnl": 295.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-17",
+        "side": "long",
+        "entry": 6299.25,
+        "exit": 6340.5,
+        "points": 41.25,
+        "pnl": 412.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-18",
+        "side": "long",
+        "entry": 6342.5,
+        "exit": 6334.75,
+        "points": -7.75,
+        "pnl": -77.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-21",
+        "side": "long",
+        "entry": 6335.75,
+        "exit": 6344.75,
+        "points": 9.0,
+        "pnl": 90.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-22",
+        "side": "long",
+        "entry": 6347.0,
+        "exit": 6346.75,
+        "points": -0.25,
+        "pnl": -2.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-23",
+        "side": "long",
+        "entry": 6346.5,
+        "exit": 6396.25,
+        "points": 49.75,
+        "pnl": 497.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-24",
+        "side": "long",
+        "entry": 6404.0,
+        "exit": 6401.5,
+        "points": -2.5,
+        "pnl": -25.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-25",
+        "side": "long",
+        "entry": 6406.75,
+        "exit": 6425.0,
+        "points": 18.25,
+        "pnl": 182.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-28",
+        "side": "long",
+        "entry": 6450.0,
+        "exit": 6422.75,
+        "points": -27.25,
+        "pnl": -272.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-29",
+        "side": "long",
+        "entry": 6424.25,
+        "exit": 6406.0,
+        "points": -18.25,
+        "pnl": -182.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-30",
+        "side": "long",
+        "entry": 6404.0,
+        "exit": 6396.25,
+        "points": -7.75,
+        "pnl": -77.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-07-31",
+        "side": "long",
+        "entry": 6435.5,
+        "exit": 6374.25,
+        "points": -61.25,
+        "pnl": -612.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2025-08-01",
+        "side": "long",
+        "entry": 6359.5,
+        "exit": 6264.5,
+        "points": -95.0,
+        "pnl": -950.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
         "day": "2026-08-10",
         "side": "long",
         "entry": 7776.75,
-        "exit": 7775.75,
-        "points": -1.0,
-        "pnl": -10.0,
+        "exit": 7776.75,
+        "points": 0.0,
+        "pnl": 0.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-11",
         "side": "long",
         "entry": 7778.25,
-        "exit": 7750.75,
-        "points": -27.5,
-        "pnl": -275.0,
+        "exit": 7747.5,
+        "points": -30.75,
+        "pnl": -307.5,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-12",
         "side": "long",
         "entry": 7756.0,
-        "exit": 7774.0,
-        "points": 18.0,
-        "pnl": 180.0,
+        "exit": 7770.5,
+        "points": 14.5,
+        "pnl": 145.0,
         "note": "bull regime (>200d SMA)"
       },
       {
@@ -2211,144 +2535,144 @@
         "day": "2026-08-14",
         "side": "long",
         "entry": 7825.0,
-        "exit": 7801.25,
-        "points": -23.75,
-        "pnl": -237.5,
+        "exit": 7805.0,
+        "points": -20.0,
+        "pnl": -200.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-17",
         "side": "long",
         "entry": 7809.25,
-        "exit": 7767.75,
-        "points": -41.5,
-        "pnl": -415.0,
+        "exit": 7768.75,
+        "points": -40.5,
+        "pnl": -405.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-18",
         "side": "long",
         "entry": 7766.0,
-        "exit": 7714.5,
-        "points": -51.5,
-        "pnl": -515.0,
+        "exit": 7714.0,
+        "points": -52.0,
+        "pnl": -520.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-19",
         "side": "long",
         "entry": 7714.0,
-        "exit": 7729.25,
-        "points": 15.25,
-        "pnl": 152.5,
+        "exit": 7729.0,
+        "points": 15.0,
+        "pnl": 150.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-20",
         "side": "long",
         "entry": 7733.0,
-        "exit": 7665.5,
-        "points": -67.5,
-        "pnl": -675.0,
+        "exit": 7662.5,
+        "points": -70.5,
+        "pnl": -705.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-21",
         "side": "long",
         "entry": 7669.0,
-        "exit": 7690.5,
-        "points": 21.5,
-        "pnl": 215.0,
+        "exit": 7691.25,
+        "points": 22.25,
+        "pnl": 222.5,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-24",
         "side": "long",
         "entry": 7693.5,
-        "exit": 7670.75,
-        "points": -22.75,
-        "pnl": -227.5,
+        "exit": 7669.75,
+        "points": -23.75,
+        "pnl": -237.5,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-25",
         "side": "long",
         "entry": 7676.0,
-        "exit": 7692.75,
-        "points": 16.75,
-        "pnl": 167.5,
+        "exit": 7692.0,
+        "points": 16.0,
+        "pnl": 160.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-26",
         "side": "long",
         "entry": 7691.5,
-        "exit": 7701.75,
-        "points": 10.25,
-        "pnl": 102.5,
+        "exit": 7690.75,
+        "points": -0.75,
+        "pnl": -7.5,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-27",
         "side": "long",
         "entry": 7722.0,
-        "exit": 7738.0,
-        "points": 16.0,
-        "pnl": 160.0,
+        "exit": 7742.5,
+        "points": 20.5,
+        "pnl": 205.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-28",
         "side": "long",
         "entry": 7733.75,
-        "exit": 7720.75,
-        "points": -13.0,
-        "pnl": -130.0,
+        "exit": 7722.0,
+        "points": -11.75,
+        "pnl": -117.5,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-08-31",
         "side": "long",
         "entry": 7723.5,
-        "exit": 7703.0,
-        "points": -20.5,
-        "pnl": -205.0,
+        "exit": 7699.0,
+        "points": -24.5,
+        "pnl": -245.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-09-01",
         "side": "long",
         "entry": 7701.25,
-        "exit": 7643.5,
-        "points": -57.75,
-        "pnl": -577.5,
+        "exit": 7642.75,
+        "points": -58.5,
+        "pnl": -585.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-09-02",
         "side": "long",
         "entry": 7645.0,
-        "exit": 7680.75,
-        "points": 35.75,
-        "pnl": 357.5,
+        "exit": 7676.5,
+        "points": 31.5,
+        "pnl": 315.0,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-09-03",
         "side": "long",
         "entry": 7673.5,
-        "exit": 7754.0,
-        "points": 80.5,
-        "pnl": 805.0,
+        "exit": 7754.75,
+        "points": 81.25,
+        "pnl": 812.5,
         "note": "bull regime (>200d SMA)"
       },
       {
         "day": "2026-09-04",
         "side": "long",
         "entry": 7749.75,
-        "exit": 7718.0,
-        "points": -31.75,
-        "pnl": -317.5,
+        "exit": 7722.0,
+        "points": -27.75,
+        "pnl": -277.5,
         "note": "bull regime (>200d SMA)"
       },
       {
@@ -2359,29 +2683,11 @@
         "points": 6.5,
         "pnl": 65.0,
         "note": "bull regime (>200d SMA)"
-      },
-      {
-        "day": "2026-09-08",
-        "side": "long",
-        "entry": 7715.5,
-        "exit": 7678.0,
-        "points": -37.5,
-        "pnl": -375.0,
-        "note": "bull regime (>200d SMA)"
-      },
-      {
-        "day": "2026-09-09",
-        "side": "long",
-        "entry": 7681.0,
-        "exit": 7645.0,
-        "points": -36.0,
-        "pnl": -360.0,
-        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 61198.100000000006,
+    "equity": 67127.80000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2906,63 +3212,441 @@
         "note": "2 consecutive down days -> reversal"
       },
       {
+        "day": "2024-08-30",
+        "side": "long",
+        "entry": 5618.5,
+        "exit": 5661.0,
+        "points": 42.5,
+        "pnl": 425.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-09-05",
+        "side": "long",
+        "entry": 5527.5,
+        "exit": 5512.25,
+        "points": -15.25,
+        "pnl": -152.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-09-06",
+        "side": "long",
+        "entry": 5513.0,
+        "exit": 5419.5,
+        "points": -93.5,
+        "pnl": -935.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-09-09",
+        "side": "long",
+        "entry": 5410.0,
+        "exit": 5479.5,
+        "points": 69.5,
+        "pnl": 695.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-10-23",
+        "side": "long",
+        "entry": 5887.25,
+        "exit": 5837.75,
+        "points": -49.5,
+        "pnl": -495.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-10-24",
+        "side": "long",
+        "entry": 5844.0,
+        "exit": 5849.0,
+        "points": 5.0,
+        "pnl": 50.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-11-01",
+        "side": "long",
+        "entry": 5742.0,
+        "exit": 5758.25,
+        "points": 16.25,
+        "pnl": 162.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-11-18",
+        "side": "long",
+        "entry": 5899.75,
+        "exit": 5920.0,
+        "points": 20.25,
+        "pnl": 202.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-12-11",
+        "side": "long",
+        "entry": 6052.75,
+        "exit": 6092.75,
+        "points": 40.0,
+        "pnl": 400.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-12-16",
+        "side": "long",
+        "entry": 6055.5,
+        "exit": 6080.5,
+        "points": 25.0,
+        "pnl": 250.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-12-19",
+        "side": "long",
+        "entry": 5881.75,
+        "exit": 5868.75,
+        "points": -13.0,
+        "pnl": -130.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-12-20",
+        "side": "long",
+        "entry": 5879.5,
+        "exit": 5840.26,
+        "points": -39.24,
+        "pnl": -392.4,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-12-23",
+        "side": "long",
+        "entry": 6001.75,
+        "exit": 6036.0,
+        "points": 34.25,
+        "pnl": 342.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-12-30",
+        "side": "long",
+        "entry": 6028.75,
+        "exit": 5958.75,
+        "points": -70.0,
+        "pnl": -700.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2024-12-31",
+        "side": "long",
+        "entry": 5955.0,
+        "exit": 5935.75,
+        "points": -19.25,
+        "pnl": -192.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-01-02",
+        "side": "long",
+        "entry": 5949.25,
+        "exit": 5916.5,
+        "points": -32.75,
+        "pnl": -327.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-01-03",
+        "side": "long",
+        "entry": 5921.0,
+        "exit": 5989.5,
+        "points": 68.5,
+        "pnl": 685.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-01-13",
+        "side": "long",
+        "entry": 5864.5,
+        "exit": 5874.5,
+        "points": 10.0,
+        "pnl": 100.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-01-28",
+        "side": "long",
+        "entry": 6059.5,
+        "exit": 6097.0,
+        "points": 37.5,
+        "pnl": 375.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-02-04",
+        "side": "long",
+        "entry": 6069.0,
+        "exit": 6063.0,
+        "points": -6.0,
+        "pnl": -60.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-02-24",
+        "side": "long",
+        "entry": 6040.75,
+        "exit": 6000.75,
+        "points": -40.0,
+        "pnl": -400.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-02-25",
+        "side": "long",
+        "entry": 6006.5,
+        "exit": 5970.0,
+        "points": -36.5,
+        "pnl": -365.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-02-26",
+        "side": "long",
+        "entry": 5982.0,
+        "exit": 5970.75,
+        "points": -11.25,
+        "pnl": -112.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-03-05",
+        "side": "long",
+        "entry": 5832.0,
+        "exit": 5851.25,
+        "points": 19.25,
+        "pnl": 192.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-03-12",
+        "side": "long",
+        "entry": 5580.0,
+        "exit": 5604.75,
+        "points": 24.75,
+        "pnl": 247.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-03-24",
+        "side": "long",
+        "entry": 5740.0,
+        "exit": 5815.5,
+        "points": 75.5,
+        "pnl": 755.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-03-28",
+        "side": "long",
+        "entry": 5741.75,
+        "exit": 5623.0,
+        "points": -118.75,
+        "pnl": -1187.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-03-31",
+        "side": "long",
+        "entry": 5590.0,
+        "exit": 5653.25,
+        "points": 63.25,
+        "pnl": 632.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-04-07",
+        "side": "long",
+        "entry": 5007.0,
+        "exit": 5097.25,
+        "points": 90.25,
+        "pnl": 902.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-04-08",
+        "side": "long",
+        "entry": 5126.5,
+        "exit": 5020.25,
+        "points": -106.25,
+        "pnl": -1062.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-04-09",
+        "side": "long",
+        "entry": 5006.25,
+        "exit": 5491.0,
+        "points": 484.75,
+        "pnl": 4847.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-04-17",
+        "side": "long",
+        "entry": 5308.0,
+        "exit": 5312.75,
+        "points": 4.75,
+        "pnl": 47.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-05-07",
+        "side": "long",
+        "entry": 5608.5,
+        "exit": 5652.0,
+        "points": 43.5,
+        "pnl": 435.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-05-22",
+        "side": "long",
+        "entry": 5858.0,
+        "exit": 5856.75,
+        "points": -1.25,
+        "pnl": -12.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-05-23",
+        "side": "long",
+        "entry": 5869.25,
+        "exit": 5817.0,
+        "points": -52.25,
+        "pnl": -522.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-05-27",
+        "side": "long",
+        "entry": 5820.0,
+        "exit": 5934.25,
+        "points": 114.25,
+        "pnl": 1142.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-06-06",
+        "side": "long",
+        "entry": 5931.75,
+        "exit": 6006.75,
+        "points": 75.0,
+        "pnl": 750.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-06-20",
+        "side": "long",
+        "entry": 5984.0,
+        "exit": 6010.21,
+        "points": 26.21,
+        "pnl": 262.1,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-07-08",
+        "side": "long",
+        "entry": 6262.5,
+        "exit": 6272.0,
+        "points": 9.5,
+        "pnl": 95.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-07-09",
+        "side": "long",
+        "entry": 6272.0,
+        "exit": 6307.25,
+        "points": 35.25,
+        "pnl": 352.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-07-30",
+        "side": "long",
+        "entry": 6404.0,
+        "exit": 6396.25,
+        "points": -7.75,
+        "pnl": -77.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-07-31",
+        "side": "long",
+        "entry": 6435.5,
+        "exit": 6374.25,
+        "points": -61.25,
+        "pnl": -612.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2025-08-01",
+        "side": "long",
+        "entry": 6359.5,
+        "exit": 6264.5,
+        "points": -95.0,
+        "pnl": -950.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
         "day": "2026-08-12",
         "side": "long",
         "entry": 7756.0,
-        "exit": 7774.0,
-        "points": 18.0,
-        "pnl": 180.0,
+        "exit": 7770.5,
+        "points": 14.5,
+        "pnl": 145.0,
         "note": "2 consecutive down days -> reversal"
       },
       {
         "day": "2026-08-18",
         "side": "long",
         "entry": 7766.0,
-        "exit": 7714.5,
-        "points": -51.5,
-        "pnl": -515.0,
+        "exit": 7714.0,
+        "points": -52.0,
+        "pnl": -520.0,
         "note": "2 consecutive down days -> reversal"
       },
       {
         "day": "2026-08-19",
         "side": "long",
         "entry": 7714.0,
-        "exit": 7729.25,
-        "points": 15.25,
-        "pnl": 152.5,
+        "exit": 7729.0,
+        "points": 15.0,
+        "pnl": 150.0,
         "note": "2 consecutive down days -> reversal"
       },
       {
         "day": "2026-09-01",
         "side": "long",
         "entry": 7701.25,
-        "exit": 7643.5,
-        "points": -57.75,
-        "pnl": -577.5,
+        "exit": 7642.75,
+        "points": -58.5,
+        "pnl": -585.0,
         "note": "2 consecutive down days -> reversal"
       },
       {
         "day": "2026-09-02",
         "side": "long",
         "entry": 7645.0,
-        "exit": 7680.75,
-        "points": 35.75,
-        "pnl": 357.5,
-        "note": "2 consecutive down days -> reversal"
-      },
-      {
-        "day": "2026-09-09",
-        "side": "long",
-        "entry": 7681.0,
-        "exit": 7645.0,
-        "points": -36.0,
-        "pnl": -360.0,
+        "exit": 7676.5,
+        "points": 31.5,
+        "pnl": 315.0,
         "note": "2 consecutive down days -> reversal"
       }
     ]
   },
   "GAPFILL": {
-    "equity": 60602.5,
+    "equity": 62022.5,
     "trades": [
       {
         "day": "2026-01-20",
@@ -3107,11 +3791,155 @@
         "points": 48.0,
         "pnl": 480.0,
         "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-01-27",
+        "side": "long",
+        "entry": 6102.25,
+        "exit": 6046.75,
+        "points": -55.5,
+        "pnl": -555.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-02-03",
+        "side": "long",
+        "entry": 5982.25,
+        "exit": 6022.25,
+        "points": 40.0,
+        "pnl": 400.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-02-05",
+        "side": "long",
+        "entry": 6042.75,
+        "exit": 6086.5,
+        "points": 43.75,
+        "pnl": 437.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-02-10",
+        "side": "long",
+        "entry": 6016.0,
+        "exit": 6088.75,
+        "points": 72.75,
+        "pnl": 727.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-03-10",
+        "side": "long",
+        "entry": 5753.0,
+        "exit": 5620.75,
+        "points": -132.25,
+        "pnl": -1322.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-03-27",
+        "side": "long",
+        "entry": 5737.25,
+        "exit": 5739.25,
+        "points": 2.0,
+        "pnl": 20.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-03-31",
+        "side": "long",
+        "entry": 5590.0,
+        "exit": 5653.25,
+        "points": 63.25,
+        "pnl": 632.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-04-03",
+        "side": "long",
+        "entry": 5550.5,
+        "exit": 5432.75,
+        "points": -117.75,
+        "pnl": -1177.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-04-07",
+        "side": "long",
+        "entry": 5007.0,
+        "exit": 5097.25,
+        "points": 90.25,
+        "pnl": 902.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-04-16",
+        "side": "long",
+        "entry": 5403.75,
+        "exit": 5305.75,
+        "points": -98.0,
+        "pnl": -980.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-04-21",
+        "side": "long",
+        "entry": 5283.75,
+        "exit": 5184.75,
+        "points": -99.0,
+        "pnl": -990.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-05-07",
+        "side": "long",
+        "entry": 5608.5,
+        "exit": 5652.0,
+        "points": 43.5,
+        "pnl": 435.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-05-19",
+        "side": "long",
+        "entry": 5930.25,
+        "exit": 5982.5,
+        "points": 52.25,
+        "pnl": 522.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-06-16",
+        "side": "long",
+        "entry": 5949.0,
+        "exit": 6035.75,
+        "points": 86.75,
+        "pnl": 867.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-06-23",
+        "side": "long",
+        "entry": 5964.0,
+        "exit": 6077.0,
+        "points": 113.0,
+        "pnl": 1130.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2025-07-14",
+        "side": "long",
+        "entry": 6274.0,
+        "exit": 6311.0,
+        "points": 37.0,
+        "pnl": 370.0,
+        "note": "fade gap-down > 0.3%"
       }
     ]
   },
   "TUESDAY": {
-    "equity": 50705.0,
+    "equity": 49690.0,
     "trades": [
       {
         "day": "2025-08-12",
@@ -3258,45 +4086,180 @@
         "note": "Turnaround Tuesday (Mon down)"
       },
       {
+        "day": "2024-10-08",
+        "side": "long",
+        "entry": 5752.5,
+        "exit": 5800.5,
+        "points": 48.0,
+        "pnl": 480.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2024-10-22",
+        "side": "long",
+        "entry": 5900.75,
+        "exit": 5892.5,
+        "points": -8.25,
+        "pnl": -82.5,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2024-11-05",
+        "side": "long",
+        "entry": 5752.25,
+        "exit": 5812.25,
+        "points": 60.0,
+        "pnl": 600.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2024-12-10",
+        "side": "long",
+        "entry": 6065.25,
+        "exit": 6046.25,
+        "points": -19.0,
+        "pnl": -190.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2024-12-31",
+        "side": "long",
+        "entry": 5955.0,
+        "exit": 5935.75,
+        "points": -19.25,
+        "pnl": -192.5,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-01-28",
+        "side": "long",
+        "entry": 6059.5,
+        "exit": 6097.0,
+        "points": 37.5,
+        "pnl": 375.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-02-04",
+        "side": "long",
+        "entry": 6069.0,
+        "exit": 6063.0,
+        "points": -6.0,
+        "pnl": -60.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-02-25",
+        "side": "long",
+        "entry": 6006.5,
+        "exit": 5970.0,
+        "points": -36.5,
+        "pnl": -365.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-03-04",
+        "side": "long",
+        "entry": 5874.0,
+        "exit": 5789.5,
+        "points": -84.5,
+        "pnl": -845.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-03-11",
+        "side": "long",
+        "entry": 5622.0,
+        "exit": 5577.0,
+        "points": -45.0,
+        "pnl": -450.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-04-08",
+        "side": "long",
+        "entry": 5126.5,
+        "exit": 5020.25,
+        "points": -106.25,
+        "pnl": -1062.5,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-04-22",
+        "side": "long",
+        "entry": 5182.5,
+        "exit": 5314.75,
+        "points": 132.25,
+        "pnl": 1322.5,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-05-06",
+        "side": "long",
+        "entry": 5666.25,
+        "exit": 5625.75,
+        "points": -40.5,
+        "pnl": -405.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-07-08",
+        "side": "long",
+        "entry": 6262.5,
+        "exit": 6272.0,
+        "points": 9.5,
+        "pnl": 95.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2025-07-29",
+        "side": "long",
+        "entry": 6424.25,
+        "exit": 6406.0,
+        "points": -18.25,
+        "pnl": -182.5,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
         "day": "2026-08-11",
         "side": "long",
         "entry": 7778.25,
-        "exit": 7750.75,
-        "points": -27.5,
-        "pnl": -275.0,
+        "exit": 7747.5,
+        "points": -30.75,
+        "pnl": -307.5,
         "note": "Turnaround Tuesday (Mon down)"
       },
       {
         "day": "2026-08-18",
         "side": "long",
         "entry": 7766.0,
-        "exit": 7714.5,
-        "points": -51.5,
-        "pnl": -515.0,
+        "exit": 7714.0,
+        "points": -52.0,
+        "pnl": -520.0,
         "note": "Turnaround Tuesday (Mon down)"
       },
       {
         "day": "2026-08-25",
         "side": "long",
         "entry": 7676.0,
-        "exit": 7692.75,
-        "points": 16.75,
-        "pnl": 167.5,
+        "exit": 7692.0,
+        "points": 16.0,
+        "pnl": 160.0,
         "note": "Turnaround Tuesday (Mon down)"
       },
       {
         "day": "2026-09-01",
         "side": "long",
         "entry": 7701.25,
-        "exit": 7643.5,
-        "points": -57.75,
-        "pnl": -577.5,
+        "exit": 7642.75,
+        "points": -58.5,
+        "pnl": -585.0,
         "note": "Turnaround Tuesday (Mon down)"
       }
     ]
   },
   "CAPITULATION": {
-    "equity": 54260.0,
+    "equity": 59642.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3405,11 +4368,164 @@
         "points": 134.5,
         "pnl": 1345.0,
         "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2024-09-04",
+        "side": "long",
+        "entry": 5538.5,
+        "exit": 5530.0,
+        "points": -8.5,
+        "pnl": -85.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2024-09-09",
+        "side": "long",
+        "entry": 5410.0,
+        "exit": 5479.5,
+        "points": 69.5,
+        "pnl": 695.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2024-11-01",
+        "side": "long",
+        "entry": 5742.0,
+        "exit": 5758.25,
+        "points": 16.25,
+        "pnl": 162.5,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2024-12-19",
+        "side": "long",
+        "entry": 5881.75,
+        "exit": 5868.75,
+        "points": -13.0,
+        "pnl": -130.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-02-24",
+        "side": "long",
+        "entry": 6040.75,
+        "exit": 6000.75,
+        "points": -40.0,
+        "pnl": -400.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-02-28",
+        "side": "long",
+        "entry": 5883.0,
+        "exit": 5963.25,
+        "points": 80.25,
+        "pnl": 802.5,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-03-04",
+        "side": "long",
+        "entry": 5874.0,
+        "exit": 5789.5,
+        "points": -84.5,
+        "pnl": -845.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-03-07",
+        "side": "long",
+        "entry": 5766.0,
+        "exit": 5776.0,
+        "points": 10.0,
+        "pnl": 100.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-03-11",
+        "side": "long",
+        "entry": 5622.0,
+        "exit": 5577.0,
+        "points": -45.0,
+        "pnl": -450.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-03-31",
+        "side": "long",
+        "entry": 5590.0,
+        "exit": 5653.25,
+        "points": 63.25,
+        "pnl": 632.5,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-04-04",
+        "side": "long",
+        "entry": 5423.0,
+        "exit": 5110.25,
+        "points": -312.75,
+        "pnl": -3127.5,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-04-07",
+        "side": "long",
+        "entry": 5007.0,
+        "exit": 5097.25,
+        "points": 90.25,
+        "pnl": 902.5,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-04-09",
+        "side": "long",
+        "entry": 5006.25,
+        "exit": 5491.0,
+        "points": 484.75,
+        "pnl": 4847.5,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-04-11",
+        "side": "long",
+        "entry": 5299.25,
+        "exit": 5391.25,
+        "points": 92.0,
+        "pnl": 920.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-04-17",
+        "side": "long",
+        "entry": 5308.0,
+        "exit": 5312.75,
+        "points": 4.75,
+        "pnl": 47.5,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-04-22",
+        "side": "long",
+        "entry": 5182.5,
+        "exit": 5314.75,
+        "points": 132.25,
+        "pnl": 1322.5,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2025-05-22",
+        "side": "long",
+        "entry": 5858.0,
+        "exit": 5856.75,
+        "points": -1.25,
+        "pnl": -12.5,
+        "note": "fade -1.5% panic day"
       }
     ]
   },
   "DIPBUYER": {
-    "equity": 58910.0,
+    "equity": 58875.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3532,19 +4648,862 @@
         "day": "2026-08-21",
         "side": "long",
         "entry": 7669.0,
-        "exit": 7690.5,
-        "points": 21.5,
-        "pnl": 215.0,
+        "exit": 7691.25,
+        "points": 22.25,
+        "pnl": 222.5,
         "note": "10d-low pullback in golden-cross uptrend"
       },
       {
         "day": "2026-09-02",
         "side": "long",
         "entry": 7645.0,
-        "exit": 7680.75,
-        "points": 35.75,
-        "pnl": 357.5,
+        "exit": 7676.5,
+        "points": 31.5,
+        "pnl": 315.0,
         "note": "10d-low pullback in golden-cross uptrend"
+      }
+    ]
+  },
+  "RSI2": {
+    "equity": 56485.0,
+    "trades": [
+      {
+        "day": "2025-08-04",
+        "side": "long",
+        "entry": 6257.0,
+        "exit": 6356.0,
+        "points": 99.0,
+        "pnl": 990.0,
+        "note": "RSI2=1<5 & close>200d SMA"
+      },
+      {
+        "day": "2025-08-21",
+        "side": "long",
+        "entry": 6414.25,
+        "exit": 6388.25,
+        "points": -26.0,
+        "pnl": -260.0,
+        "note": "RSI2=5<5 & close>200d SMA"
+      },
+      {
+        "day": "2025-08-22",
+        "side": "long",
+        "entry": 6392.0,
+        "exit": 6483.25,
+        "points": 91.25,
+        "pnl": 912.5,
+        "note": "RSI2=2<5 & close>200d SMA"
+      },
+      {
+        "day": "2025-11-18",
+        "side": "long",
+        "entry": 6696.5,
+        "exit": 6639.75,
+        "points": -56.75,
+        "pnl": -567.5,
+        "note": "RSI2=5<5 & close>200d SMA"
+      },
+      {
+        "day": "2025-11-19",
+        "side": "long",
+        "entry": 6630.75,
+        "exit": 6661.5,
+        "points": 30.75,
+        "pnl": 307.5,
+        "note": "RSI2=2<5 & close>200d SMA"
+      },
+      {
+        "day": "2025-12-18",
+        "side": "long",
+        "entry": 6739.25,
+        "exit": 6778.25,
+        "points": 39.0,
+        "pnl": 390.0,
+        "note": "RSI2=2<5 & close>200d SMA"
+      },
+      {
+        "day": "2026-01-21",
+        "side": "long",
+        "entry": 6839.0,
+        "exit": 6910.0,
+        "points": 71.0,
+        "pnl": 710.0,
+        "note": "RSI2=3<5 & close>200d SMA"
+      },
+      {
+        "day": "2026-02-06",
+        "side": "long",
+        "entry": 6785.5,
+        "exit": 6952.75,
+        "points": 167.25,
+        "pnl": 1672.5,
+        "note": "RSI2=4<5 & close>200d SMA"
+      },
+      {
+        "day": "2026-03-16",
+        "side": "long",
+        "entry": 6608.5,
+        "exit": 6704.75,
+        "points": 96.25,
+        "pnl": 962.5,
+        "note": "RSI2=4<5 & close>200d SMA"
+      },
+      {
+        "day": "2026-06-11",
+        "side": "long",
+        "entry": 7259.25,
+        "exit": 7396.0,
+        "points": 136.75,
+        "pnl": 1367.5,
+        "note": "RSI2=4<5 & close>200d SMA"
+      }
+    ]
+  },
+  "IBS": {
+    "equity": 59816.9,
+    "trades": [
+      {
+        "day": "2024-09-04",
+        "side": "long",
+        "entry": 5538.5,
+        "exit": 5530.0,
+        "points": -8.5,
+        "pnl": -85.0,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-09-09",
+        "side": "long",
+        "entry": 5410.0,
+        "exit": 5479.5,
+        "points": 69.5,
+        "pnl": 695.0,
+        "note": "IBS=0.18<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-09-19",
+        "side": "long",
+        "entry": 5631.5,
+        "exit": 5717.75,
+        "points": 86.25,
+        "pnl": 862.5,
+        "note": "IBS=0.08<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-09-23",
+        "side": "long",
+        "entry": 5762.0,
+        "exit": 5776.75,
+        "points": 14.75,
+        "pnl": 147.5,
+        "note": "IBS=0.04<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-10-08",
+        "side": "long",
+        "entry": 5752.5,
+        "exit": 5800.5,
+        "points": 48.0,
+        "pnl": 480.0,
+        "note": "IBS=0.14<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-10-16",
+        "side": "long",
+        "entry": 5861.0,
+        "exit": 5887.0,
+        "points": 26.0,
+        "pnl": 260.0,
+        "note": "IBS=0.19<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-10-28",
+        "side": "long",
+        "entry": 5857.0,
+        "exit": 5861.5,
+        "points": 4.5,
+        "pnl": 45.0,
+        "note": "IBS=0.17<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-10-29",
+        "side": "long",
+        "entry": 5867.0,
+        "exit": 5871.0,
+        "points": 4.0,
+        "pnl": 40.0,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-11-01",
+        "side": "long",
+        "entry": 5742.0,
+        "exit": 5758.25,
+        "points": 16.25,
+        "pnl": 162.5,
+        "note": "IBS=0.05<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-12-10",
+        "side": "long",
+        "entry": 6065.25,
+        "exit": 6046.25,
+        "points": -19.0,
+        "pnl": -190.0,
+        "note": "IBS=0.13<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-12-11",
+        "side": "long",
+        "entry": 6052.75,
+        "exit": 6092.75,
+        "points": 40.0,
+        "pnl": 400.0,
+        "note": "IBS=0.18<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-12-13",
+        "side": "long",
+        "entry": 6065.0,
+        "exit": 6055.5,
+        "points": -9.5,
+        "pnl": -95.0,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-12-19",
+        "side": "long",
+        "entry": 5881.75,
+        "exit": 5868.75,
+        "points": -13.0,
+        "pnl": -130.0,
+        "note": "IBS=0.14<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2024-12-20",
+        "side": "long",
+        "entry": 5879.5,
+        "exit": 5840.26,
+        "points": -39.24,
+        "pnl": -392.4,
+        "note": "IBS=0.04<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-01-08",
+        "side": "long",
+        "entry": 5955.5,
+        "exit": 5959.25,
+        "points": 3.75,
+        "pnl": 37.5,
+        "note": "IBS=0.17<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-01-13",
+        "side": "long",
+        "entry": 5864.5,
+        "exit": 5874.5,
+        "points": 10.0,
+        "pnl": 100.0,
+        "note": "IBS=0.18<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-02-03",
+        "side": "long",
+        "entry": 5982.25,
+        "exit": 6022.25,
+        "points": 40.0,
+        "pnl": 400.0,
+        "note": "IBS=0.11<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-02-10",
+        "side": "long",
+        "entry": 6016.0,
+        "exit": 6088.75,
+        "points": 72.75,
+        "pnl": 727.5,
+        "note": "IBS=0.10<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-02-24",
+        "side": "long",
+        "entry": 6040.75,
+        "exit": 6000.75,
+        "points": -40.0,
+        "pnl": -400.0,
+        "note": "IBS=0.04<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-02-25",
+        "side": "long",
+        "entry": 6006.5,
+        "exit": 5970.0,
+        "points": -36.5,
+        "pnl": -365.0,
+        "note": "IBS=0.09<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-02-28",
+        "side": "long",
+        "entry": 5883.0,
+        "exit": 5963.25,
+        "points": 80.25,
+        "pnl": 802.5,
+        "note": "IBS=0.02<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-03-07",
+        "side": "long",
+        "entry": 5766.0,
+        "exit": 5776.0,
+        "points": 10.0,
+        "pnl": 100.0,
+        "note": "IBS=0.20<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-03-14",
+        "side": "long",
+        "entry": 5540.0,
+        "exit": 5640.0,
+        "points": 100.0,
+        "pnl": 1000.0,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-03-27",
+        "side": "long",
+        "entry": 5737.25,
+        "exit": 5739.25,
+        "points": 2.0,
+        "pnl": 20.0,
+        "note": "IBS=0.18<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-03-31",
+        "side": "long",
+        "entry": 5590.0,
+        "exit": 5653.25,
+        "points": 63.25,
+        "pnl": 632.5,
+        "note": "IBS=0.14<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-04-04",
+        "side": "long",
+        "entry": 5423.0,
+        "exit": 5110.25,
+        "points": -312.75,
+        "pnl": -3127.5,
+        "note": "IBS=0.12<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-04-07",
+        "side": "long",
+        "entry": 5007.0,
+        "exit": 5097.25,
+        "points": 90.25,
+        "pnl": 902.5,
+        "note": "IBS=0.10<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-04-24",
+        "side": "long",
+        "entry": 5409.0,
+        "exit": 5511.25,
+        "points": 102.25,
+        "pnl": 1022.5,
+        "note": "IBS=0.20<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-05-22",
+        "side": "long",
+        "entry": 5858.0,
+        "exit": 5856.75,
+        "points": -1.25,
+        "pnl": -12.5,
+        "note": "IBS=0.12<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-06-06",
+        "side": "long",
+        "entry": 5931.75,
+        "exit": 6006.75,
+        "points": 75.0,
+        "pnl": 750.0,
+        "note": "IBS=0.20<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-06-18",
+        "side": "long",
+        "entry": 5977.25,
+        "exit": 5981.5,
+        "points": 4.25,
+        "pnl": 42.5,
+        "note": "IBS=0.13<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-07-07",
+        "side": "long",
+        "entry": 6307.75,
+        "exit": 6276.0,
+        "points": -31.75,
+        "pnl": -317.5,
+        "note": "IBS=0.15<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-07-16",
+        "side": "long",
+        "entry": 6273.75,
+        "exit": 6303.25,
+        "points": 29.5,
+        "pnl": 295.0,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-08-01",
+        "side": "long",
+        "entry": 6359.5,
+        "exit": 6264.5,
+        "points": -95.0,
+        "pnl": -950.0,
+        "note": "IBS=0.15<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-08-04",
+        "side": "long",
+        "entry": 6257.0,
+        "exit": 6356.0,
+        "points": 99.0,
+        "pnl": 990.0,
+        "note": "IBS=0.19<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-08-06",
+        "side": "long",
+        "entry": 6323.0,
+        "exit": 6371.0,
+        "points": 48.0,
+        "pnl": 480.0,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-08-26",
+        "side": "long",
+        "entry": 6460.25,
+        "exit": 6482.5,
+        "points": 22.25,
+        "pnl": 222.5,
+        "note": "IBS=0.06<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-09-17",
+        "side": "long",
+        "entry": 6613.0,
+        "exit": 6601.25,
+        "points": -11.75,
+        "pnl": -117.5,
+        "note": "IBS=0.19<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-10-31",
+        "side": "long",
+        "entry": 6897.0,
+        "exit": 6874.0,
+        "points": -23.0,
+        "pnl": -230.0,
+        "note": "IBS=0.04<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-11-05",
+        "side": "long",
+        "entry": 6801.0,
+        "exit": 6825.25,
+        "points": 24.25,
+        "pnl": 242.5,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-11-07",
+        "side": "long",
+        "entry": 6763.0,
+        "exit": 6753.75,
+        "points": -9.25,
+        "pnl": -92.5,
+        "note": "IBS=0.13<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-11-14",
+        "side": "long",
+        "entry": 6762.75,
+        "exit": 6755.25,
+        "points": -7.5,
+        "pnl": -75.0,
+        "note": "IBS=0.10<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-11-21",
+        "side": "long",
+        "entry": 6560.0,
+        "exit": 6620.25,
+        "points": 60.25,
+        "pnl": 602.5,
+        "note": "IBS=0.03<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-12-10",
+        "side": "long",
+        "entry": 6847.25,
+        "exit": 6891.75,
+        "points": 44.5,
+        "pnl": 445.0,
+        "note": "IBS=0.15<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-12-18",
+        "side": "long",
+        "entry": 6739.25,
+        "exit": 6778.25,
+        "points": 39.0,
+        "pnl": 390.0,
+        "note": "IBS=0.03<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2025-12-31",
+        "side": "long",
+        "entry": 6945.5,
+        "exit": 6892.5,
+        "points": -53.0,
+        "pnl": -530.0,
+        "note": "IBS=0.17<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-01-02",
+        "side": "long",
+        "entry": 6902.0,
+        "exit": 6900.5,
+        "points": -1.5,
+        "pnl": -15.0,
+        "note": "IBS=0.04<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-01-08",
+        "side": "long",
+        "entry": 6967.5,
+        "exit": 6962.0,
+        "points": -5.5,
+        "pnl": -55.0,
+        "note": "IBS=0.11<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-01-21",
+        "side": "long",
+        "entry": 6839.0,
+        "exit": 6910.0,
+        "points": 71.0,
+        "pnl": 710.0,
+        "note": "IBS=0.06<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-02-11",
+        "side": "long",
+        "entry": 6971.5,
+        "exit": 6960.5,
+        "points": -11.0,
+        "pnl": -110.0,
+        "note": "IBS=0.09<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-02-13",
+        "side": "long",
+        "entry": 6865.5,
+        "exit": 6850.5,
+        "points": -15.0,
+        "pnl": -150.0,
+        "note": "IBS=0.06<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-02-24",
+        "side": "long",
+        "entry": 6858.25,
+        "exit": 6903.75,
+        "points": 45.5,
+        "pnl": 455.0,
+        "note": "IBS=0.19<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-03-13",
+        "side": "long",
+        "entry": 6684.25,
+        "exit": 6636.0,
+        "points": -48.25,
+        "pnl": -482.5,
+        "note": "IBS=0.06<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-03-16",
+        "side": "long",
+        "entry": 6608.5,
+        "exit": 6704.75,
+        "points": 96.25,
+        "pnl": 962.5,
+        "note": "IBS=0.10<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-03-19",
+        "side": "long",
+        "entry": 6622.0,
+        "exit": 6609.25,
+        "points": -12.75,
+        "pnl": -127.5,
+        "note": "IBS=0.14<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-03-27",
+        "side": "long",
+        "entry": 6536.0,
+        "exit": 6412.25,
+        "points": -123.75,
+        "pnl": -1237.5,
+        "note": "IBS=0.06<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-03-30",
+        "side": "long",
+        "entry": 6380.0,
+        "exit": 6388.25,
+        "points": 8.25,
+        "pnl": 82.5,
+        "note": "IBS=0.13<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-04-22",
+        "side": "long",
+        "entry": 7125.0,
+        "exit": 7171.25,
+        "points": 46.25,
+        "pnl": 462.5,
+        "note": "IBS=0.15<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-05-18",
+        "side": "long",
+        "entry": 7410.0,
+        "exit": 7425.75,
+        "points": 15.75,
+        "pnl": 157.5,
+        "note": "IBS=0.19<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-06-08",
+        "side": "long",
+        "entry": 7368.0,
+        "exit": 7416.0,
+        "points": 48.0,
+        "pnl": 480.0,
+        "note": "IBS=0.18<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-06-11",
+        "side": "long",
+        "entry": 7259.25,
+        "exit": 7396.0,
+        "points": 136.75,
+        "pnl": 1367.5,
+        "note": "IBS=0.15<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-06-17",
+        "side": "long",
+        "entry": 7514.5,
+        "exit": 7424.5,
+        "points": -90.0,
+        "pnl": -900.0,
+        "note": "IBS=0.14<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-06-18",
+        "side": "long",
+        "entry": 7440.5,
+        "exit": 7508.43,
+        "points": 67.93,
+        "pnl": 679.3,
+        "note": "IBS=0.14<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-06-24",
+        "side": "long",
+        "entry": 7449.25,
+        "exit": 7428.25,
+        "points": -21.0,
+        "pnl": -210.0,
+        "note": "IBS=0.17<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-07-21",
+        "side": "long",
+        "entry": 7484.0,
+        "exit": 7545.75,
+        "points": 61.75,
+        "pnl": 617.5,
+        "note": "IBS=0.10<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-07-30",
+        "side": "long",
+        "entry": 7338.0,
+        "exit": 7472.5,
+        "points": 134.5,
+        "pnl": 1345.0,
+        "note": "IBS=0.15<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-08-06",
+        "side": "long",
+        "entry": 7756.75,
+        "exit": 7734.75,
+        "points": -22.0,
+        "pnl": -220.0,
+        "note": "IBS=0.05<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-08-12",
+        "side": "long",
+        "entry": 7756.0,
+        "exit": 7770.5,
+        "points": 14.5,
+        "pnl": 145.0,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-08-18",
+        "side": "long",
+        "entry": 7766.0,
+        "exit": 7714.0,
+        "points": -52.0,
+        "pnl": -520.0,
+        "note": "IBS=0.09<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-08-19",
+        "side": "long",
+        "entry": 7714.0,
+        "exit": 7729.0,
+        "points": 15.0,
+        "pnl": 150.0,
+        "note": "IBS=0.06<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-08-21",
+        "side": "long",
+        "entry": 7669.0,
+        "exit": 7691.25,
+        "points": 22.25,
+        "pnl": 222.5,
+        "note": "IBS=0.05<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-08-31",
+        "side": "long",
+        "entry": 7723.5,
+        "exit": 7699.0,
+        "points": -24.5,
+        "pnl": -245.0,
+        "note": "IBS=0.14<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-09-07",
+        "side": "long",
+        "entry": 7715.5,
+        "exit": 7722.0,
+        "points": 6.5,
+        "pnl": 65.0,
+        "note": "IBS=0.19<0.2 weak-close mean reversion"
+      }
+    ]
+  },
+  "BOLLREV": {
+    "equity": 57640.0,
+    "trades": [
+      {
+        "day": "2025-11-19",
+        "side": "long",
+        "entry": 6630.75,
+        "exit": 6661.5,
+        "points": 30.75,
+        "pnl": 307.5,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2025-11-21",
+        "side": "long",
+        "entry": 6560.0,
+        "exit": 6620.25,
+        "points": 60.25,
+        "pnl": 602.5,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-01-21",
+        "side": "long",
+        "entry": 6839.0,
+        "exit": 6910.0,
+        "points": 71.0,
+        "pnl": 710.0,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-02-06",
+        "side": "long",
+        "entry": 6785.5,
+        "exit": 6952.75,
+        "points": 167.25,
+        "pnl": 1672.5,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-03-09",
+        "side": "long",
+        "entry": 6685.5,
+        "exit": 6801.0,
+        "points": 115.5,
+        "pnl": 1155.0,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-03-13",
+        "side": "long",
+        "entry": 6684.25,
+        "exit": 6636.0,
+        "points": -48.25,
+        "pnl": -482.5,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-03-16",
+        "side": "long",
+        "entry": 6608.5,
+        "exit": 6704.75,
+        "points": 96.25,
+        "pnl": 962.5,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-06-11",
+        "side": "long",
+        "entry": 7259.25,
+        "exit": 7396.0,
+        "points": 136.75,
+        "pnl": 1367.5,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-07-30",
+        "side": "long",
+        "entry": 7338.0,
+        "exit": 7472.5,
+        "points": 134.5,
+        "pnl": 1345.0,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
       }
     ]
   }
