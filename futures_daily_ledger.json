@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 63277.0,
+    "equity": 62119.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2683,11 +2683,38 @@
         "points": 6.5,
         "pnl": 65.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-08",
+        "side": "long",
+        "entry": 7715.5,
+        "exit": 7680.5,
+        "points": -35.0,
+        "pnl": -350.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-09",
+        "side": "long",
+        "entry": 7681.0,
+        "exit": 7643.75,
+        "points": -37.25,
+        "pnl": -372.5,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-10",
+        "side": "long",
+        "entry": 7646.5,
+        "exit": 7603.0,
+        "points": -43.5,
+        "pnl": -435.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 67127.80000000002,
+    "equity": 66320.30000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3641,6 +3668,24 @@
         "exit": 7676.5,
         "points": 31.5,
         "pnl": 315.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-09-09",
+        "side": "long",
+        "entry": 7681.0,
+        "exit": 7643.75,
+        "points": -37.25,
+        "pnl": -372.5,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-09-10",
+        "side": "long",
+        "entry": 7646.5,
+        "exit": 7603.0,
+        "points": -43.5,
+        "pnl": -435.0,
         "note": "2 consecutive down days -> reversal"
       }
     ]
@@ -4760,7 +4805,7 @@
     ]
   },
   "IBS": {
-    "equity": 59816.9,
+    "equity": 59094.4,
     "trades": [
       {
         "day": "2024-09-04",
@@ -5418,6 +5463,24 @@
         "points": 6.5,
         "pnl": 65.0,
         "note": "IBS=0.19<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-09-08",
+        "side": "long",
+        "entry": 7715.5,
+        "exit": 7680.5,
+        "points": -35.0,
+        "pnl": -350.0,
+        "note": "IBS=0.19<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-09-09",
+        "side": "long",
+        "entry": 7681.0,
+        "exit": 7643.75,
+        "points": -37.25,
+        "pnl": -372.5,
+        "note": "IBS=0.15<0.2 weak-close mean reversion"
       }
     ]
   },
