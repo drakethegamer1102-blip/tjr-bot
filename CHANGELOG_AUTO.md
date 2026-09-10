@@ -3,6 +3,33 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-09-10 (autonomous) — reconcile stranded 08-26 checkpoint, no new tuning
+
+Local repo had 24-commit-stale uncommitted work from the prior 08-26 session:
+crypto_daily_v2.py (BBREAK/TURNOFMONTH/WILLIAMSR) and futures_daily_v3.py
+(RSI2/IBS/BOLLREV) written but never wired into their paper scripts, plus the
+ORB-futures cutover (PF 0.63, -$7,348/85t) only half-applied (config disabled
+but CI workflow + digest still ran/reported it). Stashed local changes,
+fast-forwarded 24 commits, resolved conflicts (ledgers → took upstream as
+source of truth; config.yaml comment → kept both), then wired v2/v3 registries
+into crypto_daily_paper.py / futures_daily_paper.py and finished stripping
+ORB-futures from .github/workflows/trade.yml and daily_strategy_digest.py.
+
+152/152 tests pass. compare_strategies.py 60 unchanged/not worsened (this
+touches only the daily strategies, not the intraday ones it backtests). All
+6 crypto-daily and 9 futures-daily strategies smoke-tested via --no-telegram
+dry runs — combined paper net crypto +$12,355, futures +$84,852.
+
+Checked the standing priority item (trend/regime filter to stop fading
+trending markets) — already live via `regime_filter: true` in config.yaml
+and tjrbot/regime.py from an earlier run. No new change needed there.
+
+No strategy/config tuning performed this run (one-change-per-run budget was
+spent on the reconciliation, which is infrastructure, not a strategy edit).
+apex.orb still shows -$2,081 in the live strategy_report.py output — that's
+stale ledger history only; config.yaml has had it `enabled: false` since
+08-26 and it placed no live trades this cycle.
+
 ## 2026-07-27 (user-directed) — port orb's winning edge (VWAP confirm) into squeeze_breakout
 
 **Why orb wins (studied from today's live fills + the code):** today was +$740, all 6
