@@ -3,17 +3,20 @@ name: TJR Bot (paper)
 # Runs on GitHub's free runners. Times are UTC, tuned for US Eastern DAYLIGHT
 # time (EDT = UTC-4). In winter (EST) shift the windows +1 hour (see DEPLOY.md).
 on:
-  # ALL scheduling is handled by cron-job.org (a reliable external timer) calling the
-  # workflow_dispatch API below, in America/New_York time. GitHub's built-in schedule was
-  # removed entirely — it delays/skips runs and auto-disables after 60 days of no commits.
-  # cron-job.org entries (see EXTERNAL_CRON.md):
-  #   every 5 min 09:30-16:00 -> mode=once           (scan)
-  #   16:05                    -> mode=summary        (daily recap)
-  #   16:10 Fri                -> mode=weekly         (weekly recap)
-  #   16:30                    -> mode=review         (nightly auto-tune)
-  #   09:35                    -> mode=rebound-open   (REBOUND enter)
-  #   15:55                    -> mode=rebound-close  (REBOUND exit)
-  #   16:20                    -> mode=orb-futures    (ORB FUTURES + FUTURES DAILY sims)
+  # GitHub-native scheduling (restored 2026-09-15 after the external cron-job.org timer's
+  # token expired). Times are UTC, tuned for US Eastern DAYLIGHT time (EDT = UTC-4); in
+  # winter (EST) each fires 1h later in ET — acceptable, or shift these +1h. The resolve-mode
+  # step below maps each cron expression to a run mode (mirrors the workflow_dispatch inputs).
+  # A commit at least every ~60 days keeps GitHub from auto-disabling the schedule (the
+  # nightly review commits config, so this stays warm on its own).
+  schedule:
+    - cron: "*/5 13-19 * * 1-5"   # every 5 min 09:30-16:00 ET (scan)  -> once
+    - cron: "35 13 * * 1-5"       # 09:35 ET  -> rebound-open
+    - cron: "55 19 * * 1-5"       # 15:55 ET  -> rebound-close
+    - cron: "5 20 * * 1-5"        # 16:05 ET  -> summary
+    - cron: "10 20 * * 5"         # 16:10 ET Fri -> weekly
+    - cron: "20 20 * * 1-5"       # 16:20 ET  -> orb-futures (futures sims)
+    - cron: "30 20 * * 1-5"       # 16:30 ET  -> review (nightly auto-tune)
   workflow_dispatch:
     inputs:
       mode:
@@ -46,32 +49,52 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
 
+      # Resolve the run mode from EITHER the manual dispatch input OR the cron schedule that
+      # fired. Every step below gates on steps.mode.outputs.mode so both triggers share logic.
+      - name: Resolve mode
+        id: mode
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
+          else
+            case "${{ github.event.schedule }}" in
+              "*/5 13-19 * * 1-5") echo "mode=once" >> "$GITHUB_OUTPUT" ;;
+              "35 13 * * 1-5")     echo "mode=rebound-open" >> "$GITHUB_OUTPUT" ;;
+              "55 19 * * 1-5")     echo "mode=rebound-close" >> "$GITHUB_OUTPUT" ;;
+              "5 20 * * 1-5")      echo "mode=summary" >> "$GITHUB_OUTPUT" ;;
+              "10 20 * * 5")       echo "mode=weekly" >> "$GITHUB_OUTPUT" ;;
+              "20 20 * * 1-5")     echo "mode=orb-futures" >> "$GITHUB_OUTPUT" ;;
+              "30 20 * * 1-5")     echo "mode=review" >> "$GITHUB_OUTPUT" ;;
+              *)                   echo "mode=healthcheck" >> "$GITHUB_OUTPUT" ;;
+            esac
+          fi
+
       - name: Daily summary
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'summary' }}
+        if: ${{ steps.mode.outputs.mode == 'summary' }}
         run: python scripts/run_bot.py --summary
 
       - name: Weekly recap
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'weekly' }}
+        if: ${{ steps.mode.outputs.mode == 'weekly' }}
         run: python scripts/run_bot.py --weekly
 
       - name: Connectivity self-test
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'healthcheck' }}
+        if: ${{ steps.mode.outputs.mode == 'healthcheck' }}
         run: python scripts/healthcheck.py
 
       - name: Strategy performance report
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'strategy-report' }}
+        if: ${{ steps.mode.outputs.mode == 'strategy-report' }}
         run: python scripts/strategy_report.py --telegram
 
       # Pre-open news digest (add a cron-job.org entry ~9:00 AM ET, Mon-Fri).
       - name: Morning news brief
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'morning-brief' }}
+        if: ${{ steps.mode.outputs.mode == 'morning-brief' }}
         run: python scripts/morning_brief.py --telegram
 
       # Nightly self-improvement: analyse the day's trades, adjust strategy config
       # within guardrails (never risk rails, paper-only), run tests, and COMMIT the
       # change back so the next day's runs pick it up. Pushes a summary to Telegram.
       - name: Autonomous strategy review (apply + commit)
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'review' }}
+        if: ${{ steps.mode.outputs.mode == 'review' }}
         env:
           # Only learn from trades on/after the last strategy-code change (2026-07-09:
           # capped marketable-limit entries + news gate; before that the 07-08
@@ -96,7 +119,7 @@ jobs:
           fi
 
       - name: Trading cycle
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'once' }}
+        if: ${{ steps.mode.outputs.mode == 'once' }}
         run: python scripts/run_bot.py --once
 
       # AFTER-CLOSE digest (prop-firm prep + daily review) — one cron-job.org entry
@@ -107,7 +130,7 @@ jobs:
       #      which strategy traded today and whether it made money.
       #   3. Commits the ledgers back so paper equity persists across stateless runs.
       - name: After-close digest
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'orb-futures' }}
+        if: ${{ steps.mode.outputs.mode == 'orb-futures' }}
         run: |
           set -e
           # update all paper ledgers SILENTLY; the digest is the single source of the
@@ -136,7 +159,7 @@ jobs:
       # Enters only if REBOUND fired (2 down days) and the circuit breaker passes; idempotent.
       # PAPER unless ALPACA_PAPER=false AND REBOUND_LIVE_CONFIRM=I_UNDERSTAND are set as secrets.
       - name: REBOUND enter
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'rebound-open' }}
+        if: ${{ steps.mode.outputs.mode == 'rebound-open' }}
         env:
           REBOUND_LIVE_CONFIRM: ${{ secrets.REBOUND_LIVE_CONFIRM }}
           REBOUND_FEED: ${{ secrets.REBOUND_FEED }}
@@ -145,7 +168,7 @@ jobs:
       # EXIT near the close: cron-job.org fires mode=rebound-close ~3:55 PM ET, Mon-Fri.
       # Unconditional flatten of any open REBOUND position (1-day hold). Safe to always run.
       - name: REBOUND exit
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'rebound-close' }}
+        if: ${{ steps.mode.outputs.mode == 'rebound-close' }}
         env:
           REBOUND_LIVE_CONFIRM: ${{ secrets.REBOUND_LIVE_CONFIRM }}
           REBOUND_FEED: ${{ secrets.REBOUND_FEED }}
