@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 63559.5,
+    "equity": 63067.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2728,6 +2728,15 @@
         "points": 81.75,
         "pnl": 817.5,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-15",
+        "side": "long",
+        "entry": 7699.25,
+        "exit": 7650.0,
+        "points": -49.25,
+        "pnl": -492.5,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
@@ -4020,7 +4029,7 @@
     ]
   },
   "TUESDAY": {
-    "equity": 49690.0,
+    "equity": 49197.5,
     "trades": [
       {
         "day": "2025-08-12",
@@ -4335,6 +4344,15 @@
         "exit": 7642.75,
         "points": -58.5,
         "pnl": -585.0,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-09-15",
+        "side": "long",
+        "entry": 7699.25,
+        "exit": 7650.0,
+        "points": -49.25,
+        "pnl": -492.5,
         "note": "Turnaround Tuesday (Mon down)"
       }
     ]
