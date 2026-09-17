@@ -69,7 +69,7 @@
     ]
   },
   "PULLBACK": {
-    "equity": 52022.790000000015,
+    "equity": 51967.790000000015,
     "trades": [
       {
         "day": "2025-08-04",
@@ -213,6 +213,14 @@
         "entry": 764.72,
         "exit": 764.29,
         "pnl": -43.0,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-09-17",
+        "side": "long",
+        "entry": 763.15,
+        "exit": 762.6,
+        "pnl": -55.0,
         "note": "10d-low dip in golden-cross uptrend"
       }
     ]

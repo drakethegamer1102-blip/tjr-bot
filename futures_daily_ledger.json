@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 63184.5,
+    "equity": 63124.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2746,11 +2746,20 @@
         "points": 11.75,
         "pnl": 117.5,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-17",
+        "side": "long",
+        "entry": 7703.5,
+        "exit": 7697.5,
+        "points": -6.0,
+        "pnl": -60.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 67060.30000000002,
+    "equity": 67000.30000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3741,6 +3750,15 @@
         "points": 11.75,
         "pnl": 117.5,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-09-17",
+        "side": "long",
+        "entry": 7703.5,
+        "exit": 7697.5,
+        "points": -6.0,
+        "pnl": -60.0,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
@@ -4642,7 +4660,7 @@
     ]
   },
   "DIPBUYER": {
-    "equity": 59497.5,
+    "equity": 59437.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -4786,6 +4804,15 @@
         "exit": 7661.75,
         "points": 62.25,
         "pnl": 622.5,
+        "note": "10d-low pullback in golden-cross uptrend"
+      },
+      {
+        "day": "2026-09-17",
+        "side": "long",
+        "entry": 7703.5,
+        "exit": 7697.5,
+        "points": -6.0,
+        "pnl": -60.0,
         "note": "10d-low pullback in golden-cross uptrend"
       }
     ]
@@ -5575,7 +5602,7 @@
     ]
   },
   "BOLLREV": {
-    "equity": 58380.0,
+    "equity": 58320.0,
     "trades": [
       {
         "day": "2025-11-19",
@@ -5674,6 +5701,15 @@
         "exit": 7635.75,
         "points": 11.75,
         "pnl": 117.5,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-09-17",
+        "side": "long",
+        "entry": 7703.5,
+        "exit": 7697.5,
+        "points": -6.0,
+        "pnl": -60.0,
         "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
       }
     ]
