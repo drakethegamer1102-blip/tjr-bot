@@ -807,7 +807,7 @@
     ]
   },
   "BBREAK": {
-    "equity": 54554.020000000004,
+    "equity": 55172.310000000005,
     "trades": [
       {
         "day": "2025-04-23",
@@ -1492,6 +1492,33 @@
         "exit": 2463.82,
         "pnl": 163.35,
         "note": "close 2424 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-09-19",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2611.46,
+        "exit": 2631.96,
+        "pnl": 78.52,
+        "note": "close 2611 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-09-20",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2632.01,
+        "exit": 2643.0,
+        "pnl": 41.73,
+        "note": "close 2632 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-09-21",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2644.8,
+        "exit": 2776.52,
+        "pnl": 498.04,
+        "note": "close 2643 > upper BB (20,2.0\u03c3)"
       }
     ]
   },
