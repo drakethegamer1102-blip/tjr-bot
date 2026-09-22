@@ -1,6 +1,6 @@
 {
   "MOONSHOT": {
-    "equity": 52712.229999999996,
+    "equity": 52591.68,
     "trades": [
       {
         "day": "2025-04-23",
@@ -342,6 +342,24 @@
         "entry": 2515.39,
         "exit": 2424.25,
         "pnl": -362.33,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2026-09-22",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 86597.82,
+        "exit": 86172.03,
+        "pnl": -49.17,
+        "note": "20d-high breakout in uptrend"
+      },
+      {
+        "day": "2026-09-22",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2775.96,
+        "exit": 2756.15,
+        "pnl": -71.38,
         "note": "20d-high breakout in uptrend"
       }
     ]
@@ -807,7 +825,7 @@
     ]
   },
   "BBREAK": {
-    "equity": 55172.310000000005,
+    "equity": 55051.76000000001,
     "trades": [
       {
         "day": "2025-04-23",
@@ -1519,6 +1537,24 @@
         "exit": 2776.52,
         "pnl": 498.04,
         "note": "close 2643 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-09-22",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 86597.82,
+        "exit": 86172.03,
+        "pnl": -49.17,
+        "note": "close 86603 > upper BB (20,2.0\u03c3)"
+      },
+      {
+        "day": "2026-09-22",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2775.96,
+        "exit": 2756.15,
+        "pnl": -71.38,
+        "note": "close 2776 > upper BB (20,2.0\u03c3)"
       }
     ]
   },
