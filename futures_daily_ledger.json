@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 63419.5,
+    "equity": 63412.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2791,11 +2791,20 @@
         "points": 0.5,
         "pnl": 5.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-24",
+        "side": "long",
+        "entry": 7759.0,
+        "exit": 7758.25,
+        "points": -0.75,
+        "pnl": -7.5,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 67000.30000000002,
+    "equity": 66992.80000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3794,6 +3803,15 @@
         "exit": 7697.5,
         "points": -6.0,
         "pnl": -60.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-09-24",
+        "side": "long",
+        "entry": 7759.0,
+        "exit": 7758.25,
+        "points": -0.75,
+        "pnl": -7.5,
         "note": "2 consecutive down days -> reversal"
       }
     ]
@@ -4958,7 +4976,7 @@
     ]
   },
   "IBS": {
-    "equity": 59716.9,
+    "equity": 59709.4,
     "trades": [
       {
         "day": "2024-09-04",
@@ -5642,6 +5660,15 @@
         "exit": 7661.75,
         "points": 62.25,
         "pnl": 622.5,
+        "note": "IBS=0.16<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-09-24",
+        "side": "long",
+        "entry": 7759.0,
+        "exit": 7758.25,
+        "points": -0.75,
+        "pnl": -7.5,
         "note": "IBS=0.16<0.2 weak-close mean reversion"
       }
     ]
