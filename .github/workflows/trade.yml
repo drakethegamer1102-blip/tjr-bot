@@ -3,20 +3,14 @@ name: TJR Bot (paper)
 # Runs on GitHub's free runners. Times are UTC, tuned for US Eastern DAYLIGHT
 # time (EDT = UTC-4). In winter (EST) shift the windows +1 hour (see DEPLOY.md).
 on:
-  # GitHub-native scheduling (restored 2026-09-15 after the external cron-job.org timer's
-  # token expired). Times are UTC, tuned for US Eastern DAYLIGHT time (EDT = UTC-4); in
-  # winter (EST) each fires 1h later in ET — acceptable, or shift these +1h. The resolve-mode
-  # step below maps each cron expression to a run mode (mirrors the workflow_dispatch inputs).
-  # A commit at least every ~60 days keeps GitHub from auto-disabling the schedule (the
-  # nightly review commits config, so this stays warm on its own).
-  schedule:
-    - cron: "*/5 13-19 * * 1-5"   # every 5 min 09:30-16:00 ET (scan)  -> once
-    - cron: "35 13 * * 1-5"       # 09:35 ET  -> rebound-open
-    - cron: "55 19 * * 1-5"       # 15:55 ET  -> rebound-close
-    - cron: "5 20 * * 1-5"        # 16:05 ET  -> summary
-    - cron: "10 20 * * 5"         # 16:10 ET Fri -> weekly
-    - cron: "20 20 * * 1-5"       # 16:20 ET  -> orb-futures (futures sims)
-    - cron: "30 20 * * 1-5"       # 16:30 ET  -> review (nightly auto-tune)
+  # Scheduling is driven LOCALLY by a launchd timer on the user's Mac (com.drake.tjr-cron ->
+  # scripts/dispatch_cron.sh), which calls `gh workflow run` at exact ET times. GitHub's own
+  # cron was too unreliable here (2026-09-29: it dropped the */5 intraday scan almost entirely
+  # and delayed close jobs 2-3h), so the native `schedule:` block was removed to avoid
+  # double-firing. The dispatch script fires: once (every 5m, 09:30-16:00 ET), rebound-open
+  # (09:35), rebound-close (15:55), summary (16:05), weekly (Fri 16:10), orb-futures (16:20),
+  # review (16:30). Requires the Mac to be on during market hours. resolve-mode below still
+  # maps modes for both triggers.
   workflow_dispatch:
     inputs:
       mode:
