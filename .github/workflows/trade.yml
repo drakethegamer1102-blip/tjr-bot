@@ -3,14 +3,22 @@ name: TJR Bot (paper)
 # Runs on GitHub's free runners. Times are UTC, tuned for US Eastern DAYLIGHT
 # time (EDT = UTC-4). In winter (EST) shift the windows +1 hour (see DEPLOY.md).
 on:
-  # Scheduling is driven LOCALLY by a launchd timer on the user's Mac (com.drake.tjr-cron ->
-  # scripts/dispatch_cron.sh), which calls `gh workflow run` at exact ET times. GitHub's own
-  # cron was too unreliable here (2026-09-29: it dropped the */5 intraday scan almost entirely
-  # and delayed close jobs 2-3h), so the native `schedule:` block was removed to avoid
-  # double-firing. The dispatch script fires: once (every 5m, 09:30-16:00 ET), rebound-open
-  # (09:35), rebound-close (15:55), summary (16:05), weekly (Fri 16:10), orb-futures (16:20),
-  # review (16:30). Requires the Mac to be on during market hours. resolve-mode below still
-  # maps modes for both triggers.
+  # Cloud-only scheduling — runs entirely on GitHub, so the user's Mac can sleep (2026-09-29).
+  # These are DAILY/close jobs; GitHub Actions fires single daily crons reliably (it may delay
+  # them ~1-2h, which is harmless for after-close sims/summaries/review). The former */5
+  # intraday "scan" cron was REMOVED: GitHub throttles high-frequency cron to ~1 run/day, AND
+  # there are currently zero enabled intraday strategies, so mode=once did nothing. If intraday
+  # strategies are re-enabled later and need 5-min precision, add an EXTERNAL timer (cron-job.org
+  # / Val.town) calling workflow_dispatch — do NOT rely on GitHub's */5 or on the local Mac.
+  # Times are UTC, tuned for US Eastern DAYLIGHT (EDT = UTC-4); in winter (EST) each fires 1h
+  # later in ET. The nightly review commits config, keeping the schedule from auto-disabling.
+  schedule:
+    - cron: "35 13 * * 1-5"   # 09:35 ET  -> rebound-open
+    - cron: "55 19 * * 1-5"   # 15:55 ET  -> rebound-close
+    - cron: "5 20 * * 1-5"    # 16:05 ET  -> summary
+    - cron: "10 20 * * 5"     # 16:10 ET Fri -> weekly
+    - cron: "20 20 * * 1-5"   # 16:20 ET  -> orb-futures (futures/crypto/stock sims + digest)
+    - cron: "30 20 * * 1-5"   # 16:30 ET  -> review (nightly auto-tune)
   workflow_dispatch:
     inputs:
       mode:
@@ -52,7 +60,6 @@ jobs:
             echo "mode=${{ inputs.mode }}" >> "$GITHUB_OUTPUT"
           else
             case "${{ github.event.schedule }}" in
-              "*/5 13-19 * * 1-5") echo "mode=once" >> "$GITHUB_OUTPUT" ;;
               "35 13 * * 1-5")     echo "mode=rebound-open" >> "$GITHUB_OUTPUT" ;;
               "55 19 * * 1-5")     echo "mode=rebound-close" >> "$GITHUB_OUTPUT" ;;
               "5 20 * * 1-5")      echo "mode=summary" >> "$GITHUB_OUTPUT" ;;
