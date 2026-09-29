@@ -226,7 +226,7 @@
     ]
   },
   "TUESDAY-EQ": {
-    "equity": 50649.00000000001,
+    "equity": 50386.00000000001,
     "trades": [
       {
         "day": "2025-08-12",
@@ -394,6 +394,14 @@
         "entry": 760.12,
         "exit": 757.39,
         "pnl": -272.7,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-09-29",
+        "side": "long",
+        "entry": 766.83,
+        "exit": 764.2,
+        "pnl": -263.0,
         "note": "Turnaround Tuesday (Mon down)"
       }
     ]
