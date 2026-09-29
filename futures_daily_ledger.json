@@ -2809,6 +2809,15 @@
         "points": 46.75,
         "pnl": 467.5,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-09-28",
+        "side": "long",
+        "entry": 7746.5,
+        "exit": 7746.5,
+        "points": 0.0,
+        "pnl": 0.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
@@ -4141,6 +4150,15 @@
         "exit": 7775.25,
         "points": 0.5,
         "pnl": 5.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-09-28",
+        "side": "long",
+        "entry": 7746.5,
+        "exit": 7746.5,
+        "points": 0.0,
+        "pnl": 0.0,
         "note": "fade gap-down > 0.3%"
       }
     ]
