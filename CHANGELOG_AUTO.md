@@ -3,6 +3,26 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-10-01 (autonomous) — NO CHANGE: all intraday strategies already cut, dormants still below bar
+
+Ran `strategy_report.py` (equity $86,876, $+127 today) and `compare_strategies.py 60`
+(regime filter on). Every intraday strategy shown in the live report (orb, squeeze_breakout,
+momentum, macd_trend, band_tag, vwap_rev) is already `enabled: false` in config.yaml from
+earlier cuts (08-26 and 07-31) — the live numbers are historical closed trades, not new
+activity, so nothing qualifies for a fresh disable under the ≥20-trade/PF<0.9 rule.
+
+Checked the three namable dormant strategies for an enable case: `orb` backtests at
+PF 0.98/253 trades (60d, regime on) — still under the 1.2 enable bar. `momentum` and
+`rsi_pullback` aren't in `compare_strategies.py`'s matrix at all, so there's no fresh
+60d/150-trade evidence to act on either way — left alone rather than guessing.
+
+Priority item from IMPROVEMENT_PROTOCOL.md (regime/trend filter so strategies don't fade
+a strongly trending market) was already shipped and live since 2026-06-12
+(`regime_filter: true` + `market_filter: true` in config.yaml) — no new work needed there.
+
+**Gates:** pytest 152/152 passed. No backtest regression possible — no code changed.
+No push.
+
 ## 2026-09-10 (autonomous) — reconcile stranded 08-26 checkpoint, no new tuning
 
 Local repo had 24-commit-stale uncommitted work from the prior 08-26 session:
