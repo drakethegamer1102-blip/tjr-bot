@@ -1577,7 +1577,7 @@
     ]
   },
   "TURNOFMONTH": {
-    "equity": 51905.130000000005,
+    "equity": 52354.43000000001,
     "trades": [
       {
         "day": "2025-05-01",
@@ -2838,6 +2838,42 @@
         "exit": 2668.63,
         "pnl": -136.57,
         "note": "turn-of-month (dom 1/31)"
+      },
+      {
+        "day": "2026-10-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 84503.19,
+        "exit": 84763.58,
+        "pnl": 30.81,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-10-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 84765.52,
+        "exit": 86480.3,
+        "pnl": 202.3,
+        "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-10-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2668.45,
+        "exit": 2687.26,
+        "pnl": 70.48,
+        "note": "turn-of-month (dom 2/31)"
+      },
+      {
+        "day": "2026-10-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2687.35,
+        "exit": 2726.51,
+        "pnl": 145.71,
+        "note": "turn-of-month (dom 3/31)"
       }
     ]
   },
