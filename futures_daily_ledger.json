@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 64817.0,
+    "equity": 64884.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2881,6 +2881,15 @@
         "points": 1.5,
         "pnl": 15.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-10-08",
+        "side": "long",
+        "entry": 7820.5,
+        "exit": 7827.25,
+        "points": 6.75,
+        "pnl": 67.5,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
@@ -3925,7 +3934,7 @@
     ]
   },
   "GAPFILL": {
-    "equity": 62845.0,
+    "equity": 62912.5,
     "trades": [
       {
         "day": "2026-01-20",
@@ -4240,6 +4249,15 @@
         "exit": 7746.5,
         "points": 0.0,
         "pnl": 0.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-10-08",
+        "side": "long",
+        "entry": 7820.5,
+        "exit": 7827.25,
+        "points": 6.75,
+        "pnl": 67.5,
         "note": "fade gap-down > 0.3%"
       }
     ]
