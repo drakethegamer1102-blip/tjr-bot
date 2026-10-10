@@ -365,7 +365,7 @@
     ]
   },
   "CRYPTODIP": {
-    "equity": 50259.960000000014,
+    "equity": 50013.890000000014,
     "trades": [
       {
         "day": "2025-02-26",
@@ -618,11 +618,38 @@
         "exit": 2474.37,
         "pnl": 7.7,
         "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-10-10",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 81690.49,
+        "exit": 82514.46,
+        "pnl": 100.86,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-10-08",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2573.55,
+        "exit": 2471.91,
+        "pnl": -394.95,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-10-10",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2472.47,
+        "exit": 2484.34,
+        "pnl": 48.02,
+        "note": "10d-low dip in golden-cross uptrend"
       }
     ]
   },
   "CRYPTORSI": {
-    "equity": 51997.91000000001,
+    "equity": 51751.84000000001,
     "trades": [
       {
         "day": "2025-02-26",
@@ -838,6 +865,33 @@
         "entry": 2472.47,
         "exit": 2474.37,
         "pnl": 7.7,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2026-10-10",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 81690.49,
+        "exit": 82514.46,
+        "pnl": 100.86,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2026-10-08",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2573.55,
+        "exit": 2471.91,
+        "pnl": -394.95,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2026-10-10",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2472.47,
+        "exit": 2484.34,
+        "pnl": 48.02,
         "note": "RSI2<5 oversold in uptrend"
       }
     ]
