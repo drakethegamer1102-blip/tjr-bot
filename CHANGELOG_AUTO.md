@@ -476,3 +476,17 @@ compare_strategies 60 unchanged (band_tag 1.94 / noise_band 1.13 / orb 1.03 with
 **Gates:** pytest 86/86. Backtest: vwap_rev 0 trades -> PF 2.18/31t; all other
 strategies unchanged (orb/noise_band moved ±0.01-0.06 purely from the 60d window
 sliding a day). EVAL_SINCE already 2026-07-09, covers the vwap_rev change.
+
+## 2026-10-12 — NO CHANGE (no gate cleared)
+
+**Live equity:** $87,194 (today +$36). Virtual-bot sim stats (all already OFF in
+config since 08-26): apex.orb PF 0.74 (-$2,081, 63t), squeeze_breakout PF 0.37 (8t),
+band_tag PF 0.49 (9t); rest 1 trade each.
+
+**Decision:** No change. Every stock strategy is already `enabled: false`, so no LIVE
+strategy qualifies for a disable. No dormant strategy clears the re-enable gate
+(PF≥1.2 AND ≥150 trades over 60d): vwap_rev PF 2.11/57t, band_tag PF 1.28/78t,
+orb PF 0.95 — all fail on sample size or PF. Priority item (regime/trend filter)
+already shipped + enabled. Data thin → report only, per protocol.
+
+**Gates:** pytest 152 passed. compare_strategies.py 60 run, not worsened (no edit made).
