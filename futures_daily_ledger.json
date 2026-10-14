@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 65162.0,
+    "equity": 64997.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2917,11 +2917,20 @@
         "points": -3.25,
         "pnl": -32.5,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-10-14",
+        "side": "long",
+        "entry": 7768.25,
+        "exit": 7751.75,
+        "points": -16.5,
+        "pnl": -165.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 68187.80000000002,
+    "equity": 68022.80000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3966,11 +3975,20 @@
         "points": 45.5,
         "pnl": 455.0,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-10-14",
+        "side": "long",
+        "entry": 7768.25,
+        "exit": 7751.75,
+        "points": -16.5,
+        "pnl": -165.0,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
   "GAPFILL": {
-    "equity": 62912.5,
+    "equity": 62747.5,
     "trades": [
       {
         "day": "2026-01-20",
@@ -4294,6 +4312,15 @@
         "exit": 7827.25,
         "points": 6.75,
         "pnl": 67.5,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-10-14",
+        "side": "long",
+        "entry": 7768.25,
+        "exit": 7751.75,
+        "points": -16.5,
+        "pnl": -165.0,
         "note": "fade gap-down > 0.3%"
       }
     ]
