@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 63459.5,
+    "equity": 63569.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -2989,11 +2989,20 @@
         "points": -33.75,
         "pnl": -337.5,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-10-26",
+        "side": "long",
+        "entry": 7715.0,
+        "exit": 7726.0,
+        "points": 11.0,
+        "pnl": 110.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 68005.30000000002,
+    "equity": 68115.30000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -4056,6 +4065,15 @@
         "points": -1.75,
         "pnl": -17.5,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-10-26",
+        "side": "long",
+        "entry": 7715.0,
+        "exit": 7726.0,
+        "points": 11.0,
+        "pnl": 110.0,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
@@ -5029,7 +5047,7 @@
     ]
   },
   "DIPBUYER": {
-    "equity": 59475.0,
+    "equity": 59585.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -5192,6 +5210,15 @@
         "points": 3.75,
         "pnl": 37.5,
         "note": "10d-low pullback in golden-cross uptrend"
+      },
+      {
+        "day": "2026-10-26",
+        "side": "long",
+        "entry": 7715.0,
+        "exit": 7726.0,
+        "points": 11.0,
+        "pnl": 110.0,
+        "note": "10d-low pullback in golden-cross uptrend"
       }
     ]
   },
@@ -5291,7 +5318,7 @@
     ]
   },
   "IBS": {
-    "equity": 59751.9,
+    "equity": 59861.9,
     "trades": [
       {
         "day": "2024-09-04",
@@ -5994,6 +6021,15 @@
         "points": 4.25,
         "pnl": 42.5,
         "note": "IBS=0.13<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-10-26",
+        "side": "long",
+        "entry": 7715.0,
+        "exit": 7726.0,
+        "points": 11.0,
+        "pnl": 110.0,
+        "note": "IBS=0.17<0.2 weak-close mean reversion"
       }
     ]
   },
