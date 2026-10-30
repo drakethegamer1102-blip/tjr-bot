@@ -365,7 +365,7 @@
     ]
   },
   "CRYPTODIP": {
-    "equity": 50120.41000000001,
+    "equity": 50001.94000000001,
     "trades": [
       {
         "day": "2025-02-26",
@@ -653,6 +653,24 @@
         "entry": 81676.34,
         "exit": 82546.32,
         "pnl": 106.52,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-10-30",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77791.38,
+        "exit": 77131.55,
+        "pnl": -84.82,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-10-30",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2248.75,
+        "exit": 2241.18,
+        "pnl": -33.65,
         "note": "10d-low dip in golden-cross uptrend"
       }
     ]
@@ -2977,7 +2995,7 @@
     ]
   },
   "WILLIAMSR": {
-    "equity": 51315.60999999999,
+    "equity": 51197.13999999999,
     "trades": [
       {
         "day": "2025-05-31",
@@ -3131,6 +3149,24 @@
         "exit": 2445.87,
         "pnl": 113.45,
         "note": "%R(10)=-96 oversold, >200d SMA"
+      },
+      {
+        "day": "2026-10-30",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77791.38,
+        "exit": 77131.55,
+        "pnl": -84.82,
+        "note": "%R(10)=-99 oversold, >200d SMA"
+      },
+      {
+        "day": "2026-10-30",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2248.75,
+        "exit": 2241.18,
+        "pnl": -33.65,
+        "note": "%R(10)=-94 oversold, >200d SMA"
       }
     ]
   }
