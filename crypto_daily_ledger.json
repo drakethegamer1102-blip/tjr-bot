@@ -365,7 +365,7 @@
     ]
   },
   "CRYPTODIP": {
-    "equity": 50001.94000000001,
+    "equity": 50032.58000000001,
     "trades": [
       {
         "day": "2025-02-26",
@@ -671,6 +671,15 @@
         "entry": 2248.75,
         "exit": 2241.18,
         "pnl": -33.65,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-10-31",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77198.21,
+        "exit": 77434.75,
+        "pnl": 30.64,
         "note": "10d-low dip in golden-cross uptrend"
       }
     ]
@@ -1694,7 +1703,7 @@
     ]
   },
   "TURNOFMONTH": {
-    "equity": 52354.43000000001,
+    "equity": 52590.600000000006,
     "trades": [
       {
         "day": "2025-05-01",
@@ -2991,6 +3000,42 @@
         "exit": 2726.51,
         "pnl": 145.71,
         "note": "turn-of-month (dom 3/31)"
+      },
+      {
+        "day": "2026-11-01",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77434.75,
+        "exit": 78248.45,
+        "pnl": 105.08,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-11-03",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 76683.89,
+        "exit": 76844.13,
+        "pnl": 20.9,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-11-01",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2252.75,
+        "exit": 2273.05,
+        "pnl": 90.13,
+        "note": "turn-of-month (dom 31/31)"
+      },
+      {
+        "day": "2026-11-03",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2249.26,
+        "exit": 2253.77,
+        "pnl": 20.06,
+        "note": "turn-of-month (dom 1/30)"
       }
     ]
   },
