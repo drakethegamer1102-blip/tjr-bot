@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 61897.0,
+    "equity": 61532.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3043,11 +3043,20 @@
         "points": -45.5,
         "pnl": -455.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-11-03",
+        "side": "long",
+        "entry": 7610.25,
+        "exit": 7573.75,
+        "points": -36.5,
+        "pnl": -365.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 67660.30000000002,
+    "equity": 67295.30000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -4128,6 +4137,15 @@
         "points": -45.5,
         "pnl": -455.0,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-11-03",
+        "side": "long",
+        "entry": 7610.25,
+        "exit": 7573.75,
+        "points": -36.5,
+        "pnl": -365.0,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
@@ -4506,7 +4524,7 @@
     ]
   },
   "TUESDAY": {
-    "equity": 49240.0,
+    "equity": 48875.0,
     "trades": [
       {
         "day": "2025-08-12",
@@ -4848,6 +4866,15 @@
         "exit": 7853.0,
         "points": -3.25,
         "pnl": -32.5,
+        "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-11-03",
+        "side": "long",
+        "entry": 7610.25,
+        "exit": 7573.75,
+        "points": -36.5,
+        "pnl": -365.0,
         "note": "Turnaround Tuesday (Mon down)"
       }
     ]
@@ -5408,7 +5435,7 @@
     ]
   },
   "IBS": {
-    "equity": 59861.9,
+    "equity": 59496.9,
     "trades": [
       {
         "day": "2024-09-04",
@@ -6120,11 +6147,20 @@
         "points": 11.0,
         "pnl": 110.0,
         "note": "IBS=0.17<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-11-03",
+        "side": "long",
+        "entry": 7610.25,
+        "exit": 7573.75,
+        "points": -36.5,
+        "pnl": -365.0,
+        "note": "IBS=0.03<0.2 weak-close mean reversion"
       }
     ]
   },
   "BOLLREV": {
-    "equity": 57865.0,
+    "equity": 57500.0,
     "trades": [
       {
         "day": "2025-11-19",
@@ -6241,6 +6277,15 @@
         "exit": 7580.5,
         "points": -45.5,
         "pnl": -455.0,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-11-03",
+        "side": "long",
+        "entry": 7610.25,
+        "exit": 7573.75,
+        "points": -36.5,
+        "pnl": -365.0,
         "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
       }
     ]

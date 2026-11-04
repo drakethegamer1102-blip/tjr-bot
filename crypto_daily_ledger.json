@@ -1703,7 +1703,7 @@
     ]
   },
   "TURNOFMONTH": {
-    "equity": 52590.600000000006,
+    "equity": 52171.89000000001,
     "trades": [
       {
         "day": "2025-05-01",
@@ -3036,11 +3036,47 @@
         "exit": 2253.77,
         "pnl": 20.06,
         "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-11-02",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 78248.45,
+        "exit": 76677.3,
+        "pnl": -200.79,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-11-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77338.23,
+        "exit": 76841.67,
+        "pnl": -64.21,
+        "note": "turn-of-month (dom 2/30)"
+      },
+      {
+        "day": "2026-11-02",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2273.05,
+        "exit": 2248.89,
+        "pnl": -106.32,
+        "note": "turn-of-month (dom 1/30)"
+      },
+      {
+        "day": "2026-11-04",
+        "coin": "ETH",
+        "side": "long",
+        "entry": 2271.97,
+        "exit": 2261.2,
+        "pnl": -47.39,
+        "note": "turn-of-month (dom 2/30)"
       }
     ]
   },
   "WILLIAMSR": {
-    "equity": 51197.13999999999,
+    "equity": 51132.92999999999,
     "trades": [
       {
         "day": "2025-05-31",
@@ -3212,6 +3248,15 @@
         "exit": 2241.18,
         "pnl": -33.65,
         "note": "%R(10)=-94 oversold, >200d SMA"
+      },
+      {
+        "day": "2026-11-04",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 77338.23,
+        "exit": 76841.67,
+        "pnl": -64.21,
+        "note": "%R(10)=-91 oversold, >200d SMA"
       }
     ]
   }
