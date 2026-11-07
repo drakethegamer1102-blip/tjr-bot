@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 63027.0,
+    "equity": 63477.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3070,6 +3070,15 @@
         "points": 31.5,
         "pnl": 315.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-11-06",
+        "side": "long",
+        "entry": 7359.0,
+        "exit": 7404.0,
+        "points": 45.0,
+        "pnl": 450.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
@@ -4168,7 +4177,7 @@
     ]
   },
   "GAPFILL": {
-    "equity": 62597.5,
+    "equity": 63047.5,
     "trades": [
       {
         "day": "2026-01-20",
@@ -4547,6 +4556,15 @@
         "points": 31.5,
         "pnl": 315.0,
         "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-11-06",
+        "side": "long",
+        "entry": 7359.0,
+        "exit": 7404.0,
+        "points": 45.0,
+        "pnl": 450.0,
+        "note": "fade gap-down > 0.3%"
       }
     ]
   },
@@ -4907,7 +4925,7 @@
     ]
   },
   "CAPITULATION": {
-    "equity": 59187.5,
+    "equity": 59637.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -5178,11 +5196,20 @@
         "points": -45.5,
         "pnl": -455.0,
         "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2026-11-06",
+        "side": "long",
+        "entry": 7359.0,
+        "exit": 7404.0,
+        "points": 45.0,
+        "pnl": 450.0,
+        "note": "fade -1.5% panic day"
       }
     ]
   },
   "DIPBUYER": {
-    "equity": 59130.0,
+    "equity": 59580.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -5363,6 +5390,15 @@
         "points": -45.5,
         "pnl": -455.0,
         "note": "10d-low pullback in golden-cross uptrend"
+      },
+      {
+        "day": "2026-11-06",
+        "side": "long",
+        "entry": 7359.0,
+        "exit": 7404.0,
+        "points": 45.0,
+        "pnl": 450.0,
+        "note": "10d-low pullback in golden-cross uptrend"
       }
     ]
   },
@@ -5462,7 +5498,7 @@
     ]
   },
   "IBS": {
-    "equity": 59496.9,
+    "equity": 59946.9,
     "trades": [
       {
         "day": "2024-09-04",
@@ -6183,11 +6219,20 @@
         "points": -36.5,
         "pnl": -365.0,
         "note": "IBS=0.03<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-11-06",
+        "side": "long",
+        "entry": 7359.0,
+        "exit": 7404.0,
+        "points": 45.0,
+        "pnl": 450.0,
+        "note": "IBS=0.09<0.2 weak-close mean reversion"
       }
     ]
   },
   "BOLLREV": {
-    "equity": 57500.0,
+    "equity": 57950.0,
     "trades": [
       {
         "day": "2025-11-19",
@@ -6313,6 +6358,15 @@
         "exit": 7573.75,
         "points": -36.5,
         "pnl": -365.0,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-11-06",
+        "side": "long",
+        "entry": 7359.0,
+        "exit": 7404.0,
+        "points": 45.0,
+        "pnl": 450.0,
         "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
       }
     ]
