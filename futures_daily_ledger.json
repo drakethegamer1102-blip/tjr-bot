@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 63477.0,
+    "equity": 63479.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3078,6 +3078,15 @@
         "exit": 7404.0,
         "points": 45.0,
         "pnl": 450.0,
+        "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-11-09",
+        "side": "long",
+        "entry": 7580.75,
+        "exit": 7581.0,
+        "points": 0.25,
+        "pnl": 2.5,
         "note": "bull regime (>200d SMA)"
       }
     ]
@@ -6232,7 +6241,7 @@
     ]
   },
   "BOLLREV": {
-    "equity": 57950.0,
+    "equity": 57952.5,
     "trades": [
       {
         "day": "2025-11-19",
@@ -6367,6 +6376,15 @@
         "exit": 7404.0,
         "points": 45.0,
         "pnl": 450.0,
+        "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
+      },
+      {
+        "day": "2026-11-09",
+        "side": "long",
+        "entry": 7580.75,
+        "exit": 7581.0,
+        "points": 0.25,
+        "pnl": 2.5,
         "note": "close<20d-2.0\u03c3 lower band & close>200d SMA"
       }
     ]
