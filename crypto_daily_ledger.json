@@ -365,7 +365,7 @@
     ]
   },
   "CRYPTODIP": {
-    "equity": 50044.07000000001,
+    "equity": 50046.670000000006,
     "trades": [
       {
         "day": "2025-02-26",
@@ -734,6 +734,15 @@
         "entry": 2050.18,
         "exit": 2055.88,
         "pnl": 27.78,
+        "note": "10d-low dip in golden-cross uptrend"
+      },
+      {
+        "day": "2026-11-14",
+        "coin": "BTC",
+        "side": "long",
+        "entry": 68238.21,
+        "exit": 68255.97,
+        "pnl": 2.6,
         "note": "10d-low dip in golden-cross uptrend"
       }
     ]
