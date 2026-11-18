@@ -23,6 +23,12 @@ from tjrbot.strategies.crypto_daily_v2 import REGISTRY as _CREG2
 
 REGISTRY = {**_CREG1, **_CREG2}   # 3 original + 3 v2 (BBREAK/TURNOFMONTH/WILLIAMSR)
 
+# Disabled by the nightly review per IMPROVEMENT_PROTOCOL.md (>=20 closed trades AND PF<0.9).
+# No new trades are generated for these; the existing ledger record is preserved untouched.
+# 2026-11-18: CRYPTODIP — 46 closed, PF 0.85, net -$650. Redundant with CRYPTORSI (PF 1.75),
+# which fades crypto dips far more profitably, so cutting CRYPTODIP removes a losing overlap.
+DISABLED = {"CRYPTODIP"}
+
 try:
     from tjrbot.notify.telegram import TelegramNotifier
 except Exception:
@@ -92,6 +98,8 @@ def main(argv):
 
     led = _load()
     for name, fn in REGISTRY.items():
+        if name in DISABLED:
+            continue  # review-disabled: generate no new trades, keep existing ledger intact
         book = led.setdefault(name, {"equity": START_EQUITY, "trades": []})
         seen = {(t["day"], t.get("coin")) for t in book["trades"]}
         for coin, daily in data.items():

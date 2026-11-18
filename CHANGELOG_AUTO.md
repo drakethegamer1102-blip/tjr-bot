@@ -3,6 +3,26 @@
 Dated log of every change the improvement loop (or its supervising agent) ships.
 One entry per run. Newest first.
 
+## 2026-11-18 (autonomous) — DISABLE crypto-daily CRYPTODIP (PF 0.85, redundant with CRYPTORSI)
+
+Ran `strategy_report.py` (intraday equity $87,391, today -$491 — all historical closed
+trades; every intraday strategy in config.yaml is `enabled: false`, correct) and
+`compare_strategies.py 60` for the gate baseline (regime filter on: vwap_rev PF 7.11,
+band_tag 1.76, noise_band 1.06; orb 0.87, tjr 0.64, gap_fade 0.63 — unchanged).
+
+The profit is in the daily engines (crypto/futures/stock daily ledgers, +$105.8k paper
+combined). Scanned those for the ≥20-closed-trades AND PF<0.9 disable rule. Two qualify:
+crypto **CRYPTODIP** (46 closed, PF 0.85, net -$650) and futures **TUESDAY** (39 closed,
+PF 0.88, net -$1,125). Change ONE per run → cut CRYPTODIP: it is the better-evidenced
+cut because CRYPTORSI (PF 1.75, net +$1,980) fades the same crypto dips far more
+profitably, so CRYPTODIP is a losing overlap, not unique exposure.
+
+Change: added `DISABLED = {"CRYPTODIP"}` to `scripts/crypto_daily_paper.py`; the trading
+loop skips disabled strategies (no new trades) while the existing 46-trade ledger record
+is preserved untouched and still shown in the review. No risk control touched, paper only.
+Gates: `pytest` 152 passed; backtest baseline unchanged (no intraday strategy modified).
+Next run: re-check CRYPTODIP stays frozen, and consider futures TUESDAY as the next cut.
+
 ## 2026-10-01 (autonomous) — NO CHANGE: all intraday strategies already cut, dormants still below bar
 
 Ran `strategy_report.py` (equity $86,876, $+127 today) and `compare_strategies.py 60`
