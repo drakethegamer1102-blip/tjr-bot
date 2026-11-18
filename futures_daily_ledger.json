@@ -1,6 +1,6 @@
 {
   "DAYBREAK": {
-    "equity": 63054.5,
+    "equity": 62674.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -3133,11 +3133,20 @@
         "points": 1.0,
         "pnl": 10.0,
         "note": "bull regime (>200d SMA)"
+      },
+      {
+        "day": "2026-11-17",
+        "side": "long",
+        "entry": 7406.0,
+        "exit": 7368.0,
+        "points": -38.0,
+        "pnl": -380.0,
+        "note": "bull regime (>200d SMA)"
       }
     ]
   },
   "REBOUND": {
-    "equity": 67305.30000000002,
+    "equity": 66925.30000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -4236,11 +4245,20 @@
         "points": 1.0,
         "pnl": 10.0,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-11-17",
+        "side": "long",
+        "entry": 7406.0,
+        "exit": 7368.0,
+        "points": -38.0,
+        "pnl": -380.0,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
   "GAPFILL": {
-    "equity": 65075.0,
+    "equity": 64695.0,
     "trades": [
       {
         "day": "2026-01-20",
@@ -4655,11 +4673,20 @@
         "points": 1.0,
         "pnl": 10.0,
         "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-11-17",
+        "side": "long",
+        "entry": 7406.0,
+        "exit": 7368.0,
+        "points": -38.0,
+        "pnl": -380.0,
+        "note": "fade gap-down > 0.3%"
       }
     ]
   },
   "TUESDAY": {
-    "equity": 48875.0,
+    "equity": 48495.0,
     "trades": [
       {
         "day": "2025-08-12",
@@ -5011,11 +5038,20 @@
         "points": -36.5,
         "pnl": -365.0,
         "note": "Turnaround Tuesday (Mon down)"
+      },
+      {
+        "day": "2026-11-17",
+        "side": "long",
+        "entry": 7406.0,
+        "exit": 7368.0,
+        "points": -38.0,
+        "pnl": -380.0,
+        "note": "Turnaround Tuesday (Mon down)"
       }
     ]
   },
   "CAPITULATION": {
-    "equity": 59637.5,
+    "equity": 59257.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -5294,6 +5330,15 @@
         "exit": 7404.0,
         "points": 45.0,
         "pnl": 450.0,
+        "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2026-11-17",
+        "side": "long",
+        "entry": 7406.0,
+        "exit": 7368.0,
+        "points": -38.0,
+        "pnl": -380.0,
         "note": "fade -1.5% panic day"
       }
     ]
@@ -5588,7 +5633,7 @@
     ]
   },
   "IBS": {
-    "equity": 59946.9,
+    "equity": 59566.9,
     "trades": [
       {
         "day": "2024-09-04",
@@ -6318,6 +6363,15 @@
         "points": 45.0,
         "pnl": 450.0,
         "note": "IBS=0.09<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-11-17",
+        "side": "long",
+        "entry": 7406.0,
+        "exit": 7368.0,
+        "points": -38.0,
+        "pnl": -380.0,
+        "note": "IBS=0.10<0.2 weak-close mean reversion"
       }
     ]
   },
