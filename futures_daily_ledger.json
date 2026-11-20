@@ -3146,7 +3146,7 @@
     ]
   },
   "REBOUND": {
-    "equity": 67275.30000000002,
+    "equity": 67147.80000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -4263,11 +4263,20 @@
         "points": 35.0,
         "pnl": 350.0,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-11-19",
+        "side": "long",
+        "entry": 7192.75,
+        "exit": 7180.0,
+        "points": -12.75,
+        "pnl": -127.5,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
   "GAPFILL": {
-    "equity": 64695.0,
+    "equity": 64567.5,
     "trades": [
       {
         "day": "2026-01-20",
@@ -4690,6 +4699,15 @@
         "exit": 7368.0,
         "points": -38.0,
         "pnl": -380.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-11-19",
+        "side": "long",
+        "entry": 7192.75,
+        "exit": 7180.0,
+        "points": -12.75,
+        "pnl": -127.5,
         "note": "fade gap-down > 0.3%"
       }
     ]
