@@ -1,6 +1,6 @@
 {
   "DIPSNAP": {
-    "equity": 53807.570000000014,
+    "equity": 51648.570000000014,
     "trades": [
       {
         "day": "2025-08-04",
@@ -64,6 +64,14 @@
         "entry": 726.89,
         "exit": 735.86,
         "pnl": 897.69,
+        "note": "RSI2<5 oversold in uptrend"
+      },
+      {
+        "day": "2026-11-19",
+        "side": "long",
+        "entry": 737.46,
+        "exit": 715.87,
+        "pnl": -2159.0,
         "note": "RSI2<5 oversold in uptrend"
       }
     ]

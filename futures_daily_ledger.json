@@ -3146,7 +3146,7 @@
     ]
   },
   "REBOUND": {
-    "equity": 67147.80000000002,
+    "equity": 64887.80000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -4272,6 +4272,15 @@
         "points": -12.75,
         "pnl": -127.5,
         "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-11-20",
+        "side": "long",
+        "entry": 7192.75,
+        "exit": 6966.75,
+        "points": -226.0,
+        "pnl": -2260.0,
+        "note": "2 consecutive down days -> reversal"
       }
     ]
   },
@@ -5078,7 +5087,7 @@
     ]
   },
   "CAPITULATION": {
-    "equity": 59257.5,
+    "equity": 56997.5,
     "trades": [
       {
         "day": "2025-08-04",
@@ -5367,11 +5376,20 @@
         "points": -38.0,
         "pnl": -380.0,
         "note": "fade -1.5% panic day"
+      },
+      {
+        "day": "2026-11-20",
+        "side": "long",
+        "entry": 7192.75,
+        "exit": 6966.75,
+        "points": -226.0,
+        "pnl": -2260.0,
+        "note": "fade -1.5% panic day"
       }
     ]
   },
   "DIPBUYER": {
-    "equity": 59580.0,
+    "equity": 57320.0,
     "trades": [
       {
         "day": "2025-08-04",
@@ -5561,6 +5579,15 @@
         "points": 45.0,
         "pnl": 450.0,
         "note": "10d-low pullback in golden-cross uptrend"
+      },
+      {
+        "day": "2026-11-20",
+        "side": "long",
+        "entry": 7192.75,
+        "exit": 6966.75,
+        "points": -226.0,
+        "pnl": -2260.0,
+        "note": "10d-low pullback in golden-cross uptrend"
       }
     ]
   },
@@ -5660,7 +5687,7 @@
     ]
   },
   "IBS": {
-    "equity": 59566.9,
+    "equity": 57306.9,
     "trades": [
       {
         "day": "2024-09-04",
@@ -6399,6 +6426,15 @@
         "points": -38.0,
         "pnl": -380.0,
         "note": "IBS=0.10<0.2 weak-close mean reversion"
+      },
+      {
+        "day": "2026-11-20",
+        "side": "long",
+        "entry": 7192.75,
+        "exit": 6966.75,
+        "points": -226.0,
+        "pnl": -2260.0,
+        "note": "IBS=0.11<0.2 weak-close mean reversion"
       }
     ]
   },
