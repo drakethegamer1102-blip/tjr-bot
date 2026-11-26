@@ -4294,7 +4294,7 @@
     ]
   },
   "GAPFILL": {
-    "equity": 64237.5,
+    "equity": 64812.5,
     "trades": [
       {
         "day": "2026-01-20",
@@ -4735,6 +4735,15 @@
         "exit": 7179.5,
         "points": -33.0,
         "pnl": -330.0,
+        "note": "fade gap-down > 0.3%"
+      },
+      {
+        "day": "2026-11-25",
+        "side": "long",
+        "entry": 7190.5,
+        "exit": 7248.0,
+        "points": 57.5,
+        "pnl": 575.0,
         "note": "fade gap-down > 0.3%"
       }
     ]
