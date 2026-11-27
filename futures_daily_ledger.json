@@ -3146,7 +3146,7 @@
     ]
   },
   "REBOUND": {
-    "equity": 64877.80000000002,
+    "equity": 65882.80000000002,
     "trades": [
       {
         "day": "2025-08-04",
@@ -4289,6 +4289,15 @@
         "exit": 7271.0,
         "points": -1.0,
         "pnl": -10.0,
+        "note": "2 consecutive down days -> reversal"
+      },
+      {
+        "day": "2026-11-26",
+        "side": "long",
+        "entry": 7190.5,
+        "exit": 7291.0,
+        "points": 100.5,
+        "pnl": 1005.0,
         "note": "2 consecutive down days -> reversal"
       }
     ]
